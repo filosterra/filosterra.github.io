@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Desarrollo>
+	<data>
+		<item Id="1" Lote="43A" Status="Disponible" Manzana="8" Etapa="1" PrecioUnitario="5000" Terreno="81" PrecioVenta="$697,000.00"/>
+		<item Id="2" Lote="43B" Status="Disponible" Manzana="8" Etapa="1" PrecioUnitario="6000" Terreno="81" PrecioVenta="$723,000.00"/>
+		<item Id="3" Lote="44A" Status="Disponible" Manzana="8" Etapa="1" PrecioUnitario="6000" Terreno="81" PrecioVenta="$723,000.00"/>
+		<item Id="4" Lote="44B" Status="Disponible" Manzana="8" Etapa="1" PrecioUnitario="6000" Terreno="81" PrecioVenta="$697,000.00"/>
+		<item Id="5" Lote="45A" Status="Disponible" Manzana="8" Etapa="1" PrecioUnitario="6000" Terreno="81" PrecioVenta="$771,000.00"/>
+		<item Id="6" Lote="45B" Status="Disponible" Manzana="8" Etapa="1" PrecioUnitario="6000" Terreno="81" PrecioVenta="$771,000.00"/>
+		<item Id="7" Lote="46A" Status="Disponible" Manzana="8" Etapa="1" PrecioUnitario="6000" Terreno="81" PrecioVenta="$771,000.00"/>
+		<item Id="8" Lote="46B" Status="Disponible" Manzana="8" Etapa="1" PrecioUnitario="6000" Terreno="81" PrecioVenta="$771,000.00"/>
+		<item Id="9" Lote="47A" Status="Disponible" Manzana="8" Etapa="1" PrecioUnitario="6000" Terreno="81" PrecioVenta="$771,000.00"/>
+		<item Id="10" Lote="47B" Status="Disponible" Manzana="8" Etapa="1" PrecioUnitario="6000" Terreno="81" PrecioVenta="$771,000.00"/>
+		<item Id="11" Lote="48A" Status="Disponible" Manzana="8" Etapa="1" PrecioUnitario="6000" Terreno="81" PrecioVenta="$771,000.00"/>
+		<item Id="12" Lote="48B" Status="Disponible" Manzana="8" Etapa="1" PrecioUnitario="6000" Terreno="81" PrecioVenta="$771,000.00"/>
+		<item Id="13" Lote="49A" Status="Disponible" Manzana="8" Etapa="1" PrecioUnitario="6000" Terreno="81" PrecioVenta="$771,000.00"/>
+		<item Id="14" Lote="49B" Status="Disponible" Manzana="8" Etapa="1" PrecioUnitario="6000" Terreno="81" PrecioVenta="$771,000.00"/>
+		<item Id="15" Lote="50A" Status="Disponible" Manzana="8" Etapa="1" PrecioUnitario="6000" Terreno="81" PrecioVenta="$797,000.00"/>
+		<item Id="16" Lote="50B" Status="Disponible" Manzana="8" Etapa="1" PrecioUnitario="6000" Terreno="81" PrecioVenta="$772,145.00"/>
+		<item Id="17" Lote="51A" Status="Disponible" Manzana="8" Etapa="1" PrecioUnitario="6000" Terreno="81" PrecioVenta="$755,830.00"/>
+		<item Id="18" Lote="51B" Status="Disponible" Manzana="8" Etapa="1" PrecioUnitario="6000" Terreno="81" PrecioVenta="$697,000.00"/>
+		<item Id="19" Lote="52A" Status="Disponible" Manzana="8" Etapa="1" PrecioUnitario="6000" Terreno="81" PrecioVenta="$697,000.00"/>
+		<item Id="20" Lote="52B" Status="Disponible" Manzana="8" Etapa="1" PrecioUnitario="6000" Terreno="81" PrecioVenta="$697,000.00"/>
+		<item Id="21" Lote="53A" Status="Disponible" Manzana="8" Etapa="1" PrecioUnitario="6000" Terreno="81" PrecioVenta="$761,000.00"/>
+		<item Id="22" Lote="53B" Status="Disponible" Manzana="8" Etapa="1" PrecioUnitario="6000" Terreno="81" PrecioVenta="$771,000.00"/>
+		<item Id="23" Lote="54A" Status="Disponible" Manzana="8" Etapa="1" PrecioUnitario="6000" Terreno="81" PrecioVenta="$771,000.00"/>
+		<item Id="24" Lote="54B" Status="Disponible" Manzana="8" Etapa="1" PrecioUnitario="6000" Terreno="81" PrecioVenta="$761,000.00"/>
+		<item Id="25" Lote="55A" Status="Disponible" Manzana="8" Etapa="1" PrecioUnitario="6000" Terreno="81" PrecioVenta="$771,000.00"/>
+		<item Id="26" Lote="55B" Status="Disponible" Manzana="8" Etapa="1" PrecioUnitario="6000" Terreno="81" PrecioVenta="$771,000.00"/>
+		<item Id="27" Lote="19A" Status="Vendido" Manzana="9" Etapa="1" PrecioUnitario="6000" Terreno="81" PrecioVenta="$723,000.00"/>
+		<item Id="28" Lote="19B" Status="Vendido" Manzana="9" Etapa="1" PrecioUnitario="6000" Terreno="81" PrecioVenta="$697,000.00"/>
+		<item Id="29" Lote="20A" Status="Vendido" Manzana="9" Etapa="1" PrecioUnitario="6000" Terreno="81" PrecioVenta="$697,000.00"/>
+		<item Id="30" Lote="20B" Status="Vendido" Manzana="9" Etapa="1" PrecioUnitario="6000" Terreno="81" PrecioVenta="$697,000.00"/>
+		<item Id="31" Lote="21A" Status="Vendido" Manzana="9" Etapa="1" PrecioUnitario="6000" Terreno="81" PrecioVenta="$723,000.00"/>
+		<item Id="32" Lote="21B" Status="Vendido" Manzana="9" Etapa="1" PrecioUnitario="6000" Terreno="81" PrecioVenta="$723,000.00"/>
+	</data>
+</Desarrollo>
