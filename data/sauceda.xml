@@ -1,5 +1,36 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Desarrollo>
+	<filters bind="Vivienda" id="Identificador">
+		<filter title="Disponibilidad" bind="@Vendido">
+			<option text="Apartado" value="Apartado" color="#FF8000" selected="true"/>
+			<option text="Disponible" value="Disponible" color="#80FF00"/>
+		</filter>
+		<filter title="Prototipos" bind="@Prototipo"/>
+	</filters>
+	<details>
+		<div id="detalles">
+			<input name="cliente" type="hidden" value="{{@Cliente}}"/>
+			<input name="telefono" type="hidden" value="{{@Telefono}}"/>
+			<input name="email" type="hidden" value="{{@Email}}"/>
+			<input name="vivienda" type="hidden" value="{{@Identificador}}"/>
+			<span visible="{{@Identificador}}">
+				Lote: <span id="sLote" bind="@Lote"/><br/><br/>
+			</span>
+			<span visible="{{@Prototipo}}">
+				Prototipo: <span id="sPrototipo" bind="@Prototipo"/>
+			</span>
+			<br/>
+			<br/>
+		</div>
+		<div id="fotos">
+			<div class="foto">
+				<img id="fotoFachada" src=""/>
+			</div>
+			<div class="foto">
+				<img id="fotoPlanta" src=""/>
+			</div>
+		</div>
+	</details>
 	<data>
 		<item Id="1" Lote="43A" Status="Disponible" Manzana="8" Etapa="1" PrecioUnitario="5000" Terreno="81" PrecioVenta="$697,000.00"/>
 		<item Id="2" Lote="43B" Status="Disponible" Manzana="8" Etapa="1" PrecioUnitario="6000" Terreno="81" PrecioVenta="$723,000.00"/>
