@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Desarrollo>
 	<filters bind="Vivienda" id="Identificador">
-		<filter title="Disponibilidad" bind="@Vendido">
-			<option text="Apartado" value="Apartado" color="#FF8000" selected="true"/>
-			<option text="Disponible" value="Disponible" color="#80FF00"/>
-		</filter>
+		<filter title="Disponibilidad" bind="@Status"/>
 		<filter title="Prototipos" bind="@Prototipo"/>
 	</filters>
 	<details>
