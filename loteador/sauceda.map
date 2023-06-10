@@ -5,7 +5,7 @@
 <!-- #$-:GIMP Image Map plug-in by Maurits Rijk -->
 <!-- #$-:Please do not edit lines starting with "#$" -->
 <!-- #$VERSION:2.3 -->
-<!-- #$AUTHOR:Uriel Gomez   -->
+<!-- #$AUTHOR:Uriel Gomez    -->
 <area shape="poly" coords="314,779,454,739,534,1007,381,1032" alt="32" target="SAUCEDA_32" href="#" />
 <area shape="poly" coords="534,1007,454,739,598,700,680,979" alt="31" target="SAUCEDA_31" href="#" />
 <area shape="poly" coords="597,699,740,661,825,948,680,979" alt="30" target="SAUCEDA_30" href="#" />
@@ -37,7 +37,7 @@
 <area shape="poly" coords="2039,868,2047,908,2031,910,2080,1291,1545,1351,1516,1077,1624,1040,1729,1001,1851,952" alt="8" target="SAUCEDA_8" href="#" />
 <area shape="poly" coords="1416,1365,1545,1351,1508,1001,1502,993,1491,986,1477,983,1462,984,1372,1014" alt="7" target="SAUCEDA_7" href="#" />
 <area shape="poly" coords="1372,1014,1236,1056,1276,1380,1416,1365" alt="6" target="SAUCEDA_6" href="#" />
-<area shape="poly" coords="1236,1056,1100,1094,1136,1394,1276,1380" alt="3" target="SAUCEDA_3" href="#" />
+<area shape="poly" coords="1236,1056,1100,1094,1136,1394,1276,1380" alt="5" target="SAUCEDA_5" href="#" />
 <area shape="poly" coords="1100,1094,963,1130,996,1408,1136,1394" alt="4" target="SAUCEDA_4" href="#" />
 <area shape="poly" coords="963,1130,809,1166,839,1424,996,1408" alt="3" target="SAUCEDA_3" href="#" />
 <area shape="poly" coords="809,1166,643,1200,671,1441,839,1424" alt="2" target="SAUCEDA_2" href="#" />

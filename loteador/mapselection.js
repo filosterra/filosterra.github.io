@@ -1,65 +1,101 @@
-// JavaScript Document
-var filters = {}
-var color_array = [
-    '#F78181'
-    , '#F79F81'
-    , '#F7BE81'
-    , '#F5DA81'
-    , '#F3F781'
-    , '#D8F781'
-    , '#BEF781'
-    , '#9FF781'
-    , '#81F781'
-    , '#81F79F'
-    , '#81F7BE'
-    , '#81F7D8'
-    , '#81F7F3'
-    , '#81DAF5'
-    , '#81BEF7'
-    , '#819FF7'
-    , '#8181F7'
-    , '#9F81F7'
-    , '#BE81F7'
-    , '#DA81F5'
-    , '#F781F3'
-    , '#F781D8'
-    , '#F781BE'
-    , '#F7819F'
-    , '#D8D8D8'
-    , '#FF0000'
-    , '#FF4000'
-    , '#FF8000'
-    , '#FFBF00'
-    , '#FFFF00'
-    , '#BFFF00'
-    , '#80FF00'
-    , '#40FF00'
-    , '#00FF00'
-    , '#00FF40'
-    , '#00FF80'
-    , '#00FFBF'
-    , '#00FFFF'
-    , '#00BFFF'
-    , '#0080FF'
-    , '#0040FF'
-    , '#0000FF'
-    , '#4000FF'
-    , '#8000FF'
-    , '#BF00FF'
-    , '#FF00FF'
-    , '#FF00BF'
-    , '#FF0080'
-    , '#FF0040'
-    , '#848484'
-];
+// Función para generar colores complementarios
+function generateComplementaryColors(baseColor, numColors) {
+    // Convertir el color base a formato RGB
+    const rgbBaseColor = hexToRgb(baseColor);
 
-//function findDeep(element, elementName, attribute, value) {
-//    var e = undefined;
-//    $(element).select(elementName+(attribute?'['+attribute+(value?'="' + value+'"':'')+']':'')).each(function () {
-//        e = this;
-//    })
-//    return e;
-//};
+    // Verificar si el color base es válido
+    if (!rgbBaseColor) {
+        console.error("El formato del color base no es válido.");
+        return [];
+    }
+
+    // Calcular el ángulo de separación para los colores complementarios
+    const separationAngle = 360 / numColors;
+
+    // Array para almacenar los colores generados
+    const colors = [];
+
+    // Generar los colores complementarios
+    for (let i = 0; i < numColors; i++) {
+        // Calcular el ángulo para el color actual
+        const angle = separationAngle * i;
+
+        // Calcular el color complementario para el ángulo actual
+        const complementaryColor = calculateComplementaryColor(rgbBaseColor, angle);
+
+        // Convertir el color complementario a formato hexadecimal
+        const hexColor = rgbToHex(complementaryColor);
+
+        // Agregar el color a la lista
+        colors.push(hexColor);
+    }
+
+    return colors;
+}
+
+
+// Función para convertir un color hexadecimal a RGB
+function hexToRgb(hexColor) {
+    const shorthandRegex = /^#?([a-f\d]{1,2})([a-f\d]{1,2})([a-f\d]{1,2})$/i;
+    const result = shorthandRegex.exec(hexColor);
+    if (result) {
+        return {
+            r: parseInt(result[1].length === 1 ? result[1] + result[1] : result[1], 16),
+            g: parseInt(result[2].length === 1 ? result[2] + result[2] : result[2], 16),
+            b: parseInt(result[3].length === 1 ? result[3] + result[3] : result[3], 16)
+        };
+    }
+    return null;
+}
+
+// Función para calcular un color complementario dado un color base y un ángulo
+function calculateComplementaryColor(baseColor, angle) {
+    // Convertir el ángulo a radianes
+    const radians = (angle * Math.PI) / 180;
+
+    // Calcular las componentes RGB del color complementario
+    const r = 255 - baseColor.r;
+    const g = 255 - baseColor.g;
+    const b = 255 - baseColor.b;
+
+    // Aplicar el ángulo para obtener una versión más clara u oscura del color complementario
+    const delta = Math.round(Math.cos(radians) * 128);
+    const complementColor = {
+        r: clamp(r + delta),
+        g: clamp(g + delta),
+        b: clamp(b + delta)
+    };
+
+    return complementColor;
+}
+
+// Función para asegurarse de que un valor RGB está dentro del rango válido (0-255)
+function clamp(value) {
+    return Math.min(Math.max(value, 0), 255);
+}
+
+// Función para convertir un color RGB a hexadecimal
+function rgbToHex(rgbColor) {
+    const { r, g, b } = rgbColor;
+    return `#${componentToHex(r)}${componentToHex(g)}${componentToHex(b)}`;
+}
+
+// Función para convertir un componente RGB a su representación hexadecimal
+function componentToHex(component) {
+    const hex = component.toString(16);
+    return hex.length === 1 ? "0" + hex : hex;
+}
+
+// Ejemplo de uso
+const baseColor = "#FF0000"; // Color base en formato hexadecimal (rojo)
+const numColors = 2; // Número de colores complementarios a generar
+
+const color_array = generateComplementaryColors(baseColor, numColors);
+console.log(color_array);
+
+
+
+var filters = {}
 var attributes, attribute_pattern, value_attribute, text_attribute, oSource; //Definimos a este nivel para que sean accesibles dentro de las funciones jquery
 async function actualizaColores(oSource, colorear) {
     function rgbToHex(rgb) {
@@ -445,21 +481,20 @@ async function iluminarMapa(conditions) {
 
     let sFilters_bind = $(xmlFilters).find('filters').attr('bind');
     let sElement_id = $(xmlFilters).find('filters').attr('id');
-    $(xmlData).find(sFilters_bind).each(function () {
-        let oVivienda = $(this);
-        let txtIdentificador = '#' + $(this).attr(sElement_id);
-        let oLote = $(txtIdentificador);
-        if (oLote.length == 0) {
+    for (let element of xmlData.select(sFilters_bind)) {
+        let txtIdentificador = `area[target="SAUCEDA_${element.attr(sElement_id)}"]`;
+        let oLote = document.querySelector(txtIdentificador);
+        if (!oLote) {
             console.log(txtIdentificador + ' no existe')
         } else {
-            let data = $(txtIdentificador).mouseout().data('maphilight') || {};
+            let data = $(oLote).mouseout().data('maphilight') || {};
             let turnOff = false;
             turnOff = !testConditions($(this), conditions);
             data.alwaysOn = !turnOff;
 
-            $(txtIdentificador).data('maphilight', data);
+            $(oLote).data('maphilight', data);
         }
-    });
+    };
     $("map").trigger('alwaysOn.maphilight');
 }
 
