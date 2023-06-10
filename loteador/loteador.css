@@ -1,0 +1,81 @@
+﻿@charset "utf-8";
+/* CSS Document */
+
+body {
+	background-color: #eeeeee;
+	font-family:Arial, Helvetica, sans-serif;
+	}
+	
+#Mapa {
+	background: url('loteador.png');
+	background-size: 100%;
+	background-repeat: no-repeat;
+	width: 100%;
+}
+
+.map {width:100%;}
+
+#sPrototipo, #sManzana, #sLote {font-weight: bold;}
+	
+.foto {
+	float: none;
+	margin-left: auto;
+	margin-right:auto;
+	}
+
+#Filtros, #Mapa {
+	float:left;
+	background-color: #eeeeee;
+	}
+
+#Filtros {
+	float:left;
+	padding:20px;
+	background-color: #eeeeee;
+	}
+
+#ViviendaDetalles {
+	float:left;
+	background-color: #FFF;
+	padding: 5px;
+	border: thin dotted #666;
+	display: inline;
+}
+
+#datosPrivados {
+	display:none;
+}
+
+.visible {
+	display:inline !important;
+}
+
+#fotos, #detalles {
+
+	padding: 10px;
+	}
+	
+#Titulo {float:left;}
+
+#CerrarVentana {
+	float: right;
+	background-color: #C00;
+	color: #FFF;
+	cursor:pointer;
+	}
+
+.filter_option {
+    white-space: nowrap;
+}
+
+.filter_option input{
+    margin-right: 5px;
+}
+
+.table-centered td, .table-centered th {
+   text-align: center;   
+}
+td label {
+    font-weight: bolder;
+    margin-right: 5px;
+}
