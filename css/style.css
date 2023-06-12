@@ -11,7 +11,7 @@
 	--bg-title-color: #000;
 	--bg-subtitle-color: #A0A7AC;
 	--bg-text-color: #697477;
-	--bg-body-color: #fff;
+	--bg-body-color: #f7f7f7;
 	--bg-body-primary: #214252;
 	--bg-border: #e3e6ed;
 	--bg-card-lote: #e7e7ff;
@@ -20,9 +20,16 @@
 	--bg-footer: #434343;
 	--bg-footer-bottom: #0c0c0c;
 	--bg-line-card: #979797;
-	--bg-listgroup: #c29c75;
-	--bg-listgroup-content: #f7f7f7;
+	--bg-listgroup: orange;
+	--bg-listgroup-content: #fff;
+
+	--z-index-footer: 10;
 }
+
+footer {
+	z-index: var(--z-index-footer)
+}
+
 
 h1,
 h2,
@@ -50,7 +57,7 @@ h4 {
 }
 
 a {
-	color: white;
+	color: inherit;
 	text-decoration: none;
 }
 
@@ -92,6 +99,7 @@ li {
 
 .section-dark{
 	background-color: var(--bg-section);
+	color: white;
 }
 
 
@@ -105,17 +113,11 @@ li {
 .plans .far,
 .information .fas,
 .work .fas,
-.services .fas,
+#desarrollos .fas,
 .location .far,
 .location .fas {
 	padding: 15px 0;
-	background: -webkit-gradient(
-		linear,
-		left top,
-		left bottom,
-		from(#0ee951),
-		to(#00dabf)
-	);
+	background: -webkit-gradient( linear, left top, left bottom, from(#0ee951), to(#00dabf) );
 	background-clip: text;
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
@@ -124,10 +126,16 @@ li {
 .navbar-nav a:hover {
 	cursor: pointer;
 	background: var(--bg-nav-hover) !important;
+	color: var(--color-nav-hover, white);
 	/* background-clip: text;
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent; */
 }
+
+	.navbar-nav a:hover img {
+		filter: brightness(0) invert(1);
+	}
+
 .footer a:hover {
 	cursor: pointer;
 	background: transparent !important;
@@ -372,24 +380,63 @@ li {
 	transform: translate(5px, 5px);
 }
 
+#desarrollos img {
+	max-height: 300px;
+	max-width: 400px;
+}
 
+@media (min-width: 768px) {
+	#desarrollos img {
+		max-height: 300px;
+		max-width: 300px;
+	}
+}
+
+@media (min-width: 992px) {
+	#desarrollos img {
+		max-height: 300px;
+		max-width: 250px;
+	}
+}
+
+@media (min-width: 1200px) {
+	#desarrollos img {
+		max-height: 300px;
+		max-width: 300px;
+	}
+}
+
+@media (min-width: 1400px) {
+	#desarrollos img {
+		max-height: 300px;
+		max-width: 350px;
+	}
+}
+
+#desarrollos .card {
+	min-height: 300px;
+}
 /********************/
 /*     Services     */
 /********************/
-.services .card {
+#desarrollos .card {
 	padding: 20px;
 	border-radius: 0;
 	border: 2px solid white;
+	height: 100%;
+	align-items: center;
+	/* display: flex; */
+	justify-content: center;
 }
 
-.services .card:hover {
-	border: 10px solid;
-	transform: scale(1.01);
-	border-image-slice: 1;
-	border-width: 2px;
-	border-image-source: var(--bg-section);
-	box-shadow: 5px 5px 0px 0px var(--bg-line-card);
-}
+	#desarrollos .card:hover {
+		border: 10px solid;
+		transform: scale(1.01);
+		border-image-slice: 1;
+		border-width: 2px;
+		border-image-source: var(--bg-section);
+		box-shadow: 5px 5px 0px 0px var(--bg-line-card);
+	}
 
 .card-desarrollos .card:hover {
 	border: 10px solid;
@@ -632,7 +679,8 @@ li {
 /*     Img Footer     */
 /*************************/
 .logo-footer {
-    width: 120px;
+	max-height: 45px;
+	width: auto;
 }
 
 .logo-footer {
@@ -643,7 +691,7 @@ li {
 /*     Media Queries     */
 /*************************/
 @media only screen and (max-width: 1024px) {
-	.services,
+	#desarrollos,
 	.work,
 	.testimonial,
 	.about,
@@ -674,10 +722,6 @@ li {
 	.navbar {
 		box-shadow: none;
 		transition: all 0.2s;
-		/* padding-top: 1rem;*/
-		/*padding-bottom: 1rem; */
-		padding-top: inherit;
-    	padding-bottom: inherit;
 		background-color: var(--bg-body-color);
 	}
 
@@ -764,7 +808,7 @@ li {
 		left:0; 
 		right:0; 
 		width:100%; 
-		margin-top: 2px; 
+		margin-top: 0px; 
 	}
 	.band-contact {
 		width: 17%;
@@ -892,14 +936,13 @@ a.bandcontactinfo:hover{
     display: table-cell;
     vertical-align: middle;
 }
+
 .post-entry-sidebar ul li a img, .post-entry-footer ul li a img {
-    width: 90px;
+	max-width: 200px;
 }
+
 .post-entry-footer ul li a {
     display: table;
-}
-.post-entry-footer ul li a {
-    color: var(--bg-title-color);
 }
 .post-entry-footer ul li a {
     text-decoration: none;
@@ -912,7 +955,7 @@ a.bandcontactinfo:hover{
 /*     Desarrollos    */
 /**************************/
 #desarrollos {
-    color: var(--bg-body-color);
+    color: white;
     background: url(../assets/img/sauceda/img2.jpg) top center no-repeat;
     background-size: cover;
     padding: 80px 0 60px 0;

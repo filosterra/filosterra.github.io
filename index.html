@@ -34,6 +34,7 @@
             --title-bg-color: darkslategray;
             --bg-title-color: white;
             --contactband-bg-color: orange;
+            --footer-height: 70px;
         }
 
         footer img, .footer img {
@@ -41,139 +42,137 @@
         }
     </style>
 </head>
-    <body>
-        
-        <!-- Navbar -->
-        <nav id="navbar" class="navbar navbar-expand-lg fixed-top navbar-dark" aria-label="Main navigation" style="height: 60px; color: var(--bg-title-color); background-color: var(--title-bg-color);">
-            <div class="container">
-                <a class="navbar-brand logo-text text-uppercase" href="#">Filosterra</a>
-        
-                <button class="navbar-toggler p-0 border-0" type="button" id="navbarSideCollapse" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-        
-                <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault" style="background-color: var(--title-bg-color);
+<body style="padding-bottom: var(--footer-height);">
+    <!-- Navbar -->
+    <nav id="navbar" class="navbar navbar-expand-lg fixed-top navbar-dark" aria-label="Main navigation" style="height: 60px; color: var(--bg-title-color); background-color: var(--title-bg-color);">
+        <div class="container">
+            <a class="navbar-brand logo-text text-uppercase" href="#">Filosterra</a>
+
+            <button class="navbar-toggler p-0 border-0" type="button" id="navbarSideCollapse" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault" style="background-color: var(--title-bg-color);
     ">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0 navbar-nav-scroll">
-                        <!-- Nav Ubicaciones -->
-                        <li class="nav-item dropdown has-megamenu">
-                            <a class="nav-link dropdown-toggle text-uppercase" href="#" data-bs-toggle="dropdown"> 
-                                Ubicaciones
-                            </a>
-                            <div class="dropdown-menu megamenu" role="menu" style="background-color: lightgrey;"> 
-                                <div class="row">
-                                    <div class="col-sm-4">
-                                        <div class="post-entry-footer">
-                                            <ul>
-                                                <li>
-                                                    <a href="" class="w-100 py-4">
-                                                        <img src="assets/img/sauceda/logo.png" alt="" class="ms-3 me-1 rounded">
-                                                        <div class="text">
-                                                            <p>Residencial Boutique</p>
-                                                            <div class="post-meta">
-                                                                <h5 class="mr-2">La Sauceda</h5>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="" class="w-100 py-4"> 
-                                                        <img src="assets/img/olmos/logo.png" alt="" class="ms-3 me-1 rounded">
-                                                        <div class="text">
-                                                            <p>Residencial Boutique</p>
-                                                            <div class="post-meta">
-                                                                <h5 class="mr-2">Los Olmos</h5>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href=""  class="w-100 py-4">
-                                                        <img src="assets/img/altanna/logo.png" alt="" class="ms-3 me-1 rounded">
-                                                        <div class="text">
-                                                            <p>Residencial Boutique</p>
-                                                            <div class="post-meta">
-                                                                <h5 class="mr-2">Altanna </h5>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-8">
-                                        <div class="item">
-                                            <img src="/assets/img/slp.png" style="height: 80vh; width: auto;">
-                                            <div class="od" style="top:69.42%;left: 53.992%;position: absolute;"><div class="id" style="left:-3px;top:-3px"><img alt="La Sauceda" src="//upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Red_pog.svg/6px-Red_pog.svg.png" decoding="async" title="La Sauceda" width="6" height="6" class="notpageimage" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Red_pog.svg/9px-Red_pog.svg.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Red_pog.svg/12px-Red_pog.svg.png 2x" data-file-width="64" data-file-height="64"></div><div class="pr" style="font-size:91%;width:6em;left:4px"><div>La Sauceda</div></div></div><div class="od" style="top: 65.42%;left: 50.992%;position: absolute;"><div class="id" style="left:-3px;top:-3px"><img alt="Los Olmos" src="//upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Red_pog.svg/6px-Red_pog.svg.png" decoding="async" title="Los Olmos" width="6" height="6" class="notpageimage" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Red_pog.svg/9px-Red_pog.svg.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Red_pog.svg/12px-Red_pog.svg.png 2x" data-file-width="64" data-file-height="64"></div><div class="pr" style="font-size:91%;width:6em;left:4px"><div>Los Olmos</div></div></div><div class="od" style="top:69.42%;left: 49.992%;position: absolute;"><div class="id" style="left:-3px;top:-3px"><img alt="Altanna" src="//upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Red_pog.svg/6px-Red_pog.svg.png" decoding="async" title="Altanna" width="6" height="6" class="notpageimage" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Red_pog.svg/9px-Red_pog.svg.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Red_pog.svg/12px-Red_pog.svg.png 2x" data-file-width="64" data-file-height="64"></div><div class="pr" style="font-size:91%;width:6em;left:4px"><div>Altanna</div></div></div>
-                                        </div>
-                                    </div>
-                                </div>                             
-                            </div>
-                        </li>
-                        <!-- Nav Desarrollos -->
-                        <li class="nav-item dropdown has-megamenu">
-                            <a class="nav-link dropdown-toggle text-uppercase" href="#" data-bs-toggle="dropdown"> 
-                                Desarrollos 
-                            </a>
-                            <div class="dropdown-menu megamenu" role="menu"> 
-                                <div class="row px-10 card-desarrollos">
-                                    <div class="col-lg-4 d-flex align-items-stretch">
-                                        <div class="card bg-transparent grid-slot">
-                                            <a href="desarrollos.html">
-                                                <img src="assets/img/sauceda/des_sauceda.png" alt="" class="img-fluid">                                                 
-                                            </a>                                     
-                                        </div>  
-                                    </div>                                    
-                                    <div class="col-lg-4 d-flex align-items-stretch">
-                                        <div class="card bg-transparent">
-                                            <a href="desarrollos.html">
-                                                <img src="assets/img/olmos/des_olmos.png" alt="" class="img-fluid">   
-                                            </a>                                              
-                                        </div>  
-                                    </div>                                    
-                                    <div class="col-lg-4 d-flex align-items-stretch">
-                                        <div class="card bg-transparent">
-                                            <a href="desarrollos.html">
-                                                <img src="assets/img/altanna/des_altanna.png" alt="" class="img-fluid">   
-                                            </a>                                              
-                                        </div>  
-                                    </div>
-                                </div>                             
-                            </div>
-                        </li>
-                        <!-- Nav Nosotros -->
-                        <li class="nav-item">
-                            <a class="nav-link text-uppercase" href="./nosotros.html">
-                                Nosotros
-                            </a>
-                        </li>
-                        <!-- Nav Contacto -->
-                        <!-- <li class="nav-item">
-                            <a class="nav-link text-uppercase" href="./desarrollos.html">Contacto</a>
-                        </li> -->
-                    </ul>
-                </div>
-                <div class="bandcontact px-3" style="background-color: var(--contactband-bg-color);">
-                    <div class="bandcontactbox" style="justify-content: center; display: flex; align-items: center; flex-direction: column; height: 60px; }">
-                        <a href="tel:4441234567" title="Contacto" class="bandcontactinfo">
-                            444-123-4567
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 navbar-nav-scroll">
+                    <!-- Nav Ubicaciones -->
+                    <li class="nav-item dropdown has-megamenu">
+                        <a class="nav-link dropdown-toggle text-uppercase" href="#" data-bs-toggle="dropdown">
+                            Ubicaciones
                         </a>
-                        <p class="bandcontactlabel mt-1">
-                            Contáctanos
-                        </p>
-                    </div>
+                        <div class="dropdown-menu megamenu" role="menu" style="background-color: lightgrey;">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="post-entry-footer">
+                                        <ul>
+                                            <li>
+                                                <a href="loteador#sauceda" class="w-100 py-4">
+                                                    <img src="assets/img/sauceda/logo.png" alt="" class="ms-3 me-1 rounded">
+                                                    <div class="text">
+                                                        <p>Residencial Boutique</p>
+                                                        <div class="post-meta">
+                                                            <h5 class="mr-2">La Sauceda</h5>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="" class="w-100 py-4">
+                                                    <img src="assets/img/olmos/logo.png" alt="" class="ms-3 me-1 rounded">
+                                                    <div class="text">
+                                                        <p>Residencial Boutique</p>
+                                                        <div class="post-meta">
+                                                            <h5 class="mr-2">Los Olmos</h5>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="" class="w-100 py-4">
+                                                    <img src="assets/img/altanna/logo.png" alt="" class="ms-3 me-1 rounded">
+                                                    <div class="text">
+                                                        <p>Residencial Boutique</p>
+                                                        <div class="post-meta">
+                                                            <h5 class="mr-2">Altanna </h5>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-sm-8">
+                                    <div class="item">
+                                        <img src="/assets/img/slp.png" style="height: 80vh; width: auto;">
+                                        <div class="od" style="top:69.42%;left: 53.992%;position: absolute;"><div class="id" style="left:-3px;top:-3px"><img alt="La Sauceda" src="//upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Red_pog.svg/6px-Red_pog.svg.png" decoding="async" title="La Sauceda" width="6" height="6" class="notpageimage" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Red_pog.svg/9px-Red_pog.svg.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Red_pog.svg/12px-Red_pog.svg.png 2x" data-file-width="64" data-file-height="64"></div><div class="pr" style="font-size:91%;width:6em;left:4px"><div>La Sauceda</div></div></div><div class="od" style="top: 65.42%;left: 50.992%;position: absolute;"><div class="id" style="left:-3px;top:-3px"><img alt="Los Olmos" src="//upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Red_pog.svg/6px-Red_pog.svg.png" decoding="async" title="Los Olmos" width="6" height="6" class="notpageimage" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Red_pog.svg/9px-Red_pog.svg.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Red_pog.svg/12px-Red_pog.svg.png 2x" data-file-width="64" data-file-height="64"></div><div class="pr" style="font-size:91%;width:6em;left:4px"><div>Los Olmos</div></div></div><div class="od" style="top:69.42%;left: 49.992%;position: absolute;"><div class="id" style="left:-3px;top:-3px"><img alt="Altanna" src="//upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Red_pog.svg/6px-Red_pog.svg.png" decoding="async" title="Altanna" width="6" height="6" class="notpageimage" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Red_pog.svg/9px-Red_pog.svg.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Red_pog.svg/12px-Red_pog.svg.png 2x" data-file-width="64" data-file-height="64"></div><div class="pr" style="font-size:91%;width:6em;left:4px"><div>Altanna</div></div></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <!-- Nav Desarrollos -->
+                    <li class="nav-item dropdown has-megamenu">
+                        <a class="nav-link dropdown-toggle text-uppercase" href="#" data-bs-toggle="dropdown">
+                            Desarrollos
+                        </a>
+                        <div class="dropdown-menu megamenu" role="menu">
+                            <div class="row px-10 card-desarrollos">
+                                <div class="col-lg-4 d-flex align-items-stretch">
+                                    <div class="card bg-transparent grid-slot">
+                                        <a href="desarrollos.html">
+                                            <img src="assets/img/sauceda/des_sauceda.png" alt="" class="img-fluid">
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 d-flex align-items-stretch">
+                                    <div class="card bg-transparent">
+                                        <a href="desarrollos.html">
+                                            <img src="assets/img/olmos/des_olmos.png" alt="" class="img-fluid">
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 d-flex align-items-stretch">
+                                    <div class="card bg-transparent">
+                                        <a href="desarrollos.html">
+                                            <img src="assets/img/altanna/des_altanna.png" alt="" class="img-fluid">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <!-- Nav Nosotros -->
+                    <li class="nav-item">
+                        <a class="nav-link text-uppercase" href="./nosotros.html">
+                            Nosotros
+                        </a>
+                    </li>
+                    <!-- Nav Contacto -->
+                    <!-- <li class="nav-item">
+                        <a class="nav-link text-uppercase" href="./desarrollos.html">Contacto</a>
+                    </li> -->
+                </ul>
+            </div>
+            <div class="bandcontact px-3" style="background-color: var(--contactband-bg-color);">
+                <div class="bandcontactbox" style="justify-content: center; display: flex; align-items: center; flex-direction: column; height: 60px; }">
+                    <a href="tel:4441234567" title="Contacto" class="bandcontactinfo">
+                        444-123-4567
+                    </a>
+                    <p class="bandcontactlabel mt-1">
+                        Contáctanos
+                    </p>
                 </div>
             </div>
-        </nav>
-        
-
+        </div>
+    </nav>
+    <main>
 
         <!-- Principal -->
         <section class="home py-5 d-flex align-items-center" id="header">
-            <div class="container text-light py-5"  data-aos="fade-right"> 
+            <div class="container text-light py-5" data-aos="fade-right">
                 <h1 class="headline">Filosterra Inmobiliaria</h1>
                 <p class="para py-3 h5">¡Es momento de invertir en un proyecto de vida que cumpla con tus expectativas!</p>
-            </div> 
+            </div>
         </section>
 
 
@@ -181,17 +180,17 @@
         <!-- Section1 -->
         <section class="section-light d-flex align-items-center text-dark py-5" id="about">
             <div class="container container-ub">
-                    <div class="col-lg-12" data-aos="fade-right"> 
-                        <div class="row">
-                            <div class="col-sm-12 col-lg-4 col-xxl-4">
-                                <header class="tabs-head"> 
-                                    <p class="tabs-subtitle text-uppercase">Ubicaciones</p> 
-                                    <div class="tabs-lead"> 
-                                        <h4 class="tabs-title mb-3">Residenciales Boutique</h4> 
-                                        <p class="h2">"Crea, construye y vive"</p> 
-                                    </div> 
-                                </header>
-                              <div class="list-group" id="list-tab" role="tablist">
+                <div class="col-lg-12" data-aos="fade-right">
+                    <div class="row">
+                        <div class="col-sm-12 col-lg-4 col-xxl-4">
+                            <header class="tabs-head">
+                                <p class="tabs-subtitle text-uppercase">Ubicaciones</p>
+                                <div class="tabs-lead">
+                                    <h4 class="tabs-title mb-3">Residenciales Boutique</h4>
+                                    <p class="h2">"Crea, construye y vive"</p>
+                                </div>
+                            </header>
+                            <div class="list-group" id="list-tab" role="tablist">
                                 <a class="list-group-item list-group-item-action active" id="list-sauceda-list" data-bs-toggle="list" href="#list-sauceda" role="tab" aria-controls="list-sauceda">
                                     Residencial La sauceda
                                 </a>
@@ -201,10 +200,10 @@
                                 <a class="list-group-item list-group-item-action" id="list-altanna-list" data-bs-toggle="list" href="#list-altanna" role="tab" aria-controls="list-altanna">
                                     Residencial Altanna
                                 </a>
-                              </div>
                             </div>
-                            <div class="col-sm-12 col-lg-8 col-xxl-8">
-                              <div class="tab-content" id="nav-tabContent">
+                        </div>
+                        <div class="col-sm-12 col-lg-8 col-xxl-8">
+                            <div class="tab-content" id="nav-tabContent">
                                 <div class="tab-pane fade show active" id="list-sauceda" role="tabpanel" aria-labelledby="list-sauceda-list">
                                     <img src="assets/img/sauceda/ub_sauceda.png" alt="" class="img-fluid">
                                 </div>
@@ -214,213 +213,182 @@
                                 <div class="tab-pane fade" id="list-altanna" role="tabpanel" aria-labelledby="list-altanna-list">
                                     <img src="assets/img/altanna/ub_altana.png" alt="" class="img-fluid">
                                 </div>
-                              </div>
                             </div>
                         </div>
-                    </div>                    
-            </div> 
-        </section> 
+                    </div>
+                </div>
+            </div>
+        </section>
 
 
         <!-- Section2 -->
-        <section class="services section-dark d-flex align-items-center py-5" id="services">
-            <div class="container text-dark">
-                <div class="text-center pb-4" >
-                    <p class="text-uppercase">Desarrollos</p> 
+        <section class="desarrollos section-dark d-flex align-items-center py-5" id="desarrollos">
+            <div class="container">
+                <div class="text-center pb-4">
+                    <h4>Desarrollos</h4>
                 </div>
                 <div class="row gy-4 py-2" data-aos="zoom-in">
-                    <div class="col-lg-4">
-                        <div class="card">
-                            <img src="assets/img/sauceda/logo.png" alt="" class="img-fluid">
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card" style="padding: 3rem;">
+                            <img src="assets/img/sauceda/logo.png" alt="" class="img-fluid" style="width: 100%;">
                         </div>
                     </div>
-                    <div class="col-lg-4">
-                        <div class="card">
-                            <img src="assets/img/olmos/logo.png" alt="" class="img-fluid">
-                        </div>                    
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card" style="padding: 3rem;">
+                            <img src="assets/img/olmos/logo.png" alt="" class="img-fluid" style="width: 100%;">
+                        </div>
                     </div>
-                    <div class="col-lg-4">
-                        <div class="card">
-                            <img src="assets/img/altanna/logo.png" alt="" class="img-fluid">
-                        </div>                    
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card" style="padding: 3rem;">
+                            <img src="assets/img/altanna/logo.png" alt="" class="img-fluid" style="width: 100%;">
+                        </div>
                     </div>
-                </div> 
-            </div> 
-        </section> 
+                </div>
+            </div>
+        </section>
 
 
         <!-- Section3 -->
         <section class="section-light d-flex align-items-center py-5" id="plans">
-            <div class="container text-dark" >
+            <div class="container text-dark">
                 <div class="text-center pb-4">
                     <p class="text-uppercase">Nosotros</p>
                     <h4 class="py-2">Adquiere nuestras propiedades con</h4>
                 </div>
-                
-            <div class="container-fluid">  
-                <div class="row text-dark">
-                    <div class="col-lg-4 text-center p-5" data-aos="zoom-in">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" class="bi bi-geo-alt fas fa-3x p-2" viewBox="0 0 16 16">
-                            <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"/>
-                            <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-                          </svg>
-                        <h4 class="py-3">Excelente ubicación</h4>
-                        <p class="para-light">Encuentra la vida que mereces en un entorno tranquilo y lleno de experiencias</p>
-                    </div>
-                    <div class="col-lg-4 text-center p-5"  data-aos="zoom-in">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" class="bi bi-camera-video fas fa-3x p-2" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M0 5a2 2 0 0 1 2-2h7.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 4.269v7.462a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 13H2a2 2 0 0 1-2-2V5zm11.5 5.175 3.5 1.556V4.269l-3.5 1.556v4.35zM2 4a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h7.5a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1H2z"/>
-                          </svg>
-                        <h4 class="py-3">Seguridad</h4>
-                        <p class="para-light">Cuenta con lo esencial para tu seguridad, cámaras 24/7, cerca perimetral electrificada y caseta de vigilancia</p>
-                    </div>
-                    <div class="col-lg-4 text-center p-5"  data-aos="zoom-in"> 
-                        <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" class="bi bi-tree fas fa-3x p-2" viewBox="0 0 16 16">
-                            <path d="M8.416.223a.5.5 0 0 0-.832 0l-3 4.5A.5.5 0 0 0 5 5.5h.098L3.076 8.735A.5.5 0 0 0 3.5 9.5h.191l-1.638 3.276a.5.5 0 0 0 .447.724H7V16h2v-2.5h4.5a.5.5 0 0 0 .447-.724L12.31 9.5h.191a.5.5 0 0 0 .424-.765L10.902 5.5H11a.5.5 0 0 0 .416-.777l-3-4.5zM6.437 4.758A.5.5 0 0 0 6 4.5h-.066L8 1.401 10.066 4.5H10a.5.5 0 0 0-.424.765L11.598 8.5H11.5a.5.5 0 0 0-.447.724L12.69 12.5H3.309l1.638-3.276A.5.5 0 0 0 4.5 8.5h-.098l2.022-3.235a.5.5 0 0 0 .013-.507z"/>
-                          </svg>
-                        <h4 class="py-3">Áreas verdes</h4>
-                        <p class="para-light">Con área infantil, invierte en un proyecto de vida que cumpla con tus expectativas</p>
+
+                <div class="container-fluid">
+                    <div class="row text-dark">
+                        <div class="col-lg-4 text-center p-5" data-aos="zoom-in">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" class="bi bi-geo-alt fas fa-3x p-2" viewBox="0 0 16 16">
+                                <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z" />
+                                <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+                            </svg>
+                            <h4 class="py-3">Excelente ubicación</h4>
+                            <p class="para-light">Encuentra la vida que mereces en un entorno tranquilo y lleno de experiencias</p>
+                        </div>
+                        <div class="col-lg-4 text-center p-5" data-aos="zoom-in">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" class="bi bi-camera-video fas fa-3x p-2" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M0 5a2 2 0 0 1 2-2h7.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 4.269v7.462a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 13H2a2 2 0 0 1-2-2V5zm11.5 5.175 3.5 1.556V4.269l-3.5 1.556v4.35zM2 4a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h7.5a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1H2z" />
+                            </svg>
+                            <h4 class="py-3">Seguridad</h4>
+                            <p class="para-light">Cuenta con lo esencial para tu seguridad, cámaras 24/7, cerca perimetral electrificada y caseta de vigilancia</p>
+                        </div>
+                        <div class="col-lg-4 text-center p-5" data-aos="zoom-in">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" class="bi bi-tree fas fa-3x p-2" viewBox="0 0 16 16">
+                                <path d="M8.416.223a.5.5 0 0 0-.832 0l-3 4.5A.5.5 0 0 0 5 5.5h.098L3.076 8.735A.5.5 0 0 0 3.5 9.5h.191l-1.638 3.276a.5.5 0 0 0 .447.724H7V16h2v-2.5h4.5a.5.5 0 0 0 .447-.724L12.31 9.5h.191a.5.5 0 0 0 .424-.765L10.902 5.5H11a.5.5 0 0 0 .416-.777l-3-4.5zM6.437 4.758A.5.5 0 0 0 6 4.5h-.066L8 1.401 10.066 4.5H10a.5.5 0 0 0-.424.765L11.598 8.5H11.5a.5.5 0 0 0-.447.724L12.69 12.5H3.309l1.638-3.276A.5.5 0 0 0 4.5 8.5h-.098l2.022-3.235a.5.5 0 0 0 .013-.507z" />
+                            </svg>
+                            <h4 class="py-3">Áreas verdes</h4>
+                            <p class="para-light">Con área infantil, invierte en un proyecto de vida que cumpla con tus expectativas</p>
+                        </div>
                     </div>
                 </div>
-            </div> 
-                
-            </div> 
-            
-        </section> 
-        
 
+            </div>
 
-        <!-- Footer -->
-        <section class="footer text-light">
-            <div class="container">
-                <div class="row" data-aos="fade-right">
-                    
-                    <div class="col-lg-3 py-4 py-md-5">
-                        <div>
-                            <h5 class="text-uppercase">Ubicaciones</h5>
-                            <div class="d-flex align-items-center py-2">
-                                <i class="fas fa-caret-right"></i>
-                                <a href="#about">
-                                    <p class="ms-3">Residencial La Sauceda: zona poniente de la ciudad, San Luis Potosí, S.L.P.</p>
-                                </a>
-                            </div>
-                            <div class="d-flex align-items-center py-2">
-                                <i class="fas fa-caret-right"></i>
-                                <a href="#">
-                                    <p class="ms-3">Residencial Los olmos: zona poniente de la ciudad, San Luis Potosí, S.L.P.</p>
-                                </a>
-                            </div>
-                            <div class="d-flex align-items-center py-2">
-                                <i class="fas fa-caret-right"></i>
-                                <a href="#">
-                                    <p class="ms-3">Residencial Altanna: zona poniente de la ciudad, San Luis Potosí, S.L.P.</p>
-                                </a>
-                            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <section class="footer text-light">
+        <div class="container">
+            <div class="row" data-aos="fade-right">
+                <div class="col-12 py-2">
+                    <div class="d-flex align-items-evenly justify-content-center" style="gap:50px;">
+                        <div class="d-flex align-items-center py-2">
+                            <i class="fas fa-caret-right"></i>
+                            <a href="#">
+                                <p class="ms-3">
+                                    Aviso de privacidad
+                                </p>
+                            </a>
+
+                        </div>
+                        <div class="d-flex align-items-center py-2">
+                            <i class="fas fa-caret-right"></i>
+                            <a href="#">
+                                <p class="ms-3">
+                                    Código de ética
+                                </p>
+                            </a>
+                        </div>
+                        <div class="d-flex align-items-center py-2">
+                            <i class="fas fa-caret-right"></i>
+                            <a href="#">
+                                <p class="ms-3">
+                                    Términos y condiciones
+                                </p>
+                            </a>
                         </div>
                     </div>
-                    <div class="col-lg-3 py-4 py-md-5">
-                        <div>
-                            <h5 class="text-uppercase">Desarrollos</h5>
-                            <div class="d-sm-flex d-lg-inline align-items-center">
-                                <div class="d-lg-flex align-items-center justify-content-center col-sm-4 col-lg-12">
-                                    <img src="assets/img/sauceda/logo.png" alt="" class="me-4 rounded logo-footer">
-                                </div>
-                                <div class="d-lg-flex align-items-center justify-content-center col-sm-4 col-lg-12">
-                                    <img src="assets/img/olmos/logo.png" alt="" class="me-4 rounded logo-footer">
-                                </div>
-                                <div class="d-lg-flex  align-items-center justify-content-center col-sm-4  col-lg-12">
-                                    <img src="assets/img/altanna/logo.png" alt="" class="me-4 rounded logo-footer">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 py-4 py-md-5">
-                        <div>
-                            <h5 class="text-uppercase">Nosotros</h5>
-                            <div class="d-flex align-items-center py-2">
-                                <i class="fas fa-caret-right"></i>
-                                <a href="#">
-                                    <p class="ms-3">
-                                        Aviso de privacidad
-                                    </p>
-                                </a>
-                                
-                            </div>
-                            <div class="d-flex align-items-center py-2">
-                                <i class="fas fa-caret-right"></i>
-                                <a href="#">
-                                    <p class="ms-3">
-                                        Código de ética
-                                    </p>
-                                </a>
-                            </div>
-                            <div class="d-flex align-items-center py-2">
-                                <i class="fas fa-caret-right"></i>
-                                <a href="#">
-                                    <p class="ms-3">
-                                        Términos y condiciones
-                                    </p>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 py-4 py-md-5">
-                        <div class="d-flex align-items-center">
-                            <h5 class="text-uppercase">Redes sociales</h5>
-                        </div>
-                        <div class="d-flex">
-                            <div class="me-3">
-                                <a href="#">
-                                    <i class="fab fa-facebook-f fa-2x py-2"></i>
-                                </a>
-                            </div>
-                            <div class="me-3">
-                                <a href="#">
-                                    <i class="fab fa-twitter fa-2x py-2"></i>
-                                </a>
-                            </div>
-                            <div class="me-3">
-                                <a href="#">
-                                    <i class="fab fa-instagram fa-2x py-2"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div> 
                 </div>
-            </div> 
-        </section> 
+            </div>
+        </div>
+    </section>
 
 
-        <!-- Bottom -->
-        <div class="bottom py-4 text-light" >
-            <div class="container d-flex justify-content-center">
-                <div>
-                    <p>
-                        Copyright © 2023 Filosterra - Todos los derechos reservados.
-                    </p>
+    <!-- Bottom -->
+    <footer class="bottom text-light" style="
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        color: var(--bg-title-color);
+        background-color: var(--title-bg-color);
+        min-height: max-content;
+        align-items: center;
+        display: flex;
+    ">
+        <div class="d-flex justify-content-evenly" style="        width: 100%;
+        min-height: 70px;
+        align-items: center;
+">
+            <div class="col-md-2 col-sm-3 d-flex justify-content-center">
+                <p class="d-flex">
+                </p><div class="me-3">
+                    <a href="#">
+                        <i class="fab fa-facebook-f fa-2x py-2"></i>
+                    </a>
                 </div>
-            </div> 
-        </div> 
+                <div class="me-3">
+                    <a href="#">
+                        <i class="fab fa-twitter fa-2x py-2"></i>
+                    </a>
+                </div>
+                <div class="me-3">
+                    <a href="#">
+                        <i class="fab fa-instagram fa-2x py-2"></i>
+                    </a>
+                </div>
+                <p></p>
+            </div>
+            <div class="col-md-6 col-sm-6 d-flex justify-content-center">
+                <img src="assets/img/sauceda/logo.png" alt="" class="me-4 rounded logo-footer">
+                <img src="assets/img/olmos/logo.png" alt="" class="me-4 rounded logo-footer">
+                <img src="assets/img/altanna/logo.png" alt="" class="me-4 rounded logo-footer">
+            </div>
+            <div class="col-md-3 d-sm-none d-md-inline d-flex justify-content-center row">
+                <p class="col-md-12">
+                    Copyright © 2023 Filosterra
+                </p>
+                <p class="col-md-12">Todos los derechos reservados</p>
+            </div>
+        </div>
+    </footer>
 
-        
-        <!-- Back To Top Button -->
-        <button onclick="topFunction()" id="myBtn">
-            <img src="assets/images/up-arrow.png" alt="alternative">
-        </button>
-        <!-- end of back to top button -->
-
-        
-        <!-- Scripts -->
-        <script src="./js/bootstrap.min.js"></script><!-- Bootstrap framework -->
-        <!-- <script src="./js/purecounter.min.js"></script>  -->
-        <!-- Purecounter counter for statistics numbers -->
-        <script src="./js/swiper.min.js"></script>
-        <!-- Swiper for image and text sliders -->
-        <script src="./js/aos.js"></script>
-        <!-- AOS on Animation Scroll -->
-        <script src="./js/script.js"></script>  
-        <!-- Custom scripts -->
-    </body>
+    <!-- Back To Top Button -->
+    <button onclick="topFunction()" id="myBtn">
+        <img src="assets/images/up-arrow.png" alt="alternative">
+    </button>
+    <!-- end of back to top button -->
+    <!-- Scripts -->
+    <script src="./js/bootstrap.min.js"></script><!-- Bootstrap framework -->
+    <!-- <script src="./js/purecounter.min.js"></script>  -->
+    <!-- Purecounter counter for statistics numbers -->
+    <script src="./js/swiper.min.js"></script>
+    <!-- Swiper for image and text sliders -->
+    <script src="./js/aos.js"></script>
+    <!-- AOS on Animation Scroll -->
+    <script src="./js/script.js"></script>
+    <!-- Custom scripts -->
+</body>
 </html>
