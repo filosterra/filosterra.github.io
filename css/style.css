@@ -15,8 +15,8 @@
 	--bg-body-primary: #214252;
 	--bg-border: #e3e6ed;
 	--bg-card-lote: #e7e7ff;
-	--bg-nav-hover: #f3f3f1;
-	--bg-section :#efeee9;
+	--bg-nav-hover: orange;
+	--bg-section: #efeee9;
 	--bg-footer: #434343;
 	--bg-footer-bottom: #0c0c0c;
 	--bg-line-card: #979797;
@@ -56,6 +56,10 @@ a {
 
 li {
   	list-style-type: none;
+}
+
+.navbar {
+	padding:0;
 }
 /**************************/
 /*     Sections    */
@@ -827,7 +831,8 @@ li {
 }
 
 .navbar-dark .navbar-toggler-icon {
-    background-image: url(../assets/img/togglericon.svg);
+	background-image: url(../assets/img/togglericon.svg);
+	filter: brightness(0) invert(1);
 }
 
 .px-10 {

@@ -91,14 +91,12 @@ const baseColor = "#FF0000"; // Color base en formato hexadecimal (rojo)
 const numColors = 2; // Número de colores complementarios a generar
 
 const color_array = generateComplementaryColors(baseColor, numColors);
-console.log(color_array);
-
-
 
 var filters = {}
 var attributes, attribute_pattern, value_attribute, text_attribute, oSource; //Definimos a este nivel para que sean accesibles dentro de las funciones jquery
 async function actualizaColores(oSource, colorear) {
     function rgbToHex(rgb) {
+        if (!rgb) return undefined;
         // Get the RGB values by extracting the numbers
         const rgbValues = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
 
@@ -149,19 +147,21 @@ async function actualizaColores(oSource, colorear) {
     var attribute = binding[2];
     if (path) path = String(path).replace(/\/$/, '').replace(/\//, '>');
     attribute = attribute.replace(/^@/, '');
-
-    let color_list = Object.fromEntries(document.querySelector(`#Filtros`).querySelectorAll(`.filter[bind]`).toArray().map(filter => [filter.getAttribute("bind"), new Map(filter.querySelectorAll(`.filter_option [type="checkbox"]`).toArray().filter(checkbox => checkbox.previousElementSibling).map(checkbox => [checkbox.getAttribute("filtervalue"), checkbox.previousElementSibling.style.backgroundColor]))]).filter(([key, values]) => values.size));
+    [document.querySelector(`[name="filter_headers"]:checked`)].filter(el => el).map(radio => radio.closest(`.filter[bind]`)).pop()
+    let active_filter = [document.querySelector(`[name="filter_headers"]:checked`)].filter(el => el).map(radio => radio.closest(`.filter[bind]`)).pop() || oSource && oSource.closest('.filter[bind]') || [document.querySelector(`.filter[bind]`)].concat(document.querySelectorAll('[type="checkbox"]:checked').toArray().map(checkbox => checkbox.closest('.filter[bind]'))).concat([document.querySelector(`.filter[bind]`)]).filter(filter => !oSource).distinct().pop();
+    let color_list = Object.fromEntries([[active_filter].map(filter => [filter.getAttribute("bind"), new Map(filter.querySelectorAll(`.filter_option [type="checkbox"]`).toArray().filter(checkbox => checkbox.previousElementSibling).map(checkbox => [checkbox.getAttribute("filtervalue"), checkbox.previousElementSibling.style.backgroundColor]))]).filter(([key, values]) => values.size)[0]]);
     for (let element of xmlData.select(sFilters_bind)) {
         let oLote = document.querySelector(`area[target="SAUCEDA_${element.attr(sElement_id)}"]`)
         if (oLote) {
             let attributes = [...element.attributes];
-            let color = Object.entries(color_list).map(([selector, options]) => [attributes.find(attr => attr.matches(selector)), options]).map(([attr, options]) => options.get(attr.value)).pop();
-            coloreaVivienda(oLote, rgbToHex(color));
+            let color = Object.entries(color_list).map(([selector, options]) => [...options].find((test) => testConditions(element, Object.fromEntries([[selector, new Map([test])]])))).map(([, value]) => value).pop();
+            //let color = Object.entries(color_list).map(([selector, options]) => [attributes.find(attr => attr.matches(selector)), options]).map(([attr, options]) => options.get(attr.value)).pop();
+            coloreaLote(oLote, rgbToHex(color));
         }
     };
 }
 
-function coloreaVivienda(oLote, color) {
+function coloreaLote(oLote, color = '') {
     let data = $(oLote).data('maphilight') || {};
     //data.alwaysOn = false;
     data.fillColor = color.replace(/^0x|^#/ig, "");
@@ -173,29 +173,30 @@ function coloreaVivienda(oLote, color) {
     $(oLote).attr("data-maphilight", '{"fillColor":"' + color.replace(/^0x/ig, "") + '","fillOpacity":0.5,"strokeColor":"ffffff"}');
 }
 
-function renderFilterOption(filter, values) {
+function renderFilterOption(filter, values, target) {
     if (typeof values == 'object' && values.length) {
-        for (var i = 0; i < nodes.length; ++i) {
-            var value = nodes[i];
-            renderFilterOption(filter, value);
+        for (let i = 0; i < nodes.length; ++i) {
+            let value = nodes[i];
+            renderFilterOption(filter, value, target);
         }
     } else if (typeof values == 'object' && values["_type"] == "attribute") {
-        var filter_name = filter.attr("bind").replace(/[\W@]/ig, '_');
+        let filter_name = filter.attr("bind").replace(/[\W@]/ig, '_');
         /*renderFilterOption(filter, values["text"]);*/
-        var attribute_pattern = "{{@value}}"
+        let attribute_pattern = "{{@value}}"
         if (filter.selectFirst('option')) {
             attribute_pattern = "{{@text}}::{{@value}}"
             //if ($("#Filtros #" + attributes["value"].replace(/[\W@]/ig, '_') + " :checkbox:checked").length > 0) first = attributes["value"];
         }
-        var filter_value = eval("'" + attribute_pattern.replace(/\{\{\@([^\}]+)\}\}/ig, '\'+values["$1"]+\'') + "'");
-        renderOption(filter_name, (values.text + '__' + (values.value || '')), values.value, values.text, filter_value, values.color, values.selected)
+        let filter_value = eval("'" + attribute_pattern.replace(/\{\{\@([^\}]+)\}\}/ig, '\'+values["$1"]+\'') + "'");
+        let checkbox = xo.xml.createFragment(renderOption(filter_name, (values.text + '__' + (values.value || '')), values.value, values.text, values.value, values.color, values.selected));
+        target.append(checkbox);
     } else if (typeof values == 'object') {
-        for (var value in values) {
-            renderFilterOption(filter, values[value]);
+        for (let value in values) {
+            renderFilterOption(filter, values[value], target);
         }
     } else {
-        var filter_name = filter.attr("bind").replace(/[\W@]/ig, '_');
-        var txtCheckbox = "<input id='" + values + "' value=" + values + " onClick='Colorea(this);'  type='checkbox' class='" + filter_name + "' name='" + filter_name + "'>" + values + "<br>";
+        let filter_name = filter.attr("bind").replace(/[\W@]/ig, '_');
+        let txtCheckbox = `<input id="${values}" value="${values}" onclick='Colorea(this);' type="checkbox" class="${filter_name}" name="${filter_name}">${values}<br>`;
         $("<span class='filter_option'></span>").html(txtCheckbox).appendTo("#Filtros #" + filter_name);
     }
 }
@@ -302,52 +303,10 @@ function getValueFromTree(oNode, full_path) {
     return values;
 }
 
-//function getValueFromTree(oNode, path) {
-//    let path = String(path).match(/^([^\/]+)(\/.+)?$/);
-//    let partial_path = String(path[1] || '');
-//    let new_path = String(path[2] || '').replace(/^\//, '');
-
-//    if (partial_path.match(/^@/)) {
-//        let value = oNode.attr(partial_path.replace(/^@/, ''));
-//        if (value) return [value];
-//    } else {
-//        let values = [];
-//        oNode.select(partial_path).each(function () {
-//            values.push(getValueFromTree($(this), new_path));
-//        })
-//        return values;
-//    }
-//    return undefined;
-//}
-
 function renderOption(filter_name, id, value, text, filter_value, color, selected) {
-    let txtCheckbox = (color ? "<span style='background-color: #" + color.replace(/^0x|^#/i, '') + "'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> " : "") + "<input id='" + id + "' value='" + (value || '').replace(/'/gi, "\\'") + "' filterValue='" + (filter_value || value) + "' onClick='Colorea(this);'  type='checkbox' " + (selected == 'true' ? 'checked="true"' : '') + "class='" + filter_name + "' name='" + filter_name + "'/><label onClick='Colorea(this.previousSibling, true);'>" + text + "</label><br>";
-    $("<span class='filter_option'></span>").html(txtCheckbox).appendTo("#Filtros #" + filter_name);
+    let txtCheckbox = `<span class="filter_option">${(color ? "<span style='background-color: #" + color.replace(/^0x|^#/i, '') + "'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> " : "")} <input id="${id}" value="${(value || '').replace(/'/gi, "\\'")}" filterValue="${filter_value || value}" onclick="Colorea(this);"  type="checkbox" ${selected == 'true' ? 'checked="true"' : ''} class="${filter_name}" name="${filter_name}"/><label for="${id}" onclick="mutuallyExclusiveClick(); Colorea(this.previousSibling, true);">${text || value}</label><br/></span>`;
+    return txtCheckbox;
 }
-
-//function renderFilters(txtNombreFiltro, oNode, path, tree, color) {
-//    let path = String(path).match(/^([^\/]+)(\/.+)?$/);
-//    let partial_path = String(path[1] || '');
-//    let new_path = String(path[2] || '').replace(/^\//, '');
-
-//    if (!tree.hasOwnProperty(partial_path)) {
-//        tree[partial_path] = {};
-//    }
-//    if (partial_path.match(/^@/)) {
-//        $(oNode).attr(partial_path.replace(/^@/, ''));
-//        let value = $(oNode).attr(partial_path.replace(/^@/, ''));
-//        if (!tree[partial_path].hasOwnProperty(value)) {
-//            color = (color !== undefined ? color : color_array.shift());
-//            tree[partial_path][value] = color;
-//            let txtCheckbox = (color ? "<span style='background-color: " + color + "'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> " : "") + "<input id='" + value + "' value=" + value + " onClick='Colorea(this);'  type='checkbox' class='" + txtNombreFiltro + "' name='" + txtNombreFiltro + "'>" + value + "<br>";
-//            $("<span></span>").html(txtCheckbox).appendTo("#Filtros #" + txtNombreFiltro);
-//        }
-//    } else {
-//        $(oNode).select(partial_path).each(function () {
-//            fillOptions(txtNombreFiltro, this, new_path, tree[partial_path], color);
-//        })
-//    }
-//}
 
 function getValueFromObject(oNode, path) {
     path = String(path).match(/^([^\/]+)(\/.+)?$/);
@@ -364,41 +323,37 @@ function getValueFromObject(oNode, path) {
     return value;
 }
 
-function getNodeFromObject(oNode, path) {
-    path = String(path).match(/^([^\/]+)(\/.+)?$/);
-    let partial_path = String(path[1] || '');
-    let new_path = String(path[2] || '').replace(/^\//, '');
-
-    if (!oNode.hasOwnProperty(partial_path)) { oNode[partial_path] = {}; }
-    let value = {};
-    if (partial_path.match(/^@/)) {
-        value = oNode[partial_path];
-        return oNode[partial_path];
-    } else {
-        value = getNodeFromObject(oNode[partial_path], path);
-    }
-    return value;
-}
-
 function testConditions(oNode, conditions) {
     let compliesOverall = true;
+    let and_array = [];
     for (let property in conditions) {
-        if (property.match(/^@/)) {
-            if (!conditions[property].hasOwnProperty(String((oNode.attr(property.replace(/^@/, '')) || "")))) {//.replace(/\s+/gi, "-")
-                compliesOverall = false;
+        let or_array = []
+        for (let value of conditions[property].keys()) {
+            if (value.indexOf(`~`) != -1) {
+                let [min, max] = value.split("~");
+                or_array.push(`${property}>=${min} and ${property}<=${max}`);
+            } else {
+                or_array.push(`${property}="${value.replace('"', '&quot;')}"`);
             }
-        } else {
-            let complies = false;
-            oNode.select(property).each(function () {
-                if (!complies) {
-                    complies = testConditions($(this), conditions[property]);
-                }
-            })
-            if (!complies) compliesOverall = false;
         }
-        if (compliesOverall == false) return false;
+        and_array.push(`[${or_array.join(' or ')}]`)
+        //if (property.match(/^@/)) {
+        //    if (!conditions[property].hasOwnProperty(String((oNode.attr(property.replace(/^@/, '')) || "")))) {//.replace(/\s+/gi, "-")
+        //        compliesOverall = false;
+        //    }
+        //} else {
+        //    let complies = false;
+        //    oNode.select(property).each(function () {
+        //        if (!complies) {
+        //            complies = testConditions($(this), conditions[property]);
+        //        }
+        //    })
+        //    if (!complies) compliesOverall = false;
+        //}
+        //if (compliesOverall == false) return false;
     }
-    return true;
+    let complies = !!oNode.selectFirst(`self::*${and_array.join('')}`)
+    return complies;
 }
 
 async function Colorea(oSource, colorear) {
@@ -408,16 +363,16 @@ async function Colorea(oSource, colorear) {
 
     let xmlFilters = xover.sources["settings.xml"];
     if (!xmlFilters.documentElement) await xmlFilters.fetch();
-    let conditions = {};
-    for (let filter of xmlFilters.select(`//filters/filter`)) {
-        let bind = filter.attr('bind');
+    let conditions = Object.fromEntries(document.querySelector(`#Filtros`).querySelectorAll(`.filter[bind]`).toArray().map(filter => [filter.getAttribute("bind"), new Map(filter.querySelectorAll(`.filter_option [type="checkbox"]:checked`).toArray().map(checkbox => [checkbox.getAttribute("value"), checkbox.previousElementSibling ? checkbox.previousElementSibling.style.backgroundColor : '']))]).filter(([key, values]) => values.size))
+    //for (let filter of xmlFilters.select(`//filters/filter`)) {
+    //    let bind = filter.attr('bind');
 
-        //if (bind.match(/^@/)) {
-        let sBind = bind.replace(/[\W@]/ig, '_');
-        for (let selection of [...document.querySelectorAll(`#Filtros #${sBind} input[type=checkbox]:checked`)]) {
-            fillTree(conditions, bind, selection.value);
-        }
-    }
+    //    //if (bind.match(/^@/)) {
+    //    let sBind = bind.replace(/[\W@]/ig, '_');
+    //    for (let selection of [...document.querySelectorAll(`#Filtros #${sBind} input[type=checkbox]:checked`)]) {
+    //        fillTree(conditions, bind, selection.value);
+    //    }
+    //}
     actualizaColores(oSource, colorear);
 
     iluminarMapa(conditions);
@@ -470,6 +425,10 @@ async function Colorea(oSource, colorear) {
 
 }
 
+function mutuallyExclusiveClick() {
+    event.srcElement.closest('.filter').querySelectorAll('[type="checkbox"]:checked').toArray().filter(checkbox => checkbox.closest('.filter_option') != event.srcElement.closest('.filter_option')).forEach(checkbox => checkbox.checked = false)
+}
+
 async function iluminarMapa(conditions) {
     conditions = (conditions || {});
     let xmlData = xo.stores[location.hash];
@@ -489,7 +448,7 @@ async function iluminarMapa(conditions) {
         } else {
             let data = $(oLote).mouseout().data('maphilight') || {};
             let turnOff = false;
-            turnOff = !testConditions($(this), conditions);
+            turnOff = !testConditions(element, conditions);
             data.alwaysOn = !turnOff;
 
             $(oLote).data('maphilight', data);
@@ -591,7 +550,7 @@ $(function () {
         if (ubicacion_seleccionada) {
             let oVivienda = $("#" + ubicacion_seleccionada);
             if (oVivienda) {
-                //coloreaVivienda(oVivienda, '#80FF00');
+                //coloreaLote(oVivienda, '#80FF00');
                 let conditions = { "@Identificador": {} }
                 conditions["@Identificador"][ubicacion_seleccionada] = { "color": "blue" }
                 iluminarMapa(conditions);
@@ -702,55 +661,35 @@ window.onload = async function () {
     let sFilters_bind = $(xmlFilters).find('filters').attr('bind');
 
     let defined_options = (xmlFilters.select('//filters/filter/option').length > 0)
-
+    let target = document.querySelector("#Filtros");
+    if (!target) return;
     xmlFilters.select('//filters/filter').forEach(function (filter) {
         let bind = filter.attr("bind");
         let bind_text = filter.attr("bind_text");
         let txtNombreFiltro = bind.replace(/[\W@]/ig, '_');
 
-        let txtDiv = "<div id='" + txtNombreFiltro + "' bind=\"" + bind + "\" class='filter'><h4 onClick='Colorea(this)' style='cursor:pointer;'>" + filter.attr("title") + "</h4></div>";
+        let container = xo.xml.createNode(`<span class='col'/>`);
+        let div = xo.xml.createNode(`<div xmlns="http://www.w3.org/1999/xhtml" id="${txtNombreFiltro}" bind="${bind}" class='filter'><h4 style='cursor:pointer;'><input type="radio" id="radio_${txtNombreFiltro}" name="filter_headers" onchange="Colorea(this)"/><label for="radio_${txtNombreFiltro}">${filter.attr("title")}</label></h4></div>`)
+        container.append(div);
+        target.append(container);
 
-        $("<span class='col'></span>").html(txtDiv).appendTo("#Filtros");
 
+        let values;
         let filter_options = filter.select('option');
-        if (filter_options.length > 0) {
+        let options = {};
+
+        if (filter_options.length) {
             //Checkboxes de colores
-            filter_options.each(function (option) {
-                let txtNombre = option.attr('text');
-                let txtValue = option.attr('value');
-                let txtColor = option.attr('color').replace(/^0x/ig, '');
-                let selected = option.attr('selected');
-                fillTree(filters, bind, txtValue, txtNombre, txtColor, selected);
-            }); //Checkboxes de prototipos		
+            for (let option of filter_options) {
+                options[option.attr('value')] = { "_type": 'attribute', color: (option.attr('color') || colors.pop()), value: option.attr('value'), text: option.attr('text'), selected: option.attr('selected') }
+            }
         } else {
             //Checkboxes de otros filtros
-            let aFiltros = [];
-
-            txtBind = filter.attr('bind').replace(/^@/, '');
-
-            let options = {};
-            for (let item of xmlData.select(sFilters_bind)) {
-                //let nodes = getValueFromTree($(this), bind);
-                //let option = (getValueFromObject(options, bind) || {});
-                fillOptions(txtNombreFiltro, filters, item, bind, bind_text, undefined, defined_options ? null : undefined);
-                //let text = filter.attr(txtBind);
-                //if (text) {
-                //    let ix = $.inArray(text, aFiltros)
-                //    if (ix === -1) {
-                //        aFiltros.push(text);
-                //        ix = aFiltros.length;
-                //        fillTree(filters, bind, text, undefined);
-
-                //    let txtCheckbox = "<input id='" + text + "' value=" + text + " onClick='Colorea(this);'  type='checkbox' class='"
-                //        + txtNombreFiltro + "' name='" + txtNombreFiltro + "'>" + text + "<br>";
-
-                //    $("<span></span>").html(txtCheckbox).appendTo("#Filtros #" + txtNombreFiltro);
-                //    }
-                //}; //IF INARRAY
-            }; //XML FIND EACH
-
-        }; //ELSE si no es prototipos
-        renderFilterOption(filter, getValueFromObject(filters, bind));
+            values = xmlData.select(`${sFilters_bind}/${bind}`).map(attr => attr.value).distinct();
+            colors = generateComplementaryColors(baseColor, values.length);
+            options = Object.fromEntries(values.map(value => [value, { "_type": 'attribute', color: colors.pop(), value: value, text: value }]));
+        }
+        renderFilterOption(filter, options, div);
     });
 
 

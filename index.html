@@ -1,38 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-        <meta name="description" content="Your description">
-        <meta name="author" content="Your name">
+    <meta name="description" content="Your description">
+    <meta name="author" content="Your name">
 
-        <meta property="og:site_name" content="" /> 
-        <meta property="og:site" content="" /> 
-        <meta property="og:title" content=""/> 
-        <meta property="og:description" content="" /> 
-        <meta property="og:image" content="" /> 
-        <meta property="og:url" content="" /> 
-        <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:site_name" content="" />
+    <meta property="og:site" content="" />
+    <meta property="og:title" content="" />
+    <meta property="og:description" content="" />
+    <meta property="og:image" content="" />
+    <meta property="og:url" content="" />
+    <meta name="twitter:card" content="summary_large_image">
 
-        <!-- Title -->
-        <title>Filosterra</title>
+    <!-- Title -->
+    <title>Filosterra</title>
 
-        <!-- Styles -->
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
-        <link href="./css/bootstrap.min.css" rel="stylesheet">
-        <link href="./css/fontawesome-all.min.css" rel="stylesheet">
-        <link href="./css/aos.min.css" rel="stylesheet">
-        <link href="./css/swiper.css" rel="stylesheet">
-        <link href="./css/style.css" rel="stylesheet">
+    <!-- Styles -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/fontawesome-all.min.css" rel="stylesheet">
+    <link href="./css/aos.min.css" rel="stylesheet">
+    <link href="./css/swiper.css" rel="stylesheet">
+    <link href="./css/style.css" rel="stylesheet">
+    <script type="text/javascript" src="xover/xo.js?v=20230601"></script>
 
-        <!-- Favicon -->
-        <!-- <link rel="icon" href="./assets/images/favicon.png"> -->
-    </head>
+    <!-- Favicon -->
+    <!-- <link rel="icon" href="./assets/images/favicon.png"> -->
+    <style>
+        :root {
+            --title-bg-color: darkslategray;
+            --bg-title-color: white;
+            --contactband-bg-color: orange;
+        }
+
+        footer img, .footer img {
+            filter: brightness(0) invert(1);
+        }
+    </style>
+</head>
     <body>
         
         <!-- Navbar -->
-        <nav id="navbar" class="navbar navbar-expand-lg fixed-top navbar-dark" aria-label="Main navigation">
+        <nav id="navbar" class="navbar navbar-expand-lg fixed-top navbar-dark" aria-label="Main navigation" style="height: 60px; color: var(--bg-title-color); background-color: var(--title-bg-color);">
             <div class="container">
                 <a class="navbar-brand logo-text text-uppercase" href="#">Filosterra</a>
         
@@ -40,21 +52,22 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
         
-                <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
+                <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault" style="background-color: var(--title-bg-color);
+    ">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0 navbar-nav-scroll">
                         <!-- Nav Ubicaciones -->
                         <li class="nav-item dropdown has-megamenu">
                             <a class="nav-link dropdown-toggle text-uppercase" href="#" data-bs-toggle="dropdown"> 
                                 Ubicaciones
                             </a>
-                            <div class="dropdown-menu megamenu" role="menu"> 
+                            <div class="dropdown-menu megamenu" role="menu" style="background-color: lightgrey;"> 
                                 <div class="row">
                                     <div class="col-sm-4">
                                         <div class="post-entry-footer">
                                             <ul>
                                                 <li>
                                                     <a href="" class="w-100 py-4">
-                                                        <img src="assets/img/sauceda/saucedalogoblack.png" alt="" class="ms-3 me-1 rounded">
+                                                        <img src="assets/img/sauceda/logo.png" alt="" class="ms-3 me-1 rounded">
                                                         <div class="text">
                                                             <p>Residencial Boutique</p>
                                                             <div class="post-meta">
@@ -65,7 +78,7 @@
                                                 </li>
                                                 <li>
                                                     <a href="" class="w-100 py-4"> 
-                                                        <img src="assets/img/olmos/olmoslogoblack.png" alt="" class="ms-3 me-1 rounded">
+                                                        <img src="assets/img/olmos/logo.png" alt="" class="ms-3 me-1 rounded">
                                                         <div class="text">
                                                             <p>Residencial Boutique</p>
                                                             <div class="post-meta">
@@ -76,7 +89,7 @@
                                                 </li>
                                                 <li>
                                                     <a href=""  class="w-100 py-4">
-                                                        <img src="assets/img/altanna/altanalogoblack.png" alt="" class="ms-3 me-1 rounded">
+                                                        <img src="assets/img/altanna/logo.png" alt="" class="ms-3 me-1 rounded">
                                                         <div class="text">
                                                             <p>Residencial Boutique</p>
                                                             <div class="post-meta">
@@ -90,8 +103,9 @@
                                     </div>
                                     <div class="col-sm-8">
                                         <div class="item">
-                                            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621" frameborder="0" style="border:0; width: 100%; height: 384px;" allowfullscreen=""></iframe>
-                                         </div>
+                                            <img src="/assets/img/slp.png" style="height: 80vh; width: auto;">
+                                            <div class="od" style="top:69.42%;left: 53.992%;position: absolute;"><div class="id" style="left:-3px;top:-3px"><img alt="La Sauceda" src="//upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Red_pog.svg/6px-Red_pog.svg.png" decoding="async" title="La Sauceda" width="6" height="6" class="notpageimage" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Red_pog.svg/9px-Red_pog.svg.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Red_pog.svg/12px-Red_pog.svg.png 2x" data-file-width="64" data-file-height="64"></div><div class="pr" style="font-size:91%;width:6em;left:4px"><div>La Sauceda</div></div></div><div class="od" style="top: 65.42%;left: 50.992%;position: absolute;"><div class="id" style="left:-3px;top:-3px"><img alt="Los Olmos" src="//upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Red_pog.svg/6px-Red_pog.svg.png" decoding="async" title="Los Olmos" width="6" height="6" class="notpageimage" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Red_pog.svg/9px-Red_pog.svg.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Red_pog.svg/12px-Red_pog.svg.png 2x" data-file-width="64" data-file-height="64"></div><div class="pr" style="font-size:91%;width:6em;left:4px"><div>Los Olmos</div></div></div><div class="od" style="top:69.42%;left: 49.992%;position: absolute;"><div class="id" style="left:-3px;top:-3px"><img alt="Altanna" src="//upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Red_pog.svg/6px-Red_pog.svg.png" decoding="async" title="Altanna" width="6" height="6" class="notpageimage" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Red_pog.svg/9px-Red_pog.svg.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Red_pog.svg/12px-Red_pog.svg.png 2x" data-file-width="64" data-file-height="64"></div><div class="pr" style="font-size:91%;width:6em;left:4px"><div>Altanna</div></div></div>
+                                        </div>
                                     </div>
                                 </div>                             
                             </div>
@@ -103,21 +117,21 @@
                             </a>
                             <div class="dropdown-menu megamenu" role="menu"> 
                                 <div class="row px-10 card-desarrollos">
-                                    <div class="col-lg-4">
+                                    <div class="col-lg-4 d-flex align-items-stretch">
                                         <div class="card bg-transparent grid-slot">
                                             <a href="desarrollos.html">
                                                 <img src="assets/img/sauceda/des_sauceda.png" alt="" class="img-fluid">                                                 
                                             </a>                                     
                                         </div>  
                                     </div>                                    
-                                    <div class="col-lg-4">
+                                    <div class="col-lg-4 d-flex align-items-stretch">
                                         <div class="card bg-transparent">
                                             <a href="desarrollos.html">
                                                 <img src="assets/img/olmos/des_olmos.png" alt="" class="img-fluid">   
                                             </a>                                              
                                         </div>  
                                     </div>                                    
-                                    <div class="col-lg-4">
+                                    <div class="col-lg-4 d-flex align-items-stretch">
                                         <div class="card bg-transparent">
                                             <a href="desarrollos.html">
                                                 <img src="assets/img/altanna/des_altanna.png" alt="" class="img-fluid">   
@@ -139,10 +153,10 @@
                         </li> -->
                     </ul>
                 </div>
-                <div class="bandcontact py-4 px-3">
-                    <div class="bandcontactbox">
-                        <a href="#" title="Contacto" class="bandcontactinfo">
-                            1-800-292-9446
+                <div class="bandcontact px-3" style="background-color: var(--contactband-bg-color);">
+                    <div class="bandcontactbox" style="justify-content: center; display: flex; align-items: center; flex-direction: column; height: 60px; }">
+                        <a href="tel:4441234567" title="Contacto" class="bandcontactinfo">
+                            444-123-4567
                         </a>
                         <p class="bandcontactlabel mt-1">
                             Contáctanos
@@ -217,17 +231,17 @@
                 <div class="row gy-4 py-2" data-aos="zoom-in">
                     <div class="col-lg-4">
                         <div class="card">
-                            <img src="assets/img/sauceda/saucedalogoblack.png" alt="" class="img-fluid">
+                            <img src="assets/img/sauceda/logo.png" alt="" class="img-fluid">
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="card">
-                            <img src="assets/img/olmos/olmoslogoblack.png" alt="" class="img-fluid">
+                            <img src="assets/img/olmos/logo.png" alt="" class="img-fluid">
                         </div>                    
                     </div>
                     <div class="col-lg-4">
                         <div class="card">
-                            <img src="assets/img/altanna/altanalogoblack.png" alt="" class="img-fluid">
+                            <img src="assets/img/altanna/logo.png" alt="" class="img-fluid">
                         </div>                    
                     </div>
                 </div> 
@@ -309,13 +323,13 @@
                             <h5 class="text-uppercase">Desarrollos</h5>
                             <div class="d-sm-flex d-lg-inline align-items-center">
                                 <div class="d-lg-flex align-items-center justify-content-center col-sm-4 col-lg-12">
-                                    <img src="assets/img/sauceda/saucedalogo.png" alt="" class="me-4 rounded logo-footer">
+                                    <img src="assets/img/sauceda/logo.png" alt="" class="me-4 rounded logo-footer">
                                 </div>
                                 <div class="d-lg-flex align-items-center justify-content-center col-sm-4 col-lg-12">
-                                    <img src="assets/img/olmos/olmoslogo.png" alt="" class="me-4 rounded logo-footer">
+                                    <img src="assets/img/olmos/logo.png" alt="" class="me-4 rounded logo-footer">
                                 </div>
                                 <div class="d-lg-flex  align-items-center justify-content-center col-sm-4  col-lg-12">
-                                    <img src="assets/img/altanna/altanalogo.png" alt="" class="me-4 rounded logo-footer">
+                                    <img src="assets/img/altanna/logo.png" alt="" class="me-4 rounded logo-footer">
                                 </div>
                             </div>
                         </div>

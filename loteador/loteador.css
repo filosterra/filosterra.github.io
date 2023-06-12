@@ -5,12 +5,24 @@ body {
 	background-color: #eeeeee;
 	font-family:Arial, Helvetica, sans-serif;
 	}
-	
 #Mapa {
+	background: repeating-linear-gradient( 55deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) 9px, rgba(0, 0, 1, 0.3) 9px, rgba(0, 0, 1, 0.3) 18px );
+	background-size: 100%;
+	background-repeat: no-repeat;
+	width: 100%;
+}
+
+#Mapa > .map {
 	background: url('loteador.png');
 	background-size: 100%;
 	background-repeat: no-repeat;
 	width: 100%;
+}
+
+.filter {
+	background-color: white;
+	border: green solid 5px;
+	padding: 1rem;
 }
 
 .map {width:100%;}
@@ -28,11 +40,18 @@ body {
 	background-color: #eeeeee;
 	}
 
+#Filtros .filter [type="radio"] {
+	margin-right: .5rem;
+}
+
 #Filtros {
-	float:left;
-	padding:20px;
-	background-color: #eeeeee;
-	}
+	float: left;
+	padding: 20px;
+	background-color: transparent;
+	position: fixed;
+	bottom: 200px;
+	padding-right: 50px;
+}
 
 #ViviendaDetalles {
 	float:left;
