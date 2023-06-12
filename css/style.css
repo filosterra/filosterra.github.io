@@ -132,9 +132,9 @@ li {
 	-webkit-text-fill-color: transparent; */
 }
 
-	.navbar-nav a:hover img {
-		filter: brightness(0) invert(1);
-	}
+.navbar-nav a:hover img.logo {
+	filter: brightness(0) invert(1);
+}
 
 .footer a:hover {
 	cursor: pointer;
@@ -679,8 +679,8 @@ li {
 /*     Img Footer     */
 /*************************/
 .logo-footer {
-	max-height: 45px;
-	width: auto;
+	height: 100%;
+	width: 80px;
 }
 
 .logo-footer {
