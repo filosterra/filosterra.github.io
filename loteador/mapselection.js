@@ -90,7 +90,16 @@ function componentToHex(component) {
 const baseColor = "#FF0000"; // Color base en formato hexadecimal (rojo)
 const numColors = 2; // Número de colores complementarios a generar
 
-const color_array = generateComplementaryColors(baseColor, numColors);
+const color_array = ['#FF6633', '#FFB399', '#FF33FF', '#FFFF99', '#00B3E6',
+    '#E6B333', '#3366E6', '#999966', '#99FF99', '#B34D4D',
+    '#80B300', '#809900', '#E6B3B3', '#6680B3', '#66991A',
+    '#FF99E6', '#CCFF1A', '#FF1A66', '#E6331A', '#33FFCC',
+    '#66994D', '#B366CC', '#4D8000', '#B33300', '#CC80CC',
+    '#66664D', '#991AFF', '#E666FF', '#4DB3FF', '#1AB399',
+    '#E666B3', '#33991A', '#CC9999', '#B3B31A', '#00E680',
+    '#4D8066', '#809980', '#E6FF80', '#1AFF33', '#999933',
+    '#FF3380', '#CCCC00', '#66E64D', '#4D80CC', '#9900B3',
+    '#E64D66', '#4DB380', '#FF4D4D', '#99E6E6', '#6666FF']/*generateComplementaryColors(baseColor, numColors);*/
 
 var filters = {}
 var attributes, attribute_pattern, value_attribute, text_attribute, oSource; //Definimos a este nivel para que sean accesibles dentro de las funciones jquery
@@ -600,24 +609,6 @@ binding.bindData = function (scope, attribute, x_source, removeAttribute) {
     });
 }
 
-jQuery.extend({
-    getValues: function (url) {
-        let xmlDocument = null;
-        $.ajax({
-            url: url,
-            type: 'get',
-            dataType: 'xml',
-            async: false,
-            cache: false,
-            success: function (data) {
-                xmlDocument = data;
-                $("#fecha_actualizacion").html($(xmlDocument).find('Fraccionamiento').attr('UltimaActualizacion'));
-            }
-        });
-        return xmlDocument;
-    }
-});
-
 function resize() {
     let ImageMap = function (map) {
         let n,
@@ -642,6 +633,7 @@ function resize() {
             }
             previousWidth = $('#Mapa').width();
             //previousWidth = document.body.clientWidth;
+            Colorea();
             return true;
         };
         window.onresize = this.resize;
@@ -669,9 +661,9 @@ window.onload = async function () {
         let txtNombreFiltro = bind.replace(/[\W@]/ig, '_');
 
         let container = xo.xml.createNode(`<span class='col'/>`);
-        let div = xo.xml.createNode(`<div xmlns="http://www.w3.org/1999/xhtml" id="${txtNombreFiltro}" bind="${bind}" class='filter'><h4 style='cursor:pointer;'><input type="radio" id="radio_${txtNombreFiltro}" name="filter_headers" onchange="Colorea(this)"/><label for="radio_${txtNombreFiltro}">${filter.attr("title")}</label></h4></div>`)
+        let div = xo.xml.createNode(`<div xmlns="http://www.w3.org/1999/xhtml" id="${txtNombreFiltro}" bind="${bind}" class='filter col-12 col-sm-6 col-md-4 col-xs-4 col-lg-3 col-xl-2'><h4 style='cursor:pointer;'><input type="radio" id="radio_${txtNombreFiltro}" name="filter_headers" onchange="Colorea(this)"/><label for="radio_${txtNombreFiltro}">${filter.attr("title")}</label></h4></div>`)
         container.append(div);
-        target.append(container);
+        target.append(div);
 
 
         let values;
@@ -680,13 +672,14 @@ window.onload = async function () {
 
         if (filter_options.length) {
             //Checkboxes de colores
+            colors = color_array//generateComplementaryColors(baseColor, filter_options.length);
             for (let option of filter_options) {
                 options[option.attr('value')] = { "_type": 'attribute', color: (option.attr('color') || colors.pop()), value: option.attr('value'), text: option.attr('text'), selected: option.attr('selected') }
             }
         } else {
             //Checkboxes de otros filtros
             values = xmlData.select(`${sFilters_bind}/${bind}`).map(attr => attr.value).distinct();
-            colors = generateComplementaryColors(baseColor, values.length);
+            colors = color_array//generateComplementaryColors(baseColor, values.length);
             options = Object.fromEntries(values.map(value => [value, { "_type": 'attribute', color: colors.pop(), value: value, text: value }]));
         }
         renderFilterOption(filter, options, div);

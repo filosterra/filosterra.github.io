@@ -16,13 +16,13 @@
 	--bg-border: #e3e6ed;
 	--bg-card-lote: #e7e7ff;
 	--bg-nav-hover: orange;
+	--bg-nav-active: darkorange;
 	--bg-section: #efeee9;
 	--bg-footer: #434343;
 	--bg-footer-bottom: #0c0c0c;
 	--bg-line-card: #979797;
 	--bg-listgroup: orange;
 	--bg-listgroup-content: #fff;
-
 	--z-index-footer: 10;
 }
 
@@ -126,6 +126,15 @@ li {
 .navbar-nav a:hover {
 	cursor: pointer;
 	background: var(--bg-nav-hover) !important;
+	color: var(--color-nav-hover, white);
+	/* background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent; */
+}
+
+.navbar-nav a.show {
+	cursor: pointer;
+	background: var(--bg-nav-active) !important;
 	color: var(--color-nav-hover, white);
 	/* background-clip: text;
 	-webkit-background-clip: text;
@@ -425,7 +434,6 @@ li {
 	border: 2px solid white;
 	height: 100%;
 	align-items: center;
-	/* display: flex; */
 	justify-content: center;
 }
 
@@ -929,8 +937,7 @@ a.bandcontactinfo:hover{
 }
 .post-entry-footer ul li {
     list-style: none;
-    padding: 0 0 20px 0;
-    margin: 0 0 20px 0;
+    height: 200px;
 }
 .post-entry-footer ul li a img, .post-entry-footer ul li a .text{
     display: table-cell;
@@ -942,24 +949,30 @@ a.bandcontactinfo:hover{
 }
 
 .post-entry-footer ul li a {
-    display: table;
+	display: table;
+	height: 20vh;
 }
+
+
 .post-entry-footer ul li a {
-    text-decoration: none;
+	text-decoration: none;
 }
 .post-entry-footer a {
     position: relative;
 }
 
+.reversed .post-entry-footer li a {
+	direction: rtl;
+}
 /**************************/
 /*     Desarrollos    */
 /**************************/
 #desarrollos {
-    color: white;
-    background: url(../assets/img/sauceda/img2.jpg) top center no-repeat;
-    background-size: cover;
-    padding: 80px 0 60px 0;
-    position: relative;
+	color: white;
+	background: url(../assets/img/sauceda/img2.jpg) top center no-repeat;
+	background-size: cover;
+	padding: 80px 0 60px 0;
+	position: relative;
 }
 #desarrollos:before {
     content: "";
