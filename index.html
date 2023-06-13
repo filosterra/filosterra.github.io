@@ -170,51 +170,26 @@
                                 overflow-y: clip;
                             }
 
-                            .card-desarrollos .card > a > img.logo {
-                                filter: brightness(0) invert(1);
-                                position: absolute;
-                                bottom: 5%;
-                                margin: 0 auto;
-                                left: 25%;
-                                width: 55%;
-                            }
+                                .card-desarrollos .card > a > img.logo {
+                                    filter: brightness(0) invert(1);
+                                    position: absolute;
+                                    bottom: 5%;
+                                    margin: 0 auto;
+                                    left: 25%;
+                                    width: 55%;
+                                }
 
-                            .card-desarrollos .card > a > img.cover {
-                                height: 100%;
-                                width: 100%;
-                                object-fit: cover;
-                            }
+                                .card-desarrollos .card > a > img.cover {
+                                    height: 100%;
+                                    width: 100%;
+                                    object-fit: cover;
+                                }
                         </style>
                         <a class="nav-link dropdown-toggle text-uppercase" href="#" data-bs-toggle="dropdown">
                             Desarrollos
                         </a>
                         <div class="dropdown-menu megamenu" role="menu">
-                            <div class="row px-10 card-desarrollos">
-                                <div class="col-lg-4 d-flex align-items-stretch">
-                                    <div class="card bg-transparent grid-slot">
-                                        <a href="desarrollos.html">
-                                            <img src="assets/img/sauceda/fachada.jpg" alt="" class="cover">
-                                            <img src="assets/img/sauceda/logo-cintillo.png" alt="" class="logo">
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 d-flex align-items-stretch">
-                                    <div class="card bg-transparent">
-                                        <a href="desarrollos.html">
-                                            <img src="assets/img/olmos/fachada.jpg" alt="" class="cover">
-                                            <img src="assets/img/olmos/logo-cintillo.png" alt="" class="logo">
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 d-flex align-items-stretch">
-                                    <div class="card bg-transparent">
-                                        <a href="desarrollos.html">
-                                            <img src="assets/img/altanna/fachada.jpg" alt="" class="cover">
-                                            <img src="assets/img/altanna/logo.png" alt="" class="logo">
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
+                            <div class="row px-10 card-desarrollos" xo-stylesheet="menu-desarrollos.xslt" xo-store="#desarrollos"/>
                         </div>
                     </li>
                     <!-- Nav Nosotros -->
@@ -342,23 +317,7 @@
                 <div class="text-center pb-4">
                     <h4>Desarrollos</h4>
                 </div>
-                <div class="row gy-4 py-2" data-aos="zoom-in">
-                    <div class="col-md-6 col-lg-4">
-                        <div class="card" style="padding: 3rem;">
-                            <img src="assets/img/sauceda/logo.png" alt="" class="img-fluid" style="width: 100%;">
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4">
-                        <div class="card" style="padding: 3rem;">
-                            <img src="assets/img/olmos/logo.png" alt="" class="img-fluid" style="width: 100%;">
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4">
-                        <div class="card" style="padding: 3rem;">
-                            <img src="assets/img/altanna/logo.png" alt="" class="img-fluid" style="width: 100%;">
-                        </div>
-                    </div>
-                </div>
+                <div class="row gy-4 py-2" data-aos="zoom-in" xo-stylesheet="section2.xslt" xo-store="#desarrollos" />
             </div>
         </section>
 
@@ -475,10 +434,7 @@
                 </div>
                 <p></p>
             </div>
-            <div class="col-md-6 col-sm-6 d-flex justify-content-center align-items-center">
-                <img src="assets/img/sauceda/logo.png" alt="" class="me-4 rounded logo-footer">
-                <img src="assets/img/olmos/logo-cintillo.png" alt="" class="me-4 rounded logo-footer">
-                <img src="assets/img/altanna/logo.png" alt="" class="me-4 rounded logo-footer" style="width: 100px">
+            <div class="col-md-6 col-sm-6 d-flex justify-content-center align-items-center" xo-stylesheet="footer-logos.xslt" xo-store="#desarrollos">
             </div>
             <div class="col-md-3 d-sm-none d-lg-inline d-flex justify-content-center row">
                 <p class="col-md-12">

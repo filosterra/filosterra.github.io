@@ -1,5 +1,6 @@
 {
   "sources": {
-    "#": "desarrollos.xml"
+    "#": "#desarrollos",
+    "#desarrollos": "desarrollos.xml"
   }
 }
