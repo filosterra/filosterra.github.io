@@ -557,7 +557,8 @@ li {
 
 /* Dropdown Menu */
 .navbar .dropdown .dropdown-menu {
-  	animation: fadeDropdown 0.2s; /* required for the fade animation */
+	animation: fadeDropdown 0.2s; /* required for the fade animation */
+	max-height: 75vh;
 }
 
 @-webkit-keyframes fadeDropdown {

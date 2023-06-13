@@ -163,6 +163,28 @@
                     </li>
                     <!-- Nav Desarrollos -->
                     <li class="nav-item dropdown has-megamenu">
+                        <style>
+                            .card-desarrollos .card > a {
+                                height: 470px;
+                                overflow-x: clip;
+                                overflow-y: clip;
+                            }
+
+                            .card-desarrollos .card > a > img.logo {
+                                filter: brightness(0) invert(1);
+                                position: absolute;
+                                bottom: 5%;
+                                margin: 0 auto;
+                                left: 25%;
+                                width: 55%;
+                            }
+
+                            .card-desarrollos .card > a > img.cover {
+                                height: 100%;
+                                width: 100%;
+                                object-fit: cover;
+                            }
+                        </style>
                         <a class="nav-link dropdown-toggle text-uppercase" href="#" data-bs-toggle="dropdown">
                             Desarrollos
                         </a>
@@ -171,21 +193,24 @@
                                 <div class="col-lg-4 d-flex align-items-stretch">
                                     <div class="card bg-transparent grid-slot">
                                         <a href="desarrollos.html">
-                                            <img src="assets/img/sauceda/des_sauceda.png" alt="" class="img-fluid">
+                                            <img src="assets/img/sauceda/fachada.jpg" alt="" class="cover">
+                                            <img src="assets/img/sauceda/logo-cintillo.png" alt="" class="logo">
                                         </a>
                                     </div>
                                 </div>
                                 <div class="col-lg-4 d-flex align-items-stretch">
                                     <div class="card bg-transparent">
                                         <a href="desarrollos.html">
-                                            <img src="assets/img/olmos/des_olmos.png" alt="" class="img-fluid">
+                                            <img src="assets/img/olmos/fachada.jpg" alt="" class="cover">
+                                            <img src="assets/img/olmos/logo-cintillo.png" alt="" class="logo">
                                         </a>
                                     </div>
                                 </div>
                                 <div class="col-lg-4 d-flex align-items-stretch">
                                     <div class="card bg-transparent">
                                         <a href="desarrollos.html">
-                                            <img src="assets/img/altanna/des_altanna.png" alt="" class="img-fluid">
+                                            <img src="assets/img/altanna/fachada.jpg" alt="" class="cover">
+                                            <img src="assets/img/altanna/logo.png" alt="" class="logo">
                                         </a>
                                     </div>
                                 </div>
@@ -219,7 +244,7 @@
                             Nosotros
                         </a>
                         <div class="dropdown-menu m-0 card-nosotros" role="menu">
-                           <h3>Nosotros</h3>
+                            <h3>Nosotros</h3>
                             <section><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec scelerisque fermentum nisi, sed facilisis odio luctus id.</p></section>
                             <section class="row px-10">
                                 <div class="column">
@@ -342,7 +367,6 @@
         <section class="section-light d-flex align-items-center py-5" id="plans">
             <div class="container text-dark">
                 <div class="text-center pb-4">
-                    <p class="text-uppercase">Nosotros</p>
                     <h4 class="py-2">Adquiere nuestras propiedades con</h4>
                 </div>
 
@@ -465,9 +489,18 @@
         </div>
     </footer>
 
+    <style>
+        #myBtn {
+            color: white;
+        }
+    </style>
+
     <!-- Back To Top Button -->
     <button onclick="topFunction()" id="myBtn">
-        <img src="assets/images/up-arrow.png" alt="alternative">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-double-up" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M7.646 2.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 3.707 2.354 9.354a.5.5 0 1 1-.708-.708l6-6z" />
+            <path fill-rule="evenodd" d="M7.646 6.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 7.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z" />
+        </svg>
     </button>
     <!-- end of back to top button -->
     <!-- Scripts -->
