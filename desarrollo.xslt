@@ -3,15 +3,17 @@
   exclude-result-prefixes="xsl"
 >
 	<xsl:template match="/*">
-		<div class="row px-desarrollos card-desarrollos">
-			<xsl:apply-templates mode="menu-item"/>
+		<div class="dropdown-menu megamenu" role="menu">
+			<div class="row px-md-10 card-desarrollos">
+				<xsl:apply-templates mode="menu-item"/>
+			</div>
 		</div>
 	</xsl:template>
 
 	<xsl:template mode="menu-item" match="*"/>
 
 	<xsl:template mode="menu-item" match="desarrollo">
-		<div class="col-10 col-sm-6 col-md-4 d-flex align-items-stretch justify-content-center">
+		<div class="col-lg-4 d-flex align-items-stretch">
 			<div class="card bg-transparent grid-slot">
 				<a href="desarrollos.html#{@id}">
 					<img src="assets/img/{@id}/fachada.jpg" alt="" class="cover"/>

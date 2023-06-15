@@ -13,7 +13,9 @@
 	<xsl:template match="desarrollo">
 		<div class="col-md-6 col-lg-4">
 			<div class="card" style="padding: 3rem;">
-				<img src="assets/img/{@id}/logo.png" alt="" class="img-fluid" style="width: 100%;"/>
+				<a href="loteador#{@id}">
+					<img src="assets/img/{@id}/logo.png" alt="" class="img-fluid" style="width: 100%;"/>
+				</a>
 			</div>
 		</div>
 	</xsl:template>

@@ -3,7 +3,7 @@
   exclude-result-prefixes="xsl"
 >
 	<xsl:template match="/*">
-		<div class="col-md-6 col-sm-6 d-flex justify-content-center align-items-center">
+		<div class="col-md-6 d-none d-sm-flex col-sm-6 justify-content-center align-items-center">
 			<xsl:apply-templates/>
 		</div>
 	</xsl:template>
@@ -11,6 +11,8 @@
 	<xsl:template match="*"/>
 
 	<xsl:template match="desarrollo">
-		<img src="assets/img/{@id}/logo.png" alt="" class="me-4 rounded logo-footer"/>
+		<a href="desarrollos.html#{@id}">
+			<img src="assets/img/{@id}/logo.png" alt="" class="me-4 rounded logo-footer"/>
+		</a>
 	</xsl:template>
 </xsl:stylesheet>

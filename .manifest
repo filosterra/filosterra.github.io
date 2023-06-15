@@ -1,5 +1,6 @@
 {
   "sources": {
+    "^#(.+)": "/data/$1.xml",
     "#": "#desarrollos",
     "#desarrollos": "desarrollos.xml"
   }
