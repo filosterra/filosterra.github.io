@@ -24,8 +24,57 @@
     <link href="./css/fontawesome-all.min.css" rel="stylesheet">
     <link href="./css/aos.min.css" rel="stylesheet">
     <link href="./css/swiper.css" rel="stylesheet">
-    <link href="./css/style.css" rel="stylesheet">
-    <script type="text/javascript" src="xover/xo.js?v=20230601"></script>
+    <link href="./css/style.css?v=20230615" rel="stylesheet">
+    <script type="text/javascript" src="xover/xo.js?v=20230615"></script>
+    <script src="_framework/blazor.webassembly.js"></script>
+    <script>
+        // Callback function to invoke the XML transformation function
+        function performXmlTransformation() {
+            // Invoke the XML transformation function from the XmlTransform namespace
+            DotNet.invokeMethodAsync('XmlTransform', 'TransformXml', `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<desarrollos>
+                <desarrollo Nombre="La Sauceda" id="sauceda" Direccion=""/>
+                <desarrollo Nombre="Olmos" id="olmos" Direccion=""/>
+                <desarrollo Nombre="Altanna" id="altanna" Direccion=""/>
+</desarrollos>`, `<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+              xmlns="http://www.w3.org/1999/xhtml"
+              exclude-result-prefixes="xsl"
+>
+                <xsl:template match="/*">
+                    <div>
+                        <xsl:apply-templates/>
+                    </div>
+                </xsl:template>
+
+                <xsl:template match="*"/>
+
+                <xsl:template match="desarrollo">
+                    <a href="desarrollos.html#{@id}">
+                        <img src="assets/img/{@id}/logo.png" alt="" class="me-4 rounded logo-footer"/>
+                    </a>
+                </xsl:template>
+</xsl:stylesheet>`)
+                .then(result => {
+                    // Handle the result of the XML transformation
+                    console.log(result);
+                })
+                .catch(error => {
+                    // Handle any errors that occur during the XML transformation
+                    console.error(error);
+                });
+        }
+
+        // Function to load and initialize the .NET runtime
+        function loadBlazor() {
+            if (typeof Blazor === 'undefined') {
+                // Load the Blazor WebAssembly framework
+                document.getElementById('blazorFramework').src = '_framework/blazor.webassembly.js';
+            }
+        }
+
+        // Load the Blazor runtime when the page has finished loading
+        window.addEventListener('DOMContentLoaded', loadBlazor);
+    </script>
 
     <!-- Favicon -->
     <!-- <link rel="icon" href="./assets/images/favicon.png"> -->
@@ -44,9 +93,15 @@
         a, a:hover {
             color: inherit;
         }
+
+        xo-param {
+            display: none;
+        }
     </style>
 </head>
-<body style="padding-bottom: var(--footer-height);">
+<body style="padding-bottom: var(--footer-height);" xmlns:xo="http://panax.io/xover">
+    <xo-param name="desarrollo">(location.hash || '').replace(/^#/,'')</xo-param>
+
     <!-- Navbar -->
     <nav id="navbar" class="navbar navbar-expand-lg fixed-top navbar-dark" aria-label="Main navigation" style="height: 60px; color: var(--bg-title-color); background-color: var(--title-bg-color); ">
         <div class="container">
@@ -71,6 +126,7 @@
                                         <ul>
                                             <li>
                                                 <a href="desarrollos.html#sauceda" class="w-100">
+                                                    <xsl:attribute name="href">desarrollos.html</xsl:attribute>
                                                     <div class="text">
                                                         <img src="assets/img/sauceda/logo.png" alt="" class="ms-3 me-1 rounded logo">
                                                     </div>
@@ -112,9 +168,13 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-12 align-items-center justify-content-center d-flex">
-                                    <div class="item" style="position: relative">
-                                        <img src="/assets/img/slp.png" style="width: 100%;">
-                                        <div class="od" style="top:69.42%;left: 53.992%;position: absolute;"><div class="id" style="left:-3px;top:-3px"><img alt="La Sauceda" src="//upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Red_pog.svg/6px-Red_pog.svg.png" decoding="async" title="La Sauceda" width="6" height="6" class="notpageimage" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Red_pog.svg/9px-Red_pog.svg.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Red_pog.svg/12px-Red_pog.svg.png 2x" data-file-width="64" data-file-height="64"></div><div class="pr" style="font-size:91%;width:6em;left:4px"><div>La Sauceda</div></div></div><div class="od" style="top: 65.42%;left: 50.992%;position: absolute;"><div class="id" style="left:-3px;top:-3px"><img alt="Los Olmos" src="//upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Red_pog.svg/6px-Red_pog.svg.png" decoding="async" title="Los Olmos" width="6" height="6" class="notpageimage" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Red_pog.svg/9px-Red_pog.svg.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Red_pog.svg/12px-Red_pog.svg.png 2x" data-file-width="64" data-file-height="64"></div><div class="pr" style="font-size:91%;width:6em;left:4px"><div>Los Olmos</div></div></div><div class="od" style="top:69.42%;left: 49.992%;position: absolute;"><div class="id" style="left:-3px;top:-3px"><img alt="Altanna" src="//upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Red_pog.svg/6px-Red_pog.svg.png" decoding="async" title="Altanna" width="6" height="6" class="notpageimage" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Red_pog.svg/9px-Red_pog.svg.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Red_pog.svg/12px-Red_pog.svg.png 2x" data-file-width="64" data-file-height="64"></div><div class="pr" style="font-size:91%;width:6em;left:4px"><div>Altanna</div></div></div>
+                                    <div class="image-navigator" style="overflow: clip; max-height: 60vh; background: repeating-linear-gradient( 55deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) 9px, rgba(0, 0, 1, 0.3) 9px, rgba(0, 0, 1, 0.3) 18px ); background: #f6e1b9; position: relative;" onclick="event.stopImmediatePropagation(); return false;" xo-stylesheet="mapa-slp.xslt" xo-store="#desarrollos">
+                                        <div class="image-container" style="position: relative;
+        transform: scale(1);
+        translate: 0%;
+" onclick="this.style.transform = `scale(${Math.abs(+this.style.transform.replace(/[^\d\.]/g, '') + .5)})`; this.style.translate = this.style.translate.split(/\s+/).map(percent => `${parseFloat(percent) * 2}%`).join(' '); return false" oncontextmenu="this.style.transform = `scale(${Math.abs(+this.style.transform.replace(/[^\d\.]/g, '') - .5)})`;  this.style.translate = this.style.translate.split(/\s+/).map(percent => `${parseFloat(percent) / 2}%`).join(' '); return false">
+                                            <img src="/assets/img/slp.png" style="width: 100%; height: 100%;">
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-lg-4 d-none d-lg-inline reversed">
@@ -259,16 +319,15 @@
         </div>
     </nav>
     <main>
-
         <!-- Section Desarrollos -->
-        <section class="section-light section-hd d-flex align-items-center py-5" id="desarrollos">
+        <section class="section-light section-hd d-flex align-items-center" id="desarrollos" style="height: 130px; min-height: 130px;">
             <div class="container">
                 <div class="desarrollos-content position-relative">
-                    <div class="container py-5">
+                    <div class="container">
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="desarrollos-info">
-                                    <h2 class="banner-title text-uppercase text-center headline">Sauceda</h2>
+                                    <h2 class="banner-title text-uppercase text-center headline"><xsl:value-of select="$desarrollo" /></h2>
                                     <p class="py-3 h5 text-uppercase text-center">Residencial Boutique</p>
                                 </div>
                             </div>
@@ -282,13 +341,13 @@
         <section class="section-dark section-hd d-flex align-items-center py-5" id="desarrollosinfo">
             <div class="container">
                 <div class="text-center pb-4">
-                    <p class="text-uppercase">Sauceda</p>
+                    <p class="text-uppercase"><xsl:value-of select="$desarrollo" /></p>
                     <h4 class="py-2">Tu nuevo hogar</h4>
                 </div>
                 <div class="row">
                     <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Senectus et netus et malesuada fames. Malesuada nunc vel risus commodo. Eget egestas purus viverra accumsan in nisl nisi. Pellentesque elit ullamcorper dignissim cras tincidunt lobortis et leo duis ut.</p>
                     <div class="text-center">
-                        <img src="assets/img/sauceda/saucedalogoblack.png" alt="" class="img-fluid">
+                        <img src="/assets/img/{$desarrollo}/background.png" alt="" class="img-fluid">
                     </div>
                 </div>
             </div>
@@ -297,12 +356,12 @@
         <section class="section-light section-hd d-flex align-items-center py-5" id="desarrollosinfo">
             <div class="container">
                 <div class="text-center pb-4">
-                    <p class="text-uppercase">Sauceda cuenta con lo esencial para tu seguridad</p>
+                    <p class="text-uppercase"><xsl:value-of select="$desarrollo" /> cuenta con lo esencial para tu seguridad</p>
                     <h4 class="py-2">Ubicado en la zona poniente de la ciudad</h4>
                 </div>
                 <div class="row gy-4 mt-1">
-                    <a href="/loteador#sauceda">
-                        <img class="map" src="/loteador/loteador.png" border="0" orgwidth="3800" style="width:100%" alt="" />
+                    <a href="/loteador#{$desarrollo}">
+                        <img class="map" src="/assets/img/{$desarrollo}/loteador.png" border="0" orgwidth="3800" style="width: 100%; height: 100%; background: repeating-linear-gradient( 55deg, darkolivegreen, darkolivegreen 9px, darkolivegreen 9px, darkolivegreen 18px );" alt="" />
                     </a>
                 </div>
             </div>
@@ -311,20 +370,26 @@
         <section class="section-dark section-hd d-flex align-items-center py-5" id="loteador">
             <div class="container">
                 <div class="text-center pb-4">
-                    <p class="text-uppercase">Sauceda</p>
+                    <p class="text-uppercase"><xsl:value-of select="$desarrollo" /></p>
                     <h4 class="py-2">Tu nuevo hogar</h4>
                 </div>
                 <div class="row px-5">
                     <div class="col-lg-5 d-flex justify-content-end">
-                        <div class="item" style="position: relative">
-                            <img src="/assets/img/slp.png" style="width: 100%;">
-                            <div class="od" style="top:69.42%;left: 53.992%;position: absolute;">
-                                <div class="id" style="left:-3px;top:-3px">
-                                    <img alt="La Sauceda" src="//upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Red_pog.svg/6px-Red_pog.svg.png" decoding="async" title="La Sauceda" width="6" height="6" class="notpageimage" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Red_pog.svg/9px-Red_pog.svg.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Red_pog.svg/12px-Red_pog.svg.png 2x" data-file-width="64" data-file-height="64">
+                        <div class="image-navigator" style="overflow: clip; max-height: 60vh; background: repeating-linear-gradient( 55deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) 9px, rgba(0, 0, 1, 0.3) 9px, rgba(0, 0, 1, 0.3) 18px ); background: #f6e1b9; position: relative;" onclick="event.stopImmediatePropagation(); return false;">
+                            <div class="image-container" style="        position: relative;
+        transform: scale(2);
+        translate: -10% -45%;
+" onclick="this.style.transform = `scale(${Math.abs(+this.style.transform.replace(/[^\d\.]/g, '') + .5)})`; this.style.translate = this.style.translate.split(/\s+/).map(percent => `${parseFloat(percent) * 2}%`).join(' '); return false" oncontextmenu="this.style.transform = `scale(${Math.abs(+this.style.transform.replace(/[^\d\.]/g, '') - .5)})`;  this.style.translate = this.style.translate.split(/\s+/).map(percent => `${parseFloat(percent) / 2}%`).join(' '); return false">
+                                <img src="/assets/img/slp.png" style="width: 100%; height: 100%;">
+                                <div class="od" style="top:69.42%;left: 53.992%;position: absolute;">
+                                    <div class="id" style="left:-3px;top:-3px">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="7" height="7" fill="currentColor" class="bi bi-circle-fill map-marker" viewBox="0 0 16 16">
+                                            <circle cx="8" cy="8" r="8" />
+                                        </svg>
+                                    </div>
+                                    <div class="pr" style="font-size:91%;width:6em;left:4px"><div><xsl:value-of select="$desarrollo" /></div></div>
                                 </div>
-                                <div class="pr" style="font-size:91%;width:6em;left:4px"><div>La Sauceda</div></div>
-                            </div>
-                            <!--<div class="od" style="top: 65.42%;left: 50.992%;position: absolute;">
+                                <!--<div class="od" style="top: 65.42%;left: 50.992%;position: absolute;">
                                 <div class="id" style="left:-3px;top:-3px">
                                     <img alt="Los Olmos" src="//upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Red_pog.svg/6px-Red_pog.svg.png" decoding="async" title="Los Olmos" width="6" height="6" class="notpageimage" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Red_pog.svg/9px-Red_pog.svg.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Red_pog.svg/12px-Red_pog.svg.png 2x" data-file-width="64" data-file-height="64">
                                 </div>
@@ -338,14 +403,33 @@
                                     <div>Altanna</div>
                                 </div>
                             </div>-->
+
+                            </div>
+                            <div class="d-flex justify-content-around" style="
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    gap: 10px;
+    ">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-zoom-in" viewBox="0 0 16 16" onclick="this.closest('.image-navigator').querySelector('.image-container').onclick()" style="cursor:pointer; user-select: none;">
+                                    <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"></path>
+                                    <path d="M10.344 11.742c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1 6.538 6.538 0 0 1-1.398 1.4z"></path>
+                                    <path fill-rule="evenodd" d="M6.5 3a.5.5 0 0 1 .5.5V6h2.5a.5.5 0 0 1 0 1H7v2.5a.5.5 0 0 1-1 0V7H3.5a.5.5 0 0 1 0-1H6V3.5a.5.5 0 0 1 .5-.5z"></path>
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-zoom-out" viewBox="0 0 16 16" onclick="this.closest('.image-navigator').querySelector('.image-container').oncontextmenu()" style="cursor: pointer; user-select: none;">
+                                    <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"></path>
+                                    <path d="M10.344 11.742c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1 6.538 6.538 0 0 1-1.398 1.4z"></path>
+                                    <path fill-rule="evenodd" d="M3 6.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5z"></path>
+                                </svg>
+                            </div>
                         </div>
                     </div>
-
                     <div class="col-lg-6">
                         <div class="boxcard-inner">
                             <header class="boxcard-head boxcard-head_tag">
                                 <h2 class="boxcard-title text-uppercase ">
-                                    Sauceda
+                                    <xsl:value-of select="$desarrollo" />
                                 </h2>
                             </header>
                             <div class="boxcard-lead">
@@ -399,7 +483,6 @@
 
 
     <!-- Bottom -->
-
     <footer class="bottom text-light" style="
         position: fixed;
         bottom: 0;
@@ -433,7 +516,7 @@
                 </div>
                 <p></p>
             </div>
-            <div class="col-md-6 col-sm-6 d-flex justify-content-center align-items-center" xo-stylesheet="footer-logos.xslt" xo-store="#desarrollos">
+            <div class="col-md-6 d-none d-sm-flex col-sm-6 justify-content-center align-items-center" xo-stylesheet="footer-logos.xslt" xo-store="#desarrollos">
             </div>
             <div class="col-md-3 d-none d-lg-inline d-flex justify-content-center row">
                 <p class="col-md-12">

@@ -32,9 +32,19 @@
     --footer-height: 80px;
 }
 
+body > nav {
+    position: sticky !important;
+}
+
+.map-marker {
+    color: red;
+    filter: drop-shadow(2px 2px 1px rgba(0, 0, 0, 0.5));
+}
+
 .megamenu {
     overflow-y: visible;
-    min-height: fit-content()
+    min-height: fit-content;
+    filter: drop-shadow(2px 4px 6px gray);
 }
 
 footer {
@@ -1027,7 +1037,7 @@ li {
 /**************************/
 #desarrollos {
     color: white;
-    background: url(../assets/img/sauceda/img2.jpg) top center no-repeat;
+    background: repeating-linear-gradient( 55deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) 9px, rgba(0, 0, 1, 0.3) 9px, rgba(0, 0, 1, 0.3) 18px );
     background-size: cover;
     padding: 80px 30px 60px;
     position: relative;
@@ -1038,10 +1048,6 @@ li {
         background: rgba(0, 0, 0, 0.4);
         position: absolute;
         inset: 0;
-    }
-
-    #desarrollos .desarrollos-info {
-        margin-top: 55px;
     }
 
     #desarrollos .banner-title:after {
@@ -1057,7 +1063,7 @@ li {
 .boxcard-head:after {
     content: '';
     display: block;
-    width: 45px;
+    width: 145px;
     height: 1px;
     background-color: var(--bg-listgroup);
 }

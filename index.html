@@ -24,15 +24,14 @@
     <link href="./css/fontawesome-all.min.css" rel="stylesheet">
     <link href="./css/aos.min.css" rel="stylesheet">
     <link href="./css/swiper.css" rel="stylesheet">
-    <link href="./css/style.css" rel="stylesheet">
-    <script type="text/javascript" src="xover/xo.js?v=20230614"></script>
+    <link href="./css/style.css?v=20230615" rel="stylesheet">
+    <script type="text/javascript" src="xover/xo.js?v=20230615"></script>
 
     <!-- Favicon -->
     <!-- <link rel="icon" href="./assets/images/favicon.png"> -->
 </head>
 <body>
     <!-- Navbar -->
-    <xo:Navbar/>
     <nav id="navbar" class="navbar navbar-expand-lg fixed-top navbar-dark" aria-label="Main navigation" style="height: 60px; color: var(--bg-title-color); background-color: var(--title-bg-color); ">
         <div class="container">
             <a class="navbar-brand logo-text text-uppercase" href="/#">Filosterra</a>
@@ -97,9 +96,13 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-12 align-items-center justify-content-center d-flex">
-                                    <div class="item" style="position: relative">
-                                        <img src="/assets/img/slp.png" style="width: 100%;">
-                                        <div class="od" style="top:69.42%;left: 53.992%;position: absolute;"><div class="id" style="left:-3px;top:-3px"><img alt="La Sauceda" src="//upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Red_pog.svg/6px-Red_pog.svg.png" decoding="async" title="La Sauceda" width="6" height="6" class="notpageimage" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Red_pog.svg/9px-Red_pog.svg.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Red_pog.svg/12px-Red_pog.svg.png 2x" data-file-width="64" data-file-height="64"></div><div class="pr" style="font-size:91%;width:6em;left:4px"><div>La Sauceda</div></div></div><div class="od" style="top: 65.42%;left: 50.992%;position: absolute;"><div class="id" style="left:-3px;top:-3px"><img alt="Los Olmos" src="//upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Red_pog.svg/6px-Red_pog.svg.png" decoding="async" title="Los Olmos" width="6" height="6" class="notpageimage" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Red_pog.svg/9px-Red_pog.svg.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Red_pog.svg/12px-Red_pog.svg.png 2x" data-file-width="64" data-file-height="64"></div><div class="pr" style="font-size:91%;width:6em;left:4px"><div>Los Olmos</div></div></div><div class="od" style="top:69.42%;left: 49.992%;position: absolute;"><div class="id" style="left:-3px;top:-3px"><img alt="Altanna" src="//upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Red_pog.svg/6px-Red_pog.svg.png" decoding="async" title="Altanna" width="6" height="6" class="notpageimage" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Red_pog.svg/9px-Red_pog.svg.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Red_pog.svg/12px-Red_pog.svg.png 2x" data-file-width="64" data-file-height="64"></div><div class="pr" style="font-size:91%;width:6em;left:4px"><div>Altanna</div></div></div>
+                                    <div class="image-navigator" style="overflow: clip; max-height: 60vh; background: repeating-linear-gradient( 55deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) 9px, rgba(0, 0, 1, 0.3) 9px, rgba(0, 0, 1, 0.3) 18px ); background: #f6e1b9; position: relative;" onclick="event.stopImmediatePropagation(); return false;" xo-stylesheet="mapa-slp.xslt" xo-store="#desarrollos">
+                                        <div class="image-container" style="position: relative;
+        transform: scale(1);
+        translate: 0%;
+" onclick="this.style.transform = `scale(${Math.abs(+this.style.transform.replace(/[^\d\.]/g, '') + .5)})`; this.style.translate = this.style.translate.split(/\s+/).map(percent => `${parseFloat(percent) * 2}%`).join(' '); return false" oncontextmenu="this.style.transform = `scale(${Math.abs(+this.style.transform.replace(/[^\d\.]/g, '') - .5)})`;  this.style.translate = this.style.translate.split(/\s+/).map(percent => `${parseFloat(percent) / 2}%`).join(' '); return false">
+                                            <img src="/assets/img/slp.png" style="width: 100%; height: 100%;">
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-lg-4 d-none d-lg-inline reversed">
@@ -300,7 +303,7 @@
 
 
         <!-- Section2 -->
-        <section class="desarrollos section-dark d-flex align-items-center py-5" id="desarrollos">
+        <section class="desarrollos section-dark d-flex align-items-center py-5" id="desarrollos" style="background: url(../assets/img/sauceda/img2.jpg) top center no-repeat;">
             <div class="container">
                 <div class="text-center pb-4">
                     <h4>Desarrollos</h4>
