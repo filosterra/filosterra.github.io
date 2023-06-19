@@ -1,12 +1,18 @@
 {
-  "stylesheets": ["navbar.xslt"],
+  "stylesheets": [ "navbar.xslt" ],
+  "stores": [ "#desarrollos","#site" ],
   "sources": {
     "^#(.+)": "/assets/$1/data.xml",
-    "^#(.+):loteador": "/assets/$1/loteador.map",
+    "^#(.+):loteador$": "/assets/$1/loteador.map",
+    "^#(.+):gallery$": "/assets/$1/gallery.resx",
     "#": "#desarrollos",
-    "#desarrollos": "/desarrollos.xml"
+    "#desarrollos": "/desarrollos.resx",
+    "#site": "/site.resx",
+    "#aviso_privacidad": "/aviso_privacidad.resx",
+    "#codigo_etica": "/codigo_etica.resx",
+    "#terminos_condiciones": "/terminos_condiciones.resx"
   },
   "settings": {
-    ".map": { "headers": {"accept": "text/plain"} }
+    ".map": { "headers": { "accept": "text/plain" } }
   }
 }

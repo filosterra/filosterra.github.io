@@ -4,15 +4,18 @@
 >
 	<xsl:template match="/*">
 		<div class="col-md-6 d-none d-sm-flex col-sm-6 justify-content-center align-items-center">
-			<xsl:apply-templates/>
+			<xsl:apply-templates>
+				<xsl:sort select="comment"/>
+				<xsl:sort select="value"/>
+			</xsl:apply-templates>
 		</div>
 	</xsl:template>
 
 	<xsl:template match="*"/>
 
-	<xsl:template match="desarrollo">
-		<a href="desarrollos.html#{@id}">
-			<img src="assets/{@id}/logo.png" alt="" class="me-4 rounded logo-footer"/>
+	<xsl:template match="data">
+		<a href="desarrollos.html#{@name}">
+			<img src="assets/{@name}/logo.png" alt="" class="me-4 rounded logo-footer"/>
 		</a>
 	</xsl:template>
 </xsl:stylesheet>

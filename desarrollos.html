@@ -56,7 +56,7 @@
     <xo-param name="desarrollo">(location.hash || '').replace(/^#/,'')</xo-param>
 
     <!-- Navbar -->
-    <nav id="navbar" class="navbar navbar-expand-lg fixed-top navbar-dark" aria-label="Main navigation" xo-stylesheet="navbar.xslt">        
+    <nav id="navbar" class="navbar navbar-expand-lg fixed-top navbar-dark" aria-label="Main navigation" xo-stylesheet="navbar.xslt">
     </nav>
     <main>
         <!-- Section Desarrollos -->
@@ -130,19 +130,19 @@
                                     <div class="pr" style="font-size:91%;width:6em;left:4px"><div><xsl:value-of select="$desarrollo" /></div></div>
                                 </div>
                                 <!--<div class="od" style="top: 65.42%;left: 50.992%;position: absolute;">
-                                <div class="id" style="left:-3px;top:-3px">
-                                    <img alt="Los Olmos" src="//upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Red_pog.svg/6px-Red_pog.svg.png" decoding="async" title="Los Olmos" width="6" height="6" class="notpageimage" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Red_pog.svg/9px-Red_pog.svg.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Red_pog.svg/12px-Red_pog.svg.png 2x" data-file-width="64" data-file-height="64">
+                                    <div class="id" style="left:-3px;top:-3px">
+                                        <img alt="Los Olmos" src="//upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Red_pog.svg/6px-Red_pog.svg.png" decoding="async" title="Los Olmos" width="6" height="6" class="notpageimage" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Red_pog.svg/9px-Red_pog.svg.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Red_pog.svg/12px-Red_pog.svg.png 2x" data-file-width="64" data-file-height="64">
+                                    </div>
+                                    <div class="pr" style="font-size:91%;width:6em;left:4px"><div>Los Olmos</div></div>
                                 </div>
-                                <div class="pr" style="font-size:91%;width:6em;left:4px"><div>Los Olmos</div></div>
-                            </div>
-                            <div class="od" style="top:69.42%;left: 49.992%;position: absolute;">
-                                <div class="id" style="left:-3px;top:-3px">
-                                    <img alt="Altanna" src="//upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Red_pog.svg/6px-Red_pog.svg.png" decoding="async" title="Altanna" width="6" height="6" class="notpageimage" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Red_pog.svg/9px-Red_pog.svg.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Red_pog.svg/12px-Red_pog.svg.png 2x" data-file-width="64" data-file-height="64">
-                                </div>
-                                <div class="pr" style="font-size:91%;width:6em;left:4px">
-                                    <div>Altanna</div>
-                                </div>
-                            </div>-->
+                                <div class="od" style="top:69.42%;left: 49.992%;position: absolute;">
+                                    <div class="id" style="left:-3px;top:-3px">
+                                        <img alt="Altanna" src="//upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Red_pog.svg/6px-Red_pog.svg.png" decoding="async" title="Altanna" width="6" height="6" class="notpageimage" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Red_pog.svg/9px-Red_pog.svg.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Red_pog.svg/12px-Red_pog.svg.png 2x" data-file-width="64" data-file-height="64">
+                                    </div>
+                                    <div class="pr" style="font-size:91%;width:6em;left:4px">
+                                        <div>Altanna</div>
+                                    </div>
+                                </div>-->
 
                             </div>
                             <div class="d-flex justify-content-around" style="
@@ -185,31 +185,30 @@
     </main>
 
     <!-- Footer -->
-    <section class="footer text-light">
+    <!--<section class="footer text-light">
         <div class="container">
             <div class="row" data-aos="fade-right">
                 <div class="col-12 py-2">
                     <div class="d-flex align-items-evenly justify-content-center" style="gap:50px;">
-                        <div class="d-flex align-items-center py-2">
+                        <div class="d-flex align-items-center py-2" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">
                             <i class="fas fa-caret-right"></i>
-                            <a href="#">
+                            <a href="#aviso_privacidad">
                                 <p class="ms-3">
                                     Aviso de privacidad
                                 </p>
                             </a>
-
                         </div>
-                        <div class="d-flex align-items-center py-2">
+                        <div class="d-flex align-items-center py-2" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">
                             <i class="fas fa-caret-right"></i>
-                            <a href="#">
+                            <a href="#codigo_etica">
                                 <p class="ms-3">
                                     Código de ética
                                 </p>
                             </a>
                         </div>
-                        <div class="d-flex align-items-center py-2">
+                        <div class="d-flex align-items-center py-2" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">
                             <i class="fas fa-caret-right"></i>
-                            <a href="#">
+                            <a href="#terminos_condiciones">
                                 <p class="ms-3">
                                     Términos y condiciones
                                 </p>
@@ -221,6 +220,8 @@
         </div>
     </section>
 
+    <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel" xo-stylesheet="content-manager.xslt" xo-store="active">
+    </div>-->
 
     <!-- Bottom -->
     <footer class="bottom text-light" style="

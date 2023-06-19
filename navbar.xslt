@@ -176,25 +176,7 @@
 							<a class="nav-link dropdown-toggle text-uppercase" href="#" data-bs-toggle="dropdown">
 								Nosotros
 							</a>
-							<div class="dropdown-menu megamenu m-0 card-nosotros" role="menu">
-								<h3>Nosotros</h3>
-								<section>
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec scelerisque fermentum nisi, sed facilisis odio luctus id.</p>
-								</section>
-								<section class="row px-nosotros d-flex justify-content-center g-3">
-									<div class="column col-10 col-md-5 col-lg-3">
-										<h2>Misión</h2>
-										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec scelerisque fermentum nisi, sed facilisis odio luctus id.</p>
-									</div>
-									<div class="column col-10 col-md-5 col-lg-3">
-										<h2>Visión</h2>
-										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum accumsan faucibus massa, ut tempor diam volutpat eu.</p>
-									</div>
-									<div class="column col-10 col-md-5 col-lg-3">
-										<h2>Valores</h2>
-										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vel ultrices lorem. Fusce in mauris metus.</p>
-									</div>
-								</section>
+							<div class="dropdown-menu megamenu m-0 card-nosotros" role="menu" xo-store="#site" xo-stylesheet="nosotros.xslt">
 							</div>
 						</li>
 						<!-- Nav Contacto -->
