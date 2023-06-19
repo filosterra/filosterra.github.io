@@ -19,62 +19,15 @@
     <title>Filosterra</title>
 
     <!-- Styles -->
+    <link rel="manifest" href="../.manifest?v=20230608_0943">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
     <link href="./css/bootstrap.min.css" rel="stylesheet">
     <link href="./css/fontawesome-all.min.css" rel="stylesheet">
     <link href="./css/aos.min.css" rel="stylesheet">
     <link href="./css/swiper.css" rel="stylesheet">
-    <link href="./css/style.css?v=20230615" rel="stylesheet">
-    <script type="text/javascript" src="xover/xo.js?v=20230615"></script>
-    <script src="_framework/blazor.webassembly.js"></script>
-    <script>
-        // Callback function to invoke the XML transformation function
-        function performXmlTransformation() {
-            // Invoke the XML transformation function from the XmlTransform namespace
-            DotNet.invokeMethodAsync('XmlTransform', 'TransformXml', `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<desarrollos>
-                <desarrollo Nombre="La Sauceda" id="sauceda" Direccion=""/>
-                <desarrollo Nombre="Olmos" id="olmos" Direccion=""/>
-                <desarrollo Nombre="Altanna" id="altanna" Direccion=""/>
-</desarrollos>`, `<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-              xmlns="http://www.w3.org/1999/xhtml"
-              exclude-result-prefixes="xsl"
->
-                <xsl:template match="/*">
-                    <div>
-                        <xsl:apply-templates/>
-                    </div>
-                </xsl:template>
-
-                <xsl:template match="*"/>
-
-                <xsl:template match="desarrollo">
-                    <a href="desarrollos.html#{@id}">
-                        <img src="assets/img/{@id}/logo.png" alt="" class="me-4 rounded logo-footer"/>
-                    </a>
-                </xsl:template>
-</xsl:stylesheet>`)
-                .then(result => {
-                    // Handle the result of the XML transformation
-                    console.log(result);
-                })
-                .catch(error => {
-                    // Handle any errors that occur during the XML transformation
-                    console.error(error);
-                });
-        }
-
-        // Function to load and initialize the .NET runtime
-        function loadBlazor() {
-            if (typeof Blazor === 'undefined') {
-                // Load the Blazor WebAssembly framework
-                document.getElementById('blazorFramework').src = '_framework/blazor.webassembly.js';
-            }
-        }
-
-        // Load the Blazor runtime when the page has finished loading
-        window.addEventListener('DOMContentLoaded', loadBlazor);
-    </script>
+    <link href="./css/style.css?v=20230619_0058" rel="stylesheet">
+    <script type="text/javascript" src="xover/xo.js?v=20230619_0058"></script>
+    <script type="text/javascript" src="custom.js?v=20230619_0058"></script>
 
     <!-- Favicon -->
     <!-- <link rel="icon" href="./assets/images/favicon.png"> -->
@@ -99,224 +52,11 @@
         }
     </style>
 </head>
-<body style="padding-bottom: var(--footer-height);" xmlns:xo="http://panax.io/xover">
+<body class="styled-scroll" xmlns:xo="http://panax.io/xover">
     <xo-param name="desarrollo">(location.hash || '').replace(/^#/,'')</xo-param>
 
     <!-- Navbar -->
-    <nav id="navbar" class="navbar navbar-expand-lg fixed-top navbar-dark" aria-label="Main navigation" style="height: 60px; color: var(--bg-title-color); background-color: var(--title-bg-color); ">
-        <div class="container">
-            <a class="navbar-brand logo-text text-uppercase" href="/#">Filosterra</a>
-
-            <button class="navbar-toggler p-0 border-0" type="button" id="navbarSideCollapse" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="navbar-collapse offcanvas-collapse px-3" id="site-navbar" style="background-color: var(--title-bg-color);
-    ">
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <!-- Nav Ubicaciones -->
-                    <li class="nav-item dropdown has-megamenu">
-                        <a class="nav-link dropdown-toggle text-uppercase" href="#" data-bs-toggle="dropdown">
-                            Ubicaciones
-                        </a>
-                        <div class="dropdown-menu megamenu" role="menu" style="background-color: lightgrey;">
-                            <div class="row">
-                                <div class="col-lg-4 d-none d-lg-inline">
-                                    <div class="post-entry-footer">
-                                        <ul>
-                                            <li>
-                                                <a href="desarrollos.html#sauceda" class="w-100">
-                                                    <xsl:attribute name="href">desarrollos.html</xsl:attribute>
-                                                    <div class="text">
-                                                        <img src="assets/img/sauceda/logo.png" alt="" class="ms-3 me-1 rounded logo">
-                                                    </div>
-                                                    <div class="text d-none d-md-table-cell" style="text-align: center;">
-                                                        <p>Residencial Boutique</p>
-                                                        <div class="post-meta">
-                                                            <h5 class="mr-2">La Sauceda</h5>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="" class="w-100">
-                                                    <div class="text">
-                                                        <img src="assets/img/olmos/logo.png" alt="" class="ms-3 me-1 rounded logo">
-                                                    </div>
-                                                    <div class="text d-none d-md-table-cell" style="text-align: center;">
-                                                        <p>Residencial Boutique</p>
-                                                        <div class="post-meta">
-                                                            <h5 class="mr-2">Los Olmos</h5>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="" class="w-100">
-                                                    <div class="text">
-                                                        <img src="assets/img/altanna/logo.png" alt="" class="ms-3 me-1 rounded logo">
-                                                    </div>
-                                                    <div class="text d-none d-md-table-cell" style="text-align: center;">
-                                                        <p>Residencial Boutique</p>
-                                                        <div class="post-meta">
-                                                            <h5 class="mr-2">Altanna </h5>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-12 align-items-center justify-content-center d-flex">
-                                    <div class="image-navigator" style="overflow: clip; max-height: 60vh; background: repeating-linear-gradient( 55deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) 9px, rgba(0, 0, 1, 0.3) 9px, rgba(0, 0, 1, 0.3) 18px ); background: #f6e1b9; position: relative;" onclick="event.stopImmediatePropagation(); return false;" xo-stylesheet="mapa-slp.xslt" xo-store="#desarrollos">
-                                        <div class="image-container" style="position: relative;
-        transform: scale(1);
-        translate: 0%;
-" onclick="this.style.transform = `scale(${Math.abs(+this.style.transform.replace(/[^\d\.]/g, '') + .5)})`; this.style.translate = this.style.translate.split(/\s+/).map(percent => `${parseFloat(percent) * 2}%`).join(' '); return false" oncontextmenu="this.style.transform = `scale(${Math.abs(+this.style.transform.replace(/[^\d\.]/g, '') - .5)})`;  this.style.translate = this.style.translate.split(/\s+/).map(percent => `${parseFloat(percent) / 2}%`).join(' '); return false">
-                                            <img src="/assets/img/slp.png" style="width: 100%; height: 100%;">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 d-none d-lg-inline reversed">
-                                    <div class="post-entry-footer">
-                                        <ul>
-                                            <li>
-                                                <a href="desarrollos.html#sauceda" class="w-100">
-                                                    <div class="text">
-                                                        <img src="assets/img/sauceda/logo.png" alt="" class="ms-3 me-1 rounded logo">
-                                                    </div>
-                                                    <div class="text d-none d-md-table-cell" style="text-align: center;">
-                                                        <p>Residencial Boutique</p>
-                                                        <div class="post-meta">
-                                                            <h5 class="mr-2">La Sauceda</h5>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="" class="w-100">
-                                                    <div class="text">
-                                                        <img src="assets/img/olmos/logo.png" alt="" class="ms-3 me-1 rounded logo">
-                                                    </div>
-                                                    <div class="text d-none d-md-table-cell" style="text-align: center;">
-                                                        <p>Residencial Boutique</p>
-                                                        <div class="post-meta">
-                                                            <h5 class="mr-2">Los Olmos</h5>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="" class="w-100">
-                                                    <div class="text">
-                                                        <img src="assets/img/altanna/logo.png" alt="" class="ms-3 me-1 rounded logo">
-                                                    </div>
-                                                    <div class="text d-none d-md-table-cell" style="text-align: center;">
-                                                        <p>Residencial Boutique</p>
-                                                        <div class="post-meta">
-                                                            <h5 class="mr-2">Altanna </h5>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <!-- Nav Desarrollos -->
-                    <li class="nav-item dropdown has-megamenu">
-                        <style>
-                            .card-desarrollos .card > a {
-                                height: 470px;
-                                overflow-x: clip;
-                                overflow-y: clip;
-                            }
-
-                                .card-desarrollos .card > a > img.logo {
-                                    filter: brightness(0) invert(1);
-                                    position: absolute;
-                                    bottom: 5%;
-                                    margin: 0 auto;
-                                    left: 25%;
-                                    width: 55%;
-                                }
-
-                                .card-desarrollos .card > a > img.cover {
-                                    height: 100%;
-                                    width: 100%;
-                                    object-fit: cover;
-                                }
-                        </style>
-                        <a class="nav-link dropdown-toggle text-uppercase" href="#" data-bs-toggle="dropdown">
-                            Desarrollos
-                        </a>
-                        <div class="dropdown-menu megamenu" role="menu">
-                            <div class="row px-desarrollos card-desarrollos" xo-stylesheet="menu-desarrollos.xslt" xo-store="#desarrollos" />
-                        </div>
-                    </li>
-                    <!-- Nav Nosotros -->
-                    <li class="nav-item dropdown has-megamenu">
-                        <style>
-                            .card-nosotros .column {
-                                padding: 20px;
-                                background-color: lightgray;
-                                border-radius: 25px;
-                            }
-
-                            .card-nosotros > * {
-                                text-align: center;
-                            }
-
-                            .card-nosotros .column p {
-                                text-align: justify;
-                            }
-
-                            .card-nosotros section {
-                                padding-top: 2rem;
-                                padding-bottom: 2rem;
-                            }
-                        </style>
-                        <a class="nav-link dropdown-toggle text-uppercase" href="#" data-bs-toggle="dropdown">
-                            Nosotros
-                        </a>
-                        <div class="dropdown-menu megamenu m-0 card-nosotros" role="menu">
-                            <h3>Nosotros</h3>
-                            <section><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec scelerisque fermentum nisi, sed facilisis odio luctus id.</p></section>
-                            <section class="row px-nosotros d-flex justify-content-center g-3">
-                                <div class="column col-10 col-md-5 col-lg-3">
-                                    <h2>Misión</h2>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec scelerisque fermentum nisi, sed facilisis odio luctus id.</p>
-                                </div>
-                                <div class="column col-10 col-md-5 col-lg-3">
-                                    <h2>Visión</h2>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum accumsan faucibus massa, ut tempor diam volutpat eu.</p>
-                                </div>
-                                <div class="column col-10 col-md-5 col-lg-3">
-                                    <h2>Valores</h2>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vel ultrices lorem. Fusce in mauris metus.</p>
-                                </div>
-                            </section>
-                        </div>
-                    </li>
-                    <!-- Nav Contacto -->
-                    <!-- <li class="nav-item">
-                        <a class="nav-link text-uppercase" href="./desarrollos.html">Contacto</a>
-                    </li> -->
-                </ul>
-            </div>
-            <div class="bandcontact px-3" style="background-color: var(--contactband-bg-color);">
-                <div class="bandcontactbox" style="justify-content: center; display: flex; align-items: center; flex-direction: column; height: 60px; }">
-                    <a href="tel:4441234567" title="Contacto" class="bandcontactinfo">
-                        444-123-4567
-                    </a>
-                    <p class="bandcontactlabel mt-1">
-                        Contáctanos
-                    </p>
-                </div>
-            </div>
-        </div>
+    <nav id="navbar" class="navbar navbar-expand-lg fixed-top navbar-dark" aria-label="Main navigation" xo-stylesheet="navbar.xslt">        
     </nav>
     <main>
         <!-- Section Desarrollos -->
@@ -347,7 +87,7 @@
                 <div class="row">
                     <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Senectus et netus et malesuada fames. Malesuada nunc vel risus commodo. Eget egestas purus viverra accumsan in nisl nisi. Pellentesque elit ullamcorper dignissim cras tincidunt lobortis et leo duis ut.</p>
                     <div class="text-center">
-                        <img src="/assets/img/{$desarrollo}/background.png" alt="" class="img-fluid">
+                        <img src="/assets/{$desarrollo}/background.png" alt="" class="img-fluid">
                     </div>
                 </div>
             </div>
@@ -361,7 +101,7 @@
                 </div>
                 <div class="row gy-4 mt-1">
                     <a href="/loteador#{$desarrollo}">
-                        <img class="map" src="/assets/img/{$desarrollo}/loteador.png" border="0" orgwidth="3800" style="width: 100%; height: 100%; background: repeating-linear-gradient( 55deg, darkolivegreen, darkolivegreen 9px, darkolivegreen 9px, darkolivegreen 18px );" alt="" />
+                        <img class="map" src="/assets/{$desarrollo}/loteador.png" border="0" orgwidth="3800" style="width: 100%; height: 100%; background: repeating-linear-gradient( 55deg, darkolivegreen, darkolivegreen 9px, darkolivegreen 9px, darkolivegreen 18px );" alt="" />
                     </a>
                 </div>
             </div>
@@ -549,7 +289,5 @@
     <!-- Swiper for image and text sliders -->
     <script src="./js/aos.js"></script>
     <!-- AOS on Animation Scroll -->
-    <script src="./js/script.js"></script>
-    <!-- Custom scripts -->
 </body>
 </html>

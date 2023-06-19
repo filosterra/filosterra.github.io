@@ -8,6 +8,8 @@
 sessions/*.*
 sessions/save/*
 cache/
+prototipo/
+prototipo*/
 
 *.rsuser
 *.suo

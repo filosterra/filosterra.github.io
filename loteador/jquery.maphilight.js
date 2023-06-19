@@ -26,7 +26,6 @@
 			return 'rgba('+hex_to_decimal(color.substr(0,2))+','+hex_to_decimal(color.substr(2,2))+','+hex_to_decimal(color.substr(4,2))+','+opacity+')';
 		};
 		create_canvas_for = function(img) {
-			//JUAN var c = $('<canvas style="width:'+img.width+'px;height:'+img.height+'px;"></canvas>').get(0);
 			var c = $('<canvas style="width:'+$('#Mapa').width()+'px;height:'+img.height+'px;"></canvas>').get(0);
 			c.getContext("2d").clearRect(0, 0, c.width, c.height);
 			return c;
