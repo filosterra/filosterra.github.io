@@ -14,7 +14,7 @@
 		<div class="col-md-6 col-lg-4">
 			<div class="card" style="padding: 3rem;">
 				<a href="loteador#{@id}">
-					<img src="assets/img/{@id}/logo.png" alt="" class="img-fluid" style="width: 100%;"/>
+					<img src="assets/{@id}/logo.png" alt="" class="img-fluid" style="width: 100%;"/>
 				</a>
 			</div>
 		</div>

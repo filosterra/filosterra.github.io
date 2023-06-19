@@ -16,8 +16,8 @@
 		<div class="col-lg-4 d-flex align-items-stretch">
 			<div class="card bg-transparent grid-slot">
 				<a href="desarrollos.html#{@id}">
-					<img src="assets/img/{@id}/fachada.jpg" alt="" class="cover"/>
-					<img src="assets/img/{@id}/logo-cintillo.png" alt="" class="logo" onerror="this.onerror=undefined; if (src.indexOf('-cintillo')!=-1) src=src.replace(/-cintillo/,'');"/>
+					<img src="assets/{@id}/fachada.jpg" alt="" class="cover"/>
+					<img src="assets/{@id}/logo-cintillo.png" alt="" class="logo" onerror="this.onerror=undefined; if (src.indexOf('-cintillo')!=-1) src=src.replace(/-cintillo/,'');"/>
 				</a>
 			</div>
 		</div>

@@ -12,7 +12,7 @@
 
 	<xsl:template match="desarrollo">
 		<a href="desarrollos.html#{@id}">
-			<img src="assets/img/{@id}/logo.png" alt="" class="me-4 rounded logo-footer"/>
+			<img src="assets/{@id}/logo.png" alt="" class="me-4 rounded logo-footer"/>
 		</a>
 	</xsl:template>
 </xsl:stylesheet>

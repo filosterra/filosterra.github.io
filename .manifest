@@ -1,7 +1,12 @@
 {
+  "stylesheets": ["navbar.xslt"],
   "sources": {
-    "^#(.+)": "/data/$1.xml",
+    "^#(.+)": "/assets/$1/data.xml",
+    "^#(.+):loteador": "/assets/$1/loteador.map",
     "#": "#desarrollos",
-    "#desarrollos": "desarrollos.xml"
+    "#desarrollos": "/desarrollos.xml"
+  },
+  "settings": {
+    ".map": { "headers": {"accept": "text/plain"} }
   }
 }
