@@ -26,6 +26,7 @@
     --z-index-footer: 10;
     --section-dark-bg-color: #efeee9;
     --section-dark-color: black;
+    --main-bg-color: darkslategray;
     --title-bg-color: darkslategray;
     --bg-title-color: white;
     --contactband-bg-color: orange;
@@ -46,6 +47,10 @@ body {
 
 dialog #content .content-container {
     display: none
+}
+
+dialog#show #content .content-container, dialog.show #content .content-container {
+    display: inline
 }
 
 dialog #content > div:nth-child(1) {
@@ -191,7 +196,7 @@ li {
 }
 
 .section-hd {
-    min-height: 70vh;
+    /*min-height: 70vh;*/
     position: relative;
 }
 

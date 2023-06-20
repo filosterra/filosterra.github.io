@@ -2,10 +2,11 @@
   "stylesheets": [ "navbar.xslt" ],
   "stores": [ "#desarrollos","#site" ],
   "sources": {
-    "^#(.+)": "/assets/$1/data.xml",
+    "^desarrollos.html#(.+)": "/assets/$1/desarrollo.resx",
     "^#(.+):loteador$": "/assets/$1/loteador.map",
     "^#(.+):gallery$": "/assets/$1/gallery.resx",
     "#": "#desarrollos",
+    "^#(.+):info": "/assets/$1/desarrollo.resx",
     "#desarrollos": "/desarrollos.resx",
     "#site": "/site.resx",
     "#aviso_privacidad": "/aviso_privacidad.resx",

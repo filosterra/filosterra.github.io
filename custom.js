@@ -7,3 +7,8 @@
 ////</svg></html:div>`))
 ////    svg.style.background = `repeating-linear-gradient( 55deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) 9px, rgba(0, 0, 1, 0.3) 9px, rgba(0, 0, 1, 0.3) 18px)`;
 ////})
+
+
+xo.listener.on('fetch::root[data]', function () {
+    this.select(`/root/*[not(self::data)]|root/comment()|root/data[comment='disabled']`).remove()
+})
