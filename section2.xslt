@@ -17,7 +17,7 @@
 		<div class="col-md-6 col-lg-4">
 			<div class="card" style="padding: 3rem;">
 				<a href="desarrollos.html#{@name}">
-					<img src="assets/{@name}/logo.png" alt="" class="img-fluid" style="width: 100%;"/>
+					<img src="assets/desarrollos/{@name}/logo.png" alt="" class="img-fluid" style="width: 100%;"/>
 				</a>
 			</div>
 		</div>

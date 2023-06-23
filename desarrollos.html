@@ -19,7 +19,8 @@
     <title>Filosterra</title>
 
     <!-- Styles -->
-    <link rel="manifest" href="../.manifest?v=20230608_0943">
+    <link rel="xover-manifest" href="desarrollos.manifest?v=20230608_0943">
+    <link rel="xover-manifest" href="../.manifest?v=20230608_0943">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
     <link href="./css/bootstrap.min.css" rel="stylesheet">
     <link href="./css/fontawesome-all.min.css" rel="stylesheet">
@@ -60,14 +61,14 @@
     </nav>
     <main xo-stylesheet="desarrollos-info.xslt" xo-store="#{$desarrollo}:info">
         <!-- Section Desarrollos -->
-        <section class="section-light section-hd d-flex align-items-center" id="desarrollos" style="height: 130px; min-height: 130px;">
+        <header class="section-light section-hd d-flex align-items-center no-background" id="desarrollos" style="height: 130px; min-height: 130px;">
             <div class="container">
                 <div class="desarrollos-content position-relative">
                     <div class="container">
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="desarrollos-info">
-                                    <h2 class="banner-title text-uppercase text-center headline"><xo-value select="$desarrollo" /></h2>
+                                    <h2 class="banner-title text-uppercase text-center headline"><xsl:value-of select="$desarrollo" /></h2>
                                     <p class="py-3 h5 text-uppercase text-center">...</p>
                                 </div>
                             </div>
@@ -75,13 +76,13 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </header>
 
 
         <section class="section-dark section-hd d-flex align-items-center py-5" id="desarrollosinfo">
             <div class="container">
                 <div class="text-center pb-4">
-                    <p class="text-uppercase"><xo-value select="$desarrollo" /></p>
+                    <p class="text-uppercase"><xsl:value-of select="$desarrollo" /></p>
                     <h4 class="py-2">&#160;</h4>
                 </div>
                 <div class="row" style="height: 300px">
@@ -95,18 +96,18 @@
                         }
 
                             /*.wrapper_span span.loading_span {
-                            color: #000000;
-                            font-size: 20px;
-                            font-weight: 600;
-                        }*/
-                        .wrapper_span span.loading_span {
-                            color: var(--main-bg-color,#00B0AD);
-                            font-size: 20px;
-                            font-weight: 600;
-                            position: absolute;
-                            top: 95px;
-                            left: 35%;
-                        }
+                                color: #000000;
+                                font-size: 20px;
+                                font-weight: 600;
+                            }*/
+                            .wrapper_span span.loading_span {
+                                color: var(--main-bg-color,#00B0AD);
+                                font-size: 20px;
+                                font-weight: 600;
+                                position: absolute;
+                                top: 95px;
+                                left: 35%;
+                            }
 
                         .circle_loading {
                             width: 20px;

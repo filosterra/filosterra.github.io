@@ -12,3 +12,26 @@
 xo.listener.on('fetch::root[data]', function () {
     this.select(`/root/*[not(self::data)]|root/comment()|root/data[comment='disabled']`).remove()
 })
+
+xo.listener.on('error::img.map', function () {
+    this.closest('section').remove()
+})
+
+xo.listener.on('click::div.list-group > a', function () {
+    let selection = this.getAttribute("href");
+    for (let component of this.closest(".carousel-container").querySelectorAll(".carousel")) {
+        component.carousel && component.carousel.pause && component.carousel.pause()
+        delete component.carousel;
+        if (component.parentNode.matches(selection)) {
+            initialize_carousel(component)
+        }
+    }
+})
+
+function initialize_carousel(target_carousel) {
+    target_carousel.carousel = target_carousel.carousel || new bootstrap.Carousel(target_carousel, {
+        interval: 5000
+    });
+
+    target_carousel.carousel.cycle();
+}
