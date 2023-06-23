@@ -12,42 +12,47 @@
 					this.style.transform = `scale(${Math.abs(+this.style.transform.replace(/[^\d\.]/g, '') - .5)})`;  this.style.translate = this.style.translate.split(/\s+/).map(percent => `${parseFloat(percent) / 2}%`).join(' '); return false
 				</xsl:attribute>
 				<img src="/assets/img/slp.png" style="width: 100%; height: 100%;"/>
-				<div class="od" style="top:69.42%;left: 53.992%;position: absolute;">
-					<div class="id" style="left:-3px;top:-3px">
-						<svg xmlns="http://www.w3.org/2000/svg" width="7" height="7" fill="currentColor" class="bi bi-circle-fill map-marker" viewBox="0 0 16 16">
-							<circle cx="8" cy="8" r="8" />
-						</svg>
-					</div>
-					<div class="pr" style="        font-size: 91%;
+				<div class="markers">
+					<xsl:for-each select="data">
+						<div xo-stylesheet="desarrollos-map-marker.xslt" xo-store="#{@name}:info" desarrollo="{value}"/>
+					</xsl:for-each>
+					<!--<div class="od" style="top:69.42%;left: 53.992%;position: absolute;">
+						<div class="id" style="left:-3px;top:-3px">
+							<svg xmlns="http://www.w3.org/2000/svg" width="7" height="7" fill="currentColor" class="bi bi-circle-fill map-marker" viewBox="0 0 16 16">
+								<circle cx="8" cy="8" r="8" />
+							</svg>
+						</div>
+						<div class="pr" style="        font-size: 91%;
         width: 6em;
         left: 4px;
         position: absolute;
         translate: 10px;
 ">
-						<div>La Sauceda</div>
+							<div>La Sauceda</div>
+						</div>
 					</div>
-				</div>
-				<div class="od" style="top: 69.42%; left: 49.992%; position: absolute; ">
-					<div class="id" style="left:-3px;top:-3px">
-						<svg xmlns="http://www.w3.org/2000/svg" width="7" height="7" fill="currentColor" class="bi bi-circle-fill map-marker" viewBox="0 0 16 16">
-							<circle cx="8" cy="8" r="8" />
-						</svg>
-					</div>
-					<div class="pr" style="font-size:91%;width:6em;left:4px;position: absolute;
+					<div class="od" style="top: 69.42%; left: 49.992%; position: absolute; ">
+						<div class="id" style="left:-3px;top:-3px">
+							<svg xmlns="http://www.w3.org/2000/svg" width="7" height="7" fill="currentColor" class="bi bi-circle-fill map-marker" viewBox="0 0 16 16">
+								<circle cx="8" cy="8" r="8" />
+							</svg>
+						</div>
+						<div class="pr" style="font-size:91%;width:6em;left:4px;position: absolute;
     translate: -60px;">
-						<div>Los Olmos</div>
+							<div>Los Olmos</div>
+						</div>
 					</div>
-				</div>
-				<div class="od" style="top: 65.42%; left: 50.992%; position: absolute;">
-					<div class="id" style="left:-3px;top:-3px">
-						<svg xmlns="http://www.w3.org/2000/svg" width="7" height="7" fill="currentColor" class="bi bi-circle-fill map-marker" viewBox="0 0 16 16">
-							<circle cx="8" cy="8" r="8" />
-						</svg>
-					</div>
-					<div class="pr" style="font-size:91%;width:6em;left:4px;position: absolute;
+					<div class="od" style="top: 65.42%; left: 50.992%; position: absolute;">
+						<div class="id" style="left:-3px;top:-3px">
+							<svg xmlns="http://www.w3.org/2000/svg" width="7" height="7" fill="currentColor" class="bi bi-circle-fill map-marker" viewBox="0 0 16 16">
+								<circle cx="8" cy="8" r="8" />
+							</svg>
+						</div>
+						<div class="pr" style="font-size:91%;width:6em;left:4px;position: absolute;
     translate: -60px -20px;">
-						<div>Altanna</div>
-					</div>
+							<div>Altanna</div>
+						</div>
+					</div>-->
 				</div>
 			</div>
 			<div class="d-flex justify-content-around" style="

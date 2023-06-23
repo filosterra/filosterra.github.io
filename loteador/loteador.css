@@ -1,6 +1,22 @@
 ﻿@charset "utf-8";
 /* CSS Document */
 
+img.white {
+	filter: brightness(0) invert(1);
+}
+
+dialog #content .content-container {
+	display: none
+}
+
+dialog #content > div:nth-child(1) {
+	display: inline
+}
+
+xo-param {
+	display: none;
+}
+
 body {
 	background-color: #eeeeee;
 	font-family:Arial, Helvetica, sans-serif;
@@ -12,17 +28,11 @@ body {
 	width: 100%;
 }
 
-#Mapa > .map {
-	background: url('loteador.png');
-	background-size: 100%;
-	background-repeat: no-repeat;
-	width: 100%;
-}
-
 .filter {
 	background-color: white;
 	border: green solid 5px;
 	padding: 1rem;
+	min-width: 250px;
 }
 
 .map {width:100%;}
@@ -35,19 +45,18 @@ body {
 	margin-right:auto;
 	}
 
-#Filtros, #Mapa {
-	float:left;
-	background-color: #eeeeee;
-	}
+#Filtros {
+	bottom: 0;
+	position: fixed;
+	right: 0;
+	max-height: fit-content;
+	width: fit-content;
+	background-color: rgba(0,0,0,.5);
+	padding: 20px;
+}
 
 #Filtros .filter [type="radio"] {
 	margin-right: .5rem;
-}
-
-#Filtros {
-	float: left;
-	padding: 20px;
-	background-color: transparent;
 }
 
 #ViviendaDetalles {
@@ -91,6 +100,7 @@ body {
 .table-centered td, .table-centered th {
    text-align: center;   
 }
+
 td label {
     font-weight: bolder;
     margin-right: 5px;

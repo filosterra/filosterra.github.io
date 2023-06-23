@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<data>
+	<item Id="1" Lote="43A" Status="Disponible" Manzana="8" Etapa="1" PrecioUnitario="5000" Terreno="81" PrecioVenta="$697,000.00"/>
+	<item Id="2" Lote="43B" Status="Disponible" Manzana="8" Etapa="1" PrecioUnitario="4000" Terreno="81" PrecioVenta="$723,000.00"/>
+</data>

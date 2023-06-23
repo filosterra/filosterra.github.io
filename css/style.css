@@ -23,13 +23,90 @@
     --bg-line-card: #979797;
     --bg-listgroup: orange;
     --bg-listgroup-content: #fff;
-    --z-index-footer: 10;
+    --z-index-footer: 1000;
     --section-dark-bg-color: #efeee9;
     --section-dark-color: black;
+    --main-bg-color: darkslategray;
     --title-bg-color: darkslategray;
     --bg-title-color: white;
     --contactband-bg-color: orange;
+    --sitemap-scrollbar-color: orange;
+    --sitemap-scrollbar-border: darkslategray;
+    --sitemap-scrollbar-background: darkslategray;
     --footer-height: 80px;
+}
+
+body {
+    padding-bottom: var(--footer-height);
+}
+
+.styled-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: var(--sitemap-scrollbar-background);
+}
+
+dialog #content .content-container {
+    display: none
+}
+
+dialog#show #content .content-container, dialog.show #content .content-container {
+    display: inline
+}
+
+dialog #content > div:nth-child(1) {
+    display: inline
+}
+
+.carousel-item img {
+    object-fit: cover;
+    height: 390px;
+}
+
+/* Works on Chrome, Edge, and Safari */
+.styled-scroll::-webkit-scrollbar {
+    width: 12px;
+}
+
+.styled-scroll::-webkit-scrollbar-track {
+    background: var(--sitemap-scrollbar-background);
+}
+
+.styled-scroll::-webkit-scrollbar-thumb {
+    background-color: var(--sitemap-scrollbar-color);
+    border-radius: 20px;
+    border: 3px solid var(--sitemap-scrollbar-border);
+}
+
+#navbar {
+    height: 60px;
+    color: var(--bg-title-color);
+    background-color: var(--title-bg-color);
+}
+
+.skeleton {
+    position: relative;
+    overflow: hidden;
+}
+
+.skeleton::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.4), transparent);
+    animation: skeletonAnimation 1.5s infinite linear;
+}
+
+@keyframes skeletonAnimation {
+    from {
+        left: -100%;
+    }
+
+    to {
+        left: 100%;
+    }
 }
 
 body > nav {
@@ -124,7 +201,7 @@ li {
 }
 
 .section-hd {
-    min-height: 70vh;
+    /*min-height: 70vh;*/
     position: relative;
 }
 
@@ -175,6 +252,10 @@ li {
     /* background-clip: text;
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent; */
+}
+
+.navbar-nav .section-ubicaciones a img.logo {
+    filter: brightness(0) invert(0);
 }
 
 .navbar-nav a:hover img.logo {
@@ -1035,30 +1116,27 @@ li {
 /**************************/
 /*     Desarrollos    */
 /**************************/
-#desarrollos {
-    color: white;
-    background: repeating-linear-gradient( 55deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) 9px, rgba(0, 0, 1, 0.3) 9px, rgba(0, 0, 1, 0.3) 18px );
-    background-size: cover;
-    padding: 80px 30px 60px;
-    position: relative;
+.no-background {
+    background: repeating-linear-gradient( 55deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) 9px, rgba(0, 0, 1, 0.3) 9px, rgba(0, 0, 1, 0.3) 18px )
 }
 
-    #desarrollos:before {
-        content: "";
-        background: rgba(0, 0, 0, 0.4);
-        position: absolute;
-        inset: 0;
-    }
 
-    #desarrollos .banner-title:after {
-        content: '';
-        display: block;
-        width: 90%;
-        max-width: 580px;
-        height: 1px;
-        margin: 10px auto 0;
-        background-color: var(--bg-body-color);
-    }
+#desarrollos:before {
+    content: "";
+    background: rgba(0, 0, 0, 0.4);
+    position: absolute;
+    inset: 0;
+}
+
+#desarrollos .banner-title:after {
+    content: '';
+    display: block;
+    width: 90%;
+    max-width: 580px;
+    height: 1px;
+    margin: 10px auto 0;
+    background-color: var(--bg-body-color);
+}
 
 .boxcard-head:after {
     content: '';

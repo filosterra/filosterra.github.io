@@ -122,6 +122,7 @@ async function actualizaColores(oSource, colorear) {
     if (!xmlData.documentElement) await xmlData.fetch();
     xmlData = xmlData.document;
 
+    let desarrollo_id = (location.hash || '').replace(/^#/, '').toUpperCase();
     let xmlFilters = xover.sources["settings.xml"];
     if (!xmlFilters.documentElement) await xmlFilters.fetch();
     let sFilters_bind = `${xmlFilters.find('filters').attr('bind')}`;
@@ -141,12 +142,12 @@ async function actualizaColores(oSource, colorear) {
     filter = (filter || xmlFilters.selectFirst('//filters/filter'));
     attributes["value"] = (attributes["value"] || filter.attr('bind'));
     attributes["text"] = (attributes["text"] || filter.attr('bind_text') || attributes["value"]);
-    attribute_pattern = "{{@value}}"
-    if (filter.select('option').length > 0) {
-        attribute_pattern = "{{@text}}::{{@value}}"
-        //if ($("#Filtros #" + attributes["value"].replace(/[\W@]/ig, '_') + " :checkbox:checked").length > 0) first = attributes["value"];
-    }
-    attribute_pattern = eval("'" + attribute_pattern.replace(/\{\{\@([^\}]+)\}\}/ig, '{{\'+attributes["$1"]+\'}}') + "'");
+    //attribute_pattern = "{{@value}}"
+    //if (filter.select('option').length > 0) {
+    //    attribute_pattern = "{{@text}}::{{@value}}"
+    //    //if ($("#Filtros #" + attributes["value"].replace(/[\W@]/ig, '_') + " :checkbox:checked").length > 0) first = attributes["value"];
+    //}
+    //attribute_pattern = eval("'" + attribute_pattern.replace(/\{\{\@([^\}]+)\}\}/ig, '{{\'+attributes["$1"]+\'}}') + "'");
 
     //$(xmlData).find('filters').select('filter[bind="' + first + '"]').select('option').each(function () {
     //    filters[filter.attr("value")] = filter.attr("color") //.replace(/\s+/gi, "-")
@@ -160,7 +161,7 @@ async function actualizaColores(oSource, colorear) {
     let active_filter = [document.querySelector(`[name="filter_headers"]:checked`)].filter(el => el).map(radio => radio.closest(`.filter[bind]`)).pop() || oSource && oSource.closest('.filter[bind]') || [document.querySelector(`.filter[bind]`)].concat(document.querySelectorAll('[type="checkbox"]:checked').toArray().map(checkbox => checkbox.closest('.filter[bind]'))).concat([document.querySelector(`.filter[bind]`)]).filter(filter => !oSource).distinct().pop();
     let color_list = Object.fromEntries([[active_filter].map(filter => [filter.getAttribute("bind"), new Map(filter.querySelectorAll(`.filter_option [type="checkbox"]`).toArray().filter(checkbox => checkbox.previousElementSibling).map(checkbox => [checkbox.getAttribute("filtervalue"), checkbox.previousElementSibling.style.backgroundColor]))]).filter(([key, values]) => values.size)[0]]);
     for (let element of xmlData.select(sFilters_bind)) {
-        let oLote = document.querySelector(`area[target="SAUCEDA_${element.attr(sElement_id)}"]`)
+        let oLote = document.querySelector(`area[target="${desarrollo_id}_${element.attr(sElement_id)}"]`)
         if (oLote) {
             let attributes = [...element.attributes];
             let color = Object.entries(color_list).map(([selector, options]) => [...options].find((test) => testConditions(element, Object.fromEntries([[selector, new Map([test])]])))).map(([, value]) => value).pop();
@@ -191,12 +192,12 @@ function renderFilterOption(filter, values, target) {
     } else if (typeof values == 'object' && values["_type"] == "attribute") {
         let filter_name = filter.attr("bind").replace(/[\W@]/ig, '_');
         /*renderFilterOption(filter, values["text"]);*/
-        let attribute_pattern = "{{@value}}"
-        if (filter.selectFirst('option')) {
-            attribute_pattern = "{{@text}}::{{@value}}"
+        //let attribute_pattern = "{{@value}}"
+        //if (filter.selectFirst('option')) {
+        //    attribute_pattern = "{{@text}}::{{@value}}"
             //if ($("#Filtros #" + attributes["value"].replace(/[\W@]/ig, '_') + " :checkbox:checked").length > 0) first = attributes["value"];
-        }
-        let filter_value = eval("'" + attribute_pattern.replace(/\{\{\@([^\}]+)\}\}/ig, '\'+values["$1"]+\'') + "'");
+        //}
+        //let filter_value = eval("'" + attribute_pattern.replace(/\{\{\@([^\}]+)\}\}/ig, '\'+values["$1"]+\'') + "'");
         let checkbox = xo.xml.createFragment(renderOption(filter_name, (values.text + '__' + (values.value || '')), values.value, values.text, values.value, values.color, values.selected));
         target.append(checkbox);
     } else if (typeof values == 'object') {
@@ -443,6 +444,7 @@ async function iluminarMapa(conditions) {
     let xmlData = xo.stores[location.hash];
     if (!xmlData.documentElement) await xmlData.fetch();
     xmlData = xmlData.document;
+    let desarrollo_id = (location.hash || '').replace(/^#/, '');
     
     let xmlFilters = xover.sources["settings.xml"];
     if (!xmlFilters.documentElement) await xmlFilters.fetch();
@@ -450,7 +452,7 @@ async function iluminarMapa(conditions) {
     let sFilters_bind = $(xmlFilters).find('filters').attr('bind');
     let sElement_id = $(xmlFilters).find('filters').attr('id');
     for (let element of xmlData.select(sFilters_bind)) {
-        let txtIdentificador = `area[target="SAUCEDA_${element.attr(sElement_id)}"]`;
+        let txtIdentificador = `area[target="${desarrollo_id}_${element.attr(sElement_id)}"]`;
         let oLote = document.querySelector(txtIdentificador);
         if (!oLote) {
             console.log(txtIdentificador + ' no existe')
@@ -643,17 +645,31 @@ function resize() {
     imageMap.resize();
 }
 
-window.onload = async function () {
+loteador = {};
+loteador.inicializar = async function () {
     let color, txtBind;
     let xmlData = xo.stores[location.hash];
     if (!xmlData.documentElement) await xmlData.fetch();
     xmlData = xmlData.document;
     let xmlFilters = xover.sources["settings.xml"];
+
+    //let mapDoc = xo.sources[location.hash + ':loteador'];
+    //if (!mapDoc.firstElementChild) await mapDoc.fetch();
+
+    //let source_img = mapDoc.querySelector('img');
+    //let target_img = document.querySelector("img.map");
+    //if (!(target_img && source_img)) return;
+    //target_img.setAttribute("orgwidth", source_img.getAttribute("width"));
+
+    //let map = mapDoc.querySelector("map");
+    //target_img.parentNode.querySelector("map").replaceWith(map);
+
     if (!xmlFilters.documentElement) await xmlFilters.fetch();
     let sFilters_bind = $(xmlFilters).find('filters').attr('bind');
 
     let defined_options = (xmlFilters.select('//filters/filter/option').length > 0)
     let target = document.querySelector("#Filtros");
+    target.replaceChildren('');
     if (!target) return;
     xmlFilters.select('//filters/filter').forEach(function (filter) {
         let bind = filter.attr("bind");

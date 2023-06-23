@@ -1,5 +1,6 @@
 {
   "sources": {
-    "^#(.+)": "/data/$1.xml"
+    "^#(.+)": "/assets/desarrollos/$1/lotes.xml",
+    "^#(.+):map$": "/assets/desarrollos/$1/loteador.map"
   }
 }

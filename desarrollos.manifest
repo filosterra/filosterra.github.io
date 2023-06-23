@@ -1,0 +1,5 @@
+{
+  "sources": {
+    "^#(.+)": "/assets/desarrollos/$1/info.resx"
+  }
+}
