@@ -55,12 +55,18 @@
 		<xsl:variable name="title" select="substring-before(value,':')"/>
 		<xsl:variable name="subtitle" select="substring-before(value,':')"/>
 		<xsl:variable name="paragraph" select="substring-after(value,':')"/>
-		<section class="section-light section-hd d-flex align-items-center py-5" id="{@name}">
+		<xsl:variable name="section-background">
+			<xsl:choose>
+				<xsl:when test="position() mod 2 =1">section-light</xsl:when>
+				<xsl:otherwise>section-dark</xsl:otherwise>
+			</xsl:choose>
+		</xsl:variable>
+		<section class="{$section-background} section-hd d-flex align-items-center py-5" id="{@name}">
 			<div class="container">
 				<div class="text-center pb-4">
-					<h3 class="text-uppercase">
+					<h4 class="text-uppercase">
 						<xsl:apply-templates mode="title" select="value"/>
-					</h3>
+					</h4>
 					<!--<h4 class="py-2">
 						<xsl:value-of select="$subtitle"/>
 					</h4>-->
@@ -75,16 +81,19 @@
 	</xsl:template>
 
 	<xsl:template mode="section" match="key('section','mapa')">
-		<section class="section-dark section-hd d-flex align-items-center py-5" id="loteador">
+		<xsl:variable name="section-background">
+			<xsl:choose>
+				<xsl:when test="position() mod 2 =1">section-light</xsl:when>
+				<xsl:otherwise>section-dark</xsl:otherwise>
+			</xsl:choose>
+		</xsl:variable>
+		<section class="{$section-background} section-hd d-flex align-items-center py-5" id="loteador">
 			<xsl:variable name="title" select="substring-before(key('section','2'),':')"/>
 			<xsl:variable name="paragraph" select="substring-after(key('section','2'),':')"/>
 			<xsl:variable name="pin" select="substring-before(key('label','pin'),'/')"/>
 			<xsl:variable name="translate" select="substring-after(key('label','pin'),'/')"/>
 			<div class="container">
 				<div class="text-center pb-4">
-					<p class="text-uppercase">
-						<xsl:value-of select="$desarrollo" />
-					</p>
 					<h4 class="py-2">
 						<xsl:value-of select="$title"/>
 					</h4>
@@ -164,12 +173,18 @@
 	</xsl:template>
 
 	<xsl:template mode="section" match="key('section','loteador')">
-		<section class="section-light section-hd d-flex align-items-center py-5" id="desarrollosinfo">
+		<xsl:variable name="section-background">
+			<xsl:choose>
+				<xsl:when test="position() mod 2 =1">section-light</xsl:when>
+				<xsl:otherwise>section-dark</xsl:otherwise>
+			</xsl:choose>
+		</xsl:variable>
+		<section class="{$section-background} section-hd d-flex align-items-center py-5" id="desarrollosinfo">
 			<div class="container">
 				<div class="text-center pb-4">
-					<h3 class="text-uppercase">
+					<h4 class="text-uppercase">
 						<xsl:value-of select="$desarrollo" /> cuenta con lo esencial para tu seguridad
-					</h3>
+					</h4>
 					<h4 class="py-2">Ubicado en la zona poniente de la ciudad</h4>
 				</div>
 				<div class="row gy-4 mt-1">
@@ -185,12 +200,18 @@
 		<xsl:variable name="title" select="substring-before(value,':')"/>
 		<xsl:variable name="subtitle" select="substring-before(value,':')"/>
 		<xsl:variable name="paragraph" select="substring-after(value,':')"/>
-		<section class="section-dark section-hd d-flex align-items-center py-5" id="desarrollosinfo">
+		<xsl:variable name="section-background">
+			<xsl:choose>
+				<xsl:when test="position() mod 2 =1">section-light</xsl:when>
+				<xsl:otherwise>section-dark</xsl:otherwise>
+			</xsl:choose>
+		</xsl:variable>
+		<section class="{$section-background} section-hd d-flex align-items-center py-5" id="desarrollosinfo">
 			<div class="container">
 				<div class="text-center pb-4">
-					<h3 class="text-uppercase">
+					<h4 class="text-uppercase">
 						<xsl:value-of select="$title"/>
-					</h3>
+					</h4>
 				</div>
 				<div class="row">
 					<p class="mb-5">

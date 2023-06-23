@@ -16,7 +16,9 @@
     <xo-param name="desarrollo">(location.hash || '').replace(/^#/,'')</xo-param>
     <form name="form" class="row" target="_self" method="post" style="height:100%;">
         <div class="col-12" style="min-height: 600px;">
-            <img src="/assets/desarrollos/{$desarrollo}/logo.png" class="white" style="height: 150px; position: absolute; left: 5px; top: 10px;">
+            <a href="/desarrollos.html#{$desarrollo}">
+                <img src="/assets/desarrollos/{$desarrollo}/logo.png" class="white" style="height: 150px; position: absolute; left: 5px; top: 10px;">
+            </a>
             <!-- max-height: 600px; -->
             <div id="Mapa" style="height:100%">
                 <div style="width: 100%;height: 10%;" class="d-lg-none"></div>
