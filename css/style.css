@@ -1120,14 +1120,6 @@ li {
     background: repeating-linear-gradient( 55deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) 9px, rgba(0, 0, 1, 0.3) 9px, rgba(0, 0, 1, 0.3) 18px )
 }
 
-
-#desarrollos:before {
-    content: "";
-    background: rgba(0, 0, 0, 0.4);
-    position: absolute;
-    inset: 0;
-}
-
 #desarrollos .banner-title:after {
     content: '';
     display: block;
