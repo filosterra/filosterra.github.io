@@ -4,6 +4,12 @@
     "^#(.+):map$": "/assets/desarrollos/$1/loteador.map"
   },
   "settings": {
+    "^#(.+)$": {
+      "headers": {
+        "cache": "no-store",
+        "Cache-Control": "no-cache"
+      }
+    },
     ".resx": {
       "headers": {
         "cache": "no-store",
