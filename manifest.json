@@ -1,18 +1,33 @@
 {
   "stylesheets": [ "navbar.xslt" ],
-  "stores": [ "#desarrollos","#site" ],
+  "stores": [ "#desarrollos", "#site" ],
   "sources": {
     "^#(.+):loteador$": "/assets/desarrollos/$1/loteador.map",
     "^#(.+):gallery$": "/assets/desarrollos/$1/gallery.resx",
     "#": "#desarrollos",
-    "^#(.+):info": "/assets/desarrollos/$1/info.resx",
+    "^#(.+):info$": "/assets/desarrollos/$1/info.resx",
     "#desarrollos": "/desarrollos.resx",
     "#site": "/site.resx",
     "#aviso_privacidad": "/aviso_privacidad.resx",
     "#codigo_etica": "/codigo_etica.resx",
-    "#terminos_condiciones": "/terminos_condiciones.resx"
+    "#terminos_condiciones": "/terminos_condiciones.resx",
+    "^#(.+)~edit$": "#$1"
   },
   "settings": {
-    ".map": { "headers": { "accept": "text/plain" } }
+    ".map": { "headers": { "accept": "text/plain" } },
+    ".resx": {
+      "headers": {
+        "cache": "no-store",
+        "Cache-Control": "no-cache"
+      }
+    },
+    "^#(.+)~edit$": {
+      "stylesheets": [
+        {
+          "href": "resx-editor.xslt",
+          "target": "body", "action": "append"
+        }
+      ]
+    }
   }
 }

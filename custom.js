@@ -9,12 +9,37 @@
 ////})
 
 
-xo.listener.on('fetch::root[data]', function () {
+xo.listener.on('beforeTransform::root[data]', function () {
     this.select(`/root/*[not(self::data)]|root/comment()|root/data[comment='disabled']`).remove()
+})
+
+xo.listener.on('fetch::root[data[not(comment)]]', function () {
+    this.select(`/root/data[not(comment)]`).forEach(data => data.append(xo.xml.createNode("<comment/>")))
 })
 
 xo.listener.on('error::img.map', function () {
     this.closest('section').remove()
+})
+
+xo.listener.on('beforeSet::data/value/text()', function ({ value, old }) {
+    let new_text = value.toString()
+    if (new_text.indexOf(':') == -1) { 
+        let title = old.substring(0, old.indexOf(':') + 1);
+        new_text = `${title}${new_text}`
+        value.textContent = new_text
+    }
+})
+
+xo.listener.on('change::session:edit', function ({ value: editing }) {
+    if (editing) {
+        let store = new xo.Store(xo.stores.seed.document, { tag: `${xo.stores.seed.tag}~edit` });
+        store.addStylesheet({
+            "href": "resx-editor.xslt",
+            "target": "body"
+            , "action": "append"
+        });
+        store.render();
+    }
 })
 
 xo.listener.on('click::div.list-group > a', function () {
@@ -34,4 +59,21 @@ function initialize_carousel(target_carousel) {
     });
 
     target_carousel.carousel.cycle();
+}
+
+function saveXMLToFile(xmlContent, fileName) {
+    var link = document.createElement('a');
+    link.href = 'data:text/xml;charset=utf-8,' + encodeURIComponent(xmlContent);
+    link.download = fileName;
+    link.style.display = 'none';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+
+
+function saveResx(scope) {
+    let xml = scope.cloneNode(true);
+    xml.select(`//@xo:*|//@state:*`).remove();
+    saveXMLToFile(xml.toString(), 'file.resx')
 }

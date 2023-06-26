@@ -2,5 +2,13 @@
   "sources": {
     "^#(.+)": "/assets/desarrollos/$1/lotes.xml",
     "^#(.+):map$": "/assets/desarrollos/$1/loteador.map"
+  },
+  "settings": {
+    ".resx": {
+      "headers": {
+        "cache": "no-store",
+        "Cache-Control": "no-cache"
+      }
+    }
   }
 }
