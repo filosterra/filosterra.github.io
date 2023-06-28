@@ -121,12 +121,15 @@
     <value>Nuestra visión es...</value>
   </data>
   <data name="mision" xml:space="preserve">
-    <value>Nuestra misión es...</value>
+    <value>Nuestra misión es ofrecer los mejores desarrollos para toda la familia</value>
   </data>
   <data name="nosotros" xml:space="preserve">
     <value>Nosotros somos...</value>
   </data>
   <data name="valores" xml:space="preserve">
     <value>Nuestros valores son...</value>
+  </data>
+  <data name="telefono" xml:space="preserve">
+    <value>44441294372</value>
   </data>
 </root>

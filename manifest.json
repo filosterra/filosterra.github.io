@@ -6,11 +6,11 @@
     "^#(.+):gallery$": "/assets/desarrollos/$1/gallery.resx",
     "#": "#desarrollos",
     "^#(.+):info$": "/assets/desarrollos/$1/info.resx",
-    "#desarrollos": "/desarrollos.resx",
-    "#site": "/site.resx",
-    "#aviso_privacidad": "/aviso_privacidad.resx",
-    "#codigo_etica": "/codigo_etica.resx",
-    "#terminos_condiciones": "/terminos_condiciones.resx",
+    "#desarrollos": "/assets/desarrollos.resx",
+    "#site": "/assets/site.resx",
+    "#aviso_privacidad": "/assets/aviso_privacidad.resx",
+    "#codigo_etica": "/assets/codigo_etica.resx",
+    "#terminos_condiciones": "/assets/terminos_condiciones.resx",
     "^#(.+)~edit$": "#$1"
   },
   "settings": {
