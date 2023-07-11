@@ -11,12 +11,12 @@
 			<option text="125 - 130" value="125.001~130" color="#00007f"/>
 			<option text="130 en adelante" value="130~9999" color="#80FF00"/>			
 		</filter>
-		<filter title="Precio" bind="@PrecioVenta">
+		<!--<filter title="Precio" bind="@PrecioVenta">
 			<option text="700K - 800K" value="700000~800000"/>
 			<option text="800K - 900K" value="800000.001~900000"/>
 			<option text="900K - 1M" value="900000.001~1000000"/>
 			<option text="$1M" value="1000000~99000000"/>			
-		</filter>
+		</filter>-->
 	</filters>
 	<details>
 		<div id="detalles">
