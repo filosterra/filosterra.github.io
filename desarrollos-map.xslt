@@ -19,7 +19,7 @@
 				<div class="image-navigator" style="overflow: clip; max-height: 60vh; background: repeating-linear-gradient( 55deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) 9px, rgba(0, 0, 1, 0.3) 9px, rgba(0, 0, 1, 0.3) 18px ); background: #f6e1b9; position: relative;" onclick="event.stopImmediatePropagation(); return false;" xo-stylesheet="mapa-slp.xslt" xo-store="#desarrollos">
 					<div class="image-container" style="position: relative;transform: scale(1);translate: 0%;">
 						<xsl:attribute name="onclick">this.style.transform = `scale(${Math.abs(+this.style.transform.replace(/[^\d\.]/g, '') + .5)})`; this.style.translate = this.style.translate.split(/\s+/).map(percent => `${parseFloat(percent) * 2}%`).join(' '); return false" oncontextmenu="this.style.transform = `scale(${Math.abs(+this.style.transform.replace(/[^\d\.]/g, '') - .5)})`;  this.style.translate = this.style.translate.split(/\s+/).map(percent => `${parseFloat(percent) / 2}%`).join(' '); return false</xsl:attribute>
-						<img src="/assets/img/slp.png" style="width: 100%; height: 100%;"/>
+						<img src="/assets/img/slp.jpeg" style="width: 100%; height: 100%;"/>
 					</div>
 				</div>
 			</div>
