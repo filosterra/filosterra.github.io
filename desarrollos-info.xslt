@@ -158,7 +158,7 @@
 							<div class="image-container" style="position: relative; transform: scale(2); translate: {$translate};">
 								<xsl:attribute name="onclick">this.style.transform = `scale(${Math.abs(+this.style.transform.replace(/[^\d\.]/g, '') + .5)})`; this.style.translate = this.style.translate.split(/\s+/).map(percent => `${parseFloat(percent) * 2}%`).join(' '); return false</xsl:attribute>
 								<xsl:attribute name="oncontextmenu">this.style.transform = `scale(${Math.abs(+this.style.transform.replace(/[^\d\.]/g, '') - .5)})`;  this.style.translate = this.style.translate.split(/\s+/).map(percent => `${parseFloat(percent) / 2}%`).join(' '); return false</xsl:attribute>
-								<img src="/assets/img/slp.png" style="width: 100%; height: 100%;"/>
+								<img src="/assets/img/slp.jpeg" style="width: 100%; height: 100%;"/>
 								<div class="od" style="{$pin}; position: absolute;">
 									<div class="id" style="left:-3px;top:-3px">
 										<svg xmlns="http://www.w3.org/2000/svg" width="7" height="7" fill="currentColor" class="bi bi-circle-fill map-marker" viewBox="0 0 16 16">
