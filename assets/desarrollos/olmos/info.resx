@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -58,46 +59,46 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string"/>
-              <xsd:attribute name="type" type="xsd:string"/>
-              <xsd:attribute name="mimetype" type="xsd:string"/>
-              <xsd:attribute ref="xml:space"/>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string"/>
-              <xsd:attribute name="name" type="xsd:string"/>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
-              <xsd:attribute ref="xml:space"/>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required"/>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -126,28 +127,33 @@
   </data>
   <data name="full_name" xml:space="preserve">
     <value>Los Olmos Residencial</value>
-  <comment/></data>
+  </data>
   <data name="motto" xml:space="preserve">
     <value>Crea, Construye y Vive</value>
-  <comment/></data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="olmos render 2 piso dif" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>gallery\olmos render 2 piso dif.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  <comment/></data>
+  </data>
   <data name="pin" xml:space="preserve">
-    <value>top:39.42%; left: 23.992% / 60% 25%</value>
-  <comment/></data>
+    <value>top: 85px; left: -277px;</value>
+  </data>
   <data name="section_4" xml:space="preserve">
-    <value>Sección 3: Pero Olmos Residencial no solo se enfoca en la seguridad, también se preocupa por ofrecer un entorno de vida excepcional. Sus amplias áreas verdes proporcionan espacios de recreación y esparcimiento para toda la familia. Ya sea para dar un paseo, practicar deportes al aire libre o simplemente relajarse rodeado de naturaleza, estos espacios verdes se convierten en el lugar perfecto para disfrutar de momentos inolvidables.</value>
+    <value>Sección 3: Pero Olmos Residencial no solo se enfoca en la seguridad, también se preocupa por ofrecer un entorno de vida excepcional. Sus amplias áreas verdes proporcionan espacios de recreación y esparcimiento para toda la familia. Ya sea para dar un paseo, practicar deportes al aire libre o simplemente relajarse rodeado de naturaleza, estos espacios verdes se convierten en el lugar perfecto para disfrutar de momentos inolvidables.
+
+Y en este párrafo se puede ver más información</value>
     <comment>mapa</comment>
   </data>
-  <data xml:space="preserve" name="section_4_bis"><value>Titulo 1706: Esta es la nueva sección que estamos introduciendo desde web</value><comment/></data><data name="section_5" xml:space="preserve">
+  <data name="section_4_bis" xml:space="preserve">
+    <value>Titulo 1706: Esta es la nueva sección que estamos introduciendo desde web</value>
+  </data>
+  <data name="section_5" xml:space="preserve">
     <value>En resumen, Olmos Residencial es mucho más que un fraccionamiento, es un estilo de vida. Aquí encontrarás seguridad, tranquilidad y áreas verdes que te permitirán disfrutar de la belleza natural mientras te relajas en la comodidad de tu hogar. ¡Ven y descubre todo lo que Olmos Residencial tiene para ofrecerte!</value>
-  <comment/></data>
+  </data>
   <data name="section_2" xml:space="preserve">
     <value>Seguridad: La seguridad es una prioridad en Olmos Residencial. La barda perimetral que rodea todo el desarrollo garantiza la privacidad y protección de sus residentes. Además, cuenta con una caseta de vigilancia estratégicamente ubicada en el acceso principal, donde un equipo de profesionales altamente capacitados monitorea y controla el ingreso y salida de personas y vehículos las 24 horas del día. Los accesos controlados garantizan que solo los residentes y sus invitados autorizados tengan acceso al fraccionamiento, brindando así una tranquilidad adicional.</value>
-  <comment/></data>
+  </data>
   <data name="section_6" xml:space="preserve">
     <value>Sección 17_05: Esta es la nueva sección</value>
-  <comment/></data>
+  </data>
 </root>

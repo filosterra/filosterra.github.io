@@ -1,10 +1,13 @@
 ﻿<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns="http://www.w3.org/1999/xhtml">
 	<xsl:template match="/*">
+		<xsl:param name="site.resx" select="document-expected"/>
 		<nav class="navbar navbar-expand-lg fixed-top navbar-dark" xo-stylesheet="navbar.xslt">
 			<script src="./js/script.js" defer="defer"></script>
 			<div class="container">
-				<a class="navbar-brand logo-text text-uppercase" href="/#">Filosterra</a>
-
+				<xsl:value-of select="document($site.resx)/root"/>
+				<a class="navbar-brand logo-text text-uppercase" href="/#">
+					<img src="/assets/img/logotipo.png" class="inverted" style="height: 5mm;"/>
+				</a>
 				<button class="navbar-toggler p-0 border-0" type="button" id="navbarSideCollapse" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>

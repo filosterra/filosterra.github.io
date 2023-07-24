@@ -1,4 +1,4 @@
-﻿<xsl:stylesheet version="1.0" xmlns="http://www.w3.org/1999/xhtml" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xo="http://panax.io/xover" xmlns:session="http://panax.io/session" exclude-result-prefixes="xsl xo">
+﻿<xsl:stylesheet version="1.0" xmlns="http://www.w3.org/1999/xhtml" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xo="http://panax.io/xover" xmlns:session="http://panax.io/session" exclude-result-prefixes="xsl xo session">
 	<xsl:param name="desarrollo">(xover.site.seed || '').replace(/^#/,'')</xsl:param>
 	<xsl:param name="editable">xover.site.querystring.has("edit")</xsl:param>
 	<xsl:key name="section" match="data[starts-with(@name,'section_')]" use="''"/>
@@ -141,11 +141,64 @@
 				<xsl:otherwise>section-dark</xsl:otherwise>
 			</xsl:choose>
 		</xsl:variable>
+		<script>
+			<![CDATA[
+		function startDragging(clippedImage) {
+			clippedImage.isDragging = true;
+			initialX = event.clientX;
+			initialY = event.clientY;
+		}
+
+		function stopDragging(clippedImage) {
+			clippedImage.isDragging = false;
+		}
+
+		function moveImage(clippedImage) {
+			if (clippedImage.isDragging) {
+				let clippedImage = event.srcElement;
+				const deltaX = event.clientX - initialX;
+				const deltaY = event.clientY - initialY;
+				const newTop = clippedImage.offsetTop + deltaY;
+				const newLeft = clippedImage.offsetLeft + deltaX;
+
+				clippedImage.style.top = `${newTop}px`;
+				clippedImage.style.left = `${newLeft}px`;
+				
+				clippedImage.scope.set(`top: ${clippedImage.style.top}; left: ${clippedImage.style.left}`);
+
+				initialX = event.clientX;
+				initialY = event.clientY;
+			}
+		}]]>
+		</script>
+		<style>
+			<![CDATA[
+			#image-container {
+				position: relative;
+				width: 500px; /* Adjust container size as needed */
+				height: 300px;
+				overflow: hidden;
+			}
+
+			#clipped-image {
+				position: absolute;
+				top: 100px;
+				left: 50px;
+			}]]>
+		</style>
 		<section class="{$section-background} section-hd d-flex align-items-center py-5" id="loteador">
-			<xsl:variable name="title" select="substring-before(value,':')"/>
-			<xsl:variable name="paragraph" select="substring-after(value,':')"/>
-			<xsl:variable name="pin" select="substring-before(key('label','pin'),'/')"/>
-			<xsl:variable name="translate" select="substring-after(key('label','pin'),'/')"/>
+			<xsl:variable name="title" select="substring-before(value[contains(.,':')],':')"/>
+			<xsl:variable name="paragraph">
+				<xsl:choose>
+					<xsl:when test="$title!=''">
+						<xsl:value-of select="substring-after(value,':')"/>
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:value-of select="value"/>
+					</xsl:otherwise>
+				</xsl:choose>
+			</xsl:variable>
+			<xsl:variable name="pin" select="key('label','pin')"/>
 			<div class="container">
 				<div class="text-center pb-4">
 					<h4 class="py-2">
@@ -154,14 +207,42 @@
 				</div>
 				<div class="row px-5">
 					<div class="col-lg-5 d-flex justify-content-end">
-						<div class="image-navigator" style="overflow: clip; max-height: 60vh; background: repeating-linear-gradient( 55deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) 9px, rgba(0, 0, 1, 0.3) 9px, rgba(0, 0, 1, 0.3) 18px ); background: #f6e1b9; position: relative;" onclick="event.stopImmediatePropagation(); return false;">
-							<div class="image-container" style="position: relative; transform: scale(2); translate: {$translate};">
-								<xsl:attribute name="onclick">this.style.transform = `scale(${Math.abs(+this.style.transform.replace(/[^\d\.]/g, '') + .5)})`; this.style.translate = this.style.translate.split(/\s+/).map(percent => `${parseFloat(percent) * 2}%`).join(' '); return false</xsl:attribute>
+						<div class="image-navigator" style="overflow: clip; max-height: 60vh; background: repeating-linear-gradient( 55deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) 9px, rgba(0, 0, 1, 0.3) 9px, rgba(0, 0, 1, 0.3) 18px ); background: #f6e1b9; position: relative;" onclick="return;event.stopImmediatePropagation(); return false;">
+							<div class="image-container" style="position: relative; transform: scale(2); width: 400px; height: 400px;">
+								<xsl:attribute name="onclick">if (this.isDragging) {return}; this.style.transform = `scale(${Math.abs(+this.style.transform.replace(/[^\d\.]/g, '') + .5)})`; this.style.translate = this.style.translate.split(/\s+/).map(percent => `${parseFloat(percent) * 2}%`).join(' '); return false</xsl:attribute>
 								<xsl:attribute name="oncontextmenu">this.style.transform = `scale(${Math.abs(+this.style.transform.replace(/[^\d\.]/g, '') - .5)})`;  this.style.translate = this.style.translate.split(/\s+/).map(percent => `${parseFloat(percent) / 2}%`).join(' '); return false</xsl:attribute>
-								<img src="/assets/img/slp.jpeg" style="width: 100%; height: 100%;"/>
-								<div class="od" style="{$pin}; position: absolute;">
-									<div class="id" style="left:-3px;top:-3px">
-										<svg xmlns="http://www.w3.org/2000/svg" width="7" height="7" fill="currentColor" class="bi bi-circle-fill map-marker" viewBox="0 0 16 16">
+								<img src="/assets/desarrollos/{$desarrollo}/mapa.jpeg" onmousedown="startDragging(this)" onmouseup="stopDragging(this)" onmousemove="moveImage(this)" style="position: absolute; {$pin}" xo-scope="{ancestor::root/data[@name='pin']/value/@xo:id}" xo-attribute="text()"/>
+								<!--<script>
+									<![CDATA[
+		const targetElement = context.querySelector('img');
+
+        // Function to be executed when the observed styles change
+        const stylesChangedCallback = (mutationsList, observer) => {
+            for (const mutation of mutationsList) {
+                if (mutation.type === 'attributes' && (mutation.attributeName === 'style' || mutation.attributeName === 'top' || mutation.attributeName === 'left')) {
+					targetElement.scope.set(`top: ${targetElement.style.top}; left: ${targetElement.style.left}`);
+                    // Style or top/left attribute has changed
+                    console.log('Style or top/left attribute has changed:', targetElement.style.top, targetElement.style.left);
+                }
+            }
+        };
+
+        // Create a new MutationObserver
+        const observer = new MutationObserver(stylesChangedCallback);
+
+        // Options for the observer (we want to monitor attribute changes)
+        const observerOptions = {
+            attributes: true,
+            attributeFilter: ['style', 'top', 'left'],
+        };
+
+        // Start observing the target element
+        observer.observe(targetElement, observerOptions);
+								]]>
+								</script>-->
+								<div class="od" style="position: absolute; top:50%; left:50%;">
+									<div class="id" style="left:-3px;top:-3px; position: relative; width: 10px; height: 10px;">
+										<svg xmlns="http://www.w3.org/2000/svg" width="7" height="7" fill="currentColor" class="bi bi-circle-fill map-marker" viewBox="0 0 16 16" style="position:absolute; left:0; top:0;">
 											<circle cx="8" cy="8" r="8" />
 										</svg>
 									</div>

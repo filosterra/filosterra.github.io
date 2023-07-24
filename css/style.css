@@ -2,6 +2,13 @@
 /*     General Styles     */
 /**************************/
 :root {
+    --filosterra-blue-smoke: #6C817A;
+    --filosterra-silver-cloud: #A9B1B3;
+    --filosterra-river-red: #444C57;
+    --filosterra-creen-snow: #EDEDE3;
+    --main-color: var(--filosterra-river-red);
+    --secondary-color: var(--filosterra-blue-smoke);
+    --terciary-color: var(--filosterra-silver-cloud);
     --primary: #1c262f;
     --primary-light: #212d37;
     --secondary: #0ee951;
@@ -15,29 +22,37 @@
     --bg-body-primary: #214252;
     --bg-border: #e3e6ed;
     --bg-card-lote: #e7e7ff;
-    --bg-nav-hover: orange;
-    --bg-nav-active: darkorange;
+    --bg-nav-hover: #EDEDE3;
+    --bg-nav-active: var(--terciary-color);
     --bg-section: #efeee9;
     --bg-footer: #434343;
     --bg-footer-bottom: #0c0c0c;
     --bg-line-card: #979797;
-    --bg-listgroup: orange;
+    --bg-listgroup: #EDEDE3;
     --bg-listgroup-content: #fff;
     --z-index-footer: 1000;
     --section-dark-bg-color: #efeee9;
     --section-dark-color: black;
-    --main-bg-color: darkslategray;
-    --title-bg-color: darkslategray;
+    --main-bg-color: var(--main-color);
+    --title-bg-color: var(--main-color);
     --bg-title-color: white;
-    --contactband-bg-color: orange;
-    --sitemap-scrollbar-color: orange;
-    --sitemap-scrollbar-border: darkslategray;
-    --sitemap-scrollbar-background: darkslategray;
+    --contactband-bg-color: var(--terciary-color);
+    --sitemap-scrollbar-color: #EDEDE3;
+    --sitemap-scrollbar-border: var(--main-color);
+    --sitemap-scrollbar-background: var(--main-color);
+    --color-nav-hover: var(--main-color);
     --footer-height: 80px;
 }
 
 body {
     padding-bottom: var(--footer-height);
+}
+
+main #header p {
+    position: absolute;
+    right: 5rem;
+    bottom: 11rem;
+    text-align: center;
 }
 
 .styled-scroll {
@@ -113,6 +128,10 @@ body > nav {
     position: sticky !important;
 }
 
+.inverted {
+    filter: brightness(0) invert(1);
+}
+
 .map-marker {
     color: red;
     filter: drop-shadow(2px 2px 1px rgba(0, 0, 0, 0.5));
@@ -133,11 +152,12 @@ footer {
     }
 
 a, a:hover {
-    color: inherit;
+    color: var(--main-color);
 }
 
 body {
     padding-bottom: var(--footer-height);
+    font-family: Arial, sans-se
 }
 
 h1,
@@ -239,7 +259,7 @@ li {
 .navbar-nav a:hover {
     cursor: pointer;
     background: var(--bg-nav-hover) !important;
-    color: var(--color-nav-hover, white);
+    color: var(--color-nav-hover, white) !important;
     /* background-clip: text;
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent; */
@@ -248,7 +268,7 @@ li {
 .navbar-nav a.show {
     cursor: pointer;
     background: var(--bg-nav-active) !important;
-    color: var(--color-nav-hover, white);
+    color: white !important;
     /* background-clip: text;
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent; */
@@ -257,21 +277,21 @@ li {
 .navbar-nav .section-ubicaciones a img.logo {
     filter: brightness(0) invert(0);
 }
-
+/*
 .navbar-nav a:hover img.logo {
     filter: brightness(0) invert(1);
-}
+}*/
 
 .footer a:hover {
     cursor: pointer;
     background: transparent !important;
     text-decoration: underline !important;
-    color: var(--bg-body-color);
+    color: var(--color-nav-hover, --bg-body-color);
 }
 
-.navbar-dark .navbar-nav .nav-link:focus, .navbar-dark .navbar-nav .nav-link:hover {
-    color: var(--bg-title-color) !important;
-}
+/*.navbar-dark .navbar-nav .nav-link:focus, .navbar-dark .navbar-nav .nav-link:hover {
+    color: var(--color-nav-hover, --bg-title-color) !important;
+}*/
 /**********************/
 /*     Navigation     */
 /**********************/
@@ -1056,6 +1076,7 @@ li {
     vertical-align: middle;
     background-color: var(--bg-listgroup);
     text-align: center;
+    color: var(--filosterra-creen-snow);
 }
 
 .bandcontactinfo {
@@ -1065,7 +1086,6 @@ li {
     font-size: 15px;
     font-size: 1.5rem;
     font-weight: 600;
-    color: var(--bg-body-color);
 }
 
 .bandcontactlabel {
@@ -1073,7 +1093,6 @@ li {
     margin: 0;
     font-weight: normal;
     line-height: 1;
-    color: var(--bg-body-color);
 }
 
 
