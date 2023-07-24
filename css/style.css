@@ -6,8 +6,8 @@
     --filosterra-silver-cloud: #A9B1B3;
     --filosterra-river-red: #444C57;
     --filosterra-creen-snow: #EDEDE3;
-    --main-color: var(--filosterra-river-red);
-    --secondary-color: var(--filosterra-blue-smoke);
+    --main-color: var(--filosterra-blue-smoke);
+    --secondary-color: var(--filosterra-river-red);
     --terciary-color: var(--filosterra-silver-cloud);
     --primary: #1c262f;
     --primary-light: #212d37;
@@ -22,13 +22,14 @@
     --bg-body-primary: #214252;
     --bg-border: #e3e6ed;
     --bg-card-lote: #e7e7ff;
-    --bg-nav-hover: #EDEDE3;
+    --bg-nav: var(--terciary-color);
+    --bg-nav-hover: white;
     --bg-nav-active: var(--terciary-color);
     --bg-section: #efeee9;
     --bg-footer: #434343;
     --bg-footer-bottom: #0c0c0c;
     --bg-line-card: #979797;
-    --bg-listgroup: #EDEDE3;
+    --bg-listgroup: var(--filosterra-creen-snow);
     --bg-listgroup-content: #fff;
     --z-index-footer: 1000;
     --section-dark-bg-color: #efeee9;
@@ -37,7 +38,7 @@
     --title-bg-color: var(--main-color);
     --bg-title-color: white;
     --contactband-bg-color: var(--terciary-color);
-    --sitemap-scrollbar-color: #EDEDE3;
+    --sitemap-scrollbar-color: var(--filosterra-creen-snow);
     --sitemap-scrollbar-border: var(--main-color);
     --sitemap-scrollbar-background: var(--main-color);
     --color-nav-hover: var(--main-color);
@@ -147,12 +148,20 @@ footer {
     z-index: var(--z-index-footer)
 }
 
-    footer img, .footer img {
-        filter: brightness(0) invert(1);
-    }
+footer img, .footer img {
+    filter: brightness(0) invert(.8);
+}
 
-a, a:hover {
-    color: var(--main-color);
+footer a:hover img, .footer a:hover img {
+    filter: brightness(0) invert(1);
+}
+
+a {
+    color: var(--bg-nav);
+}
+
+a:hover {
+    color: var(--bg-nav-hover);
 }
 
 body {
@@ -186,7 +195,6 @@ h4 {
 }
 
 a {
-    color: inherit;
     text-decoration: none;
 }
 
@@ -1086,6 +1094,7 @@ li {
     font-size: 15px;
     font-size: 1.5rem;
     font-weight: 600;
+    color: var(--filosterra-creen-snow);
 }
 
 .bandcontactlabel {
