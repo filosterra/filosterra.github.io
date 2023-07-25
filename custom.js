@@ -17,8 +17,17 @@ xo.listener.on('fetch::root[data[not(comment)]]', function () {
     this.select(`/root/data[not(comment)]`).forEach(data => data.append(xo.xml.createNode("<comment/>")))
 })
 
+xo.listener.on('fetch::root[data/@name="telefono"]', function () {
+    let phone = this.selectFirst(`/root/data[@name="telefono"]/value/text()`);
+    xo.session.phone = phone;
+})
+
 xo.listener.on('error::img.map', function () {
     this.closest('section').remove()
+})
+
+xo.listener.on('error', function () {
+    this.style.background = `repeating-linear-gradient( 55deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) 9px, rgba(0, 0, 1, 0.3) 9px, rgba(0, 0, 1, 0.3) 18px );`;
 })
 
 xo.listener.on('beforeSet::data/value/text()', function ({ value, old }) {

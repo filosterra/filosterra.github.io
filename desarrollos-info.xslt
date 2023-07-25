@@ -7,12 +7,13 @@
 	<xsl:key name="label" match="data" use="@name"/>
 	<xsl:template match="/*">
 		<xsl:variable name="sections" select="key('section','')"/>
-		<!-- Section Desarrollos -->
-		<header class="d-flex align-items-center no-background banner" style="height: 230px;
-    background: url(/assets/desarrollos/{$desarrollo}/cintillo.jpg) no-repeat center center/cover;
-    background-position-y: -350px;" >
-			<style>
-				<![CDATA[
+		<main>
+			<xsl:attribute name="xo-store">#{$desarrollo}:info</xsl:attribute>
+			<!-- Section Desarrollos -->
+			<header class="d-flex align-items-center no-background banner" style="background: repeating-linear-gradient( 55deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) 9px, rgba(0, 0, 1, 0.3) 9px, rgba(0, 0, 1, 0.3) 18px); height: 230px;" >
+				<script>context.addEventListener('error', function(){alert()})</script>
+				<style>
+					<![CDATA[
 .section {
   background-color: orange;
   color: var(--main-bg-color);
@@ -24,45 +25,49 @@
 	border: dashed gray 2pt;
 }
 ]]>
-			</style>
-			<script>
-				<![CDATA[
+				</style>
+				<script>
+					<![CDATA[
 				function duplicar(source) {
 					let new_name = source.getAttribute("name")+'_bis';
 					let new_node = xo.xml.createNode(`<data xml:space="preserve" name="${new_name}"><value/><comment/></data>`);
 					source.appendAfter(new_node)
 				}
 			]]>
-			</script>
-			<!--background: url(/assets/desarrollos/{$desarrollo}/banner.png)-->
-			<div class="container">
-				<div class="desarrollos-content position-relative">
+				</script>
+				<!--background: url(/assets/desarrollos/{$desarrollo}/banner.png)-->
+				<div style="height: 100%; width: 100%; background: url(/assets/desarrollos/{$desarrollo}/cintillo.jpg) no-repeat center center/cover;
+    background-position-y: -350px;">
 					<div class="container">
-						<div class="row">
-							<div class="col-sm-12">
-								<div class="desarrollos-info">
-									<!--<h2 class="banner-title text-uppercase text-center headline">
+						<div class="desarrollos-content position-relative">
+							<div class="container">
+								<div class="row">
+									<div class="col-sm-12">
+										<div class="desarrollos-info">
+											<!--<h2 class="banner-title text-uppercase text-center headline">
 										
 									</h2>
 									<p class="py-3 h5 text-uppercase text-center">
 										<xsl:value-of select="key('label','motto')"/>
 									</p>-->
-									<div class="flex">
-										<img src="/assets/desarrollos/{$desarrollo}/logo.png" alt="" class="me-4 rounded logo-footer" style="height: 80px;position: absolute;top: -20px;right: 10px;filter: brightness(0) invert(1);scale: 3;translate: -720%;width: auto;"/>
+											<div class="d-flex justify-content-center align-items-center" style="height: 230px;">
+												<img src="/assets/desarrollos/{$desarrollo}/logo.png" alt="" class="me-4 rounded logo-footer" style="max-height: 200px; filter: brightness(0) invert(1); width: auto;"/>
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</header>
-		<xsl:apply-templates mode="section" select="$sections">
-			<xsl:sort select="@name"/>
-		</xsl:apply-templates>
-		<footer>
-			<xsl:apply-templates mode="store-buttons" select="."/>
-		</footer>
+			</header>
+			<xsl:apply-templates mode="section" select="$sections">
+				<xsl:sort select="@name"/>
+			</xsl:apply-templates>
+			<footer>
+				<xsl:apply-templates mode="store-buttons" select="."/>
+			</footer>
+		</main>
 	</xsl:template>
 
 	<xsl:template mode="title" match="*">

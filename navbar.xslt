@@ -1,10 +1,9 @@
-﻿<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns="http://www.w3.org/1999/xhtml">
+﻿<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns="http://www.w3.org/1999/xhtml" xmlns:session="http://panax.io/session">
+	<xsl:param name="session:phone">0000000000</xsl:param>
 	<xsl:template match="/*">
-		<xsl:param name="site.resx" select="document-expected"/>
 		<nav class="navbar navbar-expand-lg fixed-top navbar-dark" xo-stylesheet="navbar.xslt">
 			<script src="./js/script.js" defer="defer"></script>
 			<div class="container">
-				<xsl:value-of select="document($site.resx)/root"/>
 				<a class="navbar-brand logo-text text-uppercase" href="/#">
 					<img src="/assets/img/logotipo.png" class="inverted" style="height: 5mm;"/>
 				</a>
@@ -91,8 +90,11 @@
 				</div>
 				<div class="bandcontact px-3" style="background-color: var(--contactband-bg-color);">
 					<div class="bandcontactbox" style="justify-content: center; display: flex; align-items: center; flex-direction: column; height: 60px;">
-						<a href="tel:4441234567" title="Contacto" class="bandcontactinfo">
-							444-123-4567
+						<a href="tel:{$session:phone}" title="Contacto" class="bandcontactinfo">
+							<xsl:value-of select="concat(
+							  substring($session:phone, 1, 3), '-', 
+							  substring($session:phone, 4, 3), '-', 
+							  substring($session:phone, 7))"/>
 						</a>
 						<p class="bandcontactlabel mt-1">
 							Contáctanos
