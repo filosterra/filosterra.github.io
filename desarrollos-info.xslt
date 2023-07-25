@@ -8,7 +8,9 @@
 	<xsl:template match="/*">
 		<xsl:variable name="sections" select="key('section','')"/>
 		<!-- Section Desarrollos -->
-		<header class="d-flex align-items-center no-background banner" style="height: 130px; min-height: 130px;" >
+		<header class="d-flex align-items-center no-background banner" style="height: 230px;
+    background: url(/assets/desarrollos/{$desarrollo}/cintillo.jpg) no-repeat center center/cover;
+    background-position-y: -350px;" >
 			<style>
 				<![CDATA[
 .section {
@@ -39,12 +41,15 @@
 						<div class="row">
 							<div class="col-sm-12">
 								<div class="desarrollos-info">
-									<h2 class="banner-title text-uppercase text-center headline">
-										<xsl:value-of select="$desarrollo" />
+									<!--<h2 class="banner-title text-uppercase text-center headline">
+										
 									</h2>
 									<p class="py-3 h5 text-uppercase text-center">
 										<xsl:value-of select="key('label','motto')"/>
-									</p>
+									</p>-->
+									<div class="flex">
+										<img src="/assets/desarrollos/{$desarrollo}/logo.png" alt="" class="me-4 rounded logo-footer" style="height: 80px;position: absolute;top: -20px;right: 10px;filter: brightness(0) invert(1);scale: 3;translate: -720%;width: auto;"/>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -331,7 +336,7 @@
 				</div>
 				<div class="row gy-4 mt-1">
 					<a href="/loteador#{$desarrollo}">
-						<img class="map" src="/assets/desarrollos/{$desarrollo}/loteador.png" border="0" orgwidth="3800" style="width: 100%; height: 100%; background: repeating-linear-gradient( 55deg, darkolivegreen, darkolivegreen 9px, darkolivegreen 9px, darkolivegreen 18px );" alt="" />
+						<img class="map" src="/assets/desarrollos/{$desarrollo}/loteador.png" border="0" orgwidth="3800" style="width: 100%; height: 100%; background: var(--filosterra-blue-smoke);" alt="" />
 					</a>
 				</div>
 			</div>

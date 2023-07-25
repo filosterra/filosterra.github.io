@@ -20,7 +20,7 @@
 							<a class="nav-link dropdown-toggle text-uppercase" href="#" data-bs-toggle="dropdown">
 								Ubicaciones
 							</a>
-							<div class="dropdown-menu megamenu" role="menu" style="background-color: lightgrey;">
+							<div class="dropdown-menu megamenu" role="menu" style="background-color: var(--filosterra-silver-cloud);" id="ubicaciones">
 								<div class="row" xo-stylesheet="desarrollos-map.xslt" xo-store="#desarrollos"></div>
 							</div>
 						</li>
