@@ -6,7 +6,8 @@
 			<option value="Vendido" color="#E5E8E8"/>
 		</filter>
 		<filter title="Tamaño" bind="@Terreno">
-			<option text="115 - 120" value="115~120" color="#FF8000"/>
+			<option text="hasta 115" value="0~115" color="#FF6633"/>
+			<option text="115 - 120" value="115.001~120" color="#FF8000"/>
 			<option text="120 - 125" value="120.001~125" color="#007fff"/>
 			<option text="125 - 130" value="125.001~130" color="#00007f"/>
 			<option text="130 en adelante" value="130~9999" color="#80FF00"/>			
