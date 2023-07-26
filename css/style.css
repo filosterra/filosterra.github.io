@@ -70,9 +70,6 @@ body {
 }
 
 main #header p {
-    position: absolute;
-    right: 5rem;
-    bottom: 11rem;
     text-align: center;
 }
 
@@ -457,7 +454,7 @@ li {
 }
 
 .para {
-    width: 40%;
+    max-width: 500px;
 }
 
 .para-light {

@@ -1,5 +1,5 @@
 ﻿<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns="http://www.w3.org/1999/xhtml" xmlns:session="http://panax.io/session">
-	<xsl:param name="session:phone">0000000000</xsl:param>
+	<xsl:param name="session:phone">'0000000000'</xsl:param>
 	<xsl:template match="/*">
 		<nav class="navbar navbar-expand-lg fixed-top navbar-dark" xo-stylesheet="navbar.xslt">
 			<script src="./js/script.js" defer="defer"></script>

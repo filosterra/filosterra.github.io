@@ -164,7 +164,7 @@ async function actualizaColores(oSource, colorear) {
         let oLote = document.querySelector(`area[target="${desarrollo_id}_${element.attr(sElement_id)}"]`)
         if (oLote) {
             let attributes = [...element.attributes];
-            let color = Object.entries(color_list).map(([selector, options]) => [...options].find((test) => testConditions(element, Object.fromEntries([[selector, new Map([test])]])))).map(([, value]) => value).pop();
+            let color = Object.entries(color_list).map(([selector, options]) => [...options].find((test) => testConditions(element, Object.fromEntries([[selector, new Map([test])]]))) || []).filter(el => el).map(([, value]) => value).pop();
             //let color = Object.entries(color_list).map(([selector, options]) => [attributes.find(attr => attr.matches(selector)), options]).map(([attr, options]) => options.get(attr.value)).pop();
             coloreaLote(oLote, rgbToHex(color));
         }
