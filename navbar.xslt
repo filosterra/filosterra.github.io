@@ -79,7 +79,7 @@
 							<a class="nav-link dropdown-toggle text-uppercase" href="#" data-bs-toggle="dropdown">
 								Nosotros
 							</a>
-							<div class="dropdown-menu megamenu m-0 card-nosotros" role="menu" xo-store="#site" xo-stylesheet="nosotros.xslt">
+							<div class="dropdown-menu megamenu m-0 card-nosotros" role="menu" xo-store="#site" xo-stylesheet="nosotros.xslt" xo-swap="inner">
 							</div>
 						</li>
 						<!-- Nav Contacto -->
