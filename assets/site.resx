@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="vision" xml:space="preserve">
-    <value>Nuestra visión es...</value>
+    <value>“Ser la empresa más importante en desarrollos inmobiliarios sustentables en México, creando espacios que promuevan una vida feliz y sana, el crecimiento y la seguridad para todos. Comprometidos con el medio ambiente y el uso consciente de los recursos”.</value>
   </data>
   <data name="mision" xml:space="preserve">
     <value>Nuestra misión es ofrecer los mejores desarrollos para toda la familia</value>
