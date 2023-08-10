@@ -33,14 +33,16 @@
 </head>
 <body class="styled-scroll">
     <!-- Navbar -->
-    <nav id="navbar" class="navbar navbar-expand-lg fixed-top navbar-dark" aria-label="Main navigation" xo-stylesheet="navbar.xslt" xo-swap="inner">
+    <nav id="navbar" class="navbar navbar-expand-lg fixed-top navbar-dark" aria-label="Main navigation" xo-stylesheet="navbar.xslt">
     </nav>
     <main>
         <!-- Principal -->
         <section class="home py-5 d-flex" id="header" style="padding-top: 1rem !important;">
-            <div class="container text-light py-3">
-                <h1 class="headline logo-container" data-aos="fade-right"><img class="logo" src="./assets/img/filosterra_logo.png" style="max-width: 27rem; width: 100%;" /></h1>
-                <div class="py-3 h5 aos-init aos-animate" style="padding-top: 35vh !important; justify-content: end; display: flex;"><p class="para" data-aos="zoom-in">¡Es momento de invertir en un proyecto de vida que cumpla con tus expectativas!</p></div>
+            <div class="container text-light py-3" style="height: 77vh; position: relative;">
+                <h1 class="headline logo-container" data-aos="fade-right" style="text-align: center; max-width: 27vw;">
+                    <img class="logo" src="./assets/img/filosterra_logo.png" style="max-width: 420px;" />
+                </h1>
+                <div class="py-3 h5 aos-init aos-animate" style="justify-content: end; display: flex; justify-content: end; display: flex; position: absolute; bottom: 3rem; width: 100%; font-size: 1rem; line-height: 1.5rem; max-width: 92vw; "><p class="para" data-aos="zoom-in" xo-store="#site" xo-stylesheet="resource.xslt" key="subtitulo"/></div>
             </div>
         </section>
 
@@ -63,13 +65,13 @@
                         <div class="gallery col-sm-12 col-lg-8 col-xxl-8">
                             <div class="tab-content" id="nav-tabContent" xo-store="#desarrollos" xo-stylesheet="gallery.xslt">
                                 <div class="tab-pane fade show active" id="list-sauceda" role="tabpanel" aria-labelledby="list-sauceda-list">
-                                    <img src="assets/sauceda/background.png" alt="" class="img-fluid">
+                                    <img src="assets/desarrollos/sauceda/background.png" alt="" class="img-fluid">
                                 </div>
                                 <div class="tab-pane fade" id="list-olmos" role="tabpanel" aria-labelledby="list-olmos-list">
-                                    <img src="assets/olmos/background.png" alt="" class="img-fluid">
+                                    <img src="assets/desarrollos/olmos/background.png" alt="" class="img-fluid">
                                 </div>
                                 <div class="tab-pane fade" id="list-altanna" role="tabpanel" aria-labelledby="list-altanna-list">
-                                    <img src="assets/olmos/background.png" alt="" class="img-fluid">
+                                    <img src="assets/desarrollos/olmos/background.png" alt="" class="img-fluid">
                                 </div>
                             </div>
                         </div>
@@ -92,40 +94,8 @@
 
         <!-- Section3 -->
         <section class="section-light d-flex align-items-center py-5" id="general">
-            <div class="container text-dark">
-                <div class="text-center pb-4">
-                    <h4 class="py-2">Adquiere nuestras propiedades con</h4>
-                </div>
-
-                <div class="container-fluid">
-                    <div class="row text-dark">
-                        <div class="col-lg-4 text-center p-5" data-aos="zoom-in">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" class="bi bi-geo-alt fas fa-3x p-2" viewBox="0 0 16 16">
-                                <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z" />
-                                <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
-                            </svg>
-                            <h4 class="py-3">Excelente ubicación</h4>
-                            <p class="para-light">Encuentra la vida que mereces en un entorno tranquilo y lleno de experiencias</p>
-                        </div>
-                        <div class="col-lg-4 text-center p-5" data-aos="zoom-in">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" class="bi bi-camera-video fas fa-3x p-2" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd" d="M0 5a2 2 0 0 1 2-2h7.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 4.269v7.462a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 13H2a2 2 0 0 1-2-2V5zm11.5 5.175 3.5 1.556V4.269l-3.5 1.556v4.35zM2 4a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h7.5a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1H2z" />
-                            </svg>
-                            <h4 class="py-3">Seguridad</h4>
-                            <p class="para-light">Cuenta con lo esencial para tu seguridad, cámaras 24/7, cerca perimetral electrificada y caseta de vigilancia</p>
-                        </div>
-                        <div class="col-lg-4 text-center p-5" data-aos="zoom-in">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" class="bi bi-tree fas fa-3x p-2" viewBox="0 0 16 16">
-                                <path d="M8.416.223a.5.5 0 0 0-.832 0l-3 4.5A.5.5 0 0 0 5 5.5h.098L3.076 8.735A.5.5 0 0 0 3.5 9.5h.191l-1.638 3.276a.5.5 0 0 0 .447.724H7V16h2v-2.5h4.5a.5.5 0 0 0 .447-.724L12.31 9.5h.191a.5.5 0 0 0 .424-.765L10.902 5.5H11a.5.5 0 0 0 .416-.777l-3-4.5zM6.437 4.758A.5.5 0 0 0 6 4.5h-.066L8 1.401 10.066 4.5H10a.5.5 0 0 0-.424.765L11.598 8.5H11.5a.5.5 0 0 0-.447.724L12.69 12.5H3.309l1.638-3.276A.5.5 0 0 0 4.5 8.5h-.098l2.022-3.235a.5.5 0 0 0 .013-.507z" />
-                            </svg>
-                            <h4 class="py-3">Áreas verdes</h4>
-                            <p class="para-light">Con área infantil, invierte en un proyecto de vida que cumpla con tus expectativas</p>
-                        </div>
-                    </div>
-                </div>
-
+            <div class="container text-dark" xo-stylesheet="caracteristicas.xslt" xo-store="#caracteristicas">
             </div>
-
         </section>
 
     </main>
@@ -185,24 +155,7 @@
         <div class="d-flex justify-content-evenly" style="        width: 100%;
         align-items: center;
 ">
-            <div class="col-md-2 col-sm-3 d-flex justify-content-center">
-                <p class="d-flex">
-                </p><div class="me-3">
-                    <a href="#">
-                        <i class="fab fa-facebook-f fa-2x py-2"></i>
-                    </a>
-                </div>
-                <div class="me-3">
-                    <a href="#">
-                        <i class="fab fa-twitter fa-2x py-2"></i>
-                    </a>
-                </div>
-                <div class="me-3">
-                    <a href="#">
-                        <i class="fab fa-instagram fa-2x py-2"></i>
-                    </a>
-                </div>
-                <p></p>
+            <div class="col-md-2 col-sm-3 d-flex justify-content-center" xo-store="#iconos" xo-stylesheet="iconos.xslt">
             </div>
             <div class="col-md-6 d-none d-sm-flex col-sm-6 justify-content-center align-items-center" xo-stylesheet="footer-logos.xslt" xo-store="#desarrollos">
             </div>

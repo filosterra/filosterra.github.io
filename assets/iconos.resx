@@ -117,22 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="vision" xml:space="preserve">
-    <value>Nuestra visión es...</value>
+  <data name="icon_1" xml:space="preserve">
+    <value>https://facebook.com/filosterra</value>
+    <comment>facebook-f</comment>
   </data>
-  <data name="mision" xml:space="preserve">
-    <value>Nuestra misión es ofrecer los mejores desarrollos para toda la familia</value>
+  <data name="icon_3" xml:space="preserve">
+    <value>https://instagram.com/filosterra</value>
+    <comment>instagram</comment>
   </data>
-  <data name="nosotros" xml:space="preserve">
-    <value>Nosotros somos...</value>
-  </data>
-  <data name="valores" xml:space="preserve">
-    <value>Nuestros valores son...</value>
-  </data>
-  <data name="telefono" xml:space="preserve">
-    <value>4441294372</value>
-  </data>
-  <data name="subtitulo" xml:space="preserve">
-    <value>¡Es momento de invertir en un proyecto de vida que cumpla con tus expectativas!</value>
+  <data name="icon_2" xml:space="preserve">
+    <value>https://tiktok.com/filosterra</value>
+    <comment>tiktok</comment>
   </data>
 </root>

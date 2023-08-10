@@ -1,18 +1,26 @@
 {
-  "stylesheets": [ "navbar.xslt" ],
-  "stores": [ "#desarrollos", "#site" ],
   "sources": {
     "^#(.+):loteador$": "/assets/desarrollos/$1/loteador.map",
     "^#(.+):gallery$": "/assets/desarrollos/$1/gallery.resx",
     "#": "#desarrollos",
     "^#(.+):info$": "/assets/desarrollos/$1/info.resx",
     "#desarrollos": "/assets/desarrollos.resx",
+    "#iconos": "/assets/iconos.resx",
     "#site": "/assets/site.resx",
     "#aviso_privacidad": "/assets/aviso_privacidad.resx",
+    "#caracteristicas": "/assets/caracteristicas.resx",
     "#codigo_etica": "/assets/codigo_etica.resx",
     "#terminos_condiciones": "/assets/terminos_condiciones.resx",
     "^#(.+)~edit$": "#$1"
   },
+  "session": {
+    "phone": "444-129-4372"
+  },
+  "state": {
+    "desarrollo": "${(xover.site.seed || '').replace(/^#/,'')}"
+  },
+  "stores": [ "#desarrollos", "#site" ],
+  "stylesheets": [ "navbar.xslt" ],
   "settings": {
     ".map": { "headers": { "accept": "text/plain" } },
     ".resx": {
@@ -25,7 +33,8 @@
       "stylesheets": [
         {
           "href": "resx-editor.xslt",
-          "target": "body", "action": "append"
+          "target": "body",
+          "action": "append"
         }
       ]
     }

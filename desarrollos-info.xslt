@@ -1,5 +1,5 @@
-﻿<xsl:stylesheet version="1.0" xmlns="http://www.w3.org/1999/xhtml" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xo="http://panax.io/xover" xmlns:session="http://panax.io/session" exclude-result-prefixes="xsl xo session">
-	<xsl:param name="desarrollo">(xover.site.seed || '').replace(/^#/,'')</xsl:param>
+﻿<xsl:stylesheet version="1.0" xmlns="http://www.w3.org/1999/xhtml" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xo="http://panax.io/xover" xmlns:state="http://panax.io/state" exclude-result-prefixes="xsl xo state">
+	<xsl:param name="state:desarrollo">(xover.site.seed || '').replace(/^#/,'')</xsl:param>
 	<xsl:param name="editable">xover.site.querystring.has("edit")</xsl:param>
 	<xsl:key name="section" match="data[starts-with(@name,'section_')]" use="''"/>
 	<xsl:key name="section" match="data[starts-with(@name,'section_')]" use="string(comment)"/>
@@ -8,7 +8,7 @@
 	<xsl:template match="/*">
 		<xsl:variable name="sections" select="key('section','')"/>
 		<main>
-			<xsl:attribute name="xo-store">#{$desarrollo}:info</xsl:attribute>
+			<xsl:attribute name="xo-store">#{$state:desarrollo}:info</xsl:attribute>
 			<!-- Section Desarrollos -->
 			<header class="d-flex align-items-center no-background banner" style="background: repeating-linear-gradient( 55deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) 9px, rgba(0, 0, 1, 0.3) 9px, rgba(0, 0, 1, 0.3) 18px); height: 230px;" >
 				<script>context.addEventListener('error', function(){alert()})</script>
@@ -35,9 +35,8 @@
 				}
 			]]>
 				</script>
-				<!--background: url(/assets/desarrollos/{$desarrollo}/banner.png)-->
-				<div style="height: 100%; width: 100%; background: url(/assets/desarrollos/{$desarrollo}/cintillo.jpg) no-repeat center center/cover;
-    background-position-y: -350px;">
+				<!--background: url(/assets/desarrollos/{$state:desarrollo}/banner.png)-->
+				<div style="height: 100%; width: 100%; background: url(/assets/desarrollos/{$state:desarrollo}/cintillo.jpg) no-repeat center center/cover; background-position-y: center;">
 					<div class="container">
 						<div class="desarrollos-content position-relative">
 							<div class="container">
@@ -51,7 +50,7 @@
 										<xsl:value-of select="key('label','motto')"/>
 									</p>-->
 											<div class="d-flex justify-content-center align-items-center" style="height: 230px;">
-												<img src="/assets/desarrollos/{$desarrollo}/logo.png" alt="" class="me-4 rounded logo-footer" style="max-height: 200px; filter: brightness(0) invert(1); width: auto;"/>
+												<img src="/assets/desarrollos/{$state:desarrollo}/logo.png" alt="" class="me-4 rounded logo-footer" style="max-height: 200px; filter: brightness(0) invert(1); width: auto;"/>
 											</div>
 										</div>
 									</div>
@@ -221,7 +220,7 @@
 							<div class="image-container" style="position: relative; transform: scale(2); width: 400px; height: 400px;">
 								<xsl:attribute name="onclick">if (this.isDragging) {return}; this.style.transform = `scale(${Math.abs(+this.style.transform.replace(/[^\d\.]/g, '') + .5)})`; this.style.translate = this.style.translate.split(/\s+/).map(percent => `${parseFloat(percent) * 2}%`).join(' '); return false</xsl:attribute>
 								<xsl:attribute name="oncontextmenu">this.style.transform = `scale(${Math.abs(+this.style.transform.replace(/[^\d\.]/g, '') - .5)})`;  this.style.translate = this.style.translate.split(/\s+/).map(percent => `${parseFloat(percent) / 2}%`).join(' '); return false</xsl:attribute>
-								<img src="/assets/desarrollos/{$desarrollo}/mapa.jpeg" onmousedown="startDragging(this)" onmouseup="stopDragging(this)" onmousemove="moveImage(this)" style="position: absolute; {$pin}" xo-scope="{ancestor::root/data[@name='pin']/value/@xo:id}" xo-attribute="text()"/>
+								<img src="/assets/desarrollos/{$state:desarrollo}/mapa.jpeg" onmousedown="startDragging(this)" onmouseup="stopDragging(this)" onmousemove="moveImage(this)" style="position: absolute; {$pin}" xo-scope="{ancestor::root/data[@name='pin']/value/@xo:id}" xo-attribute="text()"/>
 								<!--<script>
 									<![CDATA[
 		const targetElement = context.querySelector('img');
@@ -258,7 +257,7 @@
 									</div>
 									<div class="pr" style="font-size:91%;width:6em;left:4px">
 										<div>
-											<xsl:value-of select="$desarrollo" />
+											<xsl:value-of select="$state:desarrollo" />
 										</div>
 									</div>
 								</div>
@@ -302,7 +301,187 @@
 						<div class="boxcard-inner">
 							<header class="boxcard-head boxcard-head_tag">
 								<h2 class="boxcard-title text-uppercase ">
-									<xsl:value-of select="$desarrollo" />
+									<xsl:value-of select="$state:desarrollo" />
+								</h2>
+							</header>
+							<div class="boxcard-lead">
+								<p class="boxcard-text" xo-scope="{value/@xo:id}" xo-attribute="text()">
+									<xsl:if test="$editable='true'">
+										<xsl:attribute name="contenteditable"/>
+									</xsl:if>
+									<xsl:value-of select="$paragraph"/>
+									<br/>
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<xsl:if test="$editable">
+			<xsl:apply-templates mode="section-divider" select="."/>
+		</xsl:if>
+	</xsl:template>
+
+	<xsl:template mode="section" match="key('section','mapa')">
+		<xsl:variable name="section-background">
+			<xsl:choose>
+				<xsl:when test="position() mod 2 =1">section-light</xsl:when>
+				<xsl:otherwise>section-dark</xsl:otherwise>
+			</xsl:choose>
+		</xsl:variable>
+		<script>
+			<![CDATA[
+		function startDragging(clippedImage) {
+			clippedImage.isDragging = true;
+			initialX = event.clientX;
+			initialY = event.clientY;
+		}
+
+		function stopDragging(clippedImage) {
+			clippedImage.isDragging = false;
+		}
+
+		function moveImage(clippedImage) {
+			if (clippedImage.isDragging) {
+				let clippedImage = event.srcElement;
+				const deltaX = event.clientX - initialX;
+				const deltaY = event.clientY - initialY;
+				const newTop = clippedImage.offsetTop + deltaY;
+				const newLeft = clippedImage.offsetLeft + deltaX;
+
+				clippedImage.style.top = `${newTop}px`;
+				clippedImage.style.left = `${newLeft}px`;
+				
+				clippedImage.scope.set(`top: ${clippedImage.style.top}; left: ${clippedImage.style.left}`);
+
+				initialX = event.clientX;
+				initialY = event.clientY;
+			}
+		}]]>
+		</script>
+		<style>
+			<![CDATA[
+			#image-container {
+				position: relative;
+				width: 500px; /* Adjust container size as needed */
+				height: 300px;
+				overflow: hidden;
+			}
+
+			#clipped-image {
+				position: absolute;
+				top: 100px;
+				left: 50px;
+			}]]>
+		</style>
+		<section class="{$section-background} section-hd d-flex align-items-center py-5" id="loteador">
+			<xsl:variable name="title" select="substring-before(value[contains(.,':')],':')"/>
+			<xsl:variable name="paragraph">
+				<xsl:choose>
+					<xsl:when test="$title!=''">
+						<xsl:value-of select="substring-after(value,':')"/>
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:value-of select="value"/>
+					</xsl:otherwise>
+				</xsl:choose>
+			</xsl:variable>
+			<xsl:variable name="pin" select="key('label','pin')"/>
+			<div class="container">
+				<div class="text-center pb-4">
+					<h4 class="py-2">
+						<xsl:value-of select="$title"/>
+					</h4>
+				</div>
+				<div class="row px-5">
+					<div class="col-lg-5 d-flex justify-content-end">
+						<div class="image-navigator" style="overflow: clip; max-height: 60vh; background: repeating-linear-gradient( 55deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) 9px, rgba(0, 0, 1, 0.3) 9px, rgba(0, 0, 1, 0.3) 18px ); background: #f6e1b9; position: relative;" onclick="return;event.stopImmediatePropagation(); return false;">
+							<div class="image-container" style="position: relative; transform: scale(2); width: 400px; height: 400px;">
+								<xsl:attribute name="onclick">if (this.isDragging) {return}; this.style.transform = `scale(${Math.abs(+this.style.transform.replace(/[^\d\.]/g, '') + .5)})`; this.style.translate = this.style.translate.split(/\s+/).map(percent => `${parseFloat(percent) * 2}%`).join(' '); return false</xsl:attribute>
+								<xsl:attribute name="oncontextmenu">this.style.transform = `scale(${Math.abs(+this.style.transform.replace(/[^\d\.]/g, '') - .5)})`;  this.style.translate = this.style.translate.split(/\s+/).map(percent => `${parseFloat(percent) / 2}%`).join(' '); return false</xsl:attribute>
+								<img src="/assets/desarrollos/{$state:desarrollo}/mapa.jpeg" onmousedown="startDragging(this)" onmouseup="stopDragging(this)" onmousemove="moveImage(this)" style="position: absolute; {$pin}" xo-scope="{ancestor::root/data[@name='pin']/value/@xo:id}" xo-attribute="text()"/>
+								<!--<script>
+									<![CDATA[
+		const targetElement = context.querySelector('img');
+
+        // Function to be executed when the observed styles change
+        const stylesChangedCallback = (mutationsList, observer) => {
+            for (const mutation of mutationsList) {
+                if (mutation.type === 'attributes' && (mutation.attributeName === 'style' || mutation.attributeName === 'top' || mutation.attributeName === 'left')) {
+					targetElement.scope.set(`top: ${targetElement.style.top}; left: ${targetElement.style.left}`);
+                    // Style or top/left attribute has changed
+                    console.log('Style or top/left attribute has changed:', targetElement.style.top, targetElement.style.left);
+                }
+            }
+        };
+
+        // Create a new MutationObserver
+        const observer = new MutationObserver(stylesChangedCallback);
+
+        // Options for the observer (we want to monitor attribute changes)
+        const observerOptions = {
+            attributes: true,
+            attributeFilter: ['style', 'top', 'left'],
+        };
+
+        // Start observing the target element
+        observer.observe(targetElement, observerOptions);
+								]]>
+								</script>-->
+								<div class="od" style="position: absolute; top:50%; left:50%;">
+									<div class="id" style="left:-3px;top:-3px; position: relative; width: 10px; height: 10px;">
+										<svg xmlns="http://www.w3.org/2000/svg" width="7" height="7" fill="currentColor" class="bi bi-circle-fill map-marker" viewBox="0 0 16 16" style="position:absolute; left:0; top:0;">
+											<circle cx="8" cy="8" r="8" />
+										</svg>
+									</div>
+									<div class="pr" style="font-size:91%;width:6em;left:4px">
+										<div>
+											<xsl:value-of select="$state:desarrollo" />
+										</div>
+									</div>
+								</div>
+								<!--<div class="od" style="top: 65.42%;left: 50.992%;position: absolute;">
+                                    <div class="id" style="left:-3px;top:-3px">
+                                        <img alt="Los Olmos" src="//upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Red_pog.svg/6px-Red_pog.svg.png" decoding="async" title="Los Olmos" width="6" height="6" class="notpageimage" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Red_pog.svg/9px-Red_pog.svg.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Red_pog.svg/12px-Red_pog.svg.png 2x" data-file-width="64" data-file-height="64">
+                                    </div>
+                                    <div class="pr" style="font-size:91%;width:6em;left:4px"><div>Los Olmos</div></div>
+                                </div>
+                                <div class="od" style="top:69.42%;left: 49.992%;position: absolute;">
+                                    <div class="id" style="left:-3px;top:-3px">
+                                        <img alt="Altanna" src="//upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Red_pog.svg/6px-Red_pog.svg.png" decoding="async" title="Altanna" width="6" height="6" class="notpageimage" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Red_pog.svg/9px-Red_pog.svg.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Red_pog.svg/12px-Red_pog.svg.png 2x" data-file-width="64" data-file-height="64">
+                                    </div>
+                                    <div class="pr" style="font-size:91%;width:6em;left:4px">
+                                        <div>Altanna</div>
+                                    </div>
+                                </div>-->
+
+							</div>
+							<div class="d-flex justify-content-around" style="
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    gap: 10px;
+    ">
+								<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-zoom-in" viewBox="0 0 16 16" onclick="this.closest('.image-navigator').querySelector('.image-container').onclick()" style="cursor:pointer; user-select: none;">
+									<path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"></path>
+									<path d="M10.344 11.742c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1 6.538 6.538 0 0 1-1.398 1.4z"></path>
+									<path fill-rule="evenodd" d="M6.5 3a.5.5 0 0 1 .5.5V6h2.5a.5.5 0 0 1 0 1H7v2.5a.5.5 0 0 1-1 0V7H3.5a.5.5 0 0 1 0-1H6V3.5a.5.5 0 0 1 .5-.5z"></path>
+								</svg>
+								<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-zoom-out" viewBox="0 0 16 16" onclick="this.closest('.image-navigator').querySelector('.image-container').oncontextmenu()" style="cursor: pointer; user-select: none;">
+									<path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"></path>
+									<path d="M10.344 11.742c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1 6.538 6.538 0 0 1-1.398 1.4z"></path>
+									<path fill-rule="evenodd" d="M3 6.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5z"></path>
+								</svg>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-6">
+						<div class="boxcard-inner">
+							<header class="boxcard-head boxcard-head_tag">
+								<h2 class="boxcard-title text-uppercase ">
+									<xsl:value-of select="$state:desarrollo" />
 								</h2>
 							</header>
 							<div class="boxcard-lead">
@@ -335,13 +514,21 @@
 			<div class="container">
 				<div class="text-center pb-4">
 					<h4 class="text-uppercase">
-						<xsl:value-of select="$desarrollo" /> cuenta con lo esencial para tu seguridad
+						<xsl:value-of select="$state:desarrollo" /> cuenta con lo esencial para tu seguridad
 					</h4>
 					<h4 class="py-2">Ubicado en la zona poniente de la ciudad</h4>
 				</div>
-				<div class="row gy-4 mt-1">
-					<a href="/loteador#{$desarrollo}">
-						<img class="map" src="/assets/desarrollos/{$desarrollo}/loteador.png" border="0" orgwidth="3800" style="width: 100%; height: 100%; background: var(--filosterra-blue-smoke);" alt="" />
+				<div class="row gy-4 mt-1" style="position:relative;">
+					<a href="/loteador#{$state:desarrollo}">
+						<img class="map" src="/assets/desarrollos/{$state:desarrollo}/loteador.png" border="0" orgwidth="3800" style="width: 100%; height: 100%; background: var(--filosterra-blue-smoke);" alt="" />
+						<label style="
+    color: var(--filosterra-creen-snow);
+    text-align: right;
+    position: absolute;
+    bottom: 10px;
+    right: 23px;
+	cursor: pointer;
+">Clic para ver disponibilidad</label>
 					</a>
 				</div>
 			</div>
@@ -376,7 +563,7 @@
 						<xsl:value-of select="$paragraph"/>
 					</p>
 					<div class="text-center">
-						<img src="/assets/desarrollos/{$desarrollo}/background.png" alt="" class="img-fluid"/>
+						<img src="/assets/desarrollos/{$state:desarrollo}/background.png" alt="" class="img-fluid"/>
 					</div>
 				</div>
 			</div>

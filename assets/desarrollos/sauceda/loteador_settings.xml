@@ -19,28 +19,4 @@
 			<option text="$1M" value="1000000~99000000"/>			
 		</filter>-->
 	</filters>
-	<details>
-		<div id="detalles">
-			<input name="cliente" type="hidden" value="{{@Cliente}}"/>
-			<input name="telefono" type="hidden" value="{{@Telefono}}"/>
-			<input name="email" type="hidden" value="{{@Email}}"/>
-			<input name="vivienda" type="hidden" value="{{@Identificador}}"/>
-			<span visible="{{@Identificador}}">
-				Lote: <span id="sLote" bind="@Lote"/><br/><br/>
-			</span>
-			<span visible="{{@Prototipo}}">
-				Prototipo: <span id="sPrototipo" bind="@Prototipo"/>
-			</span>
-			<br/>
-			<br/>
-		</div>
-		<div id="fotos">
-			<div class="foto">
-				<img id="fotoFachada" src=""/>
-			</div>
-			<div class="foto">
-				<img id="fotoPlanta" src=""/>
-			</div>
-		</div>
-	</details>
 </settings>

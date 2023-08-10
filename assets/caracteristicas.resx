@@ -117,22 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="vision" xml:space="preserve">
-    <value>Nuestra visión es...</value>
+  <data name="title" xml:space="preserve">
+    <value>Adquiere nuestras propiedades con</value>
   </data>
-  <data name="mision" xml:space="preserve">
-    <value>Nuestra misión es ofrecer los mejores desarrollos para toda la familia</value>
+  <data name="item_1" xml:space="preserve">
+    <value>Excelente ubicación: Encuentra la vida que mereces en un entorno tranquilo y lleno de experiencias</value>
+    <comment>marker</comment>
   </data>
-  <data name="nosotros" xml:space="preserve">
-    <value>Nosotros somos...</value>
+  <data name="item_3" xml:space="preserve">
+    <value>Áreas verdes: Con área infantil, invierte en un proyecto de vida que cumpla con tus expectativas</value>
+    <comment>pine</comment>
   </data>
-  <data name="valores" xml:space="preserve">
-    <value>Nuestros valores son...</value>
-  </data>
-  <data name="telefono" xml:space="preserve">
-    <value>4441294372</value>
-  </data>
-  <data name="subtitulo" xml:space="preserve">
-    <value>¡Es momento de invertir en un proyecto de vida que cumpla con tus expectativas!</value>
+  <data name="item_2" xml:space="preserve">
+    <value>Seguridad: Cuenta con lo esencial para tu seguridad, cámaras 24/7, cerca perimetral electrificada y caseta de vigilancia</value>
+    <comment>camera</comment>
   </data>
 </root>

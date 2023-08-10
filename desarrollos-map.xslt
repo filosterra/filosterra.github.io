@@ -1,5 +1,5 @@
-﻿<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns="http://www.w3.org/1999/xhtml" exclude-result-prefixes="xsl">
-	<xsl:param name="desarrollo">(xover.site.seed || '').replace(/^#/,'')</xsl:param>
+﻿<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns="http://www.w3.org/1999/xhtml" xmlns:state="http://panax.io/state" exclude-result-prefixes="xsl state">
+	<xsl:param name="state:desarrollo">(xover.site.seed || '').replace(/^#/,'')</xsl:param>
 	<xsl:key name="section" match="data" use="substring-after(@name,'_')"/>
 	<xsl:key name="label" match="data" use="@name"/>
 	<xsl:template match="/*">

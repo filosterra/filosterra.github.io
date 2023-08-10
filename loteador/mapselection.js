@@ -103,7 +103,7 @@ const color_array = ['#FF6633', '#FFB399', '#FF33FF', '#FFFF99', '#00B3E6',
 
 var filters = {}
 var attributes, attribute_pattern, value_attribute, text_attribute, oSource; //Definimos a este nivel para que sean accesibles dentro de las funciones jquery
-async function actualizaColores(oSource, colorear) {
+async function actualizaColores(oSource) {
     function rgbToHex(rgb) {
         if (!rgb) return undefined;
         // Get the RGB values by extracting the numbers
@@ -123,7 +123,7 @@ async function actualizaColores(oSource, colorear) {
     xmlData = xmlData.document;
 
     let desarrollo_id = (location.hash || '').replace(/^#/, '').toUpperCase();
-    let xmlFilters = xover.sources["settings.xml"];
+    let xmlFilters = xover.sources[`#${desarrollo_id}:settings`];
     if (!xmlFilters.documentElement) await xmlFilters.fetch();
     let sFilters_bind = `${xmlFilters.find('filters').attr('bind')}`;
     let sElement_id = xmlFilters.find('filters').attr('id');
@@ -158,8 +158,13 @@ async function actualizaColores(oSource, colorear) {
     if (path) path = String(path).replace(/\/$/, '').replace(/\//, '>');
     attribute = attribute.replace(/^@/, '');
     [document.querySelector(`[name="filter_headers"]:checked`)].filter(el => el).map(radio => radio.closest(`.filter[bind]`)).pop()
-    let active_filter = [document.querySelector(`[name="filter_headers"]:checked`)].filter(el => el).map(radio => radio.closest(`.filter[bind]`)).pop() || oSource && oSource.closest('.filter[bind]') || [document.querySelector(`.filter[bind]`)].concat(document.querySelectorAll('[type="checkbox"]:checked').toArray().map(checkbox => checkbox.closest('.filter[bind]'))).concat([document.querySelector(`.filter[bind]`)]).filter(filter => !oSource).distinct().pop();
-    let color_list = Object.fromEntries([[active_filter].map(filter => [filter.getAttribute("bind"), new Map(filter.querySelectorAll(`.filter_option [type="checkbox"]`).toArray().filter(checkbox => checkbox.previousElementSibling).map(checkbox => [checkbox.getAttribute("filtervalue"), checkbox.previousElementSibling.style.backgroundColor]))]).filter(([key, values]) => values.size)[0]]);
+    let active_filter = [document.querySelector(`[name="filter_headers"]:checked`)].filter(el => el).map(radio => radio.closest(`.filter[bind]`)).pop() || oSource && oSource.closest('.filter[bind]');// || [document.querySelector(`.filter[bind]`)].concat(document.querySelectorAll('[type="checkbox"]:checked').toArray().map(checkbox => checkbox.closest('.filter[bind]'))).concat([document.querySelector(`.filter[bind]`)]).filter(filter => !oSource).distinct().pop();
+    if (!active_filter && oSource && oSource.closest('.filter[bind]')) {
+        active_filter = oSource.closest('.filter[bind]');
+        
+    }
+    let color_list = active_filter && Object.fromEntries([[active_filter].map(filter => [filter.getAttribute("bind"), new Map(filter.querySelectorAll(`.filter_option [type="checkbox"]`).toArray().filter(checkbox => checkbox.previousElementSibling).map(checkbox => [checkbox.getAttribute("filtervalue"), checkbox.previousElementSibling.style.backgroundColor]))]).filter(([key, values]) => values.size)[0]]);
+    if (!color_list) return;
     for (let element of xmlData.select(sFilters_bind)) {
         let oLote = document.querySelector(`area[target="${desarrollo_id}_${element.attr(sElement_id)}"]`)
         if (oLote) {
@@ -366,12 +371,13 @@ function testConditions(oNode, conditions) {
     return complies;
 }
 
-async function Colorea(oSource, colorear) {
+async function Colorea(oSource) {
     let xmlData = xo.stores[location.hash];
     if (!xmlData.documentElement) await xmlData.fetch();
     xmlData = xmlData.document;
 
-    let xmlFilters = xover.sources["settings.xml"];
+    let desarrollo_id = (location.hash || '').replace(/^#/, '').toUpperCase();
+    let xmlFilters = xover.sources[`#${desarrollo_id}:settings`];
     if (!xmlFilters.documentElement) await xmlFilters.fetch();
     let conditions = Object.fromEntries(document.querySelector(`#Filtros`).querySelectorAll(`.filter[bind]`).toArray().map(filter => [filter.getAttribute("bind"), new Map(filter.querySelectorAll(`.filter_option [type="checkbox"]:checked`).toArray().map(checkbox => [checkbox.getAttribute("value"), checkbox.previousElementSibling ? checkbox.previousElementSibling.style.backgroundColor : '']))]).filter(([key, values]) => values.size))
     //for (let filter of xmlFilters.select(`//filters/filter`)) {
@@ -383,9 +389,9 @@ async function Colorea(oSource, colorear) {
     //        fillTree(conditions, bind, selection.value);
     //    }
     //}
-    actualizaColores(oSource, colorear);
-
+    actualizaColores(oSource);
     iluminarMapa(conditions);
+
 
     let xData = xover.xml.createDocument(xmlData);
     if (xData && xData.selectSingleNode('/*/presupuestos')) {
@@ -446,7 +452,7 @@ async function iluminarMapa(conditions) {
     xmlData = xmlData.document;
     let desarrollo_id = (location.hash || '').replace(/^#/, '');
     
-    let xmlFilters = xover.sources["settings.xml"];
+    let xmlFilters = xover.sources[`#${desarrollo_id}:settings`];
     if (!xmlFilters.documentElement) await xmlFilters.fetch();
 
     let sFilters_bind = $(xmlFilters).find('filters').attr('bind');
@@ -465,132 +471,12 @@ async function iluminarMapa(conditions) {
             $(oLote).data('maphilight', data);
         }
     };
+    if (!document.querySelector(`[name="filter_headers"]:checked`)) return;
     $("map").trigger('alwaysOn.maphilight');
 }
 
 
 let ubicacion_seleccionada = undefined;
-$(function () {
-    //$('.map').maphilight();
-    $('img[usemap]').maphilight();
-
-    $('area').click(async function (e) {
-        e.preventDefault();
-        let txtIdentificador = $(this).attr('id');
-        if (ubicacion_seleccionada == txtIdentificador) {
-            ubicacion_seleccionada = undefined;
-        }
-        else {
-            ubicacion_seleccionada = txtIdentificador
-        }
-
-
-        //$('#ViviendaDetalles').show();
-
-        let xmlData = xo.stores[location.hash];
-        if (!xmlData.documentElement) await xmlData.fetch();
-        xmlData = xmlData.document;
-
-        let xmlFilters = xover.sources["settings.xml"];
-        if (!xmlFilters.documentElement) await xmlFilters.fetch();
-
-        let sFilters_bind = $(xmlFilters).find('filters').attr('bind'); //Recuperamos el nombre del nodo con el que se hace el binding principal
-        let sElement_id = $(xmlFilters).find('filters').attr('id'); //Recuperamos el nombre del atributo del nodo principal
-        let target_node = undefined;
-        if (ubicacion_seleccionada) {
-            target_node = $(xmlData).find(sFilters_bind + '[' + sElement_id + '="' + ubicacion_seleccionada + '"]'); //Recuperamos el nodo en el XML correspondiente al nodo seleccionado.
-            // TODO: Informar que si el nodo seleccionado no tiene correspondencia, considerar que a veces esto es con toda la intención, pues el rango obtenido podr�a estar filtrado.
-            let htmlDetails = $(xmlFilters).find('details').clone(); // Clon xamos el html de los detalles
-            //binding.bindData(htmlDetails, 'visible', target_node);
-            htmlDetails.find('*[visible]').each(function () { // Buscamos dentro del detalle todos los nodos que son visibles dependiendo de un atributo (S�lo uno. TODO: que puedan ser m�s de un atributo y con operadores and y or)
-                let condition = $(this).attr('visible');
-                let bindings = condition.match(/{{[^}]+}}/);
-                for (let b = 0; b < bindings.length; b++) {
-                    let attr = bindings[b]; //Recuperamos el nombre del atributo a enlazar.
-                    let value = String(getValueFromTree(target_node, attr.replace(/[{}]/gi, ''))); //Recuperamos el valor sin importar la profundidad a la que est� definido
-                    value = (value.length ? "'" + value + "'" : value);
-                    condition = condition.replace(attr, value)
-                }
-
-                if (!eval(condition)) {
-                    $(this).remove();
-                } else {
-                    $(this).removeAttr('visible'); //Quitamos el atributo para que no se renderee
-                }
-            });
-
-            htmlDetails.find('*[bind]').each(function () { // Buscamos dentro del detalle todos los nodos que fueron marcados para hacer binding
-                let attr = $(this).attr('bind'); //Recuperamos el nombre del atributo a enlazar. 
-                let value = getValueFromTree(target_node, attr); //Recuperamos el valor sin importar la profundidad a la que est� definido
-                if (!value) {
-                    $(this).remove();
-                } else {
-                    $(this).removeAttr('bind'); //Quitamos el atributo para que no se renderee
-                    $(this).html(value.join()); //Colocamos el valor, si es m�s de un valor lo concatenamos
-                }
-            });
-
-            htmlDetails.find('*[value]').each(function () { // Buscamos dentro del detalle todos los nodos que fueron marcados para hacer binding
-                let condition = $(this).attr('value');
-                let bindings = condition.match(/{{[^}]+}}/);
-                for (let b = 0; b < bindings.length; b++) {
-                    let attr = bindings[b]; //Recuperamos el nombre del atributo a enlazar.
-                    let value = String(getValueFromTree(target_node, attr.replace(/[{}]/gi, ''))); //Recuperamos el valor sin importar la profundidad a la que est� definido
-                    condition = condition.replace(attr, value)
-                }
-                $(this).attr('value', condition); //Colocamos el valor, si es m�s de un valor lo concatenamos
-
-            });
-            $('#ViviendaDetalles').html(htmlDetails.get(0).innerHTML);
-            //let oPrototipo = $(xmlData).find(sFilters_bind+'['+sElement_id+'="' + ubicacion_seleccionada + '"]');
-        } else {
-            $('#ViviendaDetalles').html('');
-        }
-
-        $('#ViviendaDetalles').removeClass()
-        $('#ViviendaDetalles').addClass($(target_node).attr('ViviendaDetallesCSS'))
-
-        //$('#datosPrivados').removeClass()
-        //$('#datosPrivados').addClass($(oPrototipo).attr('DatosPrivadosCSS'))
-
-        //$('#sEstacion').html($(oPrototipo).attr('estacion'));
-
-        $("#panel").slideDown("slow");
-        $(".btn-slide").toggleClass("active");
-
-        if (ubicacion_seleccionada) {
-            let oVivienda = $("#" + ubicacion_seleccionada);
-            if (oVivienda) {
-                //coloreaLote(oVivienda, '#80FF00');
-                let conditions = { "@Identificador": {} }
-                conditions["@Identificador"][ubicacion_seleccionada] = { "color": "blue" }
-                iluminarMapa(conditions);
-            }
-
-            let xData = xdom.xml.createDocument(xmlData);
-            if (xData) {
-                console.clear();
-                if (ubicacion_seleccionada) {
-                    xdom.data.remove(xData.selectNodes('/*/data/item[@Identificador!="' + ubicacion_seleccionada + '"]'));
-                    xdom.data.remove(xData.selectNodes('/*/presupuestos/Presupuesto[not(.//*[@IdVivienda="' + txtIdentificador + '"])]'));
-                    xdom.data.remove(xData.selectNodes('/*/presupuestos/Presupuesto/*/*[string(@IdVivienda)!="' + txtIdentificador + '"]'));
-                }
-
-                let target = document.getElementById("financieros")
-                oFinancieros = xdom.xml.transform(xData, xslt);
-                if (target && oFinancieros) {
-                    xdom.dom.clear(target);
-                    target.parentNode.replaceChild(oFinancieros.documentElement, target);
-                }
-            }
-        } else {
-            Colorea();
-        }
-
-        return false;
-    });
-});
-
 let binding = {}
 binding.bindData = function (scope, attribute, x_source, removeAttribute) {
     scope.find('*[' + attribute + ']').each(function () { // Buscamos dentro del detalle todos los nodos que son visibles dependiendo de un atributo (S�lo uno. TODO: que puedan ser m�s de un atributo y con operadores and y or)
@@ -647,11 +533,134 @@ function resize() {
 
 loteador = {};
 loteador.inicializar = async function () {
+    (function () {
+        //$('.map').maphilight();
+        $('img[usemap]').maphilight();
+
+        $('area').click(async function (e) {
+            e.preventDefault();
+            let txtIdentificador = $(this).attr('id');
+            if (ubicacion_seleccionada == txtIdentificador) {
+                ubicacion_seleccionada = undefined;
+            }
+            else {
+                ubicacion_seleccionada = txtIdentificador
+            }
+
+
+            //$('#ViviendaDetalles').show();
+
+            let xmlData = xo.stores[location.hash];
+            if (!xmlData.documentElement) await xmlData.fetch();
+            xmlData = xmlData.document;
+
+            let desarrollo_id = (location.hash || '').replace(/^#/, '').toUpperCase();
+            let xmlFilters = xover.sources[`#${desarrollo_id}:settings`];
+            if (!xmlFilters.documentElement) await xmlFilters.fetch();
+
+            let sFilters_bind = $(xmlFilters).find('filters').attr('bind'); //Recuperamos el nombre del nodo con el que se hace el binding principal
+            let sElement_id = $(xmlFilters).find('filters').attr('id'); //Recuperamos el nombre del atributo del nodo principal
+            let target_node = undefined;
+            if (ubicacion_seleccionada) {
+                target_node = $(xmlData).find(sFilters_bind + '[' + sElement_id + '="' + ubicacion_seleccionada + '"]'); //Recuperamos el nodo en el XML correspondiente al nodo seleccionado.
+                // TODO: Informar que si el nodo seleccionado no tiene correspondencia, considerar que a veces esto es con toda la intención, pues el rango obtenido podr�a estar filtrado.
+                let htmlDetails = $(xmlFilters).find('details').clone(); // Clon xamos el html de los detalles
+                //binding.bindData(htmlDetails, 'visible', target_node);
+                htmlDetails.find('*[visible]').each(function () { // Buscamos dentro del detalle todos los nodos que son visibles dependiendo de un atributo (S�lo uno. TODO: que puedan ser m�s de un atributo y con operadores and y or)
+                    let condition = $(this).attr('visible');
+                    let bindings = condition.match(/{{[^}]+}}/);
+                    for (let b = 0; b < bindings.length; b++) {
+                        let attr = bindings[b]; //Recuperamos el nombre del atributo a enlazar.
+                        let value = String(getValueFromTree(target_node, attr.replace(/[{}]/gi, ''))); //Recuperamos el valor sin importar la profundidad a la que est� definido
+                        value = (value.length ? "'" + value + "'" : value);
+                        condition = condition.replace(attr, value)
+                    }
+
+                    if (!eval(condition)) {
+                        $(this).remove();
+                    } else {
+                        $(this).removeAttr('visible'); //Quitamos el atributo para que no se renderee
+                    }
+                });
+
+                htmlDetails.find('*[bind]').each(function () { // Buscamos dentro del detalle todos los nodos que fueron marcados para hacer binding
+                    let attr = $(this).attr('bind'); //Recuperamos el nombre del atributo a enlazar. 
+                    let value = getValueFromTree(target_node, attr); //Recuperamos el valor sin importar la profundidad a la que est� definido
+                    if (!value) {
+                        $(this).remove();
+                    } else {
+                        $(this).removeAttr('bind'); //Quitamos el atributo para que no se renderee
+                        $(this).html(value.join()); //Colocamos el valor, si es m�s de un valor lo concatenamos
+                    }
+                });
+
+                htmlDetails.find('*[value]').each(function () { // Buscamos dentro del detalle todos los nodos que fueron marcados para hacer binding
+                    let condition = $(this).attr('value');
+                    let bindings = condition.match(/{{[^}]+}}/);
+                    for (let b = 0; b < bindings.length; b++) {
+                        let attr = bindings[b]; //Recuperamos el nombre del atributo a enlazar.
+                        let value = String(getValueFromTree(target_node, attr.replace(/[{}]/gi, ''))); //Recuperamos el valor sin importar la profundidad a la que est� definido
+                        condition = condition.replace(attr, value)
+                    }
+                    $(this).attr('value', condition); //Colocamos el valor, si es m�s de un valor lo concatenamos
+
+                });
+                $('#ViviendaDetalles').html(htmlDetails.get(0).innerHTML);
+                //let oPrototipo = $(xmlData).find(sFilters_bind+'['+sElement_id+'="' + ubicacion_seleccionada + '"]');
+            } else {
+                $('#ViviendaDetalles').html('');
+            }
+
+            $('#ViviendaDetalles').removeClass()
+            $('#ViviendaDetalles').addClass($(target_node).attr('ViviendaDetallesCSS'))
+
+            //$('#datosPrivados').removeClass()
+            //$('#datosPrivados').addClass($(oPrototipo).attr('DatosPrivadosCSS'))
+
+            //$('#sEstacion').html($(oPrototipo).attr('estacion'));
+
+            $("#panel").slideDown("slow");
+            $(".btn-slide").toggleClass("active");
+
+            if (ubicacion_seleccionada) {
+                let oVivienda = $("#" + ubicacion_seleccionada);
+                if (oVivienda) {
+                    //coloreaLote(oVivienda, '#80FF00');
+                    let conditions = { "@Identificador": {} }
+                    conditions["@Identificador"][ubicacion_seleccionada] = { "color": "blue" }
+                    iluminarMapa(conditions);
+                }
+
+                let xData = xdom.xml.createDocument(xmlData);
+                if (xData) {
+                    console.clear();
+                    if (ubicacion_seleccionada) {
+                        xdom.data.remove(xData.selectNodes('/*/data/item[@Identificador!="' + ubicacion_seleccionada + '"]'));
+                        xdom.data.remove(xData.selectNodes('/*/presupuestos/Presupuesto[not(.//*[@IdVivienda="' + txtIdentificador + '"])]'));
+                        xdom.data.remove(xData.selectNodes('/*/presupuestos/Presupuesto/*/*[string(@IdVivienda)!="' + txtIdentificador + '"]'));
+                    }
+
+                    let target = document.getElementById("financieros")
+                    oFinancieros = xdom.xml.transform(xData, xslt);
+                    if (target && oFinancieros) {
+                        xdom.dom.clear(target);
+                        target.parentNode.replaceChild(oFinancieros.documentElement, target);
+                    }
+                }
+            } else {
+                Colorea();
+            }
+
+            return false;
+        });
+    })();
+
     let color, txtBind;
     let xmlData = xo.stores[location.hash];
     if (!xmlData.documentElement) await xmlData.fetch();
     xmlData = xmlData.document;
-    let xmlFilters = xover.sources["settings.xml"];
+    let desarrollo_id = (location.hash || '').replace(/^#/, '').toUpperCase();
+    let xmlFilters = xover.sources[`#${desarrollo_id}:settings`];
 
     //let mapDoc = xo.sources[location.hash + ':loteador'];
     //if (!mapDoc.firstElementChild) await mapDoc.fetch();
@@ -700,10 +709,6 @@ loteador.inicializar = async function () {
         }
         renderFilterOption(filter, options, div);
     });
-
-
-    //Asignar colores a cada lote
-    let oPrototipo, txtClass, oVivienda;
 
     actualizaColores();
     resize()

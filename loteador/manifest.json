@@ -1,7 +1,8 @@
 {
   "sources": {
     "^#(.+)": "/assets/desarrollos/$1/lotes.xml",
-    "^#(.+):map$": "/assets/desarrollos/$1/loteador.map"
+    "^#(.+):map$": "/assets/desarrollos/$1/loteador.map",
+    "^#(.+):settings$": "/assets/desarrollos/$1/loteador_settings.xml"
   },
   "settings": {
     "^#(.+)$": {

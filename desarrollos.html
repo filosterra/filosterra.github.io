@@ -32,19 +32,439 @@
 
     <!-- Favicon -->
     <!-- <link rel="icon" href="./assets/images/favicon.png"> -->
-    <style>
+    <!--<style>
         xo-param {
             display: none;
         }
-    </style>
+    </style>-->
+
+    <script>
+        var demarcaciones;
+        var desarrollos;
+        var map;
+        var infoWindow;
+
+        var shapes = [];
+        var regions = [];
+        var last_selection = null;
+
+        function loadData(set_name = 'desarrollos') {
+            return fetch(`${set_name}.json`).then(response => response.json())
+        }
+
+        function initShapes() {
+            for (el of desarrollos) {
+                initLayer(el, shapes)
+            }
+        }
+
+        var show_demarcaciones
+        function initDemarcaciones() {
+            for (el of demarcaciones) {
+                let shape = initLayer(el, regions)
+                highlight(shape);
+            }
+
+        }
+
+        async function toggleDemarcaciones() {
+            demarcaciones = demarcaciones || await loadData('demarcaciones')
+            if (!regions.length) {
+                initDemarcaciones();
+            }
+            show_demarcaciones = !show_demarcaciones;
+            for (el of regions) {
+                el.setMap(show_demarcaciones && map || null);
+                highlight(el)
+            }
+        }
+
+        async function toggleSelection() {
+            //let contacto = confirm("Escribe tu número telefónico o correo electrónico")
+
+
+        }
+
+        async function initMap() {
+            desarrollos = load();
+            map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 17,
+                center: {
+                    "lat": 22.184999784829262,
+                    "lng": -101.04584246432579
+                },
+                streetViewControl: false,
+                tilt: 0,
+                mapTypeId: 'satellite'
+            });
+            let src = './assets/desarrollos/sauceda/sauceda.kml'
+
+
+            var kmlLayer = new google.maps.KmlLayer(src, {
+                suppressInfoWindows: true,
+                preserveViewport: false,
+                map: map
+            });
+
+
+            kmlLayer.addListener('click', function (event) {
+                var content = event.featureData.infoWindowHtml;
+                var testimonial = document.getElementById('capture');
+                testimonial.innerHTML = content;
+            });
+
+            // Define the LatLng coordinates for the polygon.
+            desarrollos = desarrollos || await loadData('desarrollos')
+            initShapes()
+
+            infoWindow = new google.maps.InfoWindow;
+
+            google.maps.event.addListener(map, "click", function () {
+                unselect(last_selection);
+            });
+
+            map.addListener("contextmenu", (mapsMouseEvent) => {
+                infoWindow.close(); // Close the current InfoWindow.
+                if (!last_selection) return;
+                let new_point = mapsMouseEvent.latLng.toJSON()
+
+                // if (desarrollos[desarrollos.length - 1].length === 4) {
+                //     desarrollos.push(desarrollos[desarrollos.length - 1].slice(2, 4).reverse());
+                // }
+                // desarrollos[desarrollos.length - 1].push(new_point)
+                let last_coordinates = getCoordinates(last_selection);
+                let new_base_coordinates = last_coordinates.slice(-2).reverse();
+                new_base_coordinates.push(new_point);
+
+                unselect(last_selection);
+                last_selection = initLayer(new_base_coordinates, shapes);
+                last_selection.setEditable(true);
+                last_selection.setDraggable(true);
+                // infoWindow = new google.maps.InfoWindow({
+                //     position: mapsMouseEvent.latLng,
+                // });
+                // infoWindow.setContent(
+                //     JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2)
+                // );
+                // infoWindow.open(map);
+            });
+        }
+
+        function getCoordinates(polygon) {
+            const vertices = polygon instanceof google.maps.Polygon && polygon.getPath() || polygon;
+            coordinates = []
+            for (let i = 0; i < vertices.getLength(); i++) {
+                const xy = vertices.getAt(i);
+                coordinates.push({ lat: xy.lat(), lng: xy.lng() })
+            }
+            return coordinates;
+
+        }
+
+        function initLayer(el, layer) {
+            let coordinates
+            if (el.constructor === {}.constructor) {
+                coordinates = el.coord
+            } else {
+                coordinates = el
+            }
+            let region = new google.maps.Polygon({
+                paths: coordinates,
+                strokeColor: '#36688F',
+                strokeOpacity: 0.8,
+                strokeWeight: 3,
+                fillColor: '#36688F',
+                fillOpacity: 0.35
+            });
+            Object.defineProperty(region, 'id', { value: el.id || layer.length + 1 })
+            region.setMap(map);
+
+            region.addListener('click', selectPolygon);
+
+            google.maps.event.addListener(region, "contextmenu", function () {
+                if (last_selection !== this) return;
+                removeShape(this)
+            });
+
+            google.maps.event.addListener(region, "dblclick", function () {
+                this.setOptions({ editable: !this.editable, draggable: !this.editable });
+            });
+
+            google.maps.event.addListener(region, "mouseover", function () {
+                this.setOptions({ fillColor: "#CC6633", strokeColor: "#CC6633" });
+            });
+
+            google.maps.event.addListener(region, "mouseout", function () {
+                if (this !== last_selection) {
+                    if (regions.find(el => el === this)) {
+                        this.setOptions({ fillColor: "#FFFF00", strokeColor: "#FFFF00" });
+                    } else {
+                        this.setOptions({ fillColor: "#36688F", strokeColor: "#36688F" });
+                    }
+                }
+            });
+
+            google.maps.event.addListener(region, "dragend", function () {
+                coordinatesChanged(this)
+            });
+
+            let path = region.getPath();
+            google.maps.event.addListener(path, 'set_at', function () {
+                let current_index = layer.findIndex(el => el === region);
+                let current_coordinates = getCoordinates(this);
+                let preceding_shape = layer[current_index - 1];
+                if (preceding_shape) {
+                    let preceding_coordinates = getCoordinates(preceding_shape);
+                    if (preceding_coordinates[current_coordinates.length - 1]?.lat === current_coordinates[0]?.lat && preceding_coordinates[current_coordinates.length - 1]?.lng === current_coordinates[0]?.lng) {
+                        preceding_coordinates[current_coordinates.length - 2] = current_coordinates[1];
+                        preceding_shape.setPath(preceding_coordinates);
+                    }
+                    if (preceding_coordinates[current_coordinates.length - 2]?.lat === current_coordinates[1]?.lat && preceding_coordinates[current_coordinates.length - 2]?.lng === current_coordinates[1]?.lng) {
+                        preceding_coordinates[current_coordinates.length - 1] = current_coordinates[0];
+                        preceding_shape.setPath(preceding_coordinates);
+                    }
+                }
+                let following_shape = layer[current_index + 1];
+                if (following_shape) {
+                    let following_coordinates = getCoordinates(following_shape);
+                    if (following_coordinates[0]?.lat === current_coordinates[current_coordinates.length - 1]?.lat && following_coordinates[0]?.lng === current_coordinates[current_coordinates.length - 1]?.lng) {
+                        following_coordinates[1] = current_coordinates[current_coordinates.length - 2];
+                        following_shape.setPath(following_coordinates);
+                    }
+                    if (following_coordinates[1]?.lat === current_coordinates[current_coordinates.length - 2]?.lat && following_coordinates[1].lng === current_coordinates[current_coordinates.length - 2].lng) {
+                        following_coordinates[0] = current_coordinates[current_coordinates.length - 1];
+                        following_shape.setPath(following_coordinates);
+                    }
+                }
+                coordinatesChanged(this)
+            });
+
+            google.maps.event.addListener(path, 'insert_at', function () {
+                coordinatesChanged(this)
+            });
+
+            layer.push(region)
+            return region;
+        }
+
+        function coordinatesChanged(src) {
+            console.log("Coordinates changed")
+
+        }
+
+        function removeShape(shape) {
+            shape.setMap(null);
+            shapes = shapes.filter(el => el !== shape);
+            last_selection = null;
+        }
+
+        function getAllCoordinates() {
+            let coordinates = []
+            for (shape of shapes) {
+                coordinates.push(getCoordinates(shape))
+            }
+            return coordinates
+        }
+
+        function unselect(shape) {
+            if (shape) {
+                shape.setOptions({ fillColor: "#36688F", strokeColor: "#36688F" });
+                shape.setEditable(false);
+                shape.setDraggable(false);
+            }
+            last_selection = null
+        }
+
+        function highlight(shape) {
+            shape.setOptions({ fillColor: "#FFFF00", strokeColor: "#FFFF00" });
+        }
+
+        function highlightLargeObjects() {
+            shapes.filter(el => google.maps.geometry.spherical.computeArea(el.getPath()) > 200).forEach(el => highlight(el))
+        }
+
+        /** @this {google.maps.Polygon} */
+        function selectPolygon(event) {
+            if (this !== last_selection) {
+                unselect(last_selection);
+                last_selection = this;
+                this.setOptions({ fillColor: "#CC6633", strokeColor: "#CC6633" });
+                return;
+            }
+            //var vertices = this.getPath();
+
+            //var contentString = `<h3>Antwerpen Zuid</h3><strong>Lorem Ipsum</strong><br>John Smith <br>Kerkstraat 01 <br>2000 <br>Antwerp <br>00 000 00 00 <br> john@smith.me<br>coordinates: ${JSON.stringify(getCoordinates(this))}<br><button>Ok</button>`
+
+            //// Replace the info windows content and position.
+            //infoWindow.setContent(contentString);
+            //infoWindow.setPosition(event.latLng);
+
+            //infoWindow.open(map);
+            last_selection = this;
+        }
+
+        function getCenter(poly) {
+            var arr = poly.getPath().getArray()
+                , distX = 0, distY = 0
+                , len = arr.length
+
+            arr.forEach(function (element, index) {
+                distX += element.lat()
+                distY += element.lng()
+            });
+
+            return new google.maps.LatLng(distX / len, distY / len);
+        }
+
+        function duplicate(source, offset = {}, scale = 1) {
+            let { x: offsetX = 0, y: offsetY = 0 } = offset;
+            if (source.length) {
+                for (let shape of source) {
+                    duplicate(shape, offset)
+                }
+                return;
+            }
+            let poly = source;
+            let polyCenter = getCenter(poly, offset)
+                , innerShapePoints = getCoordinates(poly)
+                , outerShapePoints = []
+
+            outerShapePoints = innerShapePoints.map(point => {
+                let coord = point;
+                coord.lat = coord.lat + offsetY * 0.0000089
+                coord.lng = coord.lng + offsetX * 0.0000089
+                return google.maps.geometry.spherical.interpolate(polyCenter, coord, scale)
+            })
+
+            unselect(last_selection);
+            last_selection = initLayer(outerShapePoints, shapes);
+            last_selection.setEditable(true);
+            last_selection.setDraggable(true);
+
+        }
+
+        function load() {
+            let data = localStorage.getItem('trazado');
+            if (!data) {
+                data = desarrollos
+            } else {
+                data = JSON.parse(data);
+            }
+            return data
+        }
+
+        function save() {
+            let data = JSON.stringify(getAllCoordinates());
+            download(data, 'trazado.json', 'text/plain');
+            localStorage.setItem('trazado', data);
+        }
+
+        function download(content, fileName, contentType) {
+            var a = document.createElement("a");
+            var file = new Blob([content], { type: contentType });
+            a.href = URL.createObjectURL(file);
+            a.download = fileName;
+            a.click();
+        }
+
+        //shapes.slice(32,66).forEach(el => duplicate(el,{y:296,x:-115})) // Copia una manzana completa
+
+    </script>
+    <script defer>
+        document.addEventListener("DOMContentLoaded", function (event) {
+            
+            /*
+            class PopUpInfo extends HTMLElement {
+                constructor() {
+                    // Always call super first in constructor
+                    super();
+
+                    // Create a shadow root
+                    const shadow = this.attachShadow({ mode: 'open' });
+
+                    // Create spans
+                    const wrapper = document.createElement('span');
+                    wrapper.setAttribute('class', 'wrapper');
+
+                    const icon = document.createElement('span');
+                    icon.setAttribute('class', 'icon');
+                    icon.setAttribute('tabindex', 0);
+
+                    const info = document.createElement('span');
+                    info.setAttribute('class', 'info');
+
+                    // Take attribute content and put it inside the info span
+                    const text = this.getAttribute('data-text');
+                    info.textContent = text;
+
+                    // Insert icon
+                    let imgUrl;
+                    if (this.hasAttribute('img')) {
+                        imgUrl = this.getAttribute('img');
+                    } else {
+                        imgUrl = 'img/default.png';
+                    }
+
+                    const img = document.createElement('img');
+                    img.src = imgUrl;
+                    icon.appendChild(img);
+
+                    // Create some CSS to apply to the shadow dom
+                    const style = document.createElement('style');
+                    console.log(style.isConnected);
+
+                    style.textContent = `
+              .wrapper {
+                position: relative;
+              }
+
+              .info {
+                font-size: 0.8rem;
+                width: 200px;
+                display: inline-block;
+                border: 1px solid black;
+                padding: 10px;
+                background: white;
+                border-radius: 10px;
+                opacity: 0;
+                transition: 0.6s all;
+                position: absolute;
+                bottom: 20px;
+                left: 10px;
+                z-index: 3;
+              }
+
+              img {
+                width: 1.2rem;
+              }
+
+              .icon:hover + .info, .icon:focus + .info {
+                opacity: 1;
+              }
+            `;
+
+                    // Attach the created elements to the shadow dom
+                    shadow.appendChild(style);
+                    console.log(style.isConnected);
+                    shadow.appendChild(wrapper);
+                    wrapper.appendChild(icon);
+                    wrapper.appendChild(info);
+                }
+            }
+
+            // Define the new element
+            customElements.define('popup-info', PopUpInfo);
+            */
+        })
+    </script>
 </head>
 <body class="styled-scroll" xmlns:xo="http://panax.io/xover">
-    <xo-param name="desarrollo">(xover.site.seed || '').replace(/^#/,'')</xo-param>
+    <popup-info img="img/alt.png" data-text="Your card validation code (CVC) is an extra security feature — it is the last 3 or 4 numbers on the back of your card."></popup-info>
 
     <!-- Navbar -->
     <nav id="navbar" class="navbar navbar-expand-lg fixed-top navbar-dark" aria-label="Main navigation" xo-stylesheet="navbar.xslt">
     </nav>
-    <main xo-stylesheet="desarrollos-info.xslt" xo-store="#{$desarrollo}:info">
+    <main xo-stylesheet="desarrollos-info.xslt" xo-store="#{$state:desarrollo}:info">
         <!-- Section Desarrollos -->
         <header class="section-light section-hd d-flex align-items-center no-background" id="desarrollos" style="height: 130px; min-height: 130px;">
             <div class="container">
@@ -53,7 +473,7 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="desarrollos-info">
-                                    <h2 class="banner-title text-uppercase text-center headline"><xsl:value-of select="$desarrollo" /></h2>
+                                    <h2 class="banner-title text-uppercase text-center headline"><xo-value select="$state:desarrollo" /></h2>
                                     <p class="py-3 h5 text-uppercase text-center">...</p>
                                 </div>
                             </div>
@@ -67,7 +487,7 @@
         <section class="section-dark section-hd d-flex align-items-center py-5" id="desarrollosinfo">
             <div class="container">
                 <div class="text-center pb-4">
-                    <p class="text-uppercase"><xsl:value-of select="$desarrollo" /></p>
+                    <p class="text-uppercase"><xo-value select="$state:desarrollo" /></p>
                     <h4 class="py-2">&#160;</h4>
                 </div>
                 <div class="row" style="height: 300px">
@@ -190,7 +610,11 @@
                 </div>
             </div>
         </section>
+
     </main>
+    <div id="map" style="height:85vh; width:auto"></div>
+
+    <div id="capture"></div>
 
     <!-- Footer -->
     <!--<section class="footer text-light">
@@ -297,5 +721,6 @@
     <!-- Swiper for image and text sliders -->
     <script src="./js/aos.js"></script>
     <!-- AOS on Animation Scroll -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-6g7NeqnqcrgGFg-RxMYM0699_9VjgMQ&callback=initMap&v=weekly" defer=""></script>
 </body>
 </html>
