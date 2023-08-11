@@ -122,7 +122,7 @@ async function actualizaColores(oSource) {
     if (!xmlData.documentElement) await xmlData.fetch();
     xmlData = xmlData.document;
 
-    let desarrollo_id = (location.hash || '').replace(/^#/, '').toUpperCase();
+    let desarrollo_id = (location.hash || '').replace(/^#/, '').toLowerCase();
     let xmlFilters = xover.sources[`#${desarrollo_id}:settings`];
     if (!xmlFilters.documentElement) await xmlFilters.fetch();
     let sFilters_bind = `${xmlFilters.find('filters').attr('bind')}`;
@@ -376,7 +376,7 @@ async function Colorea(oSource) {
     if (!xmlData.documentElement) await xmlData.fetch();
     xmlData = xmlData.document;
 
-    let desarrollo_id = (location.hash || '').replace(/^#/, '').toUpperCase();
+    let desarrollo_id = (location.hash || '').replace(/^#/, '').toLowerCase();
     let xmlFilters = xover.sources[`#${desarrollo_id}:settings`];
     if (!xmlFilters.documentElement) await xmlFilters.fetch();
     let conditions = Object.fromEntries(document.querySelector(`#Filtros`).querySelectorAll(`.filter[bind]`).toArray().map(filter => [filter.getAttribute("bind"), new Map(filter.querySelectorAll(`.filter_option [type="checkbox"]:checked`).toArray().map(checkbox => [checkbox.getAttribute("value"), checkbox.previousElementSibling ? checkbox.previousElementSibling.style.backgroundColor : '']))]).filter(([key, values]) => values.size))
@@ -554,7 +554,7 @@ loteador.inicializar = async function () {
             if (!xmlData.documentElement) await xmlData.fetch();
             xmlData = xmlData.document;
 
-            let desarrollo_id = (location.hash || '').replace(/^#/, '').toUpperCase();
+            let desarrollo_id = (location.hash || '').replace(/^#/, '').toLowerCase();
             let xmlFilters = xover.sources[`#${desarrollo_id}:settings`];
             if (!xmlFilters.documentElement) await xmlFilters.fetch();
 
@@ -659,7 +659,7 @@ loteador.inicializar = async function () {
     let xmlData = xo.stores[location.hash];
     if (!xmlData.documentElement) await xmlData.fetch();
     xmlData = xmlData.document;
-    let desarrollo_id = (location.hash || '').replace(/^#/, '').toUpperCase();
+    let desarrollo_id = (location.hash || '').replace(/^#/, '').toLowerCase();
     let xmlFilters = xover.sources[`#${desarrollo_id}:settings`];
 
     //let mapDoc = xo.sources[location.hash + ':loteador'];
