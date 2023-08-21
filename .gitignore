@@ -367,3 +367,4 @@ MigrationBackup/
 /app/xdom/resources/messages_messages.xslt
 /App_Data/restore blank.sql
 /FilesRepository
+/node.html

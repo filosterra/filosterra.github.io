@@ -379,6 +379,9 @@ async function Colorea(oSource) {
     let desarrollo_id = (location.hash || '').replace(/^#/, '').toLowerCase();
     let xmlFilters = xover.sources[`#${desarrollo_id}:settings`];
     if (!xmlFilters.documentElement) await xmlFilters.fetch();
+    if (oSource && oSource.closest(`.filter`) && !oSource.closest("#Filtros,body").querySelector(`[name="filter_headers"]:checked`)) {
+        oSource.closest(`.filter`).querySelector(`[name="filter_headers"]`).checked = true;
+    }
     let conditions = Object.fromEntries(document.querySelector(`#Filtros`).querySelectorAll(`.filter[bind]`).toArray().map(filter => [filter.getAttribute("bind"), new Map(filter.querySelectorAll(`.filter_option [type="checkbox"]:checked`).toArray().map(checkbox => [checkbox.getAttribute("value"), checkbox.previousElementSibling ? checkbox.previousElementSibling.style.backgroundColor : '']))]).filter(([key, values]) => values.size))
     //for (let filter of xmlFilters.select(`//filters/filter`)) {
     //    let bind = filter.attr('bind');
@@ -391,54 +394,6 @@ async function Colorea(oSource) {
     //}
     actualizaColores(oSource);
     iluminarMapa(conditions);
-
-
-    let xData = xover.xml.createDocument(xmlData);
-    if (xData && xData.selectSingleNode('/*/presupuestos')) {
-        console.clear();
-        let aPresupuestos = document.querySelectorAll('#_Presupuesto input[type=checkbox]:not(:checked)');
-
-        [].forEach.call(document.querySelectorAll('#_Presupuesto input[type=checkbox]'), function (presupuesto) {
-            if (presupuesto.value) {
-                let grafica = document.querySelector('#graficas_' + presupuesto.value.replace(/\s/ig, '_'));
-                if (grafica) {
-                    grafica.style.display = 'inline';
-                }
-                console.log(presupuesto.value);
-            }
-        });
-
-        if (document.querySelectorAll('#_Presupuesto input[type=checkbox]:checked').length) {
-            [].forEach.call(aPresupuestos, function (presupuesto) {
-                if (presupuesto.value) {
-                    xdom.data.remove(xData.selectNodes('/*/data/item[@Presupuesto="' + presupuesto.value + '"]'));
-                    xdom.data.remove(xData.selectNodes('/*/presupuestos/*[@Nombre="' + presupuesto.value + '"]'));
-                    let grafica = document.querySelector('#graficas_' + presupuesto.value.replace(/\s/ig, '_'));
-                    if (grafica) {
-                        grafica.style.display = 'none';
-                    }
-                    console.log(presupuesto.value);
-                }
-            });
-        }
-        let aContratistas = document.querySelectorAll('#_Contratista input[type=checkbox]:not(:checked)');
-        if (document.querySelectorAll('#_Contratista input[type=checkbox]:checked').length) {
-            [].forEach.call(aContratistas, function (contratista) {
-                if (contratista.value) {
-                    xdom.data.remove(xData.selectNodes('/*/data/item[@Contratista="' + contratista.value + '"]'));
-                    xdom.data.remove(xData.selectNodes('/*/presupuestos/*[@Contratista="' + contratista.value + '"]'));
-                    console.log(contratista.value);
-                }
-            });
-        }
-        let target = document.getElementById("financieros")
-        oFinancieros = xdom.xml.transform(xData, xslt);
-        if (target && oFinancieros) {
-            xdom.dom.clear(target);
-            target.parentNode.replaceChild(oFinancieros.documentElement, target);
-        }
-    }
-
 }
 
 function mutuallyExclusiveClick() {
@@ -629,23 +584,6 @@ loteador.inicializar = async function () {
                     let conditions = { "@Identificador": {} }
                     conditions["@Identificador"][ubicacion_seleccionada] = { "color": "blue" }
                     iluminarMapa(conditions);
-                }
-
-                let xData = xdom.xml.createDocument(xmlData);
-                if (xData) {
-                    console.clear();
-                    if (ubicacion_seleccionada) {
-                        xdom.data.remove(xData.selectNodes('/*/data/item[@Identificador!="' + ubicacion_seleccionada + '"]'));
-                        xdom.data.remove(xData.selectNodes('/*/presupuestos/Presupuesto[not(.//*[@IdVivienda="' + txtIdentificador + '"])]'));
-                        xdom.data.remove(xData.selectNodes('/*/presupuestos/Presupuesto/*/*[string(@IdVivienda)!="' + txtIdentificador + '"]'));
-                    }
-
-                    let target = document.getElementById("financieros")
-                    oFinancieros = xdom.xml.transform(xData, xslt);
-                    if (target && oFinancieros) {
-                        xdom.dom.clear(target);
-                        target.parentNode.replaceChild(oFinancieros.documentElement, target);
-                    }
                 }
             } else {
                 Colorea();
