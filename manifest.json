@@ -22,8 +22,8 @@
   "stores": [ "#desarrollos", "#site" ],
   "stylesheets": [ "navbar.xslt" ],
   "settings": {
-    ".map": { "headers": { "accept": "text/plain" } },
-    ".resx": {
+    "~.map": { "headers": { "accept": "text/plain" } },
+    "~.resx": {
       "headers": {
         "cache": "no-store",
         "Cache-Control": "no-cache"
