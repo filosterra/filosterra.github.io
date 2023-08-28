@@ -26,9 +26,9 @@
     <link href="./css/fontawesome-all.min.css" rel="stylesheet">
     <link href="./css/aos.min.css" rel="stylesheet">
     <link href="./css/swiper.css" rel="stylesheet">
-    <link href="./css/style.css?v=20230725_1344" rel="stylesheet">
-    <script type="text/javascript" src="xover/xo.js?v=20230725_1344"></script>
-    <script type="text/javascript" src="custom.js?v=20230725_1344"></script>
+    <link href="./css/style.css?v=20230828_1312" rel="stylesheet">
+    <script type="text/javascript" src="xover/xo.js?v=20230828_1312"></script>
+    <script type="text/javascript" src="custom.js?v=20230828_1312"></script>
 
     <!-- Favicon -->
     <!-- <link rel="icon" href="./assets/images/favicon.png"> -->
@@ -39,11 +39,10 @@
     </style>-->
 
     <script>
-        var demarcaciones;
-        var desarrollos;
         var map;
         var infoWindow;
 
+        var desarrollos = [];
         var shapes = [];
         var regions = [];
         var last_selection = null;
@@ -58,35 +57,8 @@
             }
         }
 
-        var show_demarcaciones
-        function initDemarcaciones() {
-            for (el of demarcaciones) {
-                let shape = initLayer(el, regions)
-                highlight(shape);
-            }
-
-        }
-
-        async function toggleDemarcaciones() {
-            demarcaciones = demarcaciones || await loadData('demarcaciones')
-            if (!regions.length) {
-                initDemarcaciones();
-            }
-            show_demarcaciones = !show_demarcaciones;
-            for (el of regions) {
-                el.setMap(show_demarcaciones && map || null);
-                highlight(el)
-            }
-        }
-
-        async function toggleSelection() {
-            //let contacto = confirm("Escribe tu número telefónico o correo electrónico")
-
-
-        }
-
         async function initMap() {
-            desarrollos = load();
+            //desarrollos = load();
             map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 17,
                 center: {
@@ -97,24 +69,28 @@
                 tilt: 0,
                 mapTypeId: 'satellite'
             });
-            let src = './assets/desarrollos/sauceda/sauceda.kml'
+            let desarrollos_src = xo.sources["#desarrollos"]
+            let desarrollos = await desarrollos_src.ready && desarrollos_src.select(`//data[not(comment="disabled")]/@name`).map(name => name.value);
 
+            for (let desarrollo of desarrollos) {
 
-            var kmlLayer = new google.maps.KmlLayer(src, {
-                suppressInfoWindows: true,
-                preserveViewport: false,
-                map: map
-            });
+                let src = `https://filosterra.github.io/assets/desarrollos/${desarrollo}/${desarrollo}.kml`
 
+                let kmlLayer = new google.maps.KmlLayer(src, {
+                    suppressInfoWindows: true,
+                    preserveViewport: false,
+                    map: map
+                });
 
-            kmlLayer.addListener('click', function (event) {
-                var content = event.featureData.infoWindowHtml;
-                var testimonial = document.getElementById('capture');
-                testimonial.innerHTML = content;
-            });
+                //kmlLayer.addListener('click', function (event) {
+                //    var content = event.featureData.infoWindowHtml;
+                //    var testimonial = document.getElementById('capture');
+                //    testimonial.innerHTML = content;
+                //});
+            }
 
             // Define the LatLng coordinates for the polygon.
-            desarrollos = desarrollos || await loadData('desarrollos')
+            //desarrollos = desarrollos || await loadData('desarrollos')
             initShapes()
 
             infoWindow = new google.maps.InfoWindow;
@@ -372,7 +348,7 @@
     </script>
     <script defer>
         document.addEventListener("DOMContentLoaded", function (event) {
-            
+
             /*
             class PopUpInfo extends HTMLElement {
                 constructor() {
@@ -501,10 +477,10 @@
                         }
 
                             /*.wrapper_span span.loading_span {
-                                color: #000000;
-                                font-size: 20px;
-                                font-weight: 600;
-                            }*/
+                            color: #000000;
+                            font-size: 20px;
+                            font-weight: 600;
+                        }*/
                             .wrapper_span span.loading_span {
                                 color: var(--main-bg-color,#00B0AD);
                                 font-size: 20px;

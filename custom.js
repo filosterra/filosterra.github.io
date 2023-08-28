@@ -67,7 +67,7 @@ xo.listener.on('click::div.list-group > a', function () {
     }
 })
 
-xo.listener.shadowban('root/data[@name="pin"]/value/text()');
+xo.listener.silence('root/data[@name="pin"]/value/text()');
 
 function initialize_carousel(target_carousel) {
     target_carousel.carousel = target_carousel.carousel || new bootstrap.Carousel(target_carousel, {
