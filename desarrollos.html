@@ -26,9 +26,9 @@
     <link href="./css/fontawesome-all.min.css" rel="stylesheet">
     <link href="./css/aos.min.css" rel="stylesheet">
     <link href="./css/swiper.css" rel="stylesheet">
-    <link href="./css/style.css?v=20230828_1428" rel="stylesheet">
-    <script type="text/javascript" src="xover/xo.js?v=20230828_1428"></script>
-    <script type="text/javascript" src="custom.js?v=20230828_1428"></script>
+    <link href="./css/style.css?v=20230828_1614" rel="stylesheet">
+    <script type="text/javascript" src="xover/xo.js?v=20230828_1614"></script>
+    <script type="text/javascript" src="custom.js?v=20230828_1614"></script>
 
     <!-- Favicon -->
     <!-- <link rel="icon" href="./assets/images/favicon.png"> -->
@@ -69,12 +69,12 @@
                 tilt: 0,
                 mapTypeId: 'satellite'
             });
-            let desarrollos_src = xo.sources["#desarrollos"]
+            let desarrollos_src = xo.sources["#desarrollos"];
             let desarrollos = await desarrollos_src.ready && desarrollos_src.select(`//data[not(comment="disabled")]/@name`).map(name => name.value);
 
             for (let desarrollo of desarrollos) {
 
-                let src = `https://filosterra.github.io/assets/desarrollos/${desarrollo}/${desarrollo}.kml`
+                let src = `https://filosterra.github.io/assets/desarrollos/${desarrollo}/polygon.kml`
 
                 let kmlLayer = new google.maps.KmlLayer(src, {
                     suppressInfoWindows: true,
