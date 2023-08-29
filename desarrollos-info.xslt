@@ -143,7 +143,7 @@
 		</xsl:if>
 	</xsl:template>
 
-	<xsl:template mode="section" match="key('section','mapa')">
+	<xsl:template mode="section" match="key('section','mapa?')">
 		<xsl:variable name="section-background">
 			<xsl:choose>
 				<xsl:when test="position() mod 2 =1">section-light</xsl:when>
@@ -323,7 +323,7 @@
 		</xsl:if>
 	</xsl:template>
 
-	<xsl:template mode="section" match="key('section','mapa')">
+	<xsl:template mode="section" match="key('section','mapa?')">
 		<xsl:variable name="section-background">
 			<xsl:choose>
 				<xsl:when test="position() mod 2 =1">section-light</xsl:when>

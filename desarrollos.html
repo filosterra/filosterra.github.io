@@ -26,9 +26,9 @@
     <link href="./css/fontawesome-all.min.css" rel="stylesheet">
     <link href="./css/aos.min.css" rel="stylesheet">
     <link href="./css/swiper.css" rel="stylesheet">
-    <link href="./css/style.css?v=20230828_1614" rel="stylesheet">
-    <script type="text/javascript" src="xover/xo.js?v=20230828_1614"></script>
-    <script type="text/javascript" src="custom.js?v=20230828_1614"></script>
+    <link href="./css/style.css?v=20230828_2038" rel="stylesheet">
+    <script type="text/javascript" src="xover/xo.js?v=20230828_2038"></script>
+    <script type="text/javascript" src="custom.js?v=20230828_2038"></script>
 
     <!-- Favicon -->
     <!-- <link rel="icon" href="./assets/images/favicon.png"> -->
@@ -57,24 +57,52 @@
             }
         }
 
-        async function initMap() {
-            //desarrollos = load();
-            map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 17,
-                center: {
-                    "lat": 22.184999784829262,
-                    "lng": -101.04584246432579
-                },
-                streetViewControl: false,
-                tilt: 0,
-                mapTypeId: 'satellite'
+        function calculatePolygonCenter(coordinates) {
+            const bounds = new google.maps.LatLngBounds();
+
+            coordinates.forEach(coord => {
+                bounds.extend(coord);
             });
+
+            return bounds.getCenter();
+        }
+
+        function getCoordinatesFromKML(kml) {
+            return kml.selectFirst(`//kml:Placemark/kml:Polygon//kml:coordinates/text()`).value.trim().split(/\s/g).map(coordinate => { [lng, lat, alt] = coordinate.split(","); return { lng: +lng, lat: +lat, alt: +alt } });
+        }
+
+        async function initMap() {
+            let desarrollo_kml = xo.sources[`${xo.site.seed}:polygon`];
+            await desarrollo_kml.ready;
+            let coordinates = getCoordinatesFromKML(desarrollo_kml);
+
+            let center = calculatePolygonCenter(coordinates);
+            //"lat": 22.184999784829262,
+            //"lng": -101.04584246432579
+            if (map instanceof google.maps.Map) {
+                map.setCenter(center);
+                return;
+            } else {
+                map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 10,
+                    center: {
+                        "lat": center.lat(),
+                        "lng": center.lng()
+                    },
+                    streetViewControl: false,
+                    tilt: 0,
+                    mapTypeId: 'satellite'
+                });
+            }
+
             let desarrollos_src = xo.sources["#desarrollos"];
             let desarrollos = await desarrollos_src.ready && desarrollos_src.select(`//data[not(comment="disabled")]/@name`).map(name => name.value);
-
             for (let desarrollo of desarrollos) {
+                let desarrollo_kml = xo.sources[`#${desarrollo}:polygon`];
+                await desarrollo_kml.ready;
+                let coordinates = getCoordinatesFromKML(desarrollo_kml);
 
-                let src = `https://filosterra.github.io/assets/desarrollos/${desarrollo}/polygon.kml`
+                let src = `https://filosterra.github.io/assets/desarrollos/${desarrollo}/polygon.kml`;
 
                 let kmlLayer = new google.maps.KmlLayer(src, {
                     suppressInfoWindows: true,
@@ -82,11 +110,12 @@
                     map: map
                 });
 
-                //kmlLayer.addListener('click', function (event) {
-                //    var content = event.featureData.infoWindowHtml;
-                //    var testimonial = document.getElementById('capture');
-                //    testimonial.innerHTML = content;
-                //});
+                kmlLayer.addListener('click', function (event) {
+                    this.map.setCenter(calculatePolygonCenter(coordinates))
+                    //var content = event.featureData.infoWindowHtml;
+                    //var testimonial = document.getElementById('capture');
+                    //testimonial.innerHTML = content;
+                });
             }
 
             // Define the LatLng coordinates for the polygon.
@@ -343,12 +372,29 @@
             a.click();
         }
 
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-viewport');
+                } else {
+                    entry.target.classList.remove('in-viewport');
+                }
+            });
+        }, {
+            root: null, // The element that is used as the viewport
+            rootMargin: '0px', // Margin around the root
+            threshold: 0.8, // Percentage of the element's visibility to trigger the callback
+        });
+
         //shapes.slice(32,66).forEach(el => duplicate(el,{y:296,x:-115})) // Copia una manzana completa
 
     </script>
     <script defer>
         document.addEventListener("DOMContentLoaded", function (event) {
-
+            const elementsToObserve = document.querySelectorAll('#map');
+            elementsToObserve.forEach(element => {
+                observer.observe(element);
+            });
             /*
             class PopUpInfo extends HTMLElement {
                 constructor() {

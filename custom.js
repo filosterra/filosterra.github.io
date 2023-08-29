@@ -31,13 +31,19 @@ xo.listener.on('error', function () {
 })
 
 xo.listener.on('change::@xo-store', async function ({ element }) {
-    await xo.delay(250);
-    element.closest("html").scrollTo(0, 0);
+    if (document.querySelector("#map.in-viewport")) {
+        await xo.delay(250);
+        window.scrollTo({ left: 0, top: document.body.scrollHeight, behavior: 'instant' });
+    } else {
+        await xo.delay(250);
+        element.closest("html").scrollTo(0, 0);
+    }
+    initMap();
 })
 
 xo.listener.on('beforeSet::data/value/text()', function ({ value, old }) {
     let new_text = value.toString()
-    if (new_text.indexOf(':') == -1) { 
+    if (new_text.indexOf(':') == -1) {
         let title = old.substring(0, old.indexOf(':') + 1);
         new_text = `${title}${new_text}`
         value.textContent = new_text

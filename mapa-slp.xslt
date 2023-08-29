@@ -11,7 +11,7 @@
 				<xsl:attribute name="oncontextmenu">
 					this.style.transform = `scale(${Math.abs(+this.style.transform.replace(/[^\d\.]/g, '') - .5)})`;  this.style.translate = this.style.translate.split(/\s+/).map(percent => `${parseFloat(percent) / 2}%`).join(' '); return false
 				</xsl:attribute>
-				<img src="/assets/img/slp.png" style="width: 100%; height: 100%;"/>
+				<img src="/assets/img/desarrollos.png" style="width: 100%; height: 100%;"/>
 				<div class="markers">
 					<xsl:for-each select="data">
 						<div xo-stylesheet="desarrollos-map-marker.xslt" xo-store="#{@name}:info" desarrollo="{value}"/>
@@ -73,6 +73,13 @@
 					<path fill-rule="evenodd" d="M3 6.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5z"></path>
 				</svg>
 			</div>
+		</div>
+	</xsl:template>
+
+
+	<xsl:template match="/*">
+		<div>
+			<img src="/assets/img/desarrollos.png" style="width: 100%; height: 100%;"/>
 		</div>
 	</xsl:template>
 </xsl:stylesheet>
