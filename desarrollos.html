@@ -26,9 +26,9 @@
     <link href="./css/fontawesome-all.min.css" rel="stylesheet">
     <link href="./css/aos.min.css" rel="stylesheet">
     <link href="./css/swiper.css" rel="stylesheet">
-    <link href="./css/style.css?v=20230828_2111" rel="stylesheet">
-    <script type="text/javascript" src="xover/xo.js?v=20230828_2111"></script>
-    <script type="text/javascript" src="custom.js?v=20230828_2111"></script>
+    <link href="./css/style.css?v=20230828_2219" rel="stylesheet">
+    <script type="text/javascript" src="xover/xo.js?v=20230828_2219"></script>
+    <script type="text/javascript" src="custom.js?v=20230828_2219"></script>
 
     <!-- Favicon -->
     <!-- <link rel="icon" href="./assets/images/favicon.png"> -->
@@ -73,7 +73,7 @@
 
         async function initMap() {
             let desarrollo_kml = xo.sources[`${xo.site.seed}:polygon`];
-            await desarrollo_kml.ready;
+            if (!desarrollo_kml.documentElement) await desarrollo_kml.fetch();
             let coordinates = getCoordinatesFromKML(desarrollo_kml);
 
             let center = calculatePolygonCenter(coordinates);
@@ -96,10 +96,11 @@
             }
 
             let desarrollos_src = xo.sources["#desarrollos"];
-            let desarrollos = await desarrollos_src.ready && desarrollos_src.select(`//data[not(comment="disabled")]/@name`).map(name => name.value);
+            if (!desarrollos_src.documentElement) await desarrollos_src.fetch();
+            let desarrollos = desarrollos_src.select(`//data[not(comment="disabled")]/@name`).map(name => name.value);
             for (let desarrollo of desarrollos) {
                 let desarrollo_kml = xo.sources[`#${desarrollo}:polygon`];
-                await desarrollo_kml.ready;
+                if (!desarrollo_kml.documentElement) await desarrollo_kml.fetch();
                 let coordinates = getCoordinatesFromKML(desarrollo_kml);
 
                 let src = `https://filosterra.github.io/assets/desarrollos/${desarrollo}/polygon.kml`;

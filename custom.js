@@ -32,10 +32,10 @@ xo.listener.on('error', function () {
 
 xo.listener.on('change::@xo-store', async function ({ element }) {
     if (document.querySelector("#map.in-viewport")) {
-        await xo.delay(250);
+        await xo.delay(500);
         window.scrollTo({ left: 0, top: document.body.scrollHeight, behavior: 'instant' });
     } else {
-        await xo.delay(250);
+        await xo.delay(500);
         element.closest("html").scrollTo(0, 0);
     }
     initMap();
