@@ -30,13 +30,11 @@ xo.listener.on('error', function () {
     if (this.style) this.style.background = `repeating-linear-gradient( 55deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) 9px, rgba(0, 0, 1, 0.3) 9px, rgba(0, 0, 1, 0.3) 18px );`;
 })
 
-xo.listener.on('change::@xo-store', async function ({ element }) {
+xo.listener.on('render::#desarrollos-info.xslt', function () {
     if (document.querySelector("#map.in-viewport")) {
-        await xo.delay(500);
         window.scrollTo({ left: 0, top: document.body.scrollHeight, behavior: 'instant' });
     } else {
-        await xo.delay(500);
-        element.closest("html").scrollTo(0, 0);
+        window.scrollTo({ left: 0, top: 0 });
     }
     initMap();
 })
