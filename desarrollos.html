@@ -26,9 +26,9 @@
     <link href="./css/fontawesome-all.min.css" rel="stylesheet">
     <link href="./css/aos.min.css" rel="stylesheet">
     <link href="./css/swiper.css" rel="stylesheet">
-    <link href="./css/style.css?v=20230829_1620" rel="stylesheet">
-    <script type="text/javascript" src="xover/xo.js?v=20230829_1620"></script>
-    <script type="text/javascript" src="custom.js?v=20230829_1620"></script>
+    <link href="./css/style.css?v=20230829_1740" rel="stylesheet">
+    <script type="text/javascript" src="xover/xo.js?v=20230829_1740"></script>
+    <script type="text/javascript" src="custom.js?v=20230829_1740"></script>
 
     <!-- Favicon -->
     <!-- <link rel="icon" href="./assets/images/favicon.png"> -->
@@ -80,14 +80,12 @@
             //"lat": 22.184999784829262,
             //"lng": -101.04584246432579
             if (map instanceof google.maps.Map) {
-                console.log(`${center}`)
-                //map.setCenter(center);
-                //map.setZoom(10)
+                map.setCenter(center);
                 return;
             } else {
                 console.log(`${center}`)
                 map = new google.maps.Map(document.getElementById('map'), {
-                    zoom: 12,
+                    zoom: 10,
                     center: {
                         "lat": center.lat(),
                         "lng": center.lng()
@@ -380,6 +378,7 @@
         const observer = new IntersectionObserver(entries => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
+                    initMap()
                     entry.target.classList.add('in-viewport');
                 } else {
                     entry.target.classList.remove('in-viewport');
