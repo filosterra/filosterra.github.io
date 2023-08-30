@@ -90,7 +90,7 @@
 	<xsl:template mode="section" match="key('section','')">
 		<xsl:variable name="title" select="substring-before(value,':')"/>
 		<xsl:variable name="subtitle" select="substring-before(value,':')"/>
-		<xsl:variable name="paragraph" select="substring-after(value,':')"/>
+		<xsl:variable name="paragraph" select="normalize-space(substring-after(value,':'))"/>
 		<xsl:variable name="section-background">
 			<xsl:choose>
 				<xsl:when test="position() mod 2 =1">section-light</xsl:when>
@@ -102,22 +102,23 @@
 		</xsl:variable>
 		<section class="{$section-background} section-hd d-flex align-items-center py-5" id="{@name}">
 			<div class="container">
-				<div class="text-center pb-4">
-					<h4 class="text-uppercase">
-						<xsl:apply-templates mode="title" select="value"/>
-					</h4>
-					<!--<h4 class="py-2">
-						<xsl:value-of select="$subtitle"/>
-					</h4>-->
-				</div>
-				<div class="row gy-4 mt-1">
-					<p class="mb-5 {$contenteditable}" xo-scope="{value/@xo:id}" xo-attribute="text()">
-						<xsl:if test="$editable='true'">
-							<xsl:attribute name="contenteditable"/>
-						</xsl:if>
-						<xsl:apply-templates mode="content" select="value"/>
-					</p>
-				</div>
+				<xsl:if test="$editable='true' or string($title)!=''">
+					<div class="text-center pb-4">
+						<h4 class="text-uppercase">
+							<xsl:apply-templates mode="title" select="value"/>
+						</h4>
+					</div>
+				</xsl:if>
+				<xsl:if test="$editable='true' or string($paragraph)!=''">
+					<div class="row gy-4 mt-1">
+						<p class="mb-5 {$contenteditable}" xo-scope="{value/@xo:id}" xo-attribute="text()">
+							<xsl:if test="$editable='true'">
+								<xsl:attribute name="contenteditable"/>
+							</xsl:if>
+							<xsl:apply-templates mode="content" select="value"/>
+						</p>
+					</div>
+				</xsl:if>
 			</div>
 		</section>
 		<xsl:apply-templates mode="section-divider" select="."/>
@@ -512,12 +513,6 @@
 		</xsl:variable>
 		<section class="{$section-background} section-hd d-flex align-items-center py-5" id="desarrollosinfo">
 			<div class="container">
-				<div class="text-center pb-4">
-					<h4 class="text-uppercase">
-						<xsl:value-of select="$state:desarrollo" /> cuenta con lo esencial para tu seguridad
-					</h4>
-					<h4 class="py-2">Ubicado en la zona poniente de la ciudad</h4>
-				</div>
 				<div class="row gy-4 mt-1" style="position:relative;">
 					<a href="/loteador#{$state:desarrollo}">
 						<img class="map" src="/assets/desarrollos/{$state:desarrollo}/loteador.png" border="0" orgwidth="3800" style="width: 100%; height: 100%; background: var(--filosterra-blue-smoke);" alt="" />
@@ -550,11 +545,13 @@
 		</xsl:variable>
 		<section class="{$section-background} section-hd d-flex align-items-center py-5" id="desarrollosinfo">
 			<div class="container">
-				<div class="text-center pb-4">
-					<h4 class="text-uppercase">
-						<xsl:value-of select="$title"/>
-					</h4>
-				</div>
+				<xsl:if test="string($title)!=''">
+					<div class="text-center pb-4">
+						<h4 class="text-uppercase">
+							<xsl:value-of select="$title"/>
+						</h4>
+					</div>
+				</xsl:if>
 				<div class="row">
 					<p class="mb-5" xo-scope="{value/@xo:id}" xo-attribute="text()">
 						<xsl:if test="$editable='true'">
