@@ -100,10 +100,13 @@
 		<xsl:variable name="contenteditable">
 			<xsl:if test="$editable='true'">contenteditable</xsl:if>
 		</xsl:variable>
+		<xsl:variable name="extra-classes">
+			<xsl:if test="$editable='true' or string($paragraph)!=''">pb-4</xsl:if>
+		</xsl:variable>
 		<section class="{$section-background} section-hd d-flex align-items-center py-5" id="{@name}">
 			<div class="container">
 				<xsl:if test="$editable='true' or string($title)!=''">
-					<div class="text-center pb-4">
+					<div class="text-center {$extra-classes}">
 						<h4 class="text-uppercase">
 							<xsl:apply-templates mode="title" select="value"/>
 						</h4>
