@@ -30,13 +30,15 @@ xo.listener.on('error', function () {
     if (this.style) this.style.background = `repeating-linear-gradient( 55deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) 9px, rgba(0, 0, 1, 0.3) 9px, rgba(0, 0, 1, 0.3) 18px );`;
 })
 
-xo.listener.on('render::#desarrollos-info.xslt', function () {
-    if (document.querySelector("#map.in-viewport")) {
-        window.scrollTo({ left: 0, top: document.body.scrollHeight, behavior: 'instant' });
+xo.listener.on('render::#desarrollos-info.xslt', async function () {
+    let active_map = document.querySelector("#map.in-viewport");
+    if (active_map) {
+        await initMap();
+        await xo.delay(500);
+        active_map.scrollIntoView();
     } else {
         window.scrollTo({ left: 0, top: 0 });
     }
-    initMap();
 })
 
 xo.listener.on('beforeSet::data/value/text()', function ({ value, old }) {
