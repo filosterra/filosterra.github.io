@@ -104,7 +104,7 @@
 			<xsl:if test="$editable='true' or string($paragraph)!=''">pb-4</xsl:if>
 		</xsl:variable>
 		<section class="{$section-background} section-hd d-flex align-items-center py-5" id="{@name}">
-			<div class="container">
+			<div class="container pb-4">
 				<xsl:if test="$editable='true' or string($title)!=''">
 					<div class="text-center {$extra-classes}">
 						<h4 class="text-uppercase">
@@ -113,8 +113,8 @@
 					</div>
 				</xsl:if>
 				<xsl:if test="$editable='true' or string($paragraph)!=''">
-					<div class="row gy-4 mt-1">
-						<p class="mb-5 {$contenteditable}" xo-scope="{value/@xo:id}" xo-attribute="text()">
+					<div class="row gy-4">
+						<p class="{$contenteditable}" xo-scope="{value/@xo:id}" xo-attribute="text()">
 							<xsl:if test="$editable='true'">
 								<xsl:attribute name="contenteditable"/>
 							</xsl:if>
@@ -524,7 +524,7 @@
 			<xsl:if test="$editable='true' or string($paragraph)!=''">pb-4</xsl:if>
 		</xsl:variable>
 		<section class="{$section-background} section-hd d-flex align-items-center py-5 d-flex flex-column">
-			<div class="container">
+			<div class="container pb-4">
 				<xsl:if test="$editable='true' or string($title)!=''">
 					<div class="text-center {$extra-classes}">
 						<h4 class="text-uppercase">
@@ -533,8 +533,8 @@
 					</div>
 				</xsl:if>
 				<xsl:if test="$editable='true' or string($paragraph)!=''">
-					<div class="row gy-4 mt-1">
-						<p class="mb-5 {$contenteditable}" xo-scope="{value/@xo:id}" xo-attribute="text()">
+					<div class="row gy-4">
+						<p class="{$contenteditable}" xo-scope="{value/@xo:id}" xo-attribute="text()">
 							<xsl:if test="$editable='true'">
 								<xsl:attribute name="contenteditable"/>
 							</xsl:if>
@@ -544,7 +544,7 @@
 				</xsl:if>
 			</div>
 			<div class="container">
-				<div class="row gy-4 mt-1" style="position:relative;">
+				<div class="row gy-4" style="position:relative;">
 					<a href="/loteador#{$state:desarrollo}">
 						<img class="map" src="/assets/desarrollos/{$state:desarrollo}/loteador.png" border="0" orgwidth="3800" style="width: 100%; height: 100%; background: var(--filosterra-blue-smoke);" alt="" />
 						<label style="
@@ -582,37 +582,29 @@
 		<xsl:variable name="extra-classes">
 			<xsl:if test="$editable='true' or string($paragraph)!=''">pb-4</xsl:if>
 		</xsl:variable>
-		<section class="{$section-background} section-hd d-flex align-items-center py-5" id="desarrollosinfo">
-			<div class="container">
-				<div class="container">
-					<xsl:if test="$editable='true' or string($title)!=''">
-						<div class="text-center {$extra-classes}">
-							<h4 class="text-uppercase">
-								<xsl:apply-templates mode="title" select="value"/>
-							</h4>
-						</div>
-					</xsl:if>
-					<xsl:if test="$editable='true' or string($paragraph)!=''">
-						<div class="row gy-4 mt-1">
-							<p class="mb-5 {$contenteditable}" xo-scope="{value/@xo:id}" xo-attribute="text()">
-								<xsl:if test="$editable='true'">
-									<xsl:attribute name="contenteditable"/>
-								</xsl:if>
-								<xsl:apply-templates mode="content" select="value"/>
-							</p>
-						</div>
-					</xsl:if>
-				</div>
-				<div class="row">
-					<p class="mb-5" xo-scope="{value/@xo:id}" xo-attribute="text()">
-						<xsl:if test="$editable='true'">
-							<xsl:attribute name="contenteditable"/>
-						</xsl:if>
-						<xsl:value-of select="$paragraph"/>
-					</p>
-					<div class="text-center">
-						<img src="/assets/desarrollos/{$state:desarrollo}/background.png" alt="" class="img-fluid"/>
+		<section class="{$section-background} section-hd d-flex align-items-center py-5 d-flex flex-column" id="desarrollosinfo">
+			<div class="container pb-4">
+				<xsl:if test="$editable='true' or string($title)!=''">
+					<div class="text-center {$extra-classes}">
+						<h4 class="text-uppercase">
+							<xsl:apply-templates mode="title" select="value"/>
+						</h4>
 					</div>
+				</xsl:if>
+				<xsl:if test="$editable='true' or string($paragraph)!=''">
+					<div class="row gy-4">
+						<p class="{$contenteditable}" xo-scope="{value/@xo:id}" xo-attribute="text()">
+							<xsl:if test="$editable='true'">
+								<xsl:attribute name="contenteditable"/>
+							</xsl:if>
+							<xsl:apply-templates mode="content" select="value"/>
+						</p>
+					</div>
+				</xsl:if>
+			</div>
+			<div class="row">
+				<div class="text-center">
+					<img src="/assets/desarrollos/{$state:desarrollo}/background.png" alt="" class="img-fluid"/>
 				</div>
 			</div>
 		</section>
