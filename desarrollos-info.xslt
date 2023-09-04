@@ -555,7 +555,7 @@
     right: 23px;
 	cursor: pointer;
 ">
-							<button class="btn btn-primary" style="margin: .7rem;">Click para ver disponibilidad</button>
+							<button class="btn btn-primary" style="margin: .7rem; font-size: 18pt;">Click para ver disponibilidad</button>
 						</label>
 					</a>
 				</div>
