@@ -554,7 +554,9 @@
     bottom: 10px;
     right: 23px;
 	cursor: pointer;
-">Clic para ver disponibilidad</label>
+">
+							<button class="btn btn-primary" style="margin: .7rem;">Click para ver disponibilidad</button>
+						</label>
 					</a>
 				</div>
 			</div>

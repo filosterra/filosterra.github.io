@@ -11,8 +11,8 @@
     --terciary-color: var(--filosterra-silver-cloud);
     --primary: #1c262f;
     --primary-light: #212d37;
-    --secondary: #0ee951;
-    --tertiary: #00dabf;
+    --secondary: var(--filosterra-river-red);
+    --tertiary: var(--filosterra-silver-cloud);
     --gradient: linear-gradient(to right, #0ee951, #00dabf);
     --bg-main-color: rgb(35, 52, 155);
     --bg-title-color: #000;
@@ -502,25 +502,27 @@ li {
     /******************/
     /*     Button     */
     /******************/
-    .btn {
-        color: white;
-        border-radius: 0;
-        border-width: 2px;
-        padding: 10px 30px;
-        border-image-slice: 1;
-        background-image: none;
-        background: transparent;
-        border-image-source: var(--gradient);
-        box-shadow: 5px 5px 0px 0px var(--secondary);
-    }
+.btn {
+    color: white;
+    border-radius: 0;
+    border-width: 2px;
+    padding: 10px 30px;
+    border-image-slice: 1;
+    background-image: none;
+    background: transparent;
+    border-color: var(--filosterra-river-red);
+    box-shadow: 5px 5px 0px 0px var(--secondary);
+}
 
-        .btn:hover {
-            color: white;
-            box-shadow: none;
-            border-radius: 0;
-            padding: 10px 30px;
-            transform: translate(5px, 5px);
-        }
+    .btn:hover {
+        color: white;
+        box-shadow: none;
+        border-radius: 0;
+        padding: 10px 30px;
+        transform: translate(5px, 5px);
+        background-color: var(--filosterra-river-red);
+        border-color: var(--filosterra-creen-snow);
+    }
 
     /* Email - Newsletter Button */
     .btn-secondary {
