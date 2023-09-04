@@ -117,17 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="section_2" xml:space="preserve">
-    <value>Sección 2: Encuentra la vida que mereces en un entorno
-tranquilo y lleno de experiencias.
-Sauceda cuenta con lo esencial para tu seguridad. Barda perimetral, cerca perimetral electrificada, accesos
-controlados y vigilancia 24/7.</value>
-    <comment>loteador</comment>
-  </data>
-  <data name="section_3" xml:space="preserve">
-    <value>Sección 3: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Senectus et netus et malesuada fames. Malesuada nunc vel risus commodo. Eget egestas purus viverra accumsan in nisl nisi. Pellentesque elit ullamcorper dignissim cras tincidunt lobortis et leo duis ut.</value>
-    <comment>mapa</comment>
-  </data>
   <data name="section_1" xml:space="preserve">
     <value>TU NUEVO HOGAR : ES MOMENTO DE INVERTIR EN UN PROYECTO DE VIDA QUE CUMPLA CON TUS EXPECTATIVAS </value>
     <comment>cover</comment>
@@ -137,5 +126,14 @@ controlados y vigilancia 24/7.</value>
   </data>
   <data name="full_name" xml:space="preserve">
     <value>La Sauceda Residencial</value>
+  </data>
+  <data name="section_2" xml:space="preserve">
+    <value>Seguridad: La seguridad es una prioridad en Olmos Residencial. La barda perimetral que rodea todo el desarrollo garantiza la privacidad y protección de sus residentes. Además, cuenta con una caseta de vigilancia estratégicamente ubicada en el acceso principal, donde un equipo de profesionales altamente capacitados monitorea y controla el ingreso y salida de personas y vehículos las 24 horas del día. Los accesos controlados garantizan que solo los residentes y sus invitados autorizados tengan acceso al fraccionamiento, brindando así una tranquilidad adicional.</value>
+  </data>
+  <data name="section_3" xml:space="preserve">
+    <value>Sección 3: Pero Olmos Residencial no solo se enfoca en la seguridad, también se preocupa por ofrecer un entorno de vida excepcional. Sus amplias áreas verdes proporcionan espacios de recreación y esparcimiento para toda la familia. Ya sea para dar un paseo, practicar deportes al aire libre o simplemente relajarse rodeado de naturaleza, estos espacios verdes se convierten en el lugar perfecto para disfrutar de momentos inolvidables.
+
+Y en este párrafo se puede ver más información</value>
+    <comment>mapa</comment>
   </data>
 </root>
