@@ -120,9 +120,6 @@
   <data name="full_name" xml:space="preserve">
     <value>Los Olmos Residencial</value>
   </data>
-  <data name="motto" xml:space="preserve">
-    <value>Crea, Construye y Vive</value>
-  </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="olmos render 2 piso dif" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>gallery\olmos render 2 piso dif.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -131,17 +128,15 @@
     <value>top: 85px; left: -277px;</value>
   </data>
   <data name="section_3" xml:space="preserve">
-    <value>Sección 3: Pero Olmos Residencial no solo se enfoca en la seguridad, también se preocupa por ofrecer un entorno de vida excepcional. Sus amplias áreas verdes proporcionan espacios de recreación y esparcimiento para toda la familia. Ya sea para dar un paseo, practicar deportes al aire libre o simplemente relajarse rodeado de naturaleza, estos espacios verdes se convierten en el lugar perfecto para disfrutar de momentos inolvidables.
-
-Y en este párrafo se puede ver más información</value>
+    <value>Ubicación: Ubicado en la zona poniente de la ciudad con acceso a través de vias rapidas Olmos Residencial cuenta con amplias áreas verdes equipadas con juegos infantiles para ofrecer un entorno de vida excepcional. </value>
     <comment>mapa</comment>
   </data>
   <data name="section_2" xml:space="preserve">
-    <value>Seguridad: La seguridad es una prioridad en Olmos Residencial. La barda perimetral que rodea todo el desarrollo garantiza la privacidad y protección de sus residentes. Además, cuenta con una caseta de vigilancia estratégicamente ubicada en el acceso principal, donde un equipo de profesionales altamente capacitados monitorea y controla el ingreso y salida de personas y vehículos las 24 horas del día. Los accesos controlados garantizan que solo los residentes y sus invitados autorizados tengan acceso al fraccionamiento, brindando así una tranquilidad adicional.</value>
+    <value>Olmos cuenta con todo para tu seguridad: La barda perimetral que rodea todo el desarrollo garantiza la privacidad y protección de los residentes. Además, cuenta con una caseta de vigilancia estratégicamente ubicada en el acceso principal para controlarlo y cámaras de seguridad las 24 horas. </value>
     <comment>loteador</comment>
   </data>
   <data name="section_1" xml:space="preserve">
-    <value>OLMOS CUENTA CON TODO PARA TU SEGURIDAD: </value>
+    <value>CREA, CONSTRUYE Y VIVE</value>
     <comment>cover</comment>
   </data>
 </root>
