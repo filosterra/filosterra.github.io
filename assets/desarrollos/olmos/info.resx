@@ -137,6 +137,8 @@
   </data>
   <data name="motto" xml:space="preserve">
     <value>CREA, CONSTRUYE Y VIVE</value>
-    <comment>cover</comment>
+  </data>
+  <data name="section_1" xml:space="preserve">
+    <value>CREA, CONSTRUYE Y VIVE:</value>
   </data>
 </root>
