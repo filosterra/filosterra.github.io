@@ -113,8 +113,8 @@
 					</div>
 				</xsl:if>
 				<xsl:if test="$editable='true' or string($paragraph)!=''">
-					<div class="row gy-4">
-						<p class="{$contenteditable}" xo-scope="{value/@xo:id}" xo-attribute="text()">
+					<div style="text-align: center;" class="{$contenteditable}" xo-scope="{value/@xo:id}" xo-attribute="text()">
+						<p style="display: inline-block; text-align: justify; max-width: 100%;" xo-scope="{value/@xo:id}" xo-attribute="text()">
 							<xsl:if test="$editable='true'">
 								<xsl:attribute name="contenteditable"/>
 							</xsl:if>
@@ -533,8 +533,8 @@
 					</div>
 				</xsl:if>
 				<xsl:if test="$editable='true' or string($paragraph)!=''">
-					<div class="row gy-4">
-						<p class="{$contenteditable}" xo-scope="{value/@xo:id}" xo-attribute="text()">
+					<div style="text-align: center;" class="{$contenteditable}" xo-scope="{value/@xo:id}" xo-attribute="text()">
+						<p style="display: inline-block; text-align: justify; max-width: 100%;" xo-scope="{value/@xo:id}" xo-attribute="text()">
 							<xsl:if test="$editable='true'">
 								<xsl:attribute name="contenteditable"/>
 							</xsl:if>
@@ -592,8 +592,8 @@
 					</div>
 				</xsl:if>
 				<xsl:if test="$editable='true' or string($paragraph)!=''">
-					<div class="row gy-4">
-						<p class="{$contenteditable}" xo-scope="{value/@xo:id}" xo-attribute="text()">
+					<div style="text-align: center;" class="{$contenteditable}" xo-scope="{value/@xo:id}" xo-attribute="text()">
+						<p style="display: inline-block; text-align: justify; max-width: 100%;" xo-scope="{value/@xo:id}" xo-attribute="text()">
 							<xsl:if test="$editable='true'">
 								<xsl:attribute name="contenteditable"/>
 							</xsl:if>
