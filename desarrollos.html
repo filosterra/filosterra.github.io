@@ -26,9 +26,9 @@
     <link href="./css/fontawesome-all.min.css" rel="stylesheet">
     <link href="./css/aos.min.css" rel="stylesheet">
     <link href="./css/swiper.css" rel="stylesheet">
-    <link href="./css/style.css?v=20230907_1503" rel="stylesheet">
-    <script type="text/javascript" src="xover/xo.js?v=20230907_1503"></script>
-    <script type="text/javascript" src="custom.js?v=20230907_1503"></script>
+    <link href="./css/style.css?v=20230910_0928" rel="stylesheet">
+    <script type="text/javascript" src="xover/xo.js?v=20230910_0928"></script>
+    <script type="text/javascript" src="custom.js?v=20230910_0928"></script>
     <link rel="icon" href="./assets/img/favicon.png" type="image/x-icon" />
     <!--<style>
         xo-param {
@@ -483,7 +483,7 @@
     <popup-info img="img/alt.png" data-text="Your card validation code (CVC) is an extra security feature — it is the last 3 or 4 numbers on the back of your card."></popup-info>
 
     <!-- Navbar -->
-    <nav id="navbar" class="navbar navbar-expand-lg fixed-top navbar-dark" aria-label="Main navigation" xo-stylesheet="navbar.xslt">
+    <nav id="navbar" class="navbar navbar-expand-lg fixed-top navbar-dark" aria-label="Main navigation" xo-source="navbar.html">
     </nav>
     <main xo-stylesheet="desarrollos-info.xslt" xo-store="#{$state:desarrollo}:info">
         <!-- Section Desarrollos -->
@@ -676,63 +676,8 @@
     <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel" xo-stylesheet="content-manager.xslt" xo-store="active">
     </div>-->
     <!-- Bottom -->
-    <footer class="bottom text-light" style="
-        position: fixed;
-        bottom: 0;
-        width: 100%;
-        color: var(--bg-title-color);
-        background-color: var(--title-bg-color);
-        height: var(--footer-height);
-        min-height: max-content;
-        align-items: center;
-        display: flex;
-    ">
-        <div class="d-flex justify-content-evenly" style="        width: 100%;
-        align-items: center;
-">
-            <div class="col-md-2 col-sm-3 d-flex justify-content-center">
-                <p class="d-flex">
-                </p><div class="me-3">
-                    <a href="#">
-                        <i class="fab fa-facebook-f fa-2x py-2"></i>
-                    </a>
-                </div>
-                <div class="me-3">
-                    <a href="#">
-                        <i class="fab fa-twitter fa-2x py-2"></i>
-                    </a>
-                </div>
-                <div class="me-3">
-                    <a href="#">
-                        <i class="fab fa-instagram fa-2x py-2"></i>
-                    </a>
-                </div>
-                <p></p>
-            </div>
-            <div class="col-md-6 d-none d-sm-flex col-sm-6 justify-content-center align-items-center" xo-stylesheet="footer-logos.xslt" xo-store="#desarrollos">
-            </div>
-            <div class="col-md-3 d-none d-lg-inline d-flex justify-content-center row">
-                <p class="col-md-12">
-                    Copyright © <label xo-script="CurrentYear" xo-suspense="Await">2023</label> Filosterra
-                </p>
-                <p class="col-md-12">Todos los derechos reservados</p>
-            </div>
-        </div>
+    <footer xo-source="footer.html">
     </footer>
-
-    <style>
-        #myBtn {
-            color: white;
-        }
-    </style>
-
-    <!-- Back To Top Button -->
-    <button onclick="topFunction()" id="myBtn">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-double-up" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M7.646 2.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 3.707 2.354 9.354a.5.5 0 1 1-.708-.708l6-6z" />
-            <path fill-rule="evenodd" d="M7.646 6.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 7.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z" />
-        </svg>
-    </button>
     <!-- end of back to top button -->
     <!-- Scripts -->
     <script src="./js/bootstrap.min.js"></script><!-- Bootstrap framework -->

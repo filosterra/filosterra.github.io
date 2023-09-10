@@ -20,8 +20,7 @@
   "state": {
     "desarrollo": "${(xover.site.seed || '').replace(/^#/,'')}"
   },
-  "stores": [ "#desarrollos", "#site" ],
-  "stylesheets": [ "navbar.xslt" ],
+  "start": [ "#desarrollos", "#site", "/navbar.html", "/footer.html", "/iconos.xslt" ],
   "settings": {
     "~.map": { "headers": { "accept": "text/plain" } },
     "~.resx": {

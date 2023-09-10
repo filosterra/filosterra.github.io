@@ -22,7 +22,7 @@
 			<div id="carousel_{@name}" class="carousel slide">
 				<div class="carousel-inner" xo-store="#{@name}:gallery" xo-stylesheet="desarrollos-gallery.xslt" desarrollo="{@name}">
 					<div class="carousel-item">
-						<img src="/assets/desarrollos/{@name}/cover.png" alt="" class="img-fluid d-block w-100"/>
+						<img src="/assets/desarrollos/{@name}/cover.png" alt="" class="img-fluid d-block w-100" />
 					</div>
 				</div>
 				<button class="carousel-control-prev" type="button" data-bs-target="#carousel_{@name}" data-bs-slide="prev">

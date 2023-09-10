@@ -16,7 +16,7 @@
 	<xsl:template match="data">
 		<xsl:variable name="src" select="substring-before(value,';')"/>
 		<div class="carousel-item">
-			<img class="d-block w-100" src="/assets/desarrollos/{$desarrollo}/{$src}" alt="$desarrollo"/>
+			<img class="d-block w-100" src="/assets/desarrollos/{$desarrollo}/{$src}" alt="{$desarrollo}" fetchPriority="low"/>
 		</div>
 	</xsl:template>
 </xsl:stylesheet>
