@@ -20,7 +20,7 @@
 		</xsl:variable>
 		<div class="tab-pane fade {$show}" id="list-{@name}" role="tabpanel" aria-labelledby="list-{@name}-list" data-bs-ride="carousel" data-bs-interval="5000">
 			<div id="carousel_{@name}" class="carousel slide">
-				<div class="carousel-inner" xo-store="#{@name}:gallery" xo-stylesheet="desarrollos-gallery.xslt" desarrollo="{@name}">
+				<div class="carousel-inner" xo-source="#{@name}:gallery" xo-stylesheet="desarrollos-gallery.xslt" desarrollo="{@name}">
 					<div class="carousel-item">
 						<img src="/assets/desarrollos/{@name}/cover.png" alt="" class="img-fluid d-block w-100" />
 					</div>
@@ -38,7 +38,7 @@
 		<!--<div class="tab-pane fade" id="list-{@name}" role="tabpanel" aria-labelledby="list-{@name}-list">
 			<img src="/assets/desarrollos/{@name}/cover.png" alt="" class="img-fluid"/>
 		</div>-->
-		<!--<div class="tab-pane fade" id="list-altanna" role="tabpanel" aria-labelledby="list-altanna-list" xo-store="#altanna:gallery" xo-stylesheet="gallery.xslt">
+		<!--<div class="tab-pane fade" id="list-altanna" role="tabpanel" aria-labelledby="list-altanna-list" xo-source="#altanna:gallery" xo-stylesheet="gallery.xslt">
 		</div>-->
 	</xsl:template>
 

@@ -9,7 +9,7 @@
 	<xsl:template match="/*">
 		<xsl:variable name="sections" select="key('section','')"/>
 		<main>
-			<xsl:attribute name="xo-store">#{$state:desarrollo}:info</xsl:attribute>
+			<xsl:attribute name="xo-source">#{$state:desarrollo}:info</xsl:attribute>
 			<!-- Section Desarrollos -->
 			<header class="d-flex align-items-center no-background banner" style="background: repeating-linear-gradient( 55deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) 9px, rgba(0, 0, 1, 0.3) 9px, rgba(0, 0, 1, 0.3) 18px); height: 230px;" >
 				<script>context.addEventListener('error', function(){alert()})</script>

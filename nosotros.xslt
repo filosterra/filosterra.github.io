@@ -1,6 +1,6 @@
 ﻿<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns="http://www.w3.org/1999/xhtml">
 	<xsl:template match="/*">
-		<div class="dropdown-menu megamenu m-0 card-nosotros" role="menu" xo-store="#site" xo-stylesheet="nosotros.xslt">
+		<div class="dropdown-menu megamenu m-0 card-nosotros" role="menu" xo-source="#site" xo-stylesheet="nosotros.xslt">
 			<h3>Nosotros</h3>
 			<section>
 				<p>

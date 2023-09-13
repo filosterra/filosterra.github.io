@@ -14,7 +14,7 @@
 				<img src="/assets/img/desarrollos.png" style="width: 100%; height: 100%;"/>
 				<div class="markers">
 					<xsl:for-each select="data">
-						<div xo-stylesheet="desarrollos-map-marker.xslt" xo-store="#{@name}:info" desarrollo="{value}"/>
+						<div xo-stylesheet="desarrollos-map-marker.xslt" xo-source="#{@name}:info" desarrollo="{value}"/>
 					</xsl:for-each>
 					<!--<div class="od" style="top:69.42%;left: 53.992%;position: absolute;">
 						<div class="id" style="left:-3px;top:-3px">
