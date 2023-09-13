@@ -114,8 +114,8 @@
 					</div>
 				</xsl:if>
 				<xsl:if test="$searchParams:edit='true' or string($paragraph)!=''">
-					<div style="text-align: center;" class="{$contenteditable}" xo-scope="{value/@xo:id}" xo-attribute="text()">
-						<p style="display: inline-block; text-align: justify; max-width: 100%;" xo-scope="{value/@xo:id}" xo-attribute="text()">
+					<div style="text-align: center;" class="{$contenteditable}" xo-scope="{value/@xo:id}" xo-slot="text()">
+						<p style="display: inline-block; text-align: justify; max-width: 100%;" xo-scope="{value/@xo:id}" xo-slot="text()">
 							<xsl:if test="$searchParams:edit='true'">
 								<xsl:attribute name="contenteditable"/>
 							</xsl:if>
@@ -225,7 +225,7 @@
 							<div class="image-container" style="position: relative; transform: scale(2); width: 400px; height: 400px;">
 								<xsl:attribute name="onclick">if (this.isDragging) {return}; this.style.transform = `scale(${Math.abs(+this.style.transform.replace(/[^\d\.]/g, '') + .5)})`; this.style.translate = this.style.translate.split(/\s+/).map(percent => `${parseFloat(percent) * 2}%`).join(' '); return false</xsl:attribute>
 								<xsl:attribute name="oncontextmenu">this.style.transform = `scale(${Math.abs(+this.style.transform.replace(/[^\d\.]/g, '') - .5)})`;  this.style.translate = this.style.translate.split(/\s+/).map(percent => `${parseFloat(percent) / 2}%`).join(' '); return false</xsl:attribute>
-								<img src="/assets/desarrollos/{$state:desarrollo}/mapa.jpeg" onmousedown="startDragging(this)" onmouseup="stopDragging(this)" onmousemove="moveImage(this)" style="position: absolute; {$pin}" xo-scope="{ancestor::root/data[@name='pin']/value/@xo:id}" xo-attribute="text()"/>
+								<img src="/assets/desarrollos/{$state:desarrollo}/mapa.jpeg" onmousedown="startDragging(this)" onmouseup="stopDragging(this)" onmousemove="moveImage(this)" style="position: absolute; {$pin}" xo-scope="{ancestor::root/data[@name='pin']/value/@xo:id}" xo-slot="text()"/>
 								<!--<script>
 									<![CDATA[
 		const targetElement = context.querySelector('img');
@@ -310,7 +310,7 @@
 								</h2>
 							</header>
 							<div class="boxcard-lead">
-								<p class="boxcard-text" xo-scope="{value/@xo:id}" xo-attribute="text()">
+								<p class="boxcard-text" xo-scope="{value/@xo:id}" xo-slot="text()">
 									<xsl:if test="$searchParams:edit='true'">
 										<xsl:attribute name="contenteditable"/>
 									</xsl:if>
@@ -405,7 +405,7 @@
 							<div class="image-container" style="position: relative; transform: scale(2); width: 400px; height: 400px;">
 								<xsl:attribute name="onclick">if (this.isDragging) {return}; this.style.transform = `scale(${Math.abs(+this.style.transform.replace(/[^\d\.]/g, '') + .5)})`; this.style.translate = this.style.translate.split(/\s+/).map(percent => `${parseFloat(percent) * 2}%`).join(' '); return false</xsl:attribute>
 								<xsl:attribute name="oncontextmenu">this.style.transform = `scale(${Math.abs(+this.style.transform.replace(/[^\d\.]/g, '') - .5)})`;  this.style.translate = this.style.translate.split(/\s+/).map(percent => `${parseFloat(percent) / 2}%`).join(' '); return false</xsl:attribute>
-								<img src="/assets/desarrollos/{$state:desarrollo}/mapa.jpeg" onmousedown="startDragging(this)" onmouseup="stopDragging(this)" onmousemove="moveImage(this)" style="position: absolute; {$pin}" xo-scope="{ancestor::root/data[@name='pin']/value/@xo:id}" xo-attribute="text()"/>
+								<img src="/assets/desarrollos/{$state:desarrollo}/mapa.jpeg" onmousedown="startDragging(this)" onmouseup="stopDragging(this)" onmousemove="moveImage(this)" style="position: absolute; {$pin}" xo-scope="{ancestor::root/data[@name='pin']/value/@xo:id}" xo-slot="text()"/>
 								<!--<script>
 									<![CDATA[
 		const targetElement = context.querySelector('img');
@@ -490,7 +490,7 @@
 								</h2>
 							</header>
 							<div class="boxcard-lead">
-								<p class="boxcard-text" xo-scope="{value/@xo:id}" xo-attribute="text()">
+								<p class="boxcard-text" xo-scope="{value/@xo:id}" xo-slot="text()">
 									<xsl:if test="$searchParams:edit='true'">
 										<xsl:attribute name="contenteditable"/>
 									</xsl:if>
@@ -534,8 +534,8 @@
 					</div>
 				</xsl:if>
 				<xsl:if test="$searchParams:edit='true' or string($paragraph)!=''">
-					<div style="text-align: center;" class="{$contenteditable}" xo-scope="{value/@xo:id}" xo-attribute="text()">
-						<p style="display: inline-block; text-align: justify; max-width: 100%;" xo-scope="{value/@xo:id}" xo-attribute="text()">
+					<div style="text-align: center;" class="{$contenteditable}" xo-scope="{value/@xo:id}" xo-slot="text()">
+						<p style="display: inline-block; text-align: justify; max-width: 100%;" xo-scope="{value/@xo:id}" xo-slot="text()">
 							<xsl:if test="$searchParams:edit='true'">
 								<xsl:attribute name="contenteditable"/>
 							</xsl:if>
@@ -593,8 +593,8 @@
 					</div>
 				</xsl:if>
 				<xsl:if test="$searchParams:edit='true' or string($paragraph)!=''">
-					<div style="text-align: center;" class="{$contenteditable}" xo-scope="{value/@xo:id}" xo-attribute="text()">
-						<p style="display: inline-block; text-align: justify; max-width: 100%;" xo-scope="{value/@xo:id}" xo-attribute="text()">
+					<div style="text-align: center;" class="{$contenteditable}" xo-scope="{value/@xo:id}" xo-slot="text()">
+						<p style="display: inline-block; text-align: justify; max-width: 100%;" xo-scope="{value/@xo:id}" xo-slot="text()">
 							<xsl:if test="$searchParams:edit='true'">
 								<xsl:attribute name="contenteditable"/>
 							</xsl:if>

@@ -82,7 +82,7 @@
 	</xsl:template>
 
 	<xsl:template match="value|comment">
-		<td contenteditable="" xo-attribute="text()">
+		<td contenteditable="" xo-slot="text()">
 			<xsl:value-of select="."/>
 		</td>
 	</xsl:template>
