@@ -22,11 +22,16 @@
   },
   "start": [ "#desarrollos", "#site", "/navbar.html", "/footer.html", "/iconos.xslt" ],
   "settings": {
-    "~.map": { "headers": { "accept": "text/plain" } },
-    "~.resx": {
+    "~.map": {
       "headers": {
+        "accept": "text/plain",
         "cache": "no-store",
         "Cache-Control": "no-cache"
+      }
+    },
+    "~.xslt||~.html": {
+      "headers": {
+        "Cache-Control": "max-age=1800"
       }
     },
     "^#(.+)~edit$": {

@@ -1,6 +1,7 @@
-﻿<xsl:stylesheet version="1.0" xmlns="http://www.w3.org/1999/xhtml" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xo="http://panax.io/xover" xmlns:state="http://panax.io/state" exclude-result-prefixes="xsl xo state">
+﻿<xsl:stylesheet version="1.0" xmlns="http://www.w3.org/1999/xhtml" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xo="http://panax.io/xover" xmlns:state="http://panax.io/state" xmlns:searchParams="http://panax.io/site/searchParams" exclude-result-prefixes="xsl xo state">
 	<xsl:param name="state:desarrollo">(xover.site.seed || '').replace(/^#/,'')</xsl:param>
-	<xsl:param name="editable">xover.site.querystring.has("edit")</xsl:param>
+	<!--<xsl:param name="searchParams:edit">xover.site.querystring.has("edit")</xsl:param>-->
+	<xsl:param name="searchParams:edit">(value)=>value!=undefined</xsl:param>
 	<xsl:key name="section" match="data[starts-with(@name,'section_')]" use="''"/>
 	<xsl:key name="section" match="data[starts-with(@name,'section_')]" use="string(comment)"/>
 	<xsl:key name="section" match="data[starts-with(@name,'section_')]" use="substring-after(@name,'_')"/>
@@ -98,24 +99,24 @@
 			</xsl:choose>
 		</xsl:variable>
 		<xsl:variable name="contenteditable">
-			<xsl:if test="$editable='true'">contenteditable</xsl:if>
+			<xsl:if test="$searchParams:edit='true'">contenteditable</xsl:if>
 		</xsl:variable>
 		<xsl:variable name="extra-classes">
-			<xsl:if test="$editable='true' or string($paragraph)!=''">pb-4</xsl:if>
+			<xsl:if test="$searchParams:edit='true' or string($paragraph)!=''">pb-4</xsl:if>
 		</xsl:variable>
 		<section class="{$section-background} section-hd d-flex align-items-center py-5" id="{@name}">
 			<div class="container pb-4">
-				<xsl:if test="$editable='true' or string($title)!=''">
+				<xsl:if test="$searchParams:edit='true' or string($title)!=''">
 					<div class="text-center {$extra-classes}">
 						<h4 class="text-uppercase">
 							<xsl:apply-templates mode="title" select="value"/>
 						</h4>
 					</div>
 				</xsl:if>
-				<xsl:if test="$editable='true' or string($paragraph)!=''">
+				<xsl:if test="$searchParams:edit='true' or string($paragraph)!=''">
 					<div style="text-align: center;" class="{$contenteditable}" xo-scope="{value/@xo:id}" xo-attribute="text()">
 						<p style="display: inline-block; text-align: justify; max-width: 100%;" xo-scope="{value/@xo:id}" xo-attribute="text()">
-							<xsl:if test="$editable='true'">
+							<xsl:if test="$searchParams:edit='true'">
 								<xsl:attribute name="contenteditable"/>
 							</xsl:if>
 							<xsl:apply-templates mode="content" select="value"/>
@@ -128,7 +129,7 @@
 	</xsl:template>
 
 	<xsl:template mode="store-buttons" match="*">
-		<xsl:if test="$editable='true'">
+		<xsl:if test="$searchParams:edit='true'">
 			<div class="d-flex justify-content-center align-items-center py-3">
 				<button class="" onclick="saveResx(scope)">Guardar</button>
 			</div>
@@ -136,7 +137,7 @@
 	</xsl:template>
 
 	<xsl:template mode="section-divider" match="*">
-		<xsl:if test="$editable='true'">
+		<xsl:if test="$searchParams:edit='true'">
 			<div class="section">
 				<a id="{@xo:id}" href="#" onclick="duplicar(scope)" class="d-flex justify-content-center align-items-center">
 					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-dotted" viewBox="0 0 16 16">
@@ -310,7 +311,7 @@
 							</header>
 							<div class="boxcard-lead">
 								<p class="boxcard-text" xo-scope="{value/@xo:id}" xo-attribute="text()">
-									<xsl:if test="$editable='true'">
+									<xsl:if test="$searchParams:edit='true'">
 										<xsl:attribute name="contenteditable"/>
 									</xsl:if>
 									<xsl:value-of select="$paragraph"/>
@@ -322,7 +323,7 @@
 				</div>
 			</div>
 		</section>
-		<xsl:if test="$editable">
+		<xsl:if test="$searchParams:edit">
 			<xsl:apply-templates mode="section-divider" select="."/>
 		</xsl:if>
 	</xsl:template>
@@ -490,7 +491,7 @@
 							</header>
 							<div class="boxcard-lead">
 								<p class="boxcard-text" xo-scope="{value/@xo:id}" xo-attribute="text()">
-									<xsl:if test="$editable='true'">
+									<xsl:if test="$searchParams:edit='true'">
 										<xsl:attribute name="contenteditable"/>
 									</xsl:if>
 									<xsl:value-of select="$paragraph"/>
@@ -502,7 +503,7 @@
 				</div>
 			</div>
 		</section>
-		<xsl:if test="$editable">
+		<xsl:if test="$searchParams:edit">
 			<xsl:apply-templates mode="section-divider" select="."/>
 		</xsl:if>
 	</xsl:template>
@@ -518,24 +519,24 @@
 			</xsl:choose>
 		</xsl:variable>
 		<xsl:variable name="contenteditable">
-			<xsl:if test="$editable='true'">contenteditable</xsl:if>
+			<xsl:if test="$searchParams:edit='true'">contenteditable</xsl:if>
 		</xsl:variable>
 		<xsl:variable name="extra-classes">
-			<xsl:if test="$editable='true' or string($paragraph)!=''">pb-4</xsl:if>
+			<xsl:if test="$searchParams:edit='true' or string($paragraph)!=''">pb-4</xsl:if>
 		</xsl:variable>
 		<section class="{$section-background} section-hd d-flex align-items-center py-5 d-flex flex-column">
 			<div class="container pb-4">
-				<xsl:if test="$editable='true' or string($title)!=''">
+				<xsl:if test="$searchParams:edit='true' or string($title)!=''">
 					<div class="text-center {$extra-classes}">
 						<h4 class="text-uppercase">
 							<xsl:apply-templates mode="title" select="value"/>
 						</h4>
 					</div>
 				</xsl:if>
-				<xsl:if test="$editable='true' or string($paragraph)!=''">
+				<xsl:if test="$searchParams:edit='true' or string($paragraph)!=''">
 					<div style="text-align: center;" class="{$contenteditable}" xo-scope="{value/@xo:id}" xo-attribute="text()">
 						<p style="display: inline-block; text-align: justify; max-width: 100%;" xo-scope="{value/@xo:id}" xo-attribute="text()">
-							<xsl:if test="$editable='true'">
+							<xsl:if test="$searchParams:edit='true'">
 								<xsl:attribute name="contenteditable"/>
 							</xsl:if>
 							<xsl:apply-templates mode="content" select="value"/>
@@ -561,7 +562,7 @@
 				</div>
 			</div>
 		</section>
-		<xsl:if test="$editable">
+		<xsl:if test="$searchParams:edit">
 			<xsl:apply-templates mode="section-divider" select="."/>
 		</xsl:if>
 	</xsl:template>
@@ -577,24 +578,24 @@
 			</xsl:choose>
 		</xsl:variable>
 		<xsl:variable name="contenteditable">
-			<xsl:if test="$editable='true'">contenteditable</xsl:if>
+			<xsl:if test="$searchParams:edit='true'">contenteditable</xsl:if>
 		</xsl:variable>
 		<xsl:variable name="extra-classes">
-			<xsl:if test="$editable='true' or string($paragraph)!=''">pb-4</xsl:if>
+			<xsl:if test="$searchParams:edit='true' or string($paragraph)!=''">pb-4</xsl:if>
 		</xsl:variable>
 		<section class="{$section-background} section-hd d-flex align-items-center py-5 d-flex flex-column" id="desarrollosinfo">
 			<div class="container pb-4">
-				<xsl:if test="$editable='true' or string($title)!=''">
+				<xsl:if test="$searchParams:edit='true' or string($title)!=''">
 					<div class="text-center {$extra-classes}">
 						<h4 class="text-uppercase">
 							<xsl:apply-templates mode="title" select="value"/>
 						</h4>
 					</div>
 				</xsl:if>
-				<xsl:if test="$editable='true' or string($paragraph)!=''">
+				<xsl:if test="$searchParams:edit='true' or string($paragraph)!=''">
 					<div style="text-align: center;" class="{$contenteditable}" xo-scope="{value/@xo:id}" xo-attribute="text()">
 						<p style="display: inline-block; text-align: justify; max-width: 100%;" xo-scope="{value/@xo:id}" xo-attribute="text()">
-							<xsl:if test="$editable='true'">
+							<xsl:if test="$searchParams:edit='true'">
 								<xsl:attribute name="contenteditable"/>
 							</xsl:if>
 							<xsl:apply-templates mode="content" select="value"/>
@@ -608,7 +609,7 @@
 				</div>
 			</div>
 		</section>
-		<xsl:if test="$editable">
+		<xsl:if test="$searchParams:edit">
 			<xsl:apply-templates mode="section-divider" select="."/>
 		</xsl:if>
 	</xsl:template>

@@ -70,6 +70,7 @@
         }
 
         async function initMap() {
+            await xover.ready;
             let desarrollo_kml = xo.sources[`${xo.site.seed}:polygon`];
             let coordinates = await desarrollo_kml.ready && getCoordinatesFromKML(desarrollo_kml);
 
