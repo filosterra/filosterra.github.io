@@ -119,14 +119,14 @@
   </resheader>
   <data name="olmos" xml:space="preserve">
     <value>Los Olmos</value>
-    <comment>2</comment>
+    <comment>1</comment>
   </data>
   <data name="sauceda" xml:space="preserve">
     <value>La Sauceda</value>
-    <comment>1</comment>
+    <comment>3</comment>
   </data>
   <data name="altanna" xml:space="preserve">
     <value>Altanna</value>
-    <comment>3</comment>
+    <comment>2</comment>
   </data>
 </root>
