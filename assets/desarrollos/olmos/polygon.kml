@@ -25,7 +25,7 @@
 			<width>4</width>
 		</LineStyle>
 		<PolyStyle>
-			<color>6600aa55</color>
+			<color>000000ff</color>
 		</PolyStyle>
 	</Style>
 	<Style id="sn_ylw-pushpin1">
@@ -41,7 +41,7 @@
 			<width>4</width>
 		</LineStyle>
 		<PolyStyle>
-			<color>6600aa55</color>
+			<color>000000ff</color>
 		</PolyStyle>
 	</Style>
 	<Placemark>
