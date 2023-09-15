@@ -8,8 +8,8 @@
 			<div class="col-lg-4 d-none d-lg-inline">
 				<div class="post-entry-footer">
 					<ul>
-						<xsl:apply-templates select="$desarrollos[position()&lt;=ceiling(count($desarrollos) div 2)]" mode="map-item">
-							<xsl:sort select="comment"/>
+						<xsl:apply-templates select="$desarrollos[number(comment) mod 2 = 1]" mode="map-item">
+							<xsl:sort select="comment" data-type="number"/>
 							<xsl:sort select="value"/>
 						</xsl:apply-templates>
 					</ul>
@@ -26,8 +26,8 @@
 			<div class="col-lg-4 d-none d-lg-inline reversed">
 				<div class="post-entry-footer">
 					<ul>
-						<xsl:apply-templates select="$desarrollos[position()&gt;ceiling(count($desarrollos) div 2)]" mode="map-item">
-							<xsl:sort select="comment"/>
+						<xsl:apply-templates select="$desarrollos[number(comment) mod 2 = 0]" mode="map-item">
+							<xsl:sort select="comment" data-type="number"/>
 							<xsl:sort select="value"/>
 						</xsl:apply-templates>
 					</ul>
