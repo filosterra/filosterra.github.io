@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
 <Document>
-	<name>olmos.kml</name>
-	<StyleMap id="msn_ylw-pushpin4">
+	<name>sauceda.kml</name>
+	<StyleMap id="msn_ylw-pushpin">
 		<Pair>
 			<key>normal</key>
-			<styleUrl>#sn_ylw-pushpin1</styleUrl>
+			<styleUrl>#sn_ylw-pushpin</styleUrl>
 		</Pair>
 		<Pair>
 			<key>highlight</key>
-			<styleUrl>#sh_ylw-pushpin4</styleUrl>
+			<styleUrl>#sh_ylw-pushpin</styleUrl>
 		</Pair>
 	</StyleMap>
-	<Style id="sh_ylw-pushpin4">
+	<Style id="sh_ylw-pushpin">
 		<IconStyle>
 			<scale>1.3</scale>
 			<Icon>
@@ -20,15 +20,16 @@
 			</Icon>
 			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
 		</IconStyle>
+		<BalloonStyle>
+		</BalloonStyle>
 		<LineStyle>
-			<color>ff0055ff</color>
 			<width>4</width>
 		</LineStyle>
 		<PolyStyle>
-			<color>000000ff</color>
+			<color>66ffffff</color>
 		</PolyStyle>
 	</Style>
-	<Style id="sn_ylw-pushpin1">
+	<Style id="sn_ylw-pushpin">
 		<IconStyle>
 			<scale>1.1</scale>
 			<Icon>
@@ -36,23 +37,24 @@
 			</Icon>
 			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
 		</IconStyle>
+		<BalloonStyle>
+		</BalloonStyle>
 		<LineStyle>
-			<color>ff0055ff</color>
 			<width>4</width>
 		</LineStyle>
 		<PolyStyle>
-			<color>000000ff</color>
+			<color>66ffffff</color>
 		</PolyStyle>
 	</Style>
 	<Placemark>
-		<name>olmos</name>
-		<styleUrl>#msn_ylw-pushpin4</styleUrl>
+		<name>sauceda</name>
+		<styleUrl>#msn_ylw-pushpin</styleUrl>
 		<Polygon>
 			<tessellate>1</tessellate>
 			<outerBoundaryIs>
 				<LinearRing>
 					<coordinates>
-						-101.04740363389,22.18389410042301,0 -101.0474277307497,22.18384980025099,0 -101.0471825261108,22.18374262864987,0 -101.0465074972164,22.18510626572073,0 -101.0470139757639,22.18530988867609,0 -101.0476607720128,22.18459931905599,0 -101.0471517146045,22.18418735580338,0 -101.04740363389,22.18389410042301,0 
+						-101.0437674108057,22.18583442367336,0 -101.0442823052391,22.18541287570547,0 -101.0444436115336,22.18520741535814,0 -101.0450524039961,22.18453954708313,0 -101.0447221591044,22.18436482947148,0 -101.0440088281759,22.18493290886224,0 -101.0441910258997,22.18507873489755,0 -101.0435086213977,22.18566657614078,0 -101.0437674108057,22.18583442367336,0 
 					</coordinates>
 				</LinearRing>
 			</outerBoundaryIs>

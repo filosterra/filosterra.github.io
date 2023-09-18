@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
 <Document>
-	<name>ALTANNA.kmz</name>
-	<StyleMap id="msn_ylw-pushpin7">
+	<name>olmos.kml</name>
+	<StyleMap id="msn_ylw-pushpin">
 		<Pair>
 			<key>normal</key>
-			<styleUrl>#sn_ylw-pushpin6</styleUrl>
+			<styleUrl>#sn_ylw-pushpin</styleUrl>
 		</Pair>
 		<Pair>
 			<key>highlight</key>
-			<styleUrl>#sh_ylw-pushpin7</styleUrl>
+			<styleUrl>#sh_ylw-pushpin</styleUrl>
 		</Pair>
 	</StyleMap>
-	<Style id="sh_ylw-pushpin7">
+	<Style id="sh_ylw-pushpin">
 		<IconStyle>
 			<scale>1.3</scale>
 			<Icon>
@@ -20,15 +20,16 @@
 			</Icon>
 			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
 		</IconStyle>
+		<BalloonStyle>
+		</BalloonStyle>
 		<LineStyle>
-			<color>ff0055ff</color>
 			<width>4</width>
 		</LineStyle>
 		<PolyStyle>
-			<color>000000ff</color>
+			<color>66ffffff</color>
 		</PolyStyle>
 	</Style>
-	<Style id="sn_ylw-pushpin6">
+	<Style id="sn_ylw-pushpin">
 		<IconStyle>
 			<scale>1.1</scale>
 			<Icon>
@@ -36,23 +37,24 @@
 			</Icon>
 			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
 		</IconStyle>
+		<BalloonStyle>
+		</BalloonStyle>
 		<LineStyle>
-			<color>ff0055ff</color>
 			<width>4</width>
 		</LineStyle>
 		<PolyStyle>
-			<color>000000ff</color>
+			<color>66ffffff</color>
 		</PolyStyle>
 	</Style>
 	<Placemark>
-		<name>Polígono sin título</name>
-		<styleUrl>#msn_ylw-pushpin7</styleUrl>
+		<name>olmos</name>
+		<styleUrl>#msn_ylw-pushpin</styleUrl>
 		<Polygon>
 			<tessellate>1</tessellate>
 			<outerBoundaryIs>
 				<LinearRing>
 					<coordinates>
-						-101.0476506586576,22.18221598611128,0 -101.0479446077235,22.1826893638869,0 -101.0474082115132,22.18385208282791,0 -101.0471829965141,22.18418107014738,0 -101.0474859758042,22.18441262671982,0 -101.0486531042076,22.18284178967575,0 -101.0490245051364,22.18252161354846,0 -101.0486445514184,22.18209702890619,0 -101.0482476005695,22.18240080835945,0 -101.0479965210386,22.18196812409732,0 -101.0476506586576,22.18221598611128,0 
+						-101.04740363389,22.18389410042301,0 -101.0474277307497,22.18384980025099,0 -101.0471825261108,22.18374262864987,0 -101.0464648821442,22.18507839818648,0 -101.0469546614517,22.18530452322188,0 -101.0476878077951,22.18457966430295,0 -101.0471517146045,22.18418735580338,0 -101.04740363389,22.18389410042301,0 
 					</coordinates>
 				</LinearRing>
 			</outerBoundaryIs>
