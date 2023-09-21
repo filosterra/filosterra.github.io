@@ -1,5 +1,5 @@
 ﻿<xsl:stylesheet version="1.0" xmlns="http://www.w3.org/1999/xhtml" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xo="http://panax.io/xover" xmlns:state="http://panax.io/state" xmlns:searchParams="http://panax.io/site/searchParams" exclude-result-prefixes="xsl xo state">
-	<xsl:param name="state:desarrollo">(xover.site.seed || '').replace(/^#/,'')</xsl:param>
+	<xsl:param name="state:desarrollo"></xsl:param>
 	<!--<xsl:param name="searchParams:edit">xover.site.querystring.has("edit")</xsl:param>-->
 	<xsl:param name="searchParams:edit">(value)=>value!=undefined</xsl:param>
 	<xsl:key name="section" match="data[starts-with(@name,'section_')]" use="''"/>
