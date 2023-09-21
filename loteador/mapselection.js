@@ -161,7 +161,7 @@ async function actualizaColores(oSource) {
     let active_filter = [document.querySelector(`[name="filter_headers"]:checked`)].filter(el => el).map(radio => radio.closest(`.filter[bind]`)).pop() || oSource && oSource.closest('.filter[bind]');// || [document.querySelector(`.filter[bind]`)].concat(document.querySelectorAll('[type="checkbox"]:checked').toArray().map(checkbox => checkbox.closest('.filter[bind]'))).concat([document.querySelector(`.filter[bind]`)]).filter(filter => !oSource).distinct().pop();
     if (!active_filter && oSource && oSource.closest('.filter[bind]')) {
         active_filter = oSource.closest('.filter[bind]');
-        
+
     }
     let color_list = active_filter && Object.fromEntries([[active_filter].map(filter => [filter.getAttribute("bind"), new Map(filter.querySelectorAll(`.filter_option [type="checkbox"]`).toArray().filter(checkbox => checkbox.previousElementSibling).map(checkbox => [checkbox.getAttribute("filtervalue"), checkbox.previousElementSibling.style.backgroundColor]))]).filter(([key, values]) => values.size)[0]]);
     if (!color_list) return;
@@ -200,7 +200,7 @@ function renderFilterOption(filter, values, target) {
         //let attribute_pattern = "{{@value}}"
         //if (filter.selectFirst('option')) {
         //    attribute_pattern = "{{@text}}::{{@value}}"
-            //if ($("#Filtros #" + attributes["value"].replace(/[\W@]/ig, '_') + " :checkbox:checked").length > 0) first = attributes["value"];
+        //if ($("#Filtros #" + attributes["value"].replace(/[\W@]/ig, '_') + " :checkbox:checked").length > 0) first = attributes["value"];
         //}
         //let filter_value = eval("'" + attribute_pattern.replace(/\{\{\@([^\}]+)\}\}/ig, '\'+values["$1"]+\'') + "'");
         let checkbox = xo.xml.createFragment(renderOption(filter_name, (values.text + '__' + (values.value || '')), values.value, values.text, values.value, values.color, values.selected));
@@ -406,7 +406,7 @@ async function iluminarMapa(conditions) {
     if (!xmlData.documentElement) await xmlData.fetch();
     xmlData = xmlData.document;
     let desarrollo_id = (location.hash || '').replace(/^#/, '');
-    
+
     let xmlFilters = xover.sources[`#${desarrollo_id}:settings`];
     if (!xmlFilters.documentElement) await xmlFilters.fetch();
 
@@ -452,20 +452,22 @@ binding.bindData = function (scope, attribute, x_source, removeAttribute) {
     });
 }
 
+let previousWidth = 0
 function resize() {
     let ImageMap = function (map) {
         let n,
             areas = map.getElementsByTagName('area'),
             len = areas.length,
-            coords = [],
-            previousWidth = document.querySelector('#Mapa img').getAttribute("orgwidth"); /*Tamaño original de la imagen*/
+            coords = [];
+        let img = document.querySelector('#Mapa img');
+        previousWidth = previousWidth || img.getAttribute("orgwidth"); /*Tamaño original de la imagen*/
 
         for (n = 0; n < len; n++) {
             coords[n] = areas[n].coords.split(',');
         }
         this.resize = function () {
             let n, m, clen,
-                x = $('#Mapa').width() / previousWidth;
+                x = img.clientWidth / previousWidth;
             //x = document.body.clientWidth / previousWidth;
             for (n = 0; n < len; n++) {
                 clen = coords[n].length;
@@ -474,12 +476,13 @@ function resize() {
                 }
                 areas[n].coords = coords[n].join(',');
             }
-            previousWidth = $('#Mapa').width();
+            previousWidth = img.clientWidth;
             //previousWidth = document.body.clientWidth;
             Colorea();
             return true;
         };
-        window.onresize = this.resize;
+        window.removeEventListener('resize', resize );
+        window.addEventListener('resize', resize);
     },
         imageMap = new ImageMap(document.querySelector(`map`));
 
@@ -490,6 +493,9 @@ loteador = {};
 loteador.inicializar = async function () {
     (function () {
         //$('.map').maphilight();
+        previousWidth = 0;
+        let img = document.querySelector('img[usemap]');
+
         $('img[usemap]').maphilight();
 
         $('area').click(async function (e) {
