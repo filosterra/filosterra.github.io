@@ -42,6 +42,8 @@
     --sitemap-scrollbar-background: var(--main-color);
     --color-nav-hover: var(--main-color);
     --footer-height: 80px;
+    --polygon-bg-color-active: #00aa55;
+    --polygon-bg-color: var(--filosterra-silver-cloud);
 }
 
 @media (max-width: 460px) {
