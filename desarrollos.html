@@ -66,6 +66,7 @@
             await xover.ready;
             let desarrollo_kml = xo.sources[`${xo.site.seed}:polygon`];
             let desarrollo = xo.site.seed.replace(/^#/, '');
+            if (!desarrollo) return;
             let desarrollo_actual = desarrollo;
             last_selection = (desarrollos[desarrollo] || {})["shape"] || last_selection;
             let coordinates = await desarrollo_kml.ready && getCoordinatesFromKML(desarrollo_kml);
@@ -104,7 +105,7 @@
                     "lng": center.lng()
                 }
 
-                let src = `https://filosterra.github.io/assets/desarrollos/${desarrollo}/polygon.kml`;
+                let src = `https://filosterra.com/assets/desarrollos/${desarrollo}/polygon.kml`;
 
                 let kmlLayer = new google.maps.KmlLayer(src, {
                     suppressInfoWindows: true,
