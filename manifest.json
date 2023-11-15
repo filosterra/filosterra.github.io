@@ -3,7 +3,7 @@
     "^#(.+)$": "/assets/desarrollos/$1/info.resx",
     "^#(.+):loteador$": "/assets/desarrollos/$1/loteador.map",
     "^#(.+):gallery$": "/assets/desarrollos/$1/gallery.resx",
-    "^#(.+):polygon$": "https://filosterra.github.io/assets/desarrollos/$1/polygon.kml",
+    "^#(.+):polygon$": "https://filosterra.com/assets/desarrollos/$1/polygon.kml",
     "#": "#desarrollos",
     "^#(.+):info$": "#$1",
     "#desarrollos": "/assets/desarrollos.resx",
