@@ -128,12 +128,12 @@
     <value>top: 85px; left: -277px;</value>
   </data>
   <data name="section_3" xml:space="preserve">
-    <value>Ubicación: Ubicado en la zona poniente de la ciudad con acceso a través de vias rapidas Olmos Residencial cuenta con amplias áreas verdes equipadas con juegos infantiles para ofrecer un entorno de vida excepcional. </value>
-    <comment>mapa</comment>
+    <value />
+    <comment>loteador</comment>
   </data>
   <data name="section_2" xml:space="preserve">
     <value>Olmos cuenta con todo para tu seguridad: La barda perimetral que rodea todo el desarrollo garantiza la privacidad y protección de los residentes. Además, cuenta con una caseta de vigilancia estratégicamente ubicada en el acceso principal para controlarlo y cámaras de seguridad las 24 horas. </value>
-    <comment>loteador</comment>
+    <comment>INT1</comment>
   </data>
   <data name="motto" xml:space="preserve">
     <value>CREA, CONSTRUYE Y VIVE</value>
@@ -141,5 +141,12 @@
   <data name="section_1" xml:space="preserve">
     <value>CREA, CONSTRUYE Y VIVE: TRANQUILIDAD, COMODIDAD Y SEGURIDAD PARA TU PROYECTO DE VIDA</value>
     <comment>cover</comment>
+  </data>
+  <data name="INT1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>gallery\INT1.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="section_4" xml:space="preserve">
+    <value>Ubicación: Ubicado en la zona poniente de la ciudad con acceso a través de vias rapidas Olmos Residencial cuenta con amplias áreas verdes equipadas con juegos infantiles para ofrecer un entorno de vida excepcional. </value>
+    <comment>mapa</comment>
   </data>
 </root>
