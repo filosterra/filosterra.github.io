@@ -5,6 +5,7 @@
 	<xsl:key name="section" match="data[starts-with(@name,'section_')]" use="''"/>
 	<xsl:key name="section" match="data[starts-with(@name,'section_')]" use="string(comment)"/>
 	<xsl:key name="section" match="data[starts-with(@name,'section_')]" use="substring-after(@name,'_')"/>
+	<xsl:key name="image" match="data[contains(@type,'System.Resources.ResXFileRef')]/value" use="../@name"/>
 	<xsl:key name="label" match="data" use="@name"/>
 	<xsl:template match="/*">
 		<xsl:variable name="sections" select="key('section','')"/>
@@ -20,6 +21,20 @@
   color: var(--main-bg-color);
   border-top: 1px solid #000;
   padding: 10px;
+}
+
+section div.row {
+    max-width: 80vw;
+}
+
+section img {
+    width: 100%;
+}
+
+section > div {
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
 }
 
 .contenteditable {
@@ -104,7 +119,7 @@
 		<xsl:variable name="extra-classes">
 			<xsl:if test="$searchParams:edit='true' or string($paragraph)!=''">pb-4</xsl:if>
 		</xsl:variable>
-		<section class="{$section-background} section-hd d-flex align-items-center py-5" id="{@name}">
+		<section class="{$section-background} section-hd align-items-center py-5 d-flex flex-column" id="{@name}">
 			<div class="container pb-4">
 				<xsl:if test="$searchParams:edit='true' or string($title)!=''">
 					<div class="text-center {$extra-classes}">
@@ -124,8 +139,17 @@
 					</div>
 				</xsl:if>
 			</div>
+			<xsl:apply-templates mode="section-image" select="key('image',comment)"/>
 		</section>
 		<xsl:apply-templates mode="section-divider" select="."/>
+	</xsl:template>
+
+	<xsl:template mode="section-image" match="*">
+		<div class="row">
+			<div class="text-center">
+				<img src="/assets/desarrollos/{$state:desarrollo}/gallery/area verde.jpeg" alt=""/>
+			</div>
+		</div>
 	</xsl:template>
 
 	<xsl:template mode="store-buttons" match="*">
@@ -524,7 +548,7 @@
 		<xsl:variable name="extra-classes">
 			<xsl:if test="$searchParams:edit='true' or string($paragraph)!=''">pb-4</xsl:if>
 		</xsl:variable>
-		<section class="{$section-background} section-hd d-flex align-items-center py-5 d-flex flex-column">
+		<section class="{$section-background} section-hd align-items-center py-5 d-flex flex-column">
 			<div class="container pb-4">
 				<xsl:if test="$searchParams:edit='true' or string($title)!=''">
 					<div class="text-center {$extra-classes}">
@@ -545,21 +569,19 @@
 				</xsl:if>
 			</div>
 			<div class="container">
-				<div class="row gy-4" style="position:relative;">
-					<a href="/loteador#{$state:desarrollo}">
-						<img class="map" src="/assets/desarrollos/{$state:desarrollo}/loteador.png" border="0" orgwidth="3800" style="width: 100%; height: 100%; background: var(--filosterra-blue-smoke);" alt="" />
-						<label style="
+				<a href="/loteador#{$state:desarrollo}">
+					<img class="map" src="/assets/desarrollos/{$state:desarrollo}/loteador.png" border="0" orgwidth="3800" style="width: 100%; height: 100%; background: var(--filosterra-blue-smoke);" alt="" />
+					<label style="
     color: var(--filosterra-creen-snow);
     text-align: right;
     position: absolute;
-    bottom: 10px;
-    right: 23px;
+	bottom: 7vh;
+    right: 7vw;
 	cursor: pointer;
 ">
-							<button class="btn btn-primary" style="margin: .7rem; font-size: 18pt;">Click para ver disponibilidad</button>
-						</label>
-					</a>
-				</div>
+						<button class="btn btn-primary" style="margin: .7rem; font-size: 18pt;">Click para ver disponibilidad</button>
+					</label>
+				</a>
 			</div>
 		</section>
 		<xsl:if test="$searchParams:edit">
@@ -583,7 +605,7 @@
 		<xsl:variable name="extra-classes">
 			<xsl:if test="$searchParams:edit='true' or string($paragraph)!=''">pb-4</xsl:if>
 		</xsl:variable>
-		<section class="{$section-background} section-hd d-flex align-items-center py-5 d-flex flex-column" id="desarrollosinfo">
+		<section class="{$section-background} section-hd align-items-center py-5 d-flex flex-column" id="desarrollosinfo">
 			<div class="container pb-4">
 				<xsl:if test="$searchParams:edit='true' or string($title)!=''">
 					<div class="text-center {$extra-classes}">
@@ -605,7 +627,7 @@
 			</div>
 			<div class="row">
 				<div class="text-center">
-					<img src="/assets/desarrollos/{$state:desarrollo}/background.png" alt="" class="img-fluid"/>
+					<img src="/assets/desarrollos/{$state:desarrollo}/background.png" alt=""/>
 				</div>
 			</div>
 		</section>

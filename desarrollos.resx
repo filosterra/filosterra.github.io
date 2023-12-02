@@ -129,8 +129,4 @@
     <value>Altanna</value>
     <comment>3</comment>
   </data>
-  <data name="nuevo" xml:space="preserve">
-    <value>Desarrollo nuevo</value>
-    <comment>disabled</comment>
-  </data>
 </root>
