@@ -2,7 +2,7 @@
 	<xsl:param name="session:phone">'0000000000'</xsl:param>
 	<xsl:template match="/*">
 		<xsl:variable name="phone" select="translate($session:phone,'-','')"/>
-		<a href="tel:{$phone}" title="Contacto" class="bandcontactinfo" style="line-height: 1.5rem;">
+		<a href="tel:{$phone}">
 			<xsl:value-of select="concat(
 				substring($phone, 1, 3), '-', 
 				substring($phone, 4, 3), '-', 

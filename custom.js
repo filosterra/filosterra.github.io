@@ -8,6 +8,15 @@
 ////    svg.style.background = `repeating-linear-gradient( 55deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) 9px, rgba(0, 0, 1, 0.3) 9px, rgba(0, 0, 1, 0.3) 18px)`;
 ////})
 
+xover.listener.on('beforeHashChange', function (new_hash, old_hash) {
+    if (!['#', ''].includes(old_hash) && ["#aviso_privacidad", "#codigo_etica", "#terminos_condiciones"].includes(new_hash)) {
+        event.preventDefault();
+        if (xo.site.active == old_hash) {
+            history.state.seed = new_hash;
+        }
+        xo.site.active = new_hash;
+    }
+})
 
 xo.listener.on('beforeTransform::root[data]', function () {
     this.select(`/root/*[not(self::data)]|root/comment()|root/data[comment='disabled']`).remove()

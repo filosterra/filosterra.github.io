@@ -2,7 +2,7 @@
 	<xsl:param name="desarrollo"></xsl:param>
 	<xsl:template match="/*">
 		<xsl:variable name="images" select="data"/>
-		<div class="carousel-inner">
+		<div class="carousel-inner" desarrollo="{$desarrollo}">
 			<div class="carousel-item active">
 				<img class="d-block w-100" src="/assets/desarrollos/{$desarrollo}/cover.png" alt="{$desarrollo}"/>
 			</div>
