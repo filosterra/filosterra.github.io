@@ -145,9 +145,12 @@ section > div {
 	</xsl:template>
 
 	<xsl:template mode="section-image" match="*">
+	</xsl:template>
+
+	<xsl:template mode="section-image" match="value">
 		<div class="row">
 			<div class="text-center">
-				<img src="/assets/desarrollos/{$state:desarrollo}/gallery/area verde.jpeg" alt=""/>
+				<img src="/assets/desarrollos/{$state:desarrollo}/{substring-before(.,';')}" alt=""/>
 			</div>
 		</div>
 	</xsl:template>
