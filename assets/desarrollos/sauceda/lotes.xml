@@ -3,7 +3,7 @@
 	<item Id="1" Lote="1" Status="Vendido" Manzana="1" Etapa="1" PrecioUnitario="5800" Terreno="139.4" PrecioVenta="808520"/>
 	<item Id="2" Lote="2" Status="Vendido" Manzana="1" Etapa="1" PrecioUnitario="5800" Terreno="139.48" PrecioVenta="808984"/>
 	<item Id="3" Lote="3" Status="Vendido" Manzana="1" Etapa="1" PrecioUnitario="5800" Terreno="139.45" PrecioVenta="808810"/>
-	<item Id="4" Lote="4" Status="Disponible" Manzana="1" Etapa="1" PrecioUnitario="5800" Terreno="134.19" PrecioVenta="778302"/>
+	<item Id="4" Lote="4" Status="Vendido" Manzana="1" Etapa="1" PrecioUnitario="5800" Terreno="134.19" PrecioVenta="778302"/>
 	<item Id="5" Lote="5" Status="Vendido" Manzana="1" Etapa="1" PrecioUnitario="5800" Terreno="144.68" PrecioVenta="839144"/>
 	<item Id="6" Lote="6" Status="Disponible" Manzana="1" Etapa="1" PrecioUnitario="5800" Terreno="156.66" PrecioVenta="908628"/>
 	<item Id="7" Lote="7" Status="Vendido" Manzana="1" Etapa="1" PrecioUnitario="5800" Terreno="168.8" PrecioVenta="979040"/>
@@ -21,7 +21,7 @@
 	<item Id="17c" Lote="17-c" Status="Disponible" Manzana="1" Etapa="1" PrecioUnitario="5800" Terreno="131.64" PrecioVenta="763512"/>
 	<item Id="17d" Lote="17-d" Status="Disponible" Manzana="1" Etapa="1" PrecioUnitario="5800" Terreno="131.14" PrecioVenta="760612"/>
 	<item Id="18" Lote="18" Status="Disponible" Manzana="1" Etapa="1" PrecioUnitario="5800" Terreno="123.81" PrecioVenta="718098"/>
-	<item Id="19" Lote="19" Status="Disponible" Manzana="1" Etapa="1" PrecioUnitario="5800" Terreno="123.22" PrecioVenta="714676"/>
+	<item Id="19" Lote="19" Status="Vendido" Manzana="1" Etapa="1" PrecioUnitario="5800" Terreno="123.22" PrecioVenta="714676"/>
 	<item Id="20" Lote="20" Status="Vendido" Manzana="1" Etapa="1" PrecioUnitario="5800" Terreno="122.79" PrecioVenta="712182"/>
 	<item Id="21" Lote="21" Status="Vendido" Manzana="1" Etapa="1" PrecioUnitario="5800" Terreno="121.96" PrecioVenta="707368"/>
 	<item Id="22" Lote="22" Status="Vendido" Manzana="1" Etapa="1" PrecioUnitario="5800" Terreno="122.8" PrecioVenta="712240"/>
