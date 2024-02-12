@@ -6,6 +6,7 @@
 	<xsl:key name="section" match="data[starts-with(@name,'section_')]" use="string(comment)"/>
 	<xsl:key name="section" match="data[starts-with(@name,'section_')]" use="substring-after(@name,'_')"/>
 	<xsl:key name="image" match="data[contains(@type,'System.Resources.ResXFileRef')]/value" use="../@name"/>
+	<xsl:key name="image" match="data[not(contains(@type,'System.Resources.ResXFileRef'))]" use="comment"/>
 	<xsl:key name="label" match="data" use="@name"/>
 	<xsl:template match="/*">
 		<xsl:variable name="sections" select="key('section','')"/>
@@ -85,61 +86,82 @@ section > div {
 		</main>
 	</xsl:template>
 
-	<xsl:template mode="title" match="*">
+	<xsl:template mode="title" match="*|@name">
 	</xsl:template>
 
-	<xsl:template mode="title" match="value[contains(.,':')]">
+	<xsl:template mode="title" match="data/value[contains(.,':')]">
 		<xsl:value-of select="substring-before(.,':')"/>
+	</xsl:template>
+
+	<xsl:template mode="title" match="data/@name[contains(.,':')]">
+		<xsl:value-of select="substring-after(.,':')"/>
+	</xsl:template>
+
+	<xsl:template mode="title" match="data[contains(concat(value,@name),':')]">
+		<xsl:variable name="extra-classes">
+			<xsl:if test="$searchParams:edit='true'">pb-4</xsl:if>
+		</xsl:variable>
+		<div class="text-center pb-2 {$extra-classes}">
+			<h4 class="text-uppercase">
+				<xsl:apply-templates mode="title" select="value|@name"/>
+			</h4>
+		</div>
 	</xsl:template>
 
 	<xsl:template mode="content" match="*">
 		<xsl:value-of select="."/>
 	</xsl:template>
 
-	<xsl:template mode="content" match="value[contains(.,':')]">
+	<xsl:template mode="content" match="value[contains(text(),':')]">
 		<xsl:value-of select="substring-after(.,':')"/>
+	</xsl:template>
+
+	<xsl:template mode="content" match="data">
+		<xsl:variable name="extra-classes">
+			<xsl:if test="$searchParams:edit='true'">pb-4</xsl:if>
+		</xsl:variable>
+		<xsl:variable name="contenteditable">
+			<xsl:if test="$searchParams:edit='true'">contenteditable</xsl:if>
+		</xsl:variable>
+		<div style="text-align: center;" class="{$contenteditable}" xo-scope="{value/@xo:id}" xo-slot="text()">
+			<p style="display: inline-block; text-align: justify; max-width: 100%;" xo-scope="{value/@xo:id}" xo-slot="text()">
+				<xsl:if test="$searchParams:edit='true'">
+					<xsl:attribute name="contenteditable"/>
+				</xsl:if>
+				<xsl:apply-templates mode="content" select="value"/>
+			</p>
+		</div>
+	</xsl:template>
+
+	<xsl:template mode="position" match="*">
+		<xsl:text>1</xsl:text>
+	</xsl:template>
+
+	<xsl:template mode="position" match="data[contains(@name,'_')]">
+		<xsl:value-of select="substring-after(substring-before(concat(@name,':'),':'),'_')"/>
 	</xsl:template>
 
 	<xsl:template mode="section" match="data">
 	</xsl:template>
 
 	<xsl:template mode="section" match="key('section','')">
-		<xsl:variable name="title" select="substring-before(value,':')"/>
-		<xsl:variable name="subtitle" select="substring-before(value,':')"/>
-		<xsl:variable name="paragraph" select="normalize-space(substring-after(value,':'))"/>
+		<xsl:variable name="title" select="substring-before(concat(value,':'),':')"/>
+		<xsl:variable name="paragraph" select="normalize-space(substring-after(concat(value,':'),':'))"/>
+		<xsl:variable name="position">
+			<xsl:apply-templates mode="position" select="."/>
+		</xsl:variable>
 		<xsl:variable name="section-background">
 			<xsl:choose>
-				<xsl:when test="position() mod 2 =1">section-light</xsl:when>
+				<xsl:when test="$position mod 2 =1">section-light</xsl:when>
 				<xsl:otherwise>section-dark</xsl:otherwise>
 			</xsl:choose>
 		</xsl:variable>
-		<xsl:variable name="contenteditable">
-			<xsl:if test="$searchParams:edit='true'">contenteditable</xsl:if>
-		</xsl:variable>
-		<xsl:variable name="extra-classes">
-			<xsl:if test="$searchParams:edit='true' or string($paragraph)!=''">pb-4</xsl:if>
-		</xsl:variable>
-		<section class="{$section-background} section-hd align-items-center py-5 d-flex flex-column" id="{@name}">
-			<div class="container pb-4">
-				<xsl:if test="$searchParams:edit='true' or string($title)!=''">
-					<div class="text-center {$extra-classes}">
-						<h4 class="text-uppercase">
-							<xsl:apply-templates mode="title" select="value"/>
-						</h4>
-					</div>
-				</xsl:if>
-				<xsl:if test="$searchParams:edit='true' or string($paragraph)!=''">
-					<div style="text-align: center;" class="{$contenteditable}" xo-scope="{value/@xo:id}" xo-slot="text()">
-						<p style="display: inline-block; text-align: justify; max-width: 100%;" xo-scope="{value/@xo:id}" xo-slot="text()">
-							<xsl:if test="$searchParams:edit='true'">
-								<xsl:attribute name="contenteditable"/>
-							</xsl:if>
-							<xsl:apply-templates mode="content" select="value"/>
-						</p>
-					</div>
-				</xsl:if>
+		<section class="{$section-background} section-hd align-items-center py-4 d-flex flex-column" id="{@name}">
+			<div class="container py-3">
+				<xsl:apply-templates mode="title" select="."/>
+				<xsl:apply-templates mode="content" select="."/>
+				<xsl:apply-templates mode="section-image" select="key('image',comment)"/>
 			</div>
-			<xsl:apply-templates mode="section-image" select="key('image',comment)"/>
 		</section>
 		<xsl:apply-templates mode="section-divider" select="."/>
 	</xsl:template>
@@ -147,8 +169,34 @@ section > div {
 	<xsl:template mode="section-image" match="*">
 	</xsl:template>
 
-	<xsl:template mode="section-image" match="value">
-		<div class="row">
+	<xsl:template mode="section-image" match="data[count(key('image',comment))=1]">
+		<div class="row pt-2">
+			<div class="text-center">
+				<img src="/assets/desarrollos/{$state:desarrollo}/{comment}.png" alt=""/>
+			</div>
+		</div>
+	</xsl:template>
+
+	<xsl:template mode="section-image" match="key('section','loteador')">
+		<div class="row pt-2">
+			<a href="/loteador#{$state:desarrollo}">
+				<img class="map" src="/assets/desarrollos/{$state:desarrollo}/loteador.png" border="0" orgwidth="3800" style="width: 100%; height: 100%; background: var(--filosterra-blue-smoke);" alt="" />
+				<label style="
+    color: var(--filosterra-creen-snow);
+    text-align: right;
+    position: absolute;
+	bottom: 7vh;
+    right: 7vw;
+	cursor: pointer;
+">
+					<button class="btn btn-primary" style="margin: .7rem; font-size: 18pt;">Click para ver disponibilidad</button>
+				</label>
+			</a>
+		</div>
+	</xsl:template>
+
+	<xsl:template mode="section-image" match="data[contains(@type,'System.Resources.ResXFileRef')]/value">
+		<div class="row pt-2">
 			<div class="text-center">
 				<img src="/assets/desarrollos/{$state:desarrollo}/{substring-before(.,';')}" alt=""/>
 			</div>
@@ -175,367 +223,7 @@ section > div {
 		</xsl:if>
 	</xsl:template>
 
-	<xsl:template mode="section" match="key('section','mapa?')">
-		<xsl:variable name="section-background">
-			<xsl:choose>
-				<xsl:when test="position() mod 2 =1">section-light</xsl:when>
-				<xsl:otherwise>section-dark</xsl:otherwise>
-			</xsl:choose>
-		</xsl:variable>
-		<script>
-			<![CDATA[
-		function startDragging(clippedImage) {
-			clippedImage.isDragging = true;
-			initialX = event.clientX;
-			initialY = event.clientY;
-		}
-
-		function stopDragging(clippedImage) {
-			clippedImage.isDragging = false;
-		}
-
-		function moveImage(clippedImage) {
-			if (clippedImage.isDragging) {
-				let clippedImage = event.srcElement;
-				const deltaX = event.clientX - initialX;
-				const deltaY = event.clientY - initialY;
-				const newTop = clippedImage.offsetTop + deltaY;
-				const newLeft = clippedImage.offsetLeft + deltaX;
-
-				clippedImage.style.top = `${newTop}px`;
-				clippedImage.style.left = `${newLeft}px`;
-				
-				clippedImage.scope.set(`top: ${clippedImage.style.top}; left: ${clippedImage.style.left}`);
-
-				initialX = event.clientX;
-				initialY = event.clientY;
-			}
-		}]]>
-		</script>
-		<style>
-			<![CDATA[
-			#image-container {
-				position: relative;
-				width: 500px; /* Adjust container size as needed */
-				height: 300px;
-				overflow: hidden;
-			}
-
-			#clipped-image {
-				position: absolute;
-				top: 100px;
-				left: 50px;
-			}]]>
-		</style>
-		<section class="{$section-background} section-hd d-flex align-items-center py-5" id="loteador">
-			<xsl:variable name="title" select="substring-before(value[contains(.,':')],':')"/>
-			<xsl:variable name="paragraph">
-				<xsl:choose>
-					<xsl:when test="$title!=''">
-						<xsl:value-of select="substring-after(value,':')"/>
-					</xsl:when>
-					<xsl:otherwise>
-						<xsl:value-of select="value"/>
-					</xsl:otherwise>
-				</xsl:choose>
-			</xsl:variable>
-			<xsl:variable name="pin" select="key('label','pin')"/>
-			<div class="container">
-				<div class="text-center pb-4">
-					<h4 class="py-2">
-						<xsl:value-of select="$title"/>
-					</h4>
-				</div>
-				<div class="row px-5">
-					<div class="col-lg-5 d-flex justify-content-end">
-						<div class="image-navigator" style="overflow: clip; max-height: 60vh; background: repeating-linear-gradient( 55deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) 9px, rgba(0, 0, 1, 0.3) 9px, rgba(0, 0, 1, 0.3) 18px ); background: #f6e1b9; position: relative;" onclick="return;event.stopImmediatePropagation(); return false;">
-							<div class="image-container" style="position: relative; transform: scale(2); width: 400px; height: 400px;">
-								<xsl:attribute name="onclick">if (this.isDragging) {return}; this.style.transform = `scale(${Math.abs(+this.style.transform.replace(/[^\d\.]/g, '') + .5)})`; this.style.translate = this.style.translate.split(/\s+/).map(percent => `${parseFloat(percent) * 2}%`).join(' '); return false</xsl:attribute>
-								<xsl:attribute name="oncontextmenu">this.style.transform = `scale(${Math.abs(+this.style.transform.replace(/[^\d\.]/g, '') - .5)})`;  this.style.translate = this.style.translate.split(/\s+/).map(percent => `${parseFloat(percent) / 2}%`).join(' '); return false</xsl:attribute>
-								<img src="/assets/desarrollos/{$state:desarrollo}/mapa.jpeg" onmousedown="startDragging(this)" onmouseup="stopDragging(this)" onmousemove="moveImage(this)" style="position: absolute; {$pin}" xo-scope="{ancestor::root/data[@name='pin']/value/@xo:id}" xo-slot="text()"/>
-								<!--<script>
-									<![CDATA[
-		const targetElement = context.querySelector('img');
-
-        // Function to be executed when the observed styles change
-        const stylesChangedCallback = (mutationsList, observer) => {
-            for (const mutation of mutationsList) {
-                if (mutation.type === 'attributes' && (mutation.attributeName === 'style' || mutation.attributeName === 'top' || mutation.attributeName === 'left')) {
-					targetElement.scope.set(`top: ${targetElement.style.top}; left: ${targetElement.style.left}`);
-                    // Style or top/left attribute has changed
-                    console.log('Style or top/left attribute has changed:', targetElement.style.top, targetElement.style.left);
-                }
-            }
-        };
-
-        // Create a new MutationObserver
-        const observer = new MutationObserver(stylesChangedCallback);
-
-        // Options for the observer (we want to monitor attribute changes)
-        const observerOptions = {
-            attributes: true,
-            attributeFilter: ['style', 'top', 'left'],
-        };
-
-        // Start observing the target element
-        observer.observe(targetElement, observerOptions);
-								]]>
-								</script>-->
-								<div class="od" style="position: absolute; top:50%; left:50%;">
-									<div class="id" style="left:-3px;top:-3px; position: relative; width: 10px; height: 10px;">
-										<svg xmlns="http://www.w3.org/2000/svg" width="7" height="7" fill="currentColor" class="bi bi-circle-fill map-marker" viewBox="0 0 16 16" style="position:absolute; left:0; top:0;">
-											<circle cx="8" cy="8" r="8" />
-										</svg>
-									</div>
-									<div class="pr" style="font-size:91%;width:6em;left:4px">
-										<div>
-											<xsl:value-of select="$state:desarrollo" />
-										</div>
-									</div>
-								</div>
-								<!--<div class="od" style="top: 65.42%;left: 50.992%;position: absolute;">
-                                    <div class="id" style="left:-3px;top:-3px">
-                                        <img alt="Los Olmos" src="//upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Red_pog.svg/6px-Red_pog.svg.png" decoding="async" title="Los Olmos" width="6" height="6" class="notpageimage" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Red_pog.svg/9px-Red_pog.svg.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Red_pog.svg/12px-Red_pog.svg.png 2x" data-file-width="64" data-file-height="64">
-                                    </div>
-                                    <div class="pr" style="font-size:91%;width:6em;left:4px"><div>Los Olmos</div></div>
-                                </div>
-                                <div class="od" style="top:69.42%;left: 49.992%;position: absolute;">
-                                    <div class="id" style="left:-3px;top:-3px">
-                                        <img alt="Altanna" src="//upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Red_pog.svg/6px-Red_pog.svg.png" decoding="async" title="Altanna" width="6" height="6" class="notpageimage" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Red_pog.svg/9px-Red_pog.svg.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Red_pog.svg/12px-Red_pog.svg.png 2x" data-file-width="64" data-file-height="64">
-                                    </div>
-                                    <div class="pr" style="font-size:91%;width:6em;left:4px">
-                                        <div>Altanna</div>
-                                    </div>
-                                </div>-->
-
-							</div>
-							<div class="d-flex justify-content-around" style="
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-    z-index: 1000;
-    gap: 10px;
-    ">
-								<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-zoom-in" viewBox="0 0 16 16" onclick="this.closest('.image-navigator').querySelector('.image-container').onclick()" style="cursor:pointer; user-select: none;">
-									<path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"></path>
-									<path d="M10.344 11.742c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1 6.538 6.538 0 0 1-1.398 1.4z"></path>
-									<path fill-rule="evenodd" d="M6.5 3a.5.5 0 0 1 .5.5V6h2.5a.5.5 0 0 1 0 1H7v2.5a.5.5 0 0 1-1 0V7H3.5a.5.5 0 0 1 0-1H6V3.5a.5.5 0 0 1 .5-.5z"></path>
-								</svg>
-								<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-zoom-out" viewBox="0 0 16 16" onclick="this.closest('.image-navigator').querySelector('.image-container').oncontextmenu()" style="cursor: pointer; user-select: none;">
-									<path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"></path>
-									<path d="M10.344 11.742c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1 6.538 6.538 0 0 1-1.398 1.4z"></path>
-									<path fill-rule="evenodd" d="M3 6.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5z"></path>
-								</svg>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-6">
-						<div class="boxcard-inner">
-							<header class="boxcard-head boxcard-head_tag">
-								<h2 class="boxcard-title text-uppercase ">
-									<xsl:value-of select="$state:desarrollo" />
-								</h2>
-							</header>
-							<div class="boxcard-lead">
-								<p class="boxcard-text" xo-scope="{value/@xo:id}" xo-slot="text()">
-									<xsl:if test="$searchParams:edit='true'">
-										<xsl:attribute name="contenteditable"/>
-									</xsl:if>
-									<xsl:value-of select="$paragraph"/>
-									<br/>
-								</p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-		<xsl:if test="$searchParams:edit">
-			<xsl:apply-templates mode="section-divider" select="."/>
-		</xsl:if>
-	</xsl:template>
-
-	<xsl:template mode="section" match="key('section','mapa?')">
-		<xsl:variable name="section-background">
-			<xsl:choose>
-				<xsl:when test="position() mod 2 =1">section-light</xsl:when>
-				<xsl:otherwise>section-dark</xsl:otherwise>
-			</xsl:choose>
-		</xsl:variable>
-		<script>
-			<![CDATA[
-		function startDragging(clippedImage) {
-			clippedImage.isDragging = true;
-			initialX = event.clientX;
-			initialY = event.clientY;
-		}
-
-		function stopDragging(clippedImage) {
-			clippedImage.isDragging = false;
-		}
-
-		function moveImage(clippedImage) {
-			if (clippedImage.isDragging) {
-				let clippedImage = event.srcElement;
-				const deltaX = event.clientX - initialX;
-				const deltaY = event.clientY - initialY;
-				const newTop = clippedImage.offsetTop + deltaY;
-				const newLeft = clippedImage.offsetLeft + deltaX;
-
-				clippedImage.style.top = `${newTop}px`;
-				clippedImage.style.left = `${newLeft}px`;
-				
-				clippedImage.scope.set(`top: ${clippedImage.style.top}; left: ${clippedImage.style.left}`);
-
-				initialX = event.clientX;
-				initialY = event.clientY;
-			}
-		}]]>
-		</script>
-		<style>
-			<![CDATA[
-			#image-container {
-				position: relative;
-				width: 500px; /* Adjust container size as needed */
-				height: 300px;
-				overflow: hidden;
-			}
-
-			#clipped-image {
-				position: absolute;
-				top: 100px;
-				left: 50px;
-			}]]>
-		</style>
-		<section class="{$section-background} section-hd d-flex align-items-center py-5" id="loteador">
-			<xsl:variable name="title" select="substring-before(value[contains(.,':')],':')"/>
-			<xsl:variable name="paragraph">
-				<xsl:choose>
-					<xsl:when test="$title!=''">
-						<xsl:value-of select="substring-after(value,':')"/>
-					</xsl:when>
-					<xsl:otherwise>
-						<xsl:value-of select="value"/>
-					</xsl:otherwise>
-				</xsl:choose>
-			</xsl:variable>
-			<xsl:variable name="pin" select="key('label','pin')"/>
-			<div class="container">
-				<div class="text-center pb-4">
-					<h4 class="py-2">
-						<xsl:value-of select="$title"/>
-					</h4>
-				</div>
-				<div class="row px-5">
-					<div class="col-lg-5 d-flex justify-content-end">
-						<div class="image-navigator" style="overflow: clip; max-height: 60vh; background: repeating-linear-gradient( 55deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) 9px, rgba(0, 0, 1, 0.3) 9px, rgba(0, 0, 1, 0.3) 18px ); background: #f6e1b9; position: relative;" onclick="return;event.stopImmediatePropagation(); return false;">
-							<div class="image-container" style="position: relative; transform: scale(2); width: 400px; height: 400px;">
-								<xsl:attribute name="onclick">if (this.isDragging) {return}; this.style.transform = `scale(${Math.abs(+this.style.transform.replace(/[^\d\.]/g, '') + .5)})`; this.style.translate = this.style.translate.split(/\s+/).map(percent => `${parseFloat(percent) * 2}%`).join(' '); return false</xsl:attribute>
-								<xsl:attribute name="oncontextmenu">this.style.transform = `scale(${Math.abs(+this.style.transform.replace(/[^\d\.]/g, '') - .5)})`;  this.style.translate = this.style.translate.split(/\s+/).map(percent => `${parseFloat(percent) / 2}%`).join(' '); return false</xsl:attribute>
-								<img src="/assets/desarrollos/{$state:desarrollo}/mapa.jpeg" onmousedown="startDragging(this)" onmouseup="stopDragging(this)" onmousemove="moveImage(this)" style="position: absolute; {$pin}" xo-scope="{ancestor::root/data[@name='pin']/value/@xo:id}" xo-slot="text()"/>
-								<!--<script>
-									<![CDATA[
-		const targetElement = context.querySelector('img');
-
-        // Function to be executed when the observed styles change
-        const stylesChangedCallback = (mutationsList, observer) => {
-            for (const mutation of mutationsList) {
-                if (mutation.type === 'attributes' && (mutation.attributeName === 'style' || mutation.attributeName === 'top' || mutation.attributeName === 'left')) {
-					targetElement.scope.set(`top: ${targetElement.style.top}; left: ${targetElement.style.left}`);
-                    // Style or top/left attribute has changed
-                    console.log('Style or top/left attribute has changed:', targetElement.style.top, targetElement.style.left);
-                }
-            }
-        };
-
-        // Create a new MutationObserver
-        const observer = new MutationObserver(stylesChangedCallback);
-
-        // Options for the observer (we want to monitor attribute changes)
-        const observerOptions = {
-            attributes: true,
-            attributeFilter: ['style', 'top', 'left'],
-        };
-
-        // Start observing the target element
-        observer.observe(targetElement, observerOptions);
-								]]>
-								</script>-->
-								<div class="od" style="position: absolute; top:50%; left:50%;">
-									<div class="id" style="left:-3px;top:-3px; position: relative; width: 10px; height: 10px;">
-										<svg xmlns="http://www.w3.org/2000/svg" width="7" height="7" fill="currentColor" class="bi bi-circle-fill map-marker" viewBox="0 0 16 16" style="position:absolute; left:0; top:0;">
-											<circle cx="8" cy="8" r="8" />
-										</svg>
-									</div>
-									<div class="pr" style="font-size:91%;width:6em;left:4px">
-										<div>
-											<xsl:value-of select="$state:desarrollo" />
-										</div>
-									</div>
-								</div>
-								<!--<div class="od" style="top: 65.42%;left: 50.992%;position: absolute;">
-                                    <div class="id" style="left:-3px;top:-3px">
-                                        <img alt="Los Olmos" src="//upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Red_pog.svg/6px-Red_pog.svg.png" decoding="async" title="Los Olmos" width="6" height="6" class="notpageimage" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Red_pog.svg/9px-Red_pog.svg.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Red_pog.svg/12px-Red_pog.svg.png 2x" data-file-width="64" data-file-height="64">
-                                    </div>
-                                    <div class="pr" style="font-size:91%;width:6em;left:4px"><div>Los Olmos</div></div>
-                                </div>
-                                <div class="od" style="top:69.42%;left: 49.992%;position: absolute;">
-                                    <div class="id" style="left:-3px;top:-3px">
-                                        <img alt="Altanna" src="//upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Red_pog.svg/6px-Red_pog.svg.png" decoding="async" title="Altanna" width="6" height="6" class="notpageimage" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Red_pog.svg/9px-Red_pog.svg.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Red_pog.svg/12px-Red_pog.svg.png 2x" data-file-width="64" data-file-height="64">
-                                    </div>
-                                    <div class="pr" style="font-size:91%;width:6em;left:4px">
-                                        <div>Altanna</div>
-                                    </div>
-                                </div>-->
-
-							</div>
-							<div class="d-flex justify-content-around" style="
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-    z-index: 1000;
-    gap: 10px;
-    ">
-								<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-zoom-in" viewBox="0 0 16 16" onclick="this.closest('.image-navigator').querySelector('.image-container').onclick()" style="cursor:pointer; user-select: none;">
-									<path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"></path>
-									<path d="M10.344 11.742c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1 6.538 6.538 0 0 1-1.398 1.4z"></path>
-									<path fill-rule="evenodd" d="M6.5 3a.5.5 0 0 1 .5.5V6h2.5a.5.5 0 0 1 0 1H7v2.5a.5.5 0 0 1-1 0V7H3.5a.5.5 0 0 1 0-1H6V3.5a.5.5 0 0 1 .5-.5z"></path>
-								</svg>
-								<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-zoom-out" viewBox="0 0 16 16" onclick="this.closest('.image-navigator').querySelector('.image-container').oncontextmenu()" style="cursor: pointer; user-select: none;">
-									<path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"></path>
-									<path d="M10.344 11.742c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1 6.538 6.538 0 0 1-1.398 1.4z"></path>
-									<path fill-rule="evenodd" d="M3 6.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5z"></path>
-								</svg>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-6">
-						<div class="boxcard-inner">
-							<header class="boxcard-head boxcard-head_tag">
-								<h2 class="boxcard-title text-uppercase ">
-									<xsl:value-of select="$state:desarrollo" />
-								</h2>
-							</header>
-							<div class="boxcard-lead">
-								<p class="boxcard-text" xo-scope="{value/@xo:id}" xo-slot="text()">
-									<xsl:if test="$searchParams:edit='true'">
-										<xsl:attribute name="contenteditable"/>
-									</xsl:if>
-									<xsl:value-of select="$paragraph"/>
-									<br/>
-								</p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-		<xsl:if test="$searchParams:edit">
-			<xsl:apply-templates mode="section-divider" select="."/>
-		</xsl:if>
-	</xsl:template>
-
-	<xsl:template mode="section" match="key('section','loteador')">
+	<xsl:template mode="section" match="key('section','loteador?')">
 		<xsl:variable name="title" select="substring-before(value,':')"/>
 		<xsl:variable name="subtitle" select="substring-before(value,':')"/>
 		<xsl:variable name="paragraph" select="normalize-space(substring-after(value,':'))"/>
@@ -551,7 +239,7 @@ section > div {
 		<xsl:variable name="extra-classes">
 			<xsl:if test="$searchParams:edit='true' or string($paragraph)!=''">pb-4</xsl:if>
 		</xsl:variable>
-		<section class="{$section-background} section-hd align-items-center py-5 d-flex flex-column">
+		<section class="{$section-background} section-hd align-items-center py-4 d-flex flex-column">
 			<div class="container pb-4">
 				<xsl:if test="$searchParams:edit='true' or string($title)!=''">
 					<div class="text-center {$extra-classes}">
@@ -585,53 +273,6 @@ section > div {
 						<button class="btn btn-primary" style="margin: .7rem; font-size: 18pt;">Click para ver disponibilidad</button>
 					</label>
 				</a>
-			</div>
-		</section>
-		<xsl:if test="$searchParams:edit">
-			<xsl:apply-templates mode="section-divider" select="."/>
-		</xsl:if>
-	</xsl:template>
-
-	<xsl:template mode="section" match="key('section','cover')">
-		<xsl:variable name="title" select="substring-before(value,':')"/>
-		<xsl:variable name="subtitle" select="substring-before(value,':')"/>
-		<xsl:variable name="paragraph" select="normalize-space(substring-after(value,':'))"/>
-		<xsl:variable name="section-background">
-			<xsl:choose>
-				<xsl:when test="position() mod 2 =1">section-light</xsl:when>
-				<xsl:otherwise>section-dark</xsl:otherwise>
-			</xsl:choose>
-		</xsl:variable>
-		<xsl:variable name="contenteditable">
-			<xsl:if test="$searchParams:edit='true'">contenteditable</xsl:if>
-		</xsl:variable>
-		<xsl:variable name="extra-classes">
-			<xsl:if test="$searchParams:edit='true' or string($paragraph)!=''">pb-4</xsl:if>
-		</xsl:variable>
-		<section class="{$section-background} section-hd align-items-center py-5 d-flex flex-column" id="desarrollosinfo">
-			<div class="container pb-4">
-				<xsl:if test="$searchParams:edit='true' or string($title)!=''">
-					<div class="text-center {$extra-classes}">
-						<h4 class="text-uppercase">
-							<xsl:apply-templates mode="title" select="value"/>
-						</h4>
-					</div>
-				</xsl:if>
-				<xsl:if test="$searchParams:edit='true' or string($paragraph)!=''">
-					<div style="text-align: center;" class="{$contenteditable}" xo-scope="{value/@xo:id}" xo-slot="text()">
-						<p style="display: inline-block; text-align: justify; max-width: 100%;" xo-scope="{value/@xo:id}" xo-slot="text()">
-							<xsl:if test="$searchParams:edit='true'">
-								<xsl:attribute name="contenteditable"/>
-							</xsl:if>
-							<xsl:apply-templates mode="content" select="value"/>
-						</p>
-					</div>
-				</xsl:if>
-			</div>
-			<div class="row">
-				<div class="text-center">
-					<img src="/assets/desarrollos/{$state:desarrollo}/background.png" alt=""/>
-				</div>
 			</div>
 		</section>
 		<xsl:if test="$searchParams:edit">

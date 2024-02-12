@@ -128,7 +128,7 @@
     <value>Zarzuela</value>
   </data>
   <data name="section_2" xml:space="preserve">
-    <value> LAS MEJORES AMENIDADES                                                                                                     Cancha de Futbol, Cancha de Pádel, Pet Park, Salón de Usos Múltiples y Alberca</value>
+    <value> LAS MEJORES AMENIDADES:                                                                                                     Cancha de Futbol, Cancha de Pádel, Pet Park, Salón de Usos Múltiples y Alberca</value>
     <comment>area verde</comment>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
@@ -136,11 +136,17 @@
     <value>gallery\area verde.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="section_3" xml:space="preserve">
-    <value>Acceso controlado con vigilancia las 24 horas y barda perimetral</value>
+    <value>Acceso controlado con vigilancia las 24 horas y barda perimetral:</value>
     <comment>loteador</comment>
   </data>
   <data name="section_4" xml:space="preserve">
     <value>Ubicado en la zona de mayor PLUSVALIA al NORPONIENTE de San Luis Potosi </value>
     <comment>mapa</comment>
+  </data>
+  <data name="cover" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>cover.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="loteador" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>loteador.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

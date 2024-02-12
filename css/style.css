@@ -236,6 +236,10 @@ button {
     font-family: sans-serif;
 }
 
+section p {
+    font-size: 1.2rem;
+}
+
 p,
 ul,
 h4 {

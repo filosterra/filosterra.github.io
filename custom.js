@@ -31,8 +31,8 @@ xo.listener.on('fetch::root[data/@name="telefono"]', function () {
     xo.session.phone = phone;
 })
 
-xo.listener.on('error::img.map', function () {
-    this.closest('section').remove()
+xo.listener.on('error::section .row img', function () {
+    this.closest('.row').remove()
 })
 
 xo.listener.on('error', function () {
