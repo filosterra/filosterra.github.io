@@ -25,7 +25,7 @@
 }
 
 section div.row {
-    max-width: 80vw;
+    min-width: 80vw;
 }
 
 section img {
@@ -40,6 +40,11 @@ section > div {
 
 .contenteditable {
 	border: dashed gray 2pt;
+}
+
+header .desarrollos-content img {
+    max-width: 90%;
+    height: auto;
 }
 ]]>
 				</style>
