@@ -59,7 +59,12 @@
         }
 
         function getCoordinatesFromKML(kml) {
-            return kml.selectFirst(`//kml:Placemark/kml:Polygon//kml:coordinates/text()`).value.trim().split(/\s/g).map(coordinate => { [lng, lat, alt] = coordinate.split(","); return { lng: +lng, lat: +lat, alt: +alt } });
+            let coordinates = kml.selectFirst(`//kml:Placemark/kml:Polygon//kml:coordinates/text()`).value;
+            return getCoordinatesFromString(coordinates);
+        }
+
+        function getCoordinatesFromString(string_coordinates) {
+            return string_coordinates.trim().split(/\s/g).map(coordinate => { [lng, lat, alt] = coordinate.split(","); return { lng: +lng, lat: +lat, alt: +alt } });
         }
 
         async function initMap() {
@@ -70,6 +75,7 @@
             let desarrollo_actual = desarrollo;
             last_selection = (desarrollos[desarrollo] || {})["shape"] || last_selection;
             let coordinates = await desarrollo_kml.ready && getCoordinatesFromKML(desarrollo_kml);
+
             let center = calculatePolygonCenter(coordinates);
             let center_point = {
                 "lat": center.lat(),
