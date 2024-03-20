@@ -10,6 +10,7 @@
 	background-size: 100%;
 	background-repeat: no-repeat;
 	width: 100%;
+	mask-image: linear-gradient(black 90%, transparent);
 }
 ]]>
 		</style>
