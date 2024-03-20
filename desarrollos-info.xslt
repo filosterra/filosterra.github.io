@@ -5,8 +5,9 @@
 	<xsl:key name="section" match="data[starts-with(@name,'section_')]" use="''"/>
 	<xsl:key name="section" match="data[starts-with(@name,'section_')]" use="string(comment)"/>
 	<xsl:key name="section" match="data[starts-with(@name,'section_')]" use="substring-after(@name,'_')"/>
+	<xsl:key name="section" match="data[contains(@type,'System.Resources.ResXFileRef')]/value" use="../@name"/>
 	<xsl:key name="image" match="data[contains(@type,'System.Resources.ResXFileRef')]/value" use="../@name"/>
-	<xsl:key name="image" match="data[not(contains(@type,'System.Resources.ResXFileRef'))]" use="comment"/>
+	<xsl:key name="image" match="data[not(contains(@type,'System.Resources.ResXFileRef'))][not(comment=../data/@name)]" use="comment"/>
 	<xsl:key name="label" match="data" use="@name"/>
 	<xsl:template match="/*">
 		<xsl:variable name="sections" select="key('section','')"/>
@@ -171,6 +172,18 @@ header .desarrollos-content img {
 		<xsl:apply-templates mode="section-divider" select="."/>
 	</xsl:template>
 
+	<xsl:template mode="section-image-src" match="*">
+	</xsl:template>
+
+	<xsl:template mode="section-image-src" match="value">
+		<xsl:attribute name="src">
+			<xsl:text>/assets/desarrollos/</xsl:text>
+			<xsl:value-of select="$state:desarrollo"/>
+			<xsl:text>/</xsl:text>
+			<xsl:value-of select="substring-before(.,';')"/>
+		</xsl:attribute>
+	</xsl:template>
+
 	<xsl:template mode="section-image" match="*">
 	</xsl:template>
 
@@ -182,10 +195,20 @@ header .desarrollos-content img {
 		</div>
 	</xsl:template>
 
-	<xsl:template mode="section-image" match="key('section','loteador')">
+	<xsl:template mode="section-image" match="data[contains(@type,'System.Resources.ResXFileRef')]/value">
+		<div class="row pt-2">
+			<div class="text-center">
+				<img src="/assets/desarrollos/{$state:desarrollo}/{substring-before(.,';')}" alt=""/>
+			</div>
+		</div>
+	</xsl:template>
+
+	<xsl:template mode="section-image" match="key('section','loteador')" priority="5">
 		<div class="row pt-2">
 			<a href="/loteador#{$state:desarrollo}">
-				<img class="map" src="/assets/desarrollos/{$state:desarrollo}/loteador.png" border="0" orgwidth="3800" style="width: 100%; height: 100%; background: var(--filosterra-blue-smoke);" alt="" />
+				<img class="map" src="/assets/desarrollos/{$state:desarrollo}/loteador.png" border="0" orgwidth="3800" style="width: 100%; height: 100%; background: var(--filosterra-blue-smoke);" alt="">
+					<xsl:apply-templates mode="section-image-src" select="."/>
+				</img>
 				<label style="
     color: var(--filosterra-creen-snow);
     text-align: right;
@@ -197,14 +220,6 @@ header .desarrollos-content img {
 					<button class="btn btn-primary" style="margin: .7rem; font-size: 18pt;">Click para ver disponibilidad</button>
 				</label>
 			</a>
-		</div>
-	</xsl:template>
-
-	<xsl:template mode="section-image" match="data[contains(@type,'System.Resources.ResXFileRef')]/value">
-		<div class="row pt-2">
-			<div class="text-center">
-				<img src="/assets/desarrollos/{$state:desarrollo}/{substring-before(.,';')}" alt=""/>
-			</div>
 		</div>
 	</xsl:template>
 

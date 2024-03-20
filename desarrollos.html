@@ -25,9 +25,9 @@
     <link href="./css/fontawesome-all.min.css" rel="stylesheet">
     <link href="./css/aos.min.css" rel="stylesheet">
     <link href="./css/swiper.css" rel="stylesheet">
-    <link href="./css/style.css?v=20231205_1021" rel="stylesheet">
-    <script type="text/javascript" src="xover/xo.js?v=20231205_1021"></script>
-    <script type="text/javascript" src="custom.js?v=20231205_1021"></script>
+    <link href="./css/style.css?v=20240316_1343" rel="stylesheet">
+    <script type="text/javascript" src="xover/xo.js?v=20240316_1343"></script>
+    <script type="text/javascript" src="custom.js?v=20240316_1343"></script>
     <link rel="icon" href="./assets/img/favicon.png" type="image/x-icon" />
     <!--<style>
         xo-param {
@@ -59,8 +59,8 @@
         }
 
         function getCoordinatesFromKML(kml) {
-            let coordinates = kml.selectFirst(`//kml:Placemark/kml:Polygon//kml:coordinates/text()`).value;
-            return getCoordinatesFromString(coordinates);
+            let coordinates = (kml.selectFirst(`//kml:Placemark/kml:Polygon//kml:coordinates/text()`) || {}).value;
+            return getCoordinatesFromString(coordinates || '');
         }
 
         function getCoordinatesFromString(string_coordinates) {

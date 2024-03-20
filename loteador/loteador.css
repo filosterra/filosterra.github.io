@@ -55,6 +55,10 @@ body {
 	padding: 20px;
 }
 
+[desarrollo=zarzuela] #Filtros {
+	top: 0;
+}
+
 #Filtros .filter [type="radio"] {
 	margin-right: .5rem;
 }
