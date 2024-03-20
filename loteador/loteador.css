@@ -21,8 +21,8 @@ body {
 	background-color: #eeeeee;
 	font-family:Arial, Helvetica, sans-serif;
 	}
-#Mapa {
-	background: var(--filosterra-blue-smoke);
+
+form:not([desarrollo*="$"]) #Mapa {
 	background-size: 100%;
 	background-repeat: no-repeat;
 	width: 100%;
@@ -57,6 +57,19 @@ body {
 
 [desarrollo=zarzuela] #Filtros {
 	top: 0;
+}
+
+form:not([desarrollo*="$"]) #Mapa, form:not([desarrollo*="$"]) > * {
+	background-color: var(--filosterra-blue-smoke);
+}
+
+form[desarrollo=zarzuela] #Mapa, form[desarrollo=zarzuela] > * {
+	background-color: #725e2d;
+}
+
+.zoom-controls {
+	background-color: rgba(0, 0, 0, .5);
+	color: white;
 }
 
 #Filtros .filter [type="radio"] {
