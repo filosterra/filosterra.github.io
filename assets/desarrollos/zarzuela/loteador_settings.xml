@@ -3,7 +3,8 @@
 	<filters bind="data/item" id="Id">
 		<filter title="Disponibilidad" bind="@Status">
 			<option value="Disponible" color="#3EFF33"/>
-			<option value="Vendido" color="#E5E8E8"/>
+			<option value="Apartado" color="#FFCC00"/>
+			<option value="Vendido" color="#CCFFFF"/>
 		</filter>
 		<filter title="Tamaño" bind="@Terreno">
 			<option text="menor que 127.5" value="0~127.499" color="#007fff"/>
