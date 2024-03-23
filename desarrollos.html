@@ -25,9 +25,9 @@
     <link href="./css/fontawesome-all.min.css" rel="stylesheet">
     <link href="./css/aos.min.css" rel="stylesheet">
     <link href="./css/swiper.css" rel="stylesheet">
-    <link href="./css/style.css?v=20240322_0053" rel="stylesheet">
-    <script type="text/javascript" src="xover/xo.js?v=20240322_0053"></script>
-    <script type="text/javascript" src="custom.js?v=20240322_0053"></script>
+    <link href="./css/style.css?v=20240323_1344" rel="stylesheet">
+    <script type="text/javascript" src="xover/xo.js?v=20240323_1344"></script>
+    <script type="text/javascript" src="custom.js?v=20240323_1344"></script>
     <link rel="icon" href="./assets/img/favicon.png" type="image/x-icon" />
     <!--<style>
         xo-param {
@@ -97,7 +97,6 @@
             }
 
             let desarrollos_src = xo.sources["#desarrollos"];
-            let infoWindow = new google.maps.InfoWindow;
             for (let desarrollo of await desarrollos_src.ready && desarrollos_src.select(`//data[not(comment="disabled")]/@name`).map(name => name.value)) {
                 desarrollos[desarrollo] = desarrollos[desarrollo] || {};
                 let desarrollo_kml = xo.sources[`#${desarrollo}:polygon`];
@@ -136,6 +135,39 @@
                     highlight(last_selection);
                 }
             }
+
+            let infoWindow = new google.maps.InfoWindow;
+
+            //google.maps.event.addListener(map, "click", function () {
+            //    unselect(last_selection);
+            //});
+
+            //map.addListener("contextmenu", (mapsMouseEvent) => {
+            //    infoWindow.close(); // Close the current InfoWindow.
+            //    if (!last_selection) return;
+            //    let new_point = mapsMouseEvent.latLng.toJSON()
+
+            //    // if (elements[elements.length - 1].length === 4) {
+            //    //     elements.push(elements[elements.length - 1].slice(2, 4).reverse());
+            //    // }
+            //    // elements[elements.length - 1].push(new_point)
+            //    let last_coordinates = getCoordinates(last_selection);
+            //    let new_base_coordinates = last_coordinates.slice(-2).reverse();
+            //    new_base_coordinates.push(new_point);
+
+            //    unselect(last_selection);
+            //    last_selection = initLayer(new_base_coordinates, shapes);
+            //    last_selection.setEditable(true);
+            //    last_selection.setDraggable(true);
+            //    // infoWindow = new google.maps.InfoWindow({
+            //    //     position: mapsMouseEvent.latLng,
+            //    // });
+            //    // infoWindow.setContent(
+            //    //     JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2)
+            //    // );
+            //    // infoWindow.open(map);
+            //});
+
         }
 
         function getCoordinates(polygon) {
@@ -146,8 +178,18 @@
                 coordinates.push({ lat: xy.lat(), lng: xy.lng() })
             }
             return coordinates;
-
         }
+
+        function getKMLCoordinates(polygon) {
+            const vertices = polygon instanceof google.maps.Polygon && polygon.getPath() || polygon;
+            let coordinates = "";
+            for (let i = 0; i < vertices.getLength(); i++) {
+                const xy = vertices.getAt(i);
+                coordinates += xy.lng() + "," + xy.lat() + ",0 ";
+            }
+            return coordinates.trim(); // Trim to remove extra space at the end
+        }
+
 
         function initLayer(el, layer) {
             let coordinates
@@ -178,6 +220,9 @@
                     xo.site.seed = `#${desarrollo}`
                 }
                 last_selection = this;
+                if (!xo.site.searchParams.has("editable")) return;
+                last_selection.setEditable(true);
+                last_selection.setDraggable(true);
                 //infoWindow.setContent(event.featureData.infoWindowHtml.toUpperCase());
                 //infoWindow.open({
                 //    anchor: marker,
@@ -198,6 +243,59 @@
                 }
             });
 
+            if (!xo.site.searchParams.has("editable")) return;
+
+            /* */
+            shape.addListener('click', selectPolygon);
+
+            google.maps.event.addListener(shape, "contextmenu", function () {
+                if (last_selection !== this) return;
+                removeShape(this)
+            });
+
+            //google.maps.event.addListener(shape, "dblclick", function () {
+            //    this.setOptions({ editable: !this.editable, draggable: !this.editable });
+            //});
+
+            google.maps.event.addListener(shape, "dragend", function () {
+                coordinatesChanged(this)
+            });
+
+            let path = shape.getPath();
+            google.maps.event.addListener(path, 'set_at', function () {
+                let current_index = layer.findIndex(el => el === shape);
+                let current_coordinates = getCoordinates(this);
+                let preceding_shape = layer[current_index - 1];
+                if (preceding_shape) {
+                    let preceding_coordinates = getCoordinates(preceding_shape);
+                    if (preceding_coordinates[current_coordinates.length - 1]?.lat === current_coordinates[0]?.lat && preceding_coordinates[current_coordinates.length - 1]?.lng === current_coordinates[0]?.lng) {
+                        preceding_coordinates[current_coordinates.length - 2] = current_coordinates[1];
+                        preceding_shape.setPath(preceding_coordinates);
+                    }
+                    if (preceding_coordinates[current_coordinates.length - 2]?.lat === current_coordinates[1]?.lat && preceding_coordinates[current_coordinates.length - 2]?.lng === current_coordinates[1]?.lng) {
+                        preceding_coordinates[current_coordinates.length - 1] = current_coordinates[0];
+                        preceding_shape.setPath(preceding_coordinates);
+                    }
+                }
+                let following_shape = layer[current_index + 1];
+                if (following_shape) {
+                    let following_coordinates = getCoordinates(following_shape);
+                    if (following_coordinates[0]?.lat === current_coordinates[current_coordinates.length - 1]?.lat && following_coordinates[0]?.lng === current_coordinates[current_coordinates.length - 1]?.lng) {
+                        following_coordinates[1] = current_coordinates[current_coordinates.length - 2];
+                        following_shape.setPath(following_coordinates);
+                    }
+                    if (following_coordinates[1]?.lat === current_coordinates[current_coordinates.length - 2]?.lat && following_coordinates[1].lng === current_coordinates[current_coordinates.length - 2].lng) {
+                        following_coordinates[0] = current_coordinates[current_coordinates.length - 1];
+                        following_shape.setPath(following_coordinates);
+                    }
+                }
+                coordinatesChanged(this)
+            });
+
+            google.maps.event.addListener(path, 'insert_at', function () {
+                coordinatesChanged(this)
+            });
+            /* */
             layer.push(shape)
             if (shape === last_selection) {
                 highlight(shape)
@@ -233,6 +331,20 @@
             //shape.setOptions({ fillColor: "#FFFF00", strokeColor: "#FFFF00" });
         }
 
+        function highlightLargeObjects() {
+            shapes.filter(el => google.maps.geometry.spherical.computeArea(el.getPath()) > 200).forEach(el => highlight(el))
+        }
+
+        function selectPolygon(event) {
+            if (this !== last_selection) {
+                unselect(last_selection);
+                last_selection = this;
+                this.setOptions({ fillColor: "#CC6633", strokeColor: "#CC6633" });
+                return;
+            }
+            last_selection = this;
+        }
+
         function getCenter(poly) {
             var arr = poly.getPath().getArray()
                 , distX = 0, distY = 0
@@ -244,6 +356,89 @@
             });
 
             return new google.maps.LatLng(distX / len, distY / len);
+        }
+
+        function duplicate(source, offset = {}, scale = 1) {
+            let { x: offsetX = 0, y: offsetY = 0 } = offset;
+            if (source.length) {
+                for (let shape of source) {
+                    duplicate(shape, offset)
+                }
+                return;
+            }
+            let poly = source;
+            let polyCenter = getCenter(poly, offset)
+                , innerShapePoints = getCoordinates(poly)
+                , outerShapePoints = []
+
+            outerShapePoints = innerShapePoints.map(point => {
+                let coord = point;
+                coord.lat = coord.lat + offsetY * 0.0000089
+                coord.lng = coord.lng + offsetX * 0.0000089
+                return google.maps.geometry.spherical.interpolate(polyCenter, coord, scale)
+            })
+
+            unselect(last_selection);
+            last_selection = initLayer(outerShapePoints, shapes);
+            last_selection.setEditable(true);
+            last_selection.setDraggable(true);
+        }
+
+        // Function to rotate a polygon
+        function rotatePolygon(polygon, angle) {
+            var center = getPolygonCenter(polygon);
+            var vertices = polygon.getPath().getArray();
+            var rotatedVertices = [];
+
+            vertices.forEach(function (vertex) {
+                var rotatedVertex = rotatePoint(vertex, center, angle);
+                rotatedVertices.push(rotatedVertex);
+            });
+
+            polygon.setPath(rotatedVertices);
+        }
+
+        // Function to resize a polygon
+        function resizePolygon(polygon, scale) {
+            var center = getPolygonCenter(polygon);
+            var vertices = polygon.getPath().getArray();
+            var resizedVertices = [];
+
+            vertices.forEach(function (vertex) {
+                var scaledVertex = scalePoint(vertex, center, scale);
+                resizedVertices.push(scaledVertex);
+            });
+
+            polygon.setPath(resizedVertices);
+        }
+
+        // Function to get center of a polygon
+        function getPolygonCenter(polygon) {
+            var bounds = new google.maps.LatLngBounds();
+            var vertices = polygon.getPath().getArray();
+            vertices.forEach(function (vertex) {
+                bounds.extend(vertex);
+            });
+            return bounds.getCenter();
+        }
+
+        // Function to rotate a point around another point by a given angle
+        function rotatePoint(point, center, angle) {
+            var angleRad = angle * Math.PI / 180.0;
+            var cosAngle = Math.cos(angleRad);
+            var sinAngle = Math.sin(angleRad);
+            var x = point.lng() - center.lng();
+            var y = point.lat() - center.lat();
+            var newX = x * cosAngle - y * sinAngle + center.lng();
+            var newY = x * sinAngle + y * cosAngle + center.lat();
+            return new google.maps.LatLng(newY, newX);
+        }
+
+        // Function to scale a point relative to another point
+        function scalePoint(point, center, scale) {
+            var newX = center.lng() + (point.lng() - center.lng()) * scale;
+            var newY = center.lat() + (point.lat() - center.lat()) * scale;
+            return new google.maps.LatLng(newY, newX);
         }
 
         function download(content, fileName, contentType) {
