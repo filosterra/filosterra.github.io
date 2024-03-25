@@ -7,9 +7,11 @@
 			<option value="Vendido" color="#CCFFFF"/>
 		</filter>
 		<filter title="Tamaño" bind="@Terreno">
-			<option text="menor que 127.5" value="0~127.499" color="#007fff"/>
-			<option text="127.5 - 130" value="127.5~130" color="#00007f"/>
-			<option text="130 en adelante" value="130~500" color="#FF6633"/>			
+			<option text="menor que 130m2" value="0~129.999" color="#00007f"/>
+			<option text="130 a 150m2" value="130~149.999" color="#007fff"/>
+			<option text="150 a 190m2" value="150~189.999" color="#ffcc00"/>
+			<option text="190 a 220m2" value="190~219.999" color="#99ff00"/>
+			<option text="Mayor a 220m2" value="220~500" color="#ff6633"/>			
 		</filter>
 		<!--<filter title="Precio" bind="@PrecioVenta">
 			<option text="700K - 800K" value="700000~800000"/>
