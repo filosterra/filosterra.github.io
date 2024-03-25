@@ -43,6 +43,9 @@
           "action": "append"
         }
       ]
+    },
+    "#desarrollos": {
+      "hash": "#"
     }
   }
 }

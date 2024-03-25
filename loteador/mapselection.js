@@ -179,8 +179,8 @@ async function actualizaColores(oSource) {
 function coloreaLote(oLote, color = '') {
     let data = $(oLote).data('maphilight') || {};
     //data.alwaysOn = false;
-    data.fillColor = color.replace(/^0x|^#/ig, "");
-    data.fillOpacity = 0.5;
+    data.fillColor = color && color.replace(/^0x|^#/ig, "") || "000000";
+    data.fillOpacity = color ? 0.5 : 0.2;
     data.strokeColor = "ffffff";
     $(this).data('maphilight', data).trigger('alwaysOn.maphilight');
     $(this).data('maphilight', data).trigger('fillColor.maphilight');
