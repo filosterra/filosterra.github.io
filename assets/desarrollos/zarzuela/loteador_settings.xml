@@ -2,9 +2,9 @@
 <settings>
 	<filters bind="data/item" id="Id">
 		<filter title="Disponibilidad" bind="@Status">
-			<option value="Disponible" color="#3EFF33"/>
-			<option value="Apartado" color="#FFCC00"/>
-			<option value="Vendido" color="#CCFFFF"/>
+			<option value="Disponible" color="#5e5510"/>
+			<option value="Apartado" color="#f81409"/>
+			<option value="Vendido" color="#f86e09"/>
 		</filter>
 		<filter title="Tamaño" bind="@Terreno">
 			<option text="menor que 130m2" value="0~129.999" color="#00007f"/>
