@@ -103,6 +103,8 @@ body > footer {
 
 main #header p {
     text-align: center;
+    background-color: rgb(108 129 122 / 60%);
+    padding: 1rem;
 }
 
 .styled-scroll {
@@ -488,6 +490,7 @@ li {
     background-position: bottom;
     background-repeat: no-repeat;
     background-attachment: fixed;
+    background-position-y: 30px;
 }
 
 .para {
