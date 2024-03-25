@@ -103,7 +103,7 @@
 	<item Id="102" Lote="102" Status="Vendido" Manzana="4" Etapa="1" PrecioUnitario="5800" Terreno="127.53" PrecioVenta="739674"/>
 	<item Id="103" Lote="103" Status="Vendido" Manzana="4" Etapa="1" PrecioUnitario="5800" Terreno="127.53" PrecioVenta="739674"/>
 	<item Id="104" Lote="104" Status="Vendido" Manzana="4" Etapa="1" PrecioUnitario="5800" Terreno="127.53" PrecioVenta="739674"/>
-	<item Id="105" Lote="105" Status="Disponible" Manzana="4" Etapa="1" PrecioUnitario="5800" Terreno="127.53" PrecioVenta="739674"/>
+	<item Id="105" Lote="105" Status="Apartado" Manzana="4" Etapa="1" PrecioUnitario="5800" Terreno="127.53" PrecioVenta="739674"/>
 	<item Id="106" Lote="106" Status="Disponible" Manzana="4" Etapa="1" PrecioUnitario="5800" Terreno="127.53" PrecioVenta="739674"/>
 	<item Id="107" Lote="107" Status="Disponible" Manzana="4" Etapa="1" PrecioUnitario="5800" Terreno="127.53" PrecioVenta="739674"/>
 	<item Id="108" Lote="108" Status="Disponible" Manzana="4" Etapa="1" PrecioUnitario="5800" Terreno="127.53" PrecioVenta="739674"/>
@@ -125,7 +125,7 @@
 	<item Id="125" Lote="125" Status="Disponible" Manzana="4" Etapa="1" PrecioUnitario="5800" Terreno="158.21" PrecioVenta="917618"/>
 	<item Id="126" Lote="126" Status="Disponible" Manzana="4" Etapa="1" PrecioUnitario="5800" Terreno="156.92" PrecioVenta="910136"/>
 	<item Id="127" Lote="127" Status="Disponible" Manzana="4" Etapa="1" PrecioUnitario="5800" Terreno="155.64" PrecioVenta="902712"/>
-	<item Id="128" Lote="128" Status="Disponible" Manzana="4" Etapa="1" PrecioUnitario="5800" Terreno="176.01" PrecioVenta="1020858"/>
+	<item Id="128" Lote="128" Status="Vendido" Manzana="4" Etapa="1" PrecioUnitario="5800" Terreno="176.01" PrecioVenta="1020858"/>
 	<item Id="129" Lote="129" Status="Vendido" Manzana="4" Etapa="1" PrecioUnitario="5800" Terreno="128.39" PrecioVenta="744662"/>
 	<item Id="130" Lote="130" Status="Disponible" Manzana="4" Etapa="1" PrecioUnitario="5800" Terreno="127.5" PrecioVenta="739500"/>
 	<item Id="131" Lote="131" Status="Disponible" Manzana="4" Etapa="1" PrecioUnitario="5800" Terreno="127.5" PrecioVenta="739500"/>
