@@ -144,7 +144,7 @@
     <comment>mapa</comment>
   </data>
   <data name="cover" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>cover.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>cover.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="loteador" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>loteador.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

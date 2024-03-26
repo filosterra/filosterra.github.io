@@ -190,7 +190,7 @@ header .desarrollos-content img {
 	<xsl:template mode="section-image" match="data[count(key('image',comment))=1]">
 		<div class="row pt-2">
 			<div class="text-center">
-				<img src="/assets/desarrollos/{$state:desarrollo}/{comment}.png" alt=""/>
+				<img src="/assets/desarrollos/{$state:desarrollo}/{comment}.jpg" alt=""/>
 			</div>
 		</div>
 	</xsl:template>
