@@ -131,10 +131,6 @@
     <value>Seguridad garantizada para ti y toda tu familia: Encuentra la vida que mereces en un entorno tranquilo y lleno de experiencias. Sauceda cuenta con los esencial para tu seguridad, barda perimetral con cerca electrificada, accesos controlados y sistema de video vigilancia 24/7. </value>
     <comment>area verde</comment>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="area verde" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>gallery\area verde.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="section_3" xml:space="preserve">
     <value />
     <comment>loteador</comment>
@@ -142,5 +138,9 @@
   <data name="section_4" xml:space="preserve">
     <value>Ubicación: Con acceso a través de vías rápidas, Sauceda Residencial se encuentra en la zona poniente de la ciudad. Cuenta con una amplia área verde y espacio de recreación y esparcimiento para toda tu familia.</value>
     <comment>mapa</comment>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="area verde" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>gallery\area verde.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
