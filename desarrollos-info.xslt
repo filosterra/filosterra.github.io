@@ -1,4 +1,5 @@
 ﻿<xsl:stylesheet version="1.0" xmlns="http://www.w3.org/1999/xhtml" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xo="http://panax.io/xover" xmlns:state="http://panax.io/state" xmlns:searchParams="http://panax.io/site/searchParams" exclude-result-prefixes="xsl xo state">
+	<xsl:import href="gallery.xslt"/>
 	<xsl:param name="state:desarrollo"></xsl:param>
 	<!--<xsl:param name="searchParams:edit">xover.site.querystring.has("edit")</xsl:param>-->
 	<xsl:param name="searchParams:edit">(value)=>value!=undefined</xsl:param>
@@ -11,7 +12,7 @@
 	<xsl:key name="label" match="data" use="@name"/>
 	<xsl:template match="/*">
 		<xsl:variable name="sections" select="key('section','')"/>
-		<main>
+		<main class="desarrollo-info">
 			<xsl:attribute name="xo-source">#{$state:desarrollo}:info</xsl:attribute>
 			<!-- Section Desarrollos -->
 			<header class="d-flex align-items-center no-background banner" style="background: repeating-linear-gradient( 55deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) 9px, rgba(0, 0, 1, 0.3) 9px, rgba(0, 0, 1, 0.3) 18px); height: 230px;" >
@@ -223,6 +224,19 @@ header .desarrollos-content img {
 		</div>
 	</xsl:template>
 
+	<xsl:template mode="section-image" match="key('section','gallery')" priority="5">
+		<style>
+			<![CDATA[
+			.carousel-item img {
+				min-height: 65vh;
+				max-height: 65vh;
+			}]]>
+		</style>
+		<xsl:apply-templates mode="gallery" select=".">
+			<xsl:with-param name="desarrollo" select="$state:desarrollo"/>
+		</xsl:apply-templates>
+	</xsl:template>
+
 	<xsl:template mode="store-buttons" match="*">
 		<xsl:if test="$searchParams:edit='true'">
 			<div class="d-flex justify-content-center align-items-center py-3">
@@ -240,63 +254,6 @@ header .desarrollos-content img {
 					</svg>
 				</a>
 			</div>
-		</xsl:if>
-	</xsl:template>
-
-	<xsl:template mode="section" match="key('section','loteador?')">
-		<xsl:variable name="title" select="substring-before(value,':')"/>
-		<xsl:variable name="subtitle" select="substring-before(value,':')"/>
-		<xsl:variable name="paragraph" select="normalize-space(substring-after(value,':'))"/>
-		<xsl:variable name="section-background">
-			<xsl:choose>
-				<xsl:when test="position() mod 2 =1">section-light</xsl:when>
-				<xsl:otherwise>section-dark</xsl:otherwise>
-			</xsl:choose>
-		</xsl:variable>
-		<xsl:variable name="contenteditable">
-			<xsl:if test="$searchParams:edit='true'">contenteditable</xsl:if>
-		</xsl:variable>
-		<xsl:variable name="extra-classes">
-			<xsl:if test="$searchParams:edit='true' or string($paragraph)!=''">pb-4</xsl:if>
-		</xsl:variable>
-		<section class="{$section-background} section-hd align-items-center py-4 d-flex flex-column">
-			<div class="container pb-4">
-				<xsl:if test="$searchParams:edit='true' or string($title)!=''">
-					<div class="text-center {$extra-classes}">
-						<h4 class="text-uppercase">
-							<xsl:apply-templates mode="title" select="value"/>
-						</h4>
-					</div>
-				</xsl:if>
-				<xsl:if test="$searchParams:edit='true' or string($paragraph)!=''">
-					<div style="text-align: center;" class="{$contenteditable}" xo-scope="{value/@xo:id}" xo-slot="text()">
-						<p style="display: inline-block; text-align: justify; max-width: 100%;" xo-scope="{value/@xo:id}" xo-slot="text()">
-							<xsl:if test="$searchParams:edit='true'">
-								<xsl:attribute name="contenteditable"/>
-							</xsl:if>
-							<xsl:apply-templates mode="content" select="value"/>
-						</p>
-					</div>
-				</xsl:if>
-			</div>
-			<div class="container">
-				<a href="/loteador#{$state:desarrollo}">
-					<img class="map" src="/assets/desarrollos/{$state:desarrollo}/loteador.png" border="0" orgwidth="3800" style="width: 100%; height: 100%; background: var(--filosterra-blue-smoke);" alt="" />
-					<label style="
-    color: var(--filosterra-creen-snow);
-    text-align: right;
-    position: absolute;
-	bottom: 7vh;
-    right: 7vw;
-	cursor: pointer;
-">
-						<button class="btn btn-primary" style="margin: .7rem; font-size: 18pt;">Click para ver disponibilidad</button>
-					</label>
-				</a>
-			</div>
-		</section>
-		<xsl:if test="$searchParams:edit">
-			<xsl:apply-templates mode="section-divider" select="."/>
 		</xsl:if>
 	</xsl:template>
 </xsl:stylesheet>

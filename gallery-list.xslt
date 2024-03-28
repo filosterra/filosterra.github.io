@@ -1,6 +1,6 @@
 ﻿<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns="http://www.w3.org/1999/xhtml">
 	<xsl:template match="/*">
-		<div class="list-group" id="list-tab" role="tablist" xo-store="#desarrollos" xo-stylesheet="gallery-list.xslt">
+		<div class="list-group" id="list-tab" role="tablist">
 			<xsl:apply-templates select="data">
 				<xsl:sort select="comment"/>
 				<xsl:sort select="value"/>				

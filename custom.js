@@ -84,12 +84,14 @@ xo.listener.on('click::div.list-group > a', function () {
 
 xo.listener.silence('root/data[@name="pin"]/value/text()');
 
-function initialize_carousel(target_carousel) {
-    target_carousel.carousel = target_carousel.carousel || new bootstrap.Carousel(target_carousel, {
-        interval: 5000
-    });
+function initialize_carousel() {
+    for (let target_carousel of document.querySelectorAll(".tab-pane.active .carousel, .desarrollo-info .carousel ")) {
+        target_carousel.carousel = target_carousel.carousel || new bootstrap.Carousel(target_carousel, {
+            interval: 5000
+        });
 
-    target_carousel.carousel.cycle();
+        target_carousel.carousel.cycle();
+    }
 }
 
 function saveXMLToFile(xmlContent, fileName) {
