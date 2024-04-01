@@ -164,8 +164,8 @@
 	<item Id="166" Lote="166" Status="Vendido" Manzana="4" Etapa="1" PrecioUnitario="5800" Terreno="127.5" PrecioVenta="739500"/>
 	<item Id="167" Lote="167" Status="Vendido" Manzana="4" Etapa="1" PrecioUnitario="5800" Terreno="127.5" PrecioVenta="739500"/>
 	<item Id="168" Lote="168" Status="Disponible" Manzana="4" Etapa="1" PrecioUnitario="5800" Terreno="128.12" PrecioVenta="743096"/>
-	<item Id="169" Lote="169" Status="Vendido" Manzana="4" Etapa="1" PrecioUnitario="5800" Terreno="1539.11" PrecioVenta="8926838"/>
-	<item Id="170" Lote="170" Status="Vendido" Manzana="4" Etapa="1" PrecioUnitario="5800" Terreno="1602.8" PrecioVenta="9296240"/>
+	<item Id="169" Lote="169" Status="Disponible" Manzana="4" Etapa="1" PrecioUnitario="5800" Terreno="1539.11" PrecioVenta="8926838"/>
+	<item Id="170" Lote="170" Status="Disponible" Manzana="4" Etapa="1" PrecioUnitario="5800" Terreno="1602.8" PrecioVenta="9296240"/>
 	<item Id="171" Lote="171" Status="Vendido" Manzana="4" Etapa="1" PrecioUnitario="5800" Terreno="144.41" PrecioVenta="837578"/>
 	<item Id="172" Lote="172" Status="Disponible" Manzana="4" Etapa="1" PrecioUnitario="5800" Terreno="144.22" PrecioVenta="836476"/>
 	<item Id="173" Lote="173" Status="Apartado" Manzana="4" Etapa="1" PrecioUnitario="5800" Terreno="143.08" PrecioVenta="829864"/>
