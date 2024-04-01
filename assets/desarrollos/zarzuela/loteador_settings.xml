@@ -2,7 +2,7 @@
 <settings>
 	<filters bind="data/item" id="Id">
 		<filter title="Disponibilidad" bind="@Status">
-			<option value="Disponible" color="#5e5510"/>
+			<option value="Disponible" color="#97d933"/>
 			<option value="Apartado" color="#f81409"/>
 			<option value="Vendido" color="#f86e09"/>
 		</filter>
