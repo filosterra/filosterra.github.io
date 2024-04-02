@@ -55,6 +55,11 @@ form:not([desarrollo*="$"]) #Mapa {
 	padding: 20px;
 }
 
+div#Filtros div:not(:has(h4>:checked)) .filter_option span {
+	background-color: white !important;
+	/* border: silver solid 1px; */
+}
+
 [desarrollo=zarzuela] #Filtros {
 	top: 0;
 }
