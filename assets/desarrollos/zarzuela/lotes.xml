@@ -97,8 +97,8 @@
 	<item Id="96" Lote="96" Manzana="4" Etapa="1" PrecioUnitario="5800" Terreno="127.53" PrecioVenta="739674" Status="Disponible"/>
 	<item Id="97" Lote="97" Manzana="4" Etapa="1" PrecioUnitario="5800" Terreno="127.53" PrecioVenta="739674" Status="Disponible"/>
 	<item Id="98" Lote="98" Manzana="4" Etapa="1" PrecioUnitario="5800" Terreno="127.53" PrecioVenta="739674" Status="Disponible"/>
-	<item Id="99" Lote="99" Manzana="4" Etapa="1" PrecioUnitario="5800" Terreno="127.53" PrecioVenta="739674" Status="Vendido"/>
-	<item Id="100" Lote="100" Manzana="4" Etapa="1" PrecioUnitario="5800" Terreno="127.53" PrecioVenta="739674" Status="Vendido"/>
+	<item Id="99" Lote="99" Manzana="4" Etapa="1" PrecioUnitario="5800" Terreno="127.53" PrecioVenta="739674" Status="Disponible"/>
+	<item Id="100" Lote="100" Manzana="4" Etapa="1" PrecioUnitario="5800" Terreno="127.53" PrecioVenta="739674" Status="Disponible"/>
 	<item Id="101" Lote="101" Manzana="4" Etapa="1" PrecioUnitario="5800" Terreno="127.53" PrecioVenta="739674" Status="Vendido"/>
 	<item Id="102" Lote="102" Manzana="4" Etapa="1" PrecioUnitario="5800" Terreno="127.53" PrecioVenta="739674" Status="Vendido"/>
 	<item Id="103" Lote="103" Manzana="4" Etapa="1" PrecioUnitario="5800" Terreno="127.53" PrecioVenta="739674" Status="Vendido"/>
