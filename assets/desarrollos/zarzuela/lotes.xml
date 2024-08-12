@@ -80,7 +80,7 @@
 	<item Id="78" Lote="78" Manzana="3" Etapa="1" PrecioUnitario="5800" Terreno="217.26" PrecioVenta="1260108" Status="Disponible"/>
 	<item Id="79" Lote="79" Manzana="3" Etapa="1" PrecioUnitario="5800" Terreno="217.26" PrecioVenta="1260108" Status="Disponible"/>
 	<item Id="80" Lote="80" Manzana="3" Etapa="1" PrecioUnitario="5800" Terreno="127.5" PrecioVenta="739500" Status="Disponible"/>
-	<item Id="81" Lote="81" Manzana="3" Etapa="1" PrecioUnitario="5800" Terreno="127.5" PrecioVenta="739500" Status="Disponible"/>
+	<item Id="81" Lote="81" Manzana="3" Etapa="1" PrecioUnitario="5800" Terreno="127.5" PrecioVenta="739500" Status="Vendido"/>
 	<item Id="82" Lote="82" Manzana="3" Etapa="1" PrecioUnitario="5800" Terreno="127.5" PrecioVenta="739500" Status="Vendido"/>
 	<item Id="83" Lote="83" Manzana="3" Etapa="1" PrecioUnitario="5800" Terreno="127.5" PrecioVenta="739500" Status="Vendido"/>
 	<item Id="84" Lote="84" Manzana="3" Etapa="1" PrecioUnitario="5800" Terreno="127.5" PrecioVenta="739500" Status="Vendido"/>
