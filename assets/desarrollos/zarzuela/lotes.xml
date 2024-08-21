@@ -51,7 +51,7 @@
 	<item Id="49" Lote="49" Manzana="2" Etapa="1" PrecioUnitario="5800" Terreno="127.5" PrecioVenta="739500" Status="Disponible"/>
 	<item Id="50" Lote="50" Manzana="2" Etapa="1" PrecioUnitario="5800" Terreno="127.5" PrecioVenta="739500" Status="Disponible"/>
 	<item Id="51" Lote="51" Manzana="2" Etapa="1" PrecioUnitario="5800" Terreno="127.5" PrecioVenta="739500" Status="Disponible"/>
-	<item Id="52" Lote="52" Manzana="2" Etapa="1" PrecioUnitario="5800" Terreno="127.5" PrecioVenta="739500" Status="Disponible"/>
+	<item Id="52" Lote="52" Manzana="2" Etapa="1" PrecioUnitario="5800" Terreno="127.5" PrecioVenta="739500" Status="Vendido"/>
 	<item Id="53" Lote="53" Manzana="2" Etapa="1" PrecioUnitario="5800" Terreno="194.9" PrecioVenta="1130420" Status="Vendido"/>
 	<item Id="54" Lote="54" Manzana="3" Etapa="1" PrecioUnitario="5800" Terreno="181.52" PrecioVenta="1052816" Status="Apartado"/>
 	<item Id="55" Lote="55" Manzana="3" Etapa="1" PrecioUnitario="5800" Terreno="127.5" PrecioVenta="739500" Status="Disponible"/>
@@ -134,7 +134,7 @@
 	<item Id="134" Lote="134" Manzana="4" Etapa="1" PrecioUnitario="5800" Terreno="127.5" PrecioVenta="739500" Status="Disponible"/>
 	<item Id="135" Lote="135" Manzana="4" Etapa="1" PrecioUnitario="5800" Terreno="127.5" PrecioVenta="739500" Status="Disponible"/>
 	<item Id="136" Lote="136" Manzana="4" Etapa="1" PrecioUnitario="5800" Terreno="127.5" PrecioVenta="739500" Status="Disponible"/>
-	<item Id="137" Lote="137" Manzana="4" Etapa="1" PrecioUnitario="5800" Terreno="127.5" PrecioVenta="739500" Status="Vendido"/>
+	<item Id="137" Lote="137" Manzana="4" Etapa="1" PrecioUnitario="5800" Terreno="127.5" PrecioVenta="739500" Status="Disponible"/>
 	<item Id="138" Lote="138" Manzana="4" Etapa="1" PrecioUnitario="5800" Terreno="127.08" PrecioVenta="737064" Status="Vendido"/>
 	<item Id="140" Lote="140" Manzana="4" Etapa="1" PrecioUnitario="5800" Terreno="150.34" PrecioVenta="871972" Status="Vendido"/>
 	<item Id="141" Lote="141" Manzana="4" Etapa="1" PrecioUnitario="5800" Terreno="127.5" PrecioVenta="739500" Status="Disponible"/>
