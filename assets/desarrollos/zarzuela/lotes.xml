@@ -38,7 +38,7 @@
 	<item Id="36" Lote="36" Manzana="2" Etapa="1" PrecioUnitario="5800" Terreno="127.5" PrecioVenta="739500" Status="Disponible"/>
 	<item Id="37" Lote="37" Manzana="2" Etapa="1" PrecioUnitario="5800" Terreno="127.5" PrecioVenta="739500" Status="Disponible"/>
 	<item Id="38" Lote="38" Manzana="2" Etapa="1" PrecioUnitario="5800" Terreno="127.5" PrecioVenta="739500" Status="Disponible"/>
-	<item Id="39" Lote="39" Manzana="2" Etapa="1" PrecioUnitario="5800" Terreno="128.77" PrecioVenta="746866" Status="Disponible"/>
+	<item Id="39" Lote="39" Manzana="2" Etapa="1" PrecioUnitario="5800" Terreno="128.77" PrecioVenta="746866" Status="Vendido"/>
 	<item Id="40" Lote="40" Manzana="2" Etapa="1" PrecioUnitario="5800" Terreno="158.47" PrecioVenta="919126" Status="Disponible"/>
 	<item Id="41" Lote="41" Manzana="2" Etapa="1" PrecioUnitario="5800" Terreno="287.81" PrecioVenta="1669298" Status="Disponible"/>
 	<item Id="42" Lote="42" Manzana="2" Etapa="1" PrecioUnitario="5800" Terreno="203.64" PrecioVenta="1181112" Status="Disponible"/>
@@ -159,7 +159,7 @@
 	<item Id="161" Lote="161" Manzana="4" Etapa="1" PrecioUnitario="5800" Terreno="127.5" PrecioVenta="739500" Status="Disponible"/>
 	<item Id="162" Lote="162" Manzana="4" Etapa="1" PrecioUnitario="5800" Terreno="127.5" PrecioVenta="739500" Status="Disponible"/>
 	<item Id="163" Lote="163" Manzana="4" Etapa="1" PrecioUnitario="5800" Terreno="127.5" PrecioVenta="739500" Status="Vendido"/>
-	<item Id="164" Lote="164" Manzana="4" Etapa="1" PrecioUnitario="5800" Terreno="127.5" PrecioVenta="739500" Status="Disponible"/>
+	<item Id="164" Lote="164" Manzana="4" Etapa="1" PrecioUnitario="5800" Terreno="127.5" PrecioVenta="739500" Status="Vendido"/>
 	<item Id="165" Lote="165" Manzana="4" Etapa="1" PrecioUnitario="5800" Terreno="127.5" PrecioVenta="739500" Status="Vendido"/>
 	<item Id="166" Lote="166" Manzana="4" Etapa="1" PrecioUnitario="5800" Terreno="127.5" PrecioVenta="739500" Status="Vendido"/>
 	<item Id="167" Lote="167" Manzana="4" Etapa="1" PrecioUnitario="5800" Terreno="127.5" PrecioVenta="739500" Status="Vendido"/>
