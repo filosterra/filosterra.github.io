@@ -218,7 +218,9 @@ header .desarrollos-content img {
     right: 7vw;
 	cursor: pointer;
 ">
-					<button class="btn btn-primary" style="margin: .7rem; font-size: 18pt;">Click para ver disponibilidad</button>
+					<button class="btn btn-primary" style="margin: .7rem; font-size: 18pt;">
+						Click para ver disponibilidad
+					</button>
 				</label>
 			</a>
 		</div>

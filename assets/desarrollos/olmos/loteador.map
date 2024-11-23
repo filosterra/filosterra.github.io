@@ -1,44 +1,46 @@
-<img src="[loteador] (imported)" width="4656" height="3936" border="0" usemap="#map" />
+<img src="[loteador] (imported)" width="1400" height="1184" border="0" usemap="#map" />
 
 <map name="map">
 <!-- #$-:Image map file created by GIMP Image Map plug-in -->
 <!-- #$-:GIMP Image Map plug-in by Maurits Rijk -->
 <!-- #$-:Please do not edit lines starting with "#$" -->
 <!-- #$VERSION:2.3 -->
-<!-- #$AUTHOR:Uriel Gomez -->
-<area shape="poly" coords="3648,65,3809,649,3598,701,3439,125" alt="1" target="OLMOS_1" href="#" />
-<area shape="poly" coords="3439,125,3599,702,3384,753,3229,187" alt="2" target="OLMOS_2" href="#" />
-<area shape="poly" coords="3229,187,3384,755,3171,807,3019,248" alt="3" target="OLMOS_3" href="#" />
-<area shape="poly" coords="3019,248,3172,808,2959,858,2809,307" alt="4" target="OLMOS_4" href="#" />
-<area shape="poly" coords="2809,307,2959,858,2745,909,2599,367" alt="5" target="OLMOS_5" href="#" />
-<area shape="poly" coords="2600,367,2746,910,2533,960,2388,426" alt="6" target="OLMOS_6" href="#" />
-<area shape="poly" coords="2389,426,2533,961,2320,1012,2178,483" alt="7" target="OLMOS_7" href="#" />
-<area shape="poly" coords="2178,483,2321,1013,2108,1063,1968,541" alt="8" target="OLMOS_8" href="#" />
-<area shape="poly" coords="1968,541,2109,1063,1895,1113,1758,599" alt="9" target="OLMOS_9" href="#" />
-<area shape="poly" coords="1757,599,1896,1113,1683,1163,1548,656" alt="10" target="OLMOS_10" href="#" />
-<area shape="poly" coords="1547,656,1684,1164,1471,1214,1337,713" alt="11" target="OLMOS_11" href="#" />
-<area shape="poly" coords="1337,713,1471,1214,1260,1265,1126,770" alt="12" target="OLMOS_12" href="#" />
-<area shape="poly" coords="1126,770,1321,1489,1019,1560,803,857" alt="13" target="OLMOS_13" href="#" />
-<area shape="poly" coords="1019,1560,1531,1440,1597,1645,1100,1810" alt="14" target="OLMOS_14" href="#" />
-<area shape="poly" coords="1099,1809,1597,1643,1660,1843,1165,2008" alt="15" target="OLMOS_15" href="#" />
-<area shape="poly" coords="1165,2008,1660,1842,1726,2043,1229,2207" alt="16" target="OLMOS_16" href="#" />
-<area shape="poly" coords="1273,2193,1729,2040,1763,2152,1716,2181,1658,2233,1613,2291,1569,2369,1548,2441,1524,2542,1483,2605,1420,2649" alt="17" target="OLMOS_17" href="#" />
-<area shape="poly" coords="703,2941,255,3094,246,3106,525,3866,1179,3456,1049,3244,1017,3267,977,3287,942,3298,887,3304,842,3297,803,3285,762,3261,731,3238,709,3209,689,3182,674,3146,663,3103,661,3048,682,2975" alt="18" target="OLMOS_18" href="#" />
-<area shape="poly" coords="1050,3244,1180,3456,1697,3133,1546,2891,1498,2913,1438,2933,1383,2952,1331,2969,1267,2990,1212,3009,1155,3028,1134,3035,1126,3050,1125,3078,1124,3110,1113,3147,1093,3191" alt="19" target="OLMOS_19" href="#" />
-<area shape="poly" coords="1698,3132,2111,2874,1842,2445,1825,2473,1809,2541,1799,2584,1780,2642,1752,2698,1714,2755,1673,2801,1626,2842,1589,2869,1546,2891" alt="20" target="OLMOS_20" href="#" />
-<area shape="poly" coords="2113,2874,1841,2445,1872,2409,1926,2373,2019,2312,2296,2758" alt="21" target="OLMOS_21" href="#" />
-<area shape="poly" coords="2296,2758,2018,2313,2201,2193,2481,2643" alt="22" target="OLMOS_22" href="#" />
-<area shape="poly" coords="2481,2642,2200,2193,2382,2074,2665,2528" alt="23" target="OLMOS_23" href="#" />
-<area shape="poly" coords="2665,2524,2383,2075,2567,1953,2851,2413" alt="24" target="OLMOS_24" href="#" />
-<area shape="poly" coords="2851,2413,3036,2295,2748,1835,2566,1954" alt="25" target="OLMOS_25" href="#" />
-<area shape="poly" coords="2749,1835,3037,2297,3223,2179,2932,1715" alt="26" target="OLMOS_26" href="#" />
-<area shape="poly" coords="2932,1715,3224,2181,3407,2064,3115,1594" alt="27" target="OLMOS_27" href="#" />
-<area shape="poly" coords="3115,1594,3407,2065,3595,1949,3298,1474" alt="28" target="OLMOS_28" href="#" />
-<area shape="poly" coords="3298,1474,3595,1949,3779,1830,3481,1352" alt="29" target="OLMOS_29" href="#" />
-<area shape="poly" coords="3481,1352,3779,1831,3964,1715,3666,1231" alt="30" target="OLMOS_30" href="#" />
-<area shape="poly" coords="3666,1230,3966,1715,4152,1595,3850,1112" alt="31" target="OLMOS_31" href="#" />
-<area shape="poly" coords="3850,1112,4153,1596,4389,1446,4203,1150,4153,1178,4039,998" alt="32" target="OLMOS_32" href="#" />
-<area shape="poly" coords="2030,2028,3454,1089,3463,1076,3468,1052,3464,1029,3455,1013,3433,1000,3409,992,3394,993,1812,1372,1793,1380,1778,1403,1772,1423,1773,1439,1956,1999,1971,2019,1996,2031" alt="33" target="OLMOS_33" href="#" />
-<area shape="poly" coords="3649,63,3703,49,3776,152,3964,524,3963,557,3929,593,3852,636,3810,649" alt="34" target="OLMOS_34" href="#" />
-<area shape="poly" coords="4037,996,4154,1181,4203,1150,4389,1445,4501,1377,4196,860,4050,952,4043,978,4035,992" alt="35" target="OLMOS_35" href="#" />
+<!-- #$AUTHOR:Uriel Gomez   -->
+<area shape="poly" coords="1094,19,1142,194,1079,210,1031,37" alt="1" target="OLMOS_1" href="#" />
+<area shape="poly" coords="1031,37,1079,210,1015,225,968,56" alt="2" target="OLMOS_2" href="#" />
+<area shape="poly" coords="968,56,1015,226,951,242,905,74" alt="3" target="OLMOS_3" href="#" />
+<area shape="poly" coords="905,74,951,242,887,257,842,92" alt="4" target="OLMOS_4" href="#" />
+<area shape="poly" coords="842,92,887,257,823,272,779,110" alt="5" target="OLMOS_5" href="#" />
+<area shape="poly" coords="780,110,823,273,759,288,716,127" alt="6" target="OLMOS_6" href="#" />
+<area shape="poly" coords="716,127,759,288,696,303,653,144" alt="7" target="OLMOS_7" href="#" />
+<area shape="poly" coords="653,144,696,303,632,318,590,162" alt="8" target="OLMOS_8" href="#" />
+<area shape="poly" coords="590,162,632,318,568,333,527,179" alt="9" target="OLMOS_9" href="#" />
+<area shape="poly" coords="527,179,568,333,504,348,464,196" alt="10" target="OLMOS_10" href="#" />
+<area shape="poly" coords="464,196,505,349,441,364,401,213" alt="11" target="OLMOS_11" href="#" />
+<area shape="poly" coords="401,213,441,364,378,379,337,231" alt="12" target="OLMOS_12" href="#" />
+<area shape="poly" coords="337,231,396,446,305,468,240,257" alt="13" target="OLMOS_13" href="#" />
+<area shape="poly" coords="305,468,459,432,479,493,330,543" alt="14" target="OLMOS_14" href="#" />
+<area shape="poly" coords="329,542,479,492,498,552,349,602" alt="15" target="OLMOS_15" href="#" />
+<area shape="poly" coords="349,602,498,552,517,612,368,662" alt="16" target="OLMOS_16" href="#" />
+<area shape="poly" coords="381,657,518,612,528,645,514,654,497,669,483,687,470,710,464,732,457,762,444,781,426,794" alt="17" target="OLMOS_17" href="#" />
+<area shape="poly" coords="214,892,81,939,78,942,118,1040,207,954,203,941,203,925,207,903" alt="18a" target="OLMOS_18A" href="#" />
+<area shape="poly" coords="165,1155,206,1131,247,988,237,986,228,978,219,971,212,962,206,955,118,1040" alt="18b" target="OLMOS_18B" href="#" />
+<area shape="poly" coords="205,1131,353,1036,314,973,305,980,293,986,282,989,266,991,252,989,246,988" alt="18c" target="OLMOS_18C" href="#" />
+<area shape="poly" coords="314,973,353,1036,508,939,462,867,448,873,430,879,413,885,398,890,379,897,362,902,345,908,339,910,336,915,336,923,336,933,332,944,326,957" alt="19" target="OLMOS_19" href="#" />
+<area shape="poly" coords="509,939,633,862,552,733,547,741,542,762,539,775,534,792,525,809,514,826,501,840,487,852,476,860,463,867" alt="20" target="OLMOS_20" href="#" />
+<area shape="poly" coords="633,862,552,733,561,722,577,711,605,693,688,827" alt="21" target="OLMOS_21" href="#" />
+<area shape="poly" coords="688,827,605,693,660,657,744,792" alt="22" target="OLMOS_22" href="#" />
+<area shape="poly" coords="744,792,660,657,714,622,799,758" alt="23" target="OLMOS_23" href="#" />
+<area shape="poly" coords="799,757,714,622,770,585,855,723" alt="24" target="OLMOS_24" href="#" />
+<area shape="poly" coords="855,723,910,688,824,550,769,586" alt="25" target="OLMOS_25" href="#" />
+<area shape="poly" coords="824,550,911,689,966,653,879,514" alt="26" target="OLMOS_26" href="#" />
+<area shape="poly" coords="879,514,967,654,1022,619,934,478" alt="27" target="OLMOS_27" href="#" />
+<area shape="poly" coords="934,478,1022,619,1078,584,989,442" alt="28" target="OLMOS_28" href="#" />
+<area shape="poly" coords="989,442,1078,584,1133,549,1044,405" alt="29" target="OLMOS_29" href="#" />
+<area shape="poly" coords="1044,405,1133,549,1189,514,1099,369" alt="30" target="OLMOS_30" href="#" />
+<area shape="poly" coords="1099,369,1189,514,1245,478,1155,333" alt="31" target="OLMOS_31" href="#" />
+<area shape="poly" coords="1155,333,1245,478,1316,433,1260,345,1245,353,1211,299" alt="32" target="OLMOS_32" href="#" />
+<area shape="poly" coords="609,608,1036,326,1038,322,1040,315,1039,308,1036,303,1029,300,1022,297,1018,297,543,411,537,414,533,420,531,426,531,431,586,599,591,605,598,609" alt="33" target="OLMOS_33" href="#" />
+<area shape="poly" coords="1094,18,1110,14,1132,45,1189,157,1188,167,1178,177,1155,190,1143,194" alt="34" target="OLMOS_34" href="#" />
+<area shape="poly" coords="1211,298,1246,354,1260,345,1316,433,1350,413,1258,258,1215,285,1212,293,1210,297" alt="35" target="OLMOS_35" href="#" />
 </map>
