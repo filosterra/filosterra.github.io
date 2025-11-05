@@ -156,8 +156,8 @@
 	<item Id="157" Lote="157" Manzana="4" Etapa="1" PrecioUnitario="5800" Terreno="161.3" PrecioVenta="935540" Status="Vendido"/>
 	<item Id="159" Lote="159" Manzana="4" Etapa="1" PrecioUnitario="5800" Terreno="169.71" PrecioVenta="984318" Status="Vendido"/>
 	<item Id="160" Lote="160" Manzana="4" Etapa="1" PrecioUnitario="5800" Terreno="127.5" PrecioVenta="739500" Status="Disponible"/>
-	<item Id="161" Lote="161" Manzana="4" Etapa="1" PrecioUnitario="5800" Terreno="127.5" PrecioVenta="739500" Status="Disponible"/>
-	<item Id="162" Lote="162" Manzana="4" Etapa="1" PrecioUnitario="5800" Terreno="127.5" PrecioVenta="739500" Status="Disponible"/>
+	<item Id="161" Lote="161" Manzana="4" Etapa="1" PrecioUnitario="5800" Terreno="127.5" PrecioVenta="739500" Status="Vendido"/>
+	<item Id="162" Lote="162" Manzana="4" Etapa="1" PrecioUnitario="5800" Terreno="127.5" PrecioVenta="739500" Status="Vendido"/>
 	<item Id="163" Lote="163" Manzana="4" Etapa="1" PrecioUnitario="5800" Terreno="127.5" PrecioVenta="739500" Status="Vendido"/>
 	<item Id="164" Lote="164" Manzana="4" Etapa="1" PrecioUnitario="5800" Terreno="127.5" PrecioVenta="739500" Status="Vendido"/>
 	<item Id="165" Lote="165" Manzana="4" Etapa="1" PrecioUnitario="5800" Terreno="127.5" PrecioVenta="739500" Status="Vendido"/>
@@ -167,7 +167,7 @@
 	<item Id="169" Lote="169" Manzana="4" Etapa="1" PrecioUnitario="5800" Terreno="1539.11" PrecioVenta="8926838" Status="Disponible"/>
 	<item Id="170" Lote="170" Manzana="4" Etapa="1" PrecioUnitario="5800" Terreno="1602.8" PrecioVenta="9296240" Status="Disponible"/>
 	<item Id="171" Lote="171" Manzana="4" Etapa="1" PrecioUnitario="5800" Terreno="144.41" PrecioVenta="837578" Status="Vendido"/>
-	<item Id="172" Lote="172" Manzana="4" Etapa="1" PrecioUnitario="5800" Terreno="144.22" PrecioVenta="836476" Status="Disponible"/>
+	<item Id="172" Lote="172" Manzana="4" Etapa="1" PrecioUnitario="5800" Terreno="144.22" PrecioVenta="836476" Status="Vendido"/>
 	<item Id="173" Lote="173" Manzana="4" Etapa="1" PrecioUnitario="5800" Terreno="143.08" PrecioVenta="829864" Status="Vendido"/>
 	<item Id="174" Lote="174" Manzana="4" Etapa="1" PrecioUnitario="5800" Terreno="141.8" PrecioVenta="822440" Status="Disponible"/>
 	<item Id="175" Lote="175" Manzana="4" Etapa="1" PrecioUnitario="5800" Terreno="140.51" PrecioVenta="814958" Status="Vendido"/>
