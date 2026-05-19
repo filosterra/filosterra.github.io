@@ -28,7 +28,7 @@
 	<item Id="23" Lote="23" Status="Vendido" Manzana="1" Etapa="1" PrecioUnitario="5800" Terreno="125.6" PrecioVenta="728480"/>
 	<item Id="24" Lote="24" Status="Vendido" Manzana="1" Etapa="1" PrecioUnitario="5800" Terreno="132.22" PrecioVenta="766876"/>
 	<item Id="25" Lote="25" Status="Vendido" Manzana="1" Etapa="1" PrecioUnitario="5800" Terreno="137.15" PrecioVenta="795470"/>
-	<item Id="26" Lote="26" Status="Vendido" Manzana="1" Etapa="1" PrecioUnitario="5800" Terreno="149.46" PrecioVenta="866868"/>
+	<item Id="26" Lote="26" Status="Disponible" Manzana="1" Etapa="1" PrecioUnitario="5800" Terreno="149.46" PrecioVenta="866868"/>
 	<item Id="27" Lote="27" Status="Vendido" Manzana="1" Etapa="1" PrecioUnitario="5800" Terreno="151.56" PrecioVenta="879048"/>
 	<item Id="28" Lote="28" Status="Vendido" Manzana="1" Etapa="1" PrecioUnitario="5800" Terreno="151.88" PrecioVenta="880904"/>
 	<item Id="29" Lote="29" Status="Vendido" Manzana="1" Etapa="1" PrecioUnitario="5800" Terreno="150.42" PrecioVenta="872436"/>
